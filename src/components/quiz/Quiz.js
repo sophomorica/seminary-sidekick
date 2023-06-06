@@ -10,7 +10,9 @@ const Quiz = () => {
   const [correct, setCorrect] = useState(null);
 
   useEffect(() => {
-    axios.get("./data/passages.json").then((res) => {
+    axios
+      .get("./data/passages.json")
+      .then((res) => {
         setPassages(res.data);
         getNextQuestion(res.data);
       })
@@ -61,6 +63,7 @@ const Quiz = () => {
                 disabled={selected !== ""}
                 className="btn btn-primary choice-button"
                 style={{
+                  color: "black",
                   backgroundColor:
                     selected === choice
                       ? correct

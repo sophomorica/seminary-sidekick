@@ -1,31 +1,21 @@
-// navbar
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-// import { logout } from '../actions/currentUser.js';
+import React from "react";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
-const Navbar = ({ currentUser, logout }) => {
+function NavigationBar() {
   return (
-    <div className="navbar">
-      <Link to="/home">Home</Link>
-      <Link to="/game">Game</Link>
-      <Link to="/messaging">Messaging</Link>
-      <Link to="/matching">Matching</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">Sign Up</Link>
-      <Link to="/logout" onClick={logout}>Logout</Link>
-      
-      {/* <Link to="/home">Home</Link>
-      <Link to="/game">Game</Link>
-      <Link to="/messaging">Messaging</Link>
-      <Link to="/matching">Matching</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">Sign Up</Link>
-      <Link to="/logout" onClick={logout}>Logout</Link>
-      { currentUser ? `Welcome, ${currentUser.attributes.name}` : "" } */}
-    </div>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="/">Seminary Sidekick</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/quiz">Quiz</Nav.Link>
+          <Nav.Link href="/matching">Matching</Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
   );
 }
-export default Navbar;
 
-// export default connect(null, { logout })(Navbar);
+export default NavigationBar;

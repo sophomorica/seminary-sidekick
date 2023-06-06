@@ -6,18 +6,16 @@ import Quiz from "./components/quiz/Quiz";
 import Dashboard from "./components/Dashboard";
 import MatchingGame from "./components/MatchingGame";
 
-
-
 function App() {
   return (
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/games" element={<GamePage />} />
-        <Route path="/journal" element={<AffirmationPage />} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/matchinggame" element={<MatchingGame />} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/games" element={<GamePage />} />
+      <Route path="/journal" element={<AffirmationPage />} />
+      <Route path="/quiz" element={<Quiz />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/matchinggame" element={<MatchingGame />} />
+    </Routes>
   );
 }
 
