@@ -7,6 +7,7 @@ const MatchingGame = () => {
   const [selectedName, setSelectedName] = useState(null);
   const [selectedReference, setSelectedReference] = useState(null);
   const [matchedIds, setMatchedIds] = useState([]);
+  const [selectedBook, setSelectedBook] = useState("All");
 
   useEffect(() => {
     axios
@@ -18,6 +19,12 @@ const MatchingGame = () => {
         console.error("Error fetching data: ", error);
       });
   }, []);
+
+  const handleBookChange = (e) => {
+    setSelectedBook(e.target.value);
+    setSelectedName(null);
+    setSelectedReference(null);
+  };
 
   const handleNameClick = (id, name) => {
     setSelectedName({ id, name });
@@ -42,13 +49,39 @@ const MatchingGame = () => {
 
   useEffect(checkMatch, [selectedName, selectedReference]);
 
+  const books = Object.keys(data);
+  let passages = [];
+
+  if (selectedBook !== "All") {
+    passages = data[selectedBook] || [];
+  } else {
+    books.forEach((book) => {
+      passages = passages.concat(data[book]);
+    });
+  }
+
   return (
     <div className="container matching-game-container">
+      <div className="form-group">
+        <label htmlFor="book-select">Choose a book:</label>
+        <select
+          id="book-select"
+          className="form-control"
+          onChange={handleBookChange}
+        >
+          <option value="All">All</option>
+          {books.map((book) => (
+            <option value={book} key={book}>
+              {book}
+            </option>
+          ))}
+        </select>
+      </div>
       <h2 className="text-center">Matching Game</h2>
       <div className="row">
         <div className="col-sm-6 names">
           <h3 className="text-center">Names</h3>
-          {data.map(
+          {passages.map(
             (item) =>
               !matchedIds.includes(item.id) && (
                 <button
@@ -67,20 +100,22 @@ const MatchingGame = () => {
         </div>
         <div className="col-sm-6 references">
           <h3 className="text-center">References</h3>
-          {data.map((item) => 
-          !matchedIds.includes(item.id) && ((
-            <button
-              key={item.id}
-              className={`btn btn-outline-success ${
-                selectedReference && selectedReference.id === item.id
-                  ? "selected"
-                  : ""
-              }`}
-              onClick={() => handleReferenceClick(item.id, item.reference)}
-            >
-              {item.reference}
-            </button>
-          )))}
+          {passages.map(
+            (item) =>
+              !matchedIds.includes(item.id) && (
+                <button
+                  key={item.id}
+                  className={`btn btn-outline-success ${
+                    selectedReference && selectedReference.id === item.id
+                      ? "selected"
+                      : ""
+                  }`}
+                  onClick={() => handleReferenceClick(item.id, item.reference)}
+                >
+                  {item.reference}
+                </button>
+              )
+          )}
         </div>
       </div>
     </div>

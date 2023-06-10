@@ -1,4 +1,4 @@
-[
+{"New Testament":[
   {
     "id": 1,
     "book": "New Testament",
@@ -202,14 +202,16 @@
     "reference": "Revelation 20:12",
     "passage": "And the dead were judged … according to their works.",
     "fullPassage":"12 And I saw the dead, small and great, stand before God; and the books were opened: and another book was opened, which is the book of life: and the dead were judged out of those things which were written in the books, according to their works."
-  },
-  {
-    "id": 25,
-    "book": "Book of Mormon",
-    "name": "Godhead",
-    "reference": "2 Nephi 31:21",
-    "passage": "The Father, the Son, and the Holy Ghost are one."
-  }
-]
-
+  }],
+  "Book of Mormon":[
+    
+    {
+      "id": 25,
+      "book": "Book of Mormon",
+      "name": "Godhead",
+      "reference": "2 Nephi 31:21",
+      "passage": "The Father, the Son, and the Holy Ghost are one."
+    }
+  ]
+}
 
