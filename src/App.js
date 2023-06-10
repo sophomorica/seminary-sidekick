@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import GamePage from "./components/GamePage";
-import AffirmationPage from "./components/AffirmationPage";
-import Quiz from "./components/quiz/Quiz";
-import Dashboard from "./components/Dashboard";
-import MatchingGame from "./components/MatchingGame";
+import HomePage from "./components/homepage/HomePage";
+import GamePage from "./components/gamepage/GamePage";
+import AffirmationPage from "./components/affirmation/AffirmationPage";
+import Quiz from "./components//quiz/Quiz";
+import Dashboard from "./components/dashboard/Dashboard";
+import MatchingGame from "./components/matchinggame/MatchingGame";
 
 function App() {
   return (
