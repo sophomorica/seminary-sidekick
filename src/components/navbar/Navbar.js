@@ -12,6 +12,9 @@ function NavigationBar() {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/quiz">Quiz</Nav.Link>
           <Nav.Link href="/matching">Matching</Nav.Link>
+          <Nav.Link href="/journal">Journal</Nav.Link>
+          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+          <Nav.Link href="/messages">Messages</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

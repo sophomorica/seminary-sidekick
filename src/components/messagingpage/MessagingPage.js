@@ -1,9 +1,9 @@
 // MessagingPage.js
-import React from 'react';
+import React from "react";
 
 const MessagingPage = () => {
   return (
-    <div>
+    <div class="container">
       <h1>MessagingPage</h1>
     </div>
   );

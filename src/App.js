@@ -5,7 +5,7 @@ import AffirmationPage from "./components/affirmation/AffirmationPage";
 import Quiz from "./components//quiz/Quiz";
 import Dashboard from "./components/dashboard/Dashboard";
 import MatchingGame from "./components/matchinggame/MatchingGame";
-
+import MessagingPage from "./components/messagingpage/MessagingPage";
 function App() {
   return (
     <Routes>
@@ -14,7 +14,8 @@ function App() {
       <Route path="/journal" element={<AffirmationPage />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/matchinggame" element={<MatchingGame />} />
+      <Route path="/matching" element={<MatchingGame />} />
+      <Route path="/messages" element={<MessagingPage />} />
     </Routes>
   );
 }

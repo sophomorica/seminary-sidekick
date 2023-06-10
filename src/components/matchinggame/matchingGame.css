@@ -1,0 +1,16 @@
+.matching-game-container {
+  margin: 20px;
+}
+
+.names, .references {
+  padding: 20px;
+}
+
+.names .btn, .references .btn {
+  margin: 5px;
+}
+
+.selected {
+  background-color: #007bff;
+  color: white;
+}
