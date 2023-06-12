@@ -1,632 +1,717 @@
 {
-  "Old Testament":[
-    {
-        "name": "Work and Glory of God",
-        "reference": "Moses 1:39",
-        "passage": "This is my work and my glory—to bring to pass the immortality and eternal life of man.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Zion",
-        "reference": "Moses 7:18",
-        "passage": "The Lord called his people Zion, because they were of one heart and one mind.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Abrahamic Covenant",
-        "reference": "Abraham 2:9-11",
-        "passage": "The Lord promised Abraham that his seed would 'bear this ministry and Priesthood unto all nations.'",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Pre-Mortal Existence",
-        "reference": "Abraham 3:22-23",
-        "passage": "As spirits we 'were organized before the world was.'",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Creation of Man",
-        "reference": "Genesis 1:26-27",
-        "passage": "God created man in his own image.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Marriage",
-        "reference": "Genesis 2:24",
-        "passage": "A man ... shall cleave unto his wife: and they shall be one.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Fidelity",
-        "reference": "Genesis 39:9",
-        "passage": "How then can I do this great wickedness, and sin against God?",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "The Ten Commandments",
-        "reference": "Exodus 20:3-17",
-        "passage": "The Ten Commandments",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Choose to Serve God",
-        "reference": "Joshua 24:15",
-        "passage": "Choose you this day whom ye will serve.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Clean Hands and Pure Heart",
-        "reference": "Psalm 24:3-4",
-        "passage": "Who shall stand in his holy place? He that hath clean hands, and a pure heart.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Trust in the Lord",
-        "reference": "Proverbs 3:5-6",
-        "passage": "Trust in the Lord with all thine heart … and he shall direct thy paths.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Sins Made White",
-        "reference": "Isaiah 1:18",
-        "passage": "Though your sins be as scarlet, they shall be as white as snow.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Woe to Those Who Distort Good and Evil",
-        "reference": "Isaiah 5:20",
-        "passage": "Woe unto them that call evil good, and good evil.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Restoration of the Gospel",
-        "reference": "Isaiah 29:13-14",
-        "passage": "The restoration of the gospel is 'a marvellous work and a wonder.'",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Christ’s Atonement",
-        "reference": "Isaiah 53:3-5",
-        "passage": "Surely [Jesus Christ] hath borne our griefs, and carried our sorrows.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Blessings of a Proper Fast",
-        "reference": "Isaiah 58:6-7",
-        "passage": "The blessings of a proper fast",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Sabbath Day",
-        "reference": "Isaiah 58:13-14",
-        "passage": "Turn away ... from doing thy pleasure on my holy day; and call the sabbath a delight.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Foreordination",
-        "reference": "Jeremiah 1:4-5",
-        "passage": "Before I formed thee in the belly ... I ordained thee a prophet unto the nations.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "The Prophet as a Watchman",
-        "reference": "Ezekiel 3:16-17",
-        "passage": "The prophet is 'a watchman unto the house of Israel.'",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Bible and Book of Mormon",
-        "reference": "Ezekiel 37:15-17",
-        "passage": "The Bible and the Book of Mormon 'shall become one in thine hand.'",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "God’s Kingdom",
-        "reference": "Daniel 2:44-45",
-        "passage": "God shall 'set up a kingdom, which shall never be destroyed.'",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "God Reveals Secrets to Prophets",
-        "reference": "Amos 3:7",
-        "passage": "The Lord God ... revealeth his secret unto his servants the prophets.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Blessings of Tithing",
-        "reference": "Malachi 3:8-10",
-        "passage": "The blessings of paying tithing",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Elijah to Turn Hearts",
-        "reference": "Malachi 4:5-6",
-        "passage": "Elijah 'shall turn … the heart of the children to their fathers.'",
-        "fullPassage":"TODO"
-    }
-]
-,
-  "New Testament":[
-  {
-    "name": "Light Shine",
-    "reference": "Matthew 5:16",
-    "passage": "Let your light so shine before men.",
-    "fullPassage":"14 Ye are the light of the world. A city that is set on an hill cannot be hid. 15 Neither do men light a candle, and put it under a bushel, but on a candlestick; and it giveth light unto all that are in the house. 16 Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven."
-    
-  },
-  {
-    "name": "Rest in Christ",
-    "reference": "Matthew 11:28–30",
-    "passage": "Come unto me, all ye that labour and are heavy laden, and I will give you rest.",
-    "fullPassage":"28 ¶ Come unto me, all ye that labour and are heavy laden, and I will give you rest.29 Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls. 30 For my yoke is easy, and my burden is light."
-    
-  },
-  {
-    "name": "Keys of the Kingdom",
-    "reference": "Matthew 16:15–19",
-    "passage": "Jesus said, 'I will give unto thee the keys of the kingdom.'",
-    "fullPassage":"15 He saith unto them, But whom say ye that I am? 16 And Simon Peter answered and said, Thou art the Christ, the Son of the living God. 17 And Jesus answered and said unto him, Blessed art thou, Simon Bar-jona: for flesh and blood hath not revealed it unto thee, but my Father which is in heaven. 18 And I say also unto thee, That thou art Peter, and upon this rock I will build my church; and the gates of hell shall not prevail against it. 19 And I will give unto thee the keys of the kingdom of heaven: and whatsoever thou shalt bind on earth shall be bound in heaven: and whatsoever thou shalt loose on earth shall be loosed in heaven."
-    
-  },
-  {
-    "name": "Love God and Neighbor",
-    "reference": "Matthew 22:36–39",
-    "passage": "Thou shalt love the Lord thy God. … Thou shalt love thy neighbour.",
-    "fullPassage":"36 Master, which is the great commandment in the law? 37 Jesus said unto him, Thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind. 38 This is the first and great commandment. 39 And the second is like unto it, Thou shalt love thy neighbour as thyself."    
-  },
-  { 
-    "name": "Christ's Birth",
-    "reference": "Luke 2:10–12",
-    "passage": "For unto you is born this day in the city of David a Saviour, which is Christ the Lord.",
-    "fullPassage":""
-    
-  },
-  {
-    "name": "Sacrament Remembrance",
-    "reference": "Luke 22:19–20",
-    "passage": "Jesus Christ commanded, partake of the sacrament 'in remembrance of me.'",
-    "fullPassage":"10 And the angel said unto them, Fear not: for, behold, I bring you good tidings of great joy, which shall be to all people.    11 For unto you is born this day in the city of David a Saviour, which is Christ the Lord.    12 And this shall be a sign unto you; Ye shall find the babe wrapped in swaddling clothes, lying in a manger."    
-  },
-  {
-    "name": "Christ's Resurrected Body",
-    "reference": "Luke 24:36–39",
-    "passage": "For a spirit hath not flesh and bones, as ye see me have.",
-    "fullPassage":"19 ¶ And he took bread, and gave thanks, and brake it, and gave unto them, saying, This is my body which is given for you: this do in remembrance of me. 20 Likewise also the cup after supper, saying, This cup is the new testament in my blood, which is shed for you."
-    
-  },
-  {
-    "name": "Born of Water and Spirit",
-    "reference": "John 3:5",
-    "passage": "Except a man be born of water and of the Spirit, he cannot enter into the kingdom of God.",
-    "fullPassage":"5 Jesus answered, Verily, verily, I say unto thee, Except a man be born of water and of the Spirit, he cannot enter into the kingdom of God."
-    
-  },
-  {
-    "name": "God's Love",
-    "reference": "John 3:16",
-    "passage": "For God so loved the world, that he gave his only begotten Son.",
-    "fullPassage":"16 ¶ For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."
-    
-  },
-  {
-    "name": "Knowing Doctrine",
-    "reference": "John 7:17",
-    "passage": "If any man will do his will, he shall know of the doctrine.",
-    "fullPassage":"17 If any man will do his will, he shall know of the doctrine, whether it be of God, or whether I speak of myself."
-    
-  },
-
- {
-"name": "Keep Commandments, love", 
-"reference": "John 14:15",
-"passage": "If ye love me, keep my commandments.",
-"fullPassage": "if ye love me, keep my commandments."
- },
- {
-  "name": "Ordained and Chosen",
-"reference": "John 15:16",
-"passage": "Ye have not chosen me, but I have chosen you, and ordained you.",
-"fullPassage": "Ye have not chosen me, but I chosen you, and ordained you, that ye should go and bring forth fruit, and that your fruit should remain: that whatsoever ye shall ask of the Father in my name, he may give it you."
- },
-  {
-    "name": "Life Eternal",
-    "reference": "John 17:3",
-    "passage": "And this is life eternal, that they might know thee the only true God, and Jesus Christ.",
-    "fullPassage":"3 And this is life eternal, that they might know thee the only true God, and Jesus Christ, whom thou hast sent."
-    
-  },
-  {
-    "name": "Restitution of All Things",
-    "reference": "Acts 3:19–21",
-    "passage": "Times of restitution of all things, which God hath spoken by the mouth of all his holy prophets.",
-    "fullPassage":"Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the dpresence of the Lord; And he shall send aJesus Christ, which before was preached unto you: Whom the heaven must receive until the times of arestitution of all things, which God hath bspoken by the mouth of all his holy prophets since the world began."
-  },
-  {
-    "name": "Know God by the Spirit",
-    "reference": "1 Corinthians 2:5, 9-11",
-    "passage": "The Spirit … searcheth all things, yea, the deep things of God.",
-    "fullPassage": "That your faith should not stand in the wisdom of men, but in the power of God. But as it is written, Eye hath not seen, nor ear heard, neither have entered into the heart of man, the things which God hath prepared for them that love him. But God hath revealed them unto us by his Spirit: for the Spirit searcheth all things, yea, the deep things of God. For what man knoweth the things of a man, save the spirit of man which is in him? even so the things of God knoweth no man, but the Spirit of God."
-  },
-
-  {
-    "name": "Body as a Temple",
-    "reference": "1 Corinthians 6:19–20",
-    "passage": "Your body is the temple of the Holy Ghost.",
-    "fullPassage":"19 What? know ye not that your body is the temple of the Holy Ghost which is in you, which ye have of God, and ye are not your own?    20 For ye are bought with a price: therefore glorify God in your body, and in your spirit, which are God’s."    
-  },
-  {
-    "name": "Man and Woman",
-    "reference": "1 Corinthians 11:11",
-    "passage": "Neither is the man without the woman, neither the woman without the man, in the Lord.",
-    "fullPassage":"11 Nevertheless neither is the man without the woman, neither the woman without the man, in the Lord."
-    
-  },
-  {
-    "name": "Resurrection",
-    "reference": "1 Corinthians 15:20–22",
-    "passage": "As in Adam all die, even so in Christ shall all be made alive.",
-    "fullPassage":"20 But now is Christ risen from the dead, and become the firstfruits of them that slept.    21 For since by man came death, by man came also the resurrection of the dead.    22 For as in Adam all die, even so in Christ shall all be made alive."    
-  },
-  {
-    "name": "Degrees of Glory",
-    "reference": "1 Corinthians 15:40–42",
-    "passage": "In the Resurrection, there are three degrees of glory.",
-    "fullPassage":"40 There are also celestial bodies, and bodies terrestrial: but the glory of the celestial is one, and the glory of the terrestrial is another.    41 There is one glory of the sun, and another glory of the moon, and another glory of the stars: for one star differeth from another star in glory.    42 So also is the resurrection of the dead. It is sown in corruption; it is raised in incorruption:" 
-  },
-  {
-    "name": "Gathering in Christ",
-    "reference": "Ephesians 1:10",
-    "passage": "In the dispensation of the fulness of times he might gather together in one all things in Christ.",
-    "fullPassage":"10 That in the dispensation of the fulness of times he might gather together in one all things in Christ, both which are in heaven, and which are on earth; even in him:"    
-  },
-  {
-    "name": "Church Foundation",
-    "reference": "Ephesians 2:19–20",
-    "passage": "The Church is 'built upon the foundation of the apostles and prophets, Jesus Christ himself being the chief corner stone.'",
-    "fullPassage":"19 Now therefore ye are no more strangers and foreigners, but fellowcitizens with the saints, and of the household of God;   20 And are built upon the foundation of the apostles and prophets, Jesus Christ himself being the chief corner stone;"
-  },
-  {
-    "name": "Apostles and Prophets perfect saints",
-    "reference": "Ephesians 4:11–14",
-    "passage":"He gave some apostels and prophets for the perfecting of the saints",
-    "fullPassage":"TODO"
-  },
-  {
-    "name": "Falling Away",
-    "reference": "2 Thessalonians 2:1–3",
-    "passage": "The day of Christ … shall not come, except there come a falling away first.",
-    "fullPassage":"1 Now we beseec you, brethren, by the coming of our Lord Jesus Christ, and by our gathering together unto him,    2 That ye be not soon shaken i mind, or be troubled, neither by spirit, nor by word, nor by letter as from us, as that the day of Christ is at hand.    3 Let no man deceive you by an means: for that day shall not come, except there come a falling away first, and that man of sin be revealed, the son of perdition;"    
-  },
-  {
-    "name": "Scriptures for Salvation",
-    "reference": "2 Timothy 3:15–17",
-    "passage": "The holy scriptures … are able to make thee wise unto salvation.",
-    "fullPassage":"15 And that from a child thou hast known the holy scriptures, which are able to make thee wise unto salvation through faith which is in Christ Jesus.    16 All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness:    17 That the man of God may be perfect, throughly furnished unto all good works."    
-  },
-  {
-    "name": "Father of Spirits",
-    "reference": "Hebrews 12:9",
-    "passage": "Heavenly Father is 'the Father of spirits.'",
-    "fullPassage":"9 Furthermore we have had fathers of our flesh which corrected us, and we gave them reverence: shall we not much rather be in subjection unto the Father of spirits, and live?"
-    
-  },
-  {
-    "name": "Ask for Wisdom",
-    "reference": "James 1:5–6",
-    "passage": "If any of you lack wisdom, let him ask of God.",
-    "fullPassage":"5 If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.    6 But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed."    
-  },
-  {
-    "name": "Faith and Works",
-    "reference": "James 2:17–18",
-    "passage": "Faith, if it hath not works, is dead.",
-    "fullPassage":"17 Even so faith, if it hath not works, is dead, being alone.    18 Yea, a man may say, Thou hast faith, and I have works: shew me thy faith without thy works, and I will shew thee my faith by my works."    
-  },
-  {
-    "name": "Gospel Preached to the Dead",
-    "reference": "1 Peter 4:6",
-    "passage": "The gospel [was] preached also to them that are dead.",
-    "fullPassage":"6 For for this cause was the gospel preached also to them that are dead, that they might be judged according to men in the flesh, but live according to God in the spirit."
-    
-  },
-  {
-    "name": "Judgment by Works",
-    "reference": "Revelation 20:12",
-    "passage": "And the dead were judged … according to their works.",
-    "fullPassage":"12 And I saw the dead, small and great, stand before God; and the books were opened: and another book was opened, which is the book of life: and the dead were judged out of those things which were written in the books, according to their works."
-  }],
-  "Book of Mormon":[
-    {
-      "name": "Obedience to Commandments",
-      "reference": "1 Nephi 3:7",
-      "passage": "I will go and do the things which the Lord hath commanded.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Purpose of Life",
-      "reference": "2 Nephi 2:25",
-      "passage": "Adam fell that men might be; and men are, that they might have joy.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Freedom to Choose",
-      "reference": "2 Nephi 2:27",
-      "passage": "They are free to choose liberty and eternal life … or … captivity and death.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Equality before God",
-      "reference": "2 Nephi 26:33",
-      "passage": "All are alike unto God.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Revelation",
-      "reference": "2 Nephi 28:30",
-      "passage": "God will give unto the children of men line upon line, precept upon precept.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Feasting on the Word",
-      "reference": "2 Nephi 32:3",
-      "passage": "Feast upon the words of Christ; for behold, the words of Christ will tell you all things what ye should do.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Necessity of Prayer",
-      "reference": "2 Nephi 32:8-9",
-      "passage": "Ye must pray always.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Service to Others",
-      "reference": "Mosiah 2:17",
-      "passage": "When ye are in the service of your fellow beings ye are only in the service of your God.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Blessings through Obedience",
-      "reference": "Mosiah 2:41",
-      "passage": "Those that keep the commandments of God … are blessed in all things.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Overcoming the Natural Man",
-      "reference": "Mosiah 3:19",
-      "passage": "[Put] off the natural man and [become] a saint through the atonement of Christ the Lord.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Belief in God's Wisdom",
-      "reference": "Mosiah 4:9",
-      "passage": "Believe in God; … believe that he has all wisdom.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Covenant through Baptism",
-      "reference": "Mosiah 18:8-10",
-      "passage": "Be baptized in the name of the Lord, as a witness … that ye have entered into a covenant with him.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Christ's Suffering",
-      "reference": "Alma 7:11-13",
-      "passage": "And he shall go forth, suffering pains and afflictions and temptations of every kind.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "The Atonement",
-      "reference": "Alma 34:9-10",
-      "passage": "There must be an atonement made, … an infinite and eternal sacrifice.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Avoid Lust",
-      "reference": "Alma 39:9",
-      "passage": "Go no more after the lusts of your eyes.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Consequences of Wickedness",
-      "reference": "Alma 41:10",
-      "passage": "Wickedness never was happiness.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Solid Foundation",
-      "reference": "Helaman 5:12",
-      "passage": "It is upon the rock of our Redeemer … that ye must build your foundation.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Christ's Submission",
-      "reference": "3 Nephi 11:10-11",
-      "passage": "I have suffered the will of the Father in all things from the beginning.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Striving for Perfection",
-      "reference": "3 Nephi 12:48",
-      "passage": "Be perfect even as I, or your Father who is in heaven is perfect.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Coming Unto Christ",
-      "reference": "3 Nephi 27:20",
-      "passage": "Come unto me and be baptized … that ye may be sanctified by the reception of the Holy Ghost.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Trial of Faith",
-      "reference": "Ether 12:6",
-      "passage": "Ye receive no witness until after the trial of your faith.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Strength in Weakness",
-      "reference": "Ether 12:27",
-      "passage": "If men come unto me … then will I make weak things become strong unto them.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Charity",
-      "reference": "Moroni 7:45-48",
-      "passage": "Charity is the pure love of Christ.",
-      "fullPassage":"TODO"
-  },
-  {
-      "name": "Seeking Truth Through Prayer",
-      "reference": "Moroni 10:4-5",
-      "passage": "Ask with a sincere heart, with real intent, having faith in Christ … [and] by the power of the Holy Ghost ye may know the truth of all things.",
-      "fullPassage":"TODO"
-  }
-  ],
-  "Doctrine And Covenants": [
-    {
-        "name": "The First Vision",
-        "reference": "Joseph Smith—History 1:17",
-        "passage": "saw two Personages, whose brightness and glory defy all description.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "True and Living Church",
-        "reference": "Doctrine and Covenants 1:30",
-        "passage": "The only true and living church.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Voice of the Lord",
-        "reference": "Doctrine and Covenants 1:37-38",
-        "passage": "Whether by mine own voice or by the voice of my servants, it is the same.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Trust in Christ",
-        "reference": "Doctrine and Covenants 6:36",
-        "passage": "Look unto me in every thought; doubt not, fear not.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Revelation through the Holy Ghost",
-        "reference": "Doctrine and Covenants 8:2-3",
-        "passage": "I will tell you in your mind and in your heart, by the Holy Ghost.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Aaronic Priesthood",
-        "reference": "Doctrine and Covenants 13:1",
-        "passage": "The Aaronic Priesthood holds the keys of the ministering of angels, and of the gospel of repentance, and of baptism.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Worth of Souls",
-        "reference": "Doctrine and Covenants 18:10-11",
-        "passage": "The worth of souls is great in the sight of God.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Joy in Bringing Souls",
-        "reference": "Doctrine and Covenants 18:15-16",
-        "passage": "How great will be your joy if you should bring many souls unto me!",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Christ's Atonement",
-        "reference": "Doctrine and Covenants 19:16-19",
-        "passage": "I, [Jesus Christ], have suffered these things for all.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Receiving the Prophet’s Words",
-        "reference": "Doctrine and Covenants 21:4-6",
-        "passage": "The prophet’s word ye shall receive, as if from mine own mouth.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Second Coming",
-        "reference": "Doctrine and Covenants 29:10-11",
-        "passage": "I will reveal myself from heaven with power and great glory … and dwell in righteousness with men on earth a thousand years.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Marriage Ordained",
-        "reference": "Doctrine and Covenants 49:15-17",
-        "passage": "Marriage is ordained of God.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Repentance and Forgiveness",
-        "reference": "Doctrine and Covenants 58:42-43",
-        "passage": "He who has repented of his sins, the same is forgiven.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Requirement to Forgive",
-        "reference": "Doctrine and Covenants 64:9-11",
-        "passage": "Of you it is required to forgive all men.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Creator and Savior",
-        "reference": "Doctrine and Covenants 76:22-24",
-        "passage": "By [Jesus Christ] the worlds are and were created.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Obedience Binds the Lord",
-        "reference": "Doctrine and Covenants 82:10",
-        "passage": "I, the Lord, am bound when ye do what I say.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Power of Godliness",
-        "reference": "Doctrine and Covenants 84:20-22",
-        "passage": "In the ordinances thereof, the power of godliness is manifest.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Seek Learning",
-        "reference": "Doctrine and Covenants 88:118",
-        "passage": "Seek learning, even by study and also by faith.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Word of Wisdom",
-        "reference": "Doctrine and Covenants 89:18-21",
-        "passage": "The blessings of the Word of Wisdom.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Melchizedek Priesthood",
-        "reference": "Doctrine and Covenants 107:8",
-        "passage": "The Melchizedek Priesthood … has power and authority … to administer in spiritual things.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Rights of the Priesthood",
-        "reference": "Doctrine and Covenants 121:36, 41-42",
-        "passage": "The rights of the priesthood … cannot be controlled nor handled only on the principles of righteousness.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Nature of God",
-        "reference": "Doctrine and Covenants 130:22-23",
-        "passage": "The Father has a body of flesh and bones … ; the Son also; but the Holy Ghost … is a personage of Spirit.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Eternal Marriage",
-        "reference": "Doctrine and Covenants 131:1-4",
-        "passage": "The new and everlasting covenant of marriage.",
-        "fullPassage":"TODO"
-    },
-    {
-        "name": "Joseph Smith and Book of Mormon",
-        "reference": "Doctrine and Covenants 135:3",
-        "passage": "Joseph Smith brought forth the Book of Mormon, which he translated by the gift and power of God.",
-        "fullPassage":"TODO"
-    }
-]
-
+    "Old Testament": [
+        {
+            "name": "Work and Glory of God",
+            "reference": "Moses 1:39",
+            "passage": "This is my work and my glory\u2014to bring to pass the immortality and eternal life of man.",
+            "fullPassage": "TODO",
+            "id": "e4333481-cf2a-4711-82fb-5e629dd1d01c"
+        },
+        {
+            "name": "Zion",
+            "reference": "Moses 7:18",
+            "passage": "The Lord called his people Zion, because they were of one heart and one mind.",
+            "fullPassage": "TODO",
+            "id": "c428e25c-5894-4694-97e3-82bb512b8339"
+        },
+        {
+            "name": "Abrahamic Covenant",
+            "reference": "Abraham 2:9-11",
+            "passage": "The Lord promised Abraham that his seed would 'bear this ministry and Priesthood unto all nations.'",
+            "fullPassage": "TODO",
+            "id": "0b58b66e-e78d-4cfe-8b03-996579834aa0"
+        },
+        {
+            "name": "Pre-Mortal Existence",
+            "reference": "Abraham 3:22-23",
+            "passage": "As spirits we 'were organized before the world was.'",
+            "fullPassage": "TODO",
+            "id": "95fcf21c-5fbd-42a1-9bbf-d80d21cf74a0"
+        },
+        {
+            "name": "Creation of Man",
+            "reference": "Genesis 1:26-27",
+            "passage": "God created man in his own image.",
+            "fullPassage": "TODO",
+            "id": "788b62ad-1048-4c8a-833b-4c029773a7b0"
+        },
+        {
+            "name": "Marriage",
+            "reference": "Genesis 2:24",
+            "passage": "A man ... shall cleave unto his wife: and they shall be one.",
+            "fullPassage": "TODO",
+            "id": "7d5d3f3c-ce24-47a5-8b3f-a585e504f987"
+        },
+        {
+            "name": "Fidelity",
+            "reference": "Genesis 39:9",
+            "passage": "How then can I do this great wickedness, and sin against God?",
+            "fullPassage": "TODO",
+            "id": "ca7bb23f-b7fc-4b9c-8ba3-9bf0244c3e5c"
+        },
+        {
+            "name": "The Ten Commandments",
+            "reference": "Exodus 20:3-17",
+            "passage": "The Ten Commandments",
+            "fullPassage": "TODO",
+            "id": "1eaf66ec-cfed-4cdf-9d68-01130ab0d703"
+        },
+        {
+            "name": "Choose to Serve God",
+            "reference": "Joshua 24:15",
+            "passage": "Choose you this day whom ye will serve.",
+            "fullPassage": "TODO",
+            "id": "f9d29fee-9aea-42db-a1bf-c613c37b2935"
+        },
+        {
+            "name": "Clean Hands and Pure Heart",
+            "reference": "Psalm 24:3-4",
+            "passage": "Who shall stand in his holy place? He that hath clean hands, and a pure heart.",
+            "fullPassage": "TODO",
+            "id": "4bb52dda-0442-4dfd-b9d1-e0e4db8de94b"
+        },
+        {
+            "name": "Trust in the Lord",
+            "reference": "Proverbs 3:5-6",
+            "passage": "Trust in the Lord with all thine heart \u2026 and he shall direct thy paths.",
+            "fullPassage": "TODO",
+            "id": "95240e6a-852f-4814-9537-58a16d9cb15d"
+        },
+        {
+            "name": "Sins Made White",
+            "reference": "Isaiah 1:18",
+            "passage": "Though your sins be as scarlet, they shall be as white as snow.",
+            "fullPassage": "TODO",
+            "id": "6b88b77b-acf5-41d4-9f8f-abbef847e2e3"
+        },
+        {
+            "name": "Woe to Those Who Distort Good and Evil",
+            "reference": "Isaiah 5:20",
+            "passage": "Woe unto them that call evil good, and good evil.",
+            "fullPassage": "TODO",
+            "id": "38b3b8f9-2662-49c1-8de4-6f39198587df"
+        },
+        {
+            "name": "Restoration of the Gospel",
+            "reference": "Isaiah 29:13-14",
+            "passage": "The restoration of the gospel is 'a marvellous work and a wonder.'",
+            "fullPassage": "TODO",
+            "id": "9fde4f68-dd53-4b10-9e82-7fc7fef1bca9"
+        },
+        {
+            "name": "Christ\u2019s Atonement",
+            "reference": "Isaiah 53:3-5",
+            "passage": "Surely [Jesus Christ] hath borne our griefs, and carried our sorrows.",
+            "fullPassage": "TODO",
+            "id": "cfa762f5-ccf2-407a-86d9-382b7ad7b4a2"
+        },
+        {
+            "name": "Blessings of a Proper Fast",
+            "reference": "Isaiah 58:6-7",
+            "passage": "The blessings of a proper fast",
+            "fullPassage": "TODO",
+            "id": "eb9d997e-3735-4945-ad51-ce013979ec87"
+        },
+        {
+            "name": "Sabbath Day",
+            "reference": "Isaiah 58:13-14",
+            "passage": "Turn away ... from doing thy pleasure on my holy day; and call the sabbath a delight.",
+            "fullPassage": "TODO",
+            "id": "19939ae8-1146-4bc6-923c-cf6f85bbc5ff"
+        },
+        {
+            "name": "Foreordination",
+            "reference": "Jeremiah 1:4-5",
+            "passage": "Before I formed thee in the belly ... I ordained thee a prophet unto the nations.",
+            "fullPassage": "TODO",
+            "id": "ea340cb0-6d6e-44bb-bbf7-e462519e5997"
+        },
+        {
+            "name": "The Prophet as a Watchman",
+            "reference": "Ezekiel 3:16-17",
+            "passage": "The prophet is 'a watchman unto the house of Israel.'",
+            "fullPassage": "TODO",
+            "id": "3c8842b7-337d-4639-9825-437ee0dbfb9e"
+        },
+        {
+            "name": "Bible and Book of Mormon",
+            "reference": "Ezekiel 37:15-17",
+            "passage": "The Bible and the Book of Mormon 'shall become one in thine hand.'",
+            "fullPassage": "TODO",
+            "id": "a906dcde-e9f9-49a5-9f84-29bf8f5b1c82"
+        },
+        {
+            "name": "God\u2019s Kingdom",
+            "reference": "Daniel 2:44-45",
+            "passage": "God shall 'set up a kingdom, which shall never be destroyed.'",
+            "fullPassage": "TODO",
+            "id": "de9e0267-bb7b-4a8c-b945-eca94ef54d57"
+        },
+        {
+            "name": "God Reveals Secrets to Prophets",
+            "reference": "Amos 3:7",
+            "passage": "The Lord God ... revealeth his secret unto his servants the prophets.",
+            "fullPassage": "TODO",
+            "id": "82c2ad0d-b970-4781-8aa8-8d0d2618e028"
+        },
+        {
+            "name": "Blessings of Tithing",
+            "reference": "Malachi 3:8-10",
+            "passage": "The blessings of paying tithing",
+            "fullPassage": "TODO",
+            "id": "5d3df340-7ac4-4387-a432-9d0395b3e9d0"
+        },
+        {
+            "name": "Elijah to Turn Hearts",
+            "reference": "Malachi 4:5-6",
+            "passage": "Elijah 'shall turn \u2026 the heart of the children to their fathers.'",
+            "fullPassage": "TODO",
+            "id": "2cefd094-9d96-4810-840b-5ad0435b091a"
+        }
+    ],
+    "New Testament": [
+        {
+            "name": "Light Shine",
+            "reference": "Matthew 5:16",
+            "passage": "Let your light so shine before men.",
+            "fullPassage": "14 Ye are the light of the world. A city that is set on an hill cannot be hid. 15 Neither do men light a candle, and put it under a bushel, but on a candlestick; and it giveth light unto all that are in the house. 16 Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.",
+            "id": "e654d698-7864-4620-8dda-6056f0af73c7"
+        },
+        {
+            "name": "Rest in Christ",
+            "reference": "Matthew 11:28\u201330",
+            "passage": "Come unto me, all ye that labour and are heavy laden, and I will give you rest.",
+            "fullPassage": "28 \u00b6 Come unto me, all ye that labour and are heavy laden, and I will give you rest.29 Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls. 30 For my yoke is easy, and my burden is light.",
+            "id": "8a522abc-240a-436b-ab8e-080671d1cf11"
+        },
+        {
+            "name": "Keys of the Kingdom",
+            "reference": "Matthew 16:15\u201319",
+            "passage": "Jesus said, 'I will give unto thee the keys of the kingdom.'",
+            "fullPassage": "15 He saith unto them, But whom say ye that I am? 16 And Simon Peter answered and said, Thou art the Christ, the Son of the living God. 17 And Jesus answered and said unto him, Blessed art thou, Simon Bar-jona: for flesh and blood hath not revealed it unto thee, but my Father which is in heaven. 18 And I say also unto thee, That thou art Peter, and upon this rock I will build my church; and the gates of hell shall not prevail against it. 19 And I will give unto thee the keys of the kingdom of heaven: and whatsoever thou shalt bind on earth shall be bound in heaven: and whatsoever thou shalt loose on earth shall be loosed in heaven.",
+            "id": "7c28777c-d580-4f16-b1e2-722c9b232a5d"
+        },
+        {
+            "name": "Love God and Neighbor",
+            "reference": "Matthew 22:36\u201339",
+            "passage": "Thou shalt love the Lord thy God. \u2026 Thou shalt love thy neighbour.",
+            "fullPassage": "36 Master, which is the great commandment in the law? 37 Jesus said unto him, Thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind. 38 This is the first and great commandment. 39 And the second is like unto it, Thou shalt love thy neighbour as thyself.",
+            "id": "f2c74de0-972d-456f-877e-6873678eb8b4"
+        },
+        {
+            "name": "Christ's Birth",
+            "reference": "Luke 2:10\u201312",
+            "passage": "For unto you is born this day in the city of David a Saviour, which is Christ the Lord.",
+            "fullPassage": "",
+            "id": "32ff2ec2-1a22-442d-8cb6-2462bd94a75f"
+        },
+        {
+            "name": "Sacrament Remembrance",
+            "reference": "Luke 22:19\u201320",
+            "passage": "Jesus Christ commanded, partake of the sacrament 'in remembrance of me.'",
+            "fullPassage": "10 And the angel said unto them, Fear not: for, behold, I bring you good tidings of great joy, which shall be to all people.    11 For unto you is born this day in the city of David a Saviour, which is Christ the Lord.    12 And this shall be a sign unto you; Ye shall find the babe wrapped in swaddling clothes, lying in a manger.",
+            "id": "b429b0ae-7e31-431b-b1e8-bc2a7c5b9455"
+        },
+        {
+            "name": "Christ's Resurrected Body",
+            "reference": "Luke 24:36\u201339",
+            "passage": "For a spirit hath not flesh and bones, as ye see me have.",
+            "fullPassage": "19 \u00b6 And he took bread, and gave thanks, and brake it, and gave unto them, saying, This is my body which is given for you: this do in remembrance of me. 20 Likewise also the cup after supper, saying, This cup is the new testament in my blood, which is shed for you.",
+            "id": "48bb8234-b8b3-4bd3-abb6-7c8805993e24"
+        },
+        {
+            "name": "Born of Water and Spirit",
+            "reference": "John 3:5",
+            "passage": "Except a man be born of water and of the Spirit, he cannot enter into the kingdom of God.",
+            "fullPassage": "5 Jesus answered, Verily, verily, I say unto thee, Except a man be born of water and of the Spirit, he cannot enter into the kingdom of God.",
+            "id": "3ad21a54-966b-4904-bb5c-f4887c79c6db"
+        },
+        {
+            "name": "God's Love",
+            "reference": "John 3:16",
+            "passage": "For God so loved the world, that he gave his only begotten Son.",
+            "fullPassage": "16 \u00b6 For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
+            "id": "ccd57c39-b238-4fb5-9c14-55ec983b0205"
+        },
+        {
+            "name": "Knowing Doctrine",
+            "reference": "John 7:17",
+            "passage": "If any man will do his will, he shall know of the doctrine.",
+            "fullPassage": "17 If any man will do his will, he shall know of the doctrine, whether it be of God, or whether I speak of myself.",
+            "id": "e492ccf3-e061-41fb-83fc-317938132956"
+        },
+        {
+            "name": "Keep Commandments, love",
+            "reference": "John 14:15",
+            "passage": "If ye love me, keep my commandments.",
+            "fullPassage": "if ye love me, keep my commandments.",
+            "id": "ce455f53-4224-4fc3-abd0-cb6fc5265353"
+        },
+        {
+            "name": "Ordained and Chosen",
+            "reference": "John 15:16",
+            "passage": "Ye have not chosen me, but I have chosen you, and ordained you.",
+            "fullPassage": "Ye have not chosen me, but I chosen you, and ordained you, that ye should go and bring forth fruit, and that your fruit should remain: that whatsoever ye shall ask of the Father in my name, he may give it you.",
+            "id": "a58c03de-8f19-4abb-bf06-893463434fa8"
+        },
+        {
+            "name": "Life Eternal",
+            "reference": "John 17:3",
+            "passage": "And this is life eternal, that they might know thee the only true God, and Jesus Christ.",
+            "fullPassage": "3 And this is life eternal, that they might know thee the only true God, and Jesus Christ, whom thou hast sent.",
+            "id": "951f82e6-3366-4faa-b178-0e72ea36a060"
+        },
+        {
+            "name": "Restitution of All Things",
+            "reference": "Acts 3:19\u201321",
+            "passage": "Times of restitution of all things, which God hath spoken by the mouth of all his holy prophets.",
+            "fullPassage": "Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the dpresence of the Lord; And he shall send aJesus Christ, which before was preached unto you: Whom the heaven must receive until the times of arestitution of all things, which God hath bspoken by the mouth of all his holy prophets since the world began.",
+            "id": "a4893d38-7504-4352-8e94-680e53bb5e30"
+        },
+        {
+            "name": "Know God by the Spirit",
+            "reference": "1 Corinthians 2:5, 9-11",
+            "passage": "The Spirit \u2026 searcheth all things, yea, the deep things of God.",
+            "fullPassage": "That your faith should not stand in the wisdom of men, but in the power of God. But as it is written, Eye hath not seen, nor ear heard, neither have entered into the heart of man, the things which God hath prepared for them that love him. But God hath revealed them unto us by his Spirit: for the Spirit searcheth all things, yea, the deep things of God. For what man knoweth the things of a man, save the spirit of man which is in him? even so the things of God knoweth no man, but the Spirit of God.",
+            "id": "f58f64df-1fa2-4f39-ab93-0d1e37811a01"
+        },
+        {
+            "name": "Body as a Temple",
+            "reference": "1 Corinthians 6:19\u201320",
+            "passage": "Your body is the temple of the Holy Ghost.",
+            "fullPassage": "19 What? know ye not that your body is the temple of the Holy Ghost which is in you, which ye have of God, and ye are not your own?    20 For ye are bought with a price: therefore glorify God in your body, and in your spirit, which are God\u2019s.",
+            "id": "ebd49719-9a51-4dd6-877c-789ab69bdb54"
+        },
+        {
+            "name": "Man and Woman",
+            "reference": "1 Corinthians 11:11",
+            "passage": "Neither is the man without the woman, neither the woman without the man, in the Lord.",
+            "fullPassage": "11 Nevertheless neither is the man without the woman, neither the woman without the man, in the Lord.",
+            "id": "a59ef965-dcab-4e84-9e90-d19720aa29cd"
+        },
+        {
+            "name": "Resurrection",
+            "reference": "1 Corinthians 15:20\u201322",
+            "passage": "As in Adam all die, even so in Christ shall all be made alive.",
+            "fullPassage": "20 But now is Christ risen from the dead, and become the firstfruits of them that slept.    21 For since by man came death, by man came also the resurrection of the dead.    22 For as in Adam all die, even so in Christ shall all be made alive.",
+            "id": "4213b45f-0b19-46cf-9aeb-e93575f67d87"
+        },
+        {
+            "name": "Degrees of Glory",
+            "reference": "1 Corinthians 15:40\u201342",
+            "passage": "In the Resurrection, there are three degrees of glory.",
+            "fullPassage": "40 There are also celestial bodies, and bodies terrestrial: but the glory of the celestial is one, and the glory of the terrestrial is another.    41 There is one glory of the sun, and another glory of the moon, and another glory of the stars: for one star differeth from another star in glory.    42 So also is the resurrection of the dead. It is sown in corruption; it is raised in incorruption:",
+            "id": "1a6b13cc-6d37-446d-9c74-9af871382b50"
+        },
+        {
+            "name": "Gathering in Christ",
+            "reference": "Ephesians 1:10",
+            "passage": "In the dispensation of the fulness of times he might gather together in one all things in Christ.",
+            "fullPassage": "10 That in the dispensation of the fulness of times he might gather together in one all things in Christ, both which are in heaven, and which are on earth; even in him:",
+            "id": "c62b2164-80f3-4db6-9689-d54a182fad24"
+        },
+        {
+            "name": "Church Foundation",
+            "reference": "Ephesians 2:19\u201320",
+            "passage": "The Church is 'built upon the foundation of the apostles and prophets, Jesus Christ himself being the chief corner stone.'",
+            "fullPassage": "19 Now therefore ye are no more strangers and foreigners, but fellowcitizens with the saints, and of the household of God;   20 And are built upon the foundation of the apostles and prophets, Jesus Christ himself being the chief corner stone;",
+            "id": "4ed1ab19-af39-4df8-95ca-9debe8687ac4"
+        },
+        {
+            "name": "Apostles and Prophets perfect saints",
+            "reference": "Ephesians 4:11\u201314",
+            "passage": "He gave some apostels and prophets for the perfecting of the saints",
+            "fullPassage": "TODO",
+            "id": "188cb6af-2f96-49bd-a0cd-fb76866a3ae3"
+        },
+        {
+            "name": "Falling Away",
+            "reference": "2 Thessalonians 2:1\u20133",
+            "passage": "The day of Christ \u2026 shall not come, except there come a falling away first.",
+            "fullPassage": "1 Now we beseec you, brethren, by the coming of our Lord Jesus Christ, and by our gathering together unto him,    2 That ye be not soon shaken i mind, or be troubled, neither by spirit, nor by word, nor by letter as from us, as that the day of Christ is at hand.    3 Let no man deceive you by an means: for that day shall not come, except there come a falling away first, and that man of sin be revealed, the son of perdition;",
+            "id": "55ff83ef-66aa-4e5c-ab88-e30acaf77215"
+        },
+        {
+            "name": "Scriptures for Salvation",
+            "reference": "2 Timothy 3:15\u201317",
+            "passage": "The holy scriptures \u2026 are able to make thee wise unto salvation.",
+            "fullPassage": "15 And that from a child thou hast known the holy scriptures, which are able to make thee wise unto salvation through faith which is in Christ Jesus.    16 All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness:    17 That the man of God may be perfect, throughly furnished unto all good works.",
+            "id": "4b5e7d0a-9dc1-49f6-84ac-e8780785bbe5"
+        },
+        {
+            "name": "Father of Spirits",
+            "reference": "Hebrews 12:9",
+            "passage": "Heavenly Father is 'the Father of spirits.'",
+            "fullPassage": "9 Furthermore we have had fathers of our flesh which corrected us, and we gave them reverence: shall we not much rather be in subjection unto the Father of spirits, and live?",
+            "id": "8239f71b-5be7-4fd6-b98e-bcb7b468c38a"
+        },
+        {
+            "name": "Ask for Wisdom",
+            "reference": "James 1:5\u20136",
+            "passage": "If any of you lack wisdom, let him ask of God.",
+            "fullPassage": "5 If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.    6 But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed.",
+            "id": "0da8bf59-c8b1-4785-883c-b2392d44f7e5"
+        },
+        {
+            "name": "Faith and Works",
+            "reference": "James 2:17\u201318",
+            "passage": "Faith, if it hath not works, is dead.",
+            "fullPassage": "17 Even so faith, if it hath not works, is dead, being alone.    18 Yea, a man may say, Thou hast faith, and I have works: shew me thy faith without thy works, and I will shew thee my faith by my works.",
+            "id": "b9ea0326-e6f3-4d6b-9e8c-24bb5e1f3ad7"
+        },
+        {
+            "name": "Gospel Preached to the Dead",
+            "reference": "1 Peter 4:6",
+            "passage": "The gospel [was] preached also to them that are dead.",
+            "fullPassage": "6 For for this cause was the gospel preached also to them that are dead, that they might be judged according to men in the flesh, but live according to God in the spirit.",
+            "id": "dbd38972-90ff-4bc7-baff-03b291743028"
+        },
+        {
+            "name": "Judgment by Works",
+            "reference": "Revelation 20:12",
+            "passage": "And the dead were judged \u2026 according to their works.",
+            "fullPassage": "12 And I saw the dead, small and great, stand before God; and the books were opened: and another book was opened, which is the book of life: and the dead were judged out of those things which were written in the books, according to their works.",
+            "id": "016cff19-eedf-4936-950d-c39eb7b78b53"
+        }
+    ],
+    "Book of Mormon": [
+        {
+            "name": "Obedience to Commandments",
+            "reference": "1 Nephi 3:7",
+            "passage": "I will go and do the things which the Lord hath commanded.",
+            "fullPassage": "TODO",
+            "id": "87ed586e-92aa-4ee8-ab66-4be0647891e3"
+        },
+        {
+            "name": "Purpose of Life",
+            "reference": "2 Nephi 2:25",
+            "passage": "Adam fell that men might be; and men are, that they might have joy.",
+            "fullPassage": "TODO",
+            "id": "d3a3e6e5-5376-470e-b5dd-d0e654e9d79d"
+        },
+        {
+            "name": "Freedom to Choose",
+            "reference": "2 Nephi 2:27",
+            "passage": "They are free to choose liberty and eternal life \u2026 or \u2026 captivity and death.",
+            "fullPassage": "TODO",
+            "id": "6c438418-621b-4426-928e-dc155fa53628"
+        },
+        {
+            "name": "Equality before God",
+            "reference": "2 Nephi 26:33",
+            "passage": "All are alike unto God.",
+            "fullPassage": "TODO",
+            "id": "8b46c04f-2c3d-4e9b-b8eb-ae649bd0232d"
+        },
+        {
+            "name": "Revelation",
+            "reference": "2 Nephi 28:30",
+            "passage": "God will give unto the children of men line upon line, precept upon precept.",
+            "fullPassage": "TODO",
+            "id": "8140f036-51e9-431b-ba7a-db75363e1f29"
+        },
+        {
+            "name": "Feasting on the Word",
+            "reference": "2 Nephi 32:3",
+            "passage": "Feast upon the words of Christ; for behold, the words of Christ will tell you all things what ye should do.",
+            "fullPassage": "TODO",
+            "id": "719d867d-90bc-4a12-8fa1-b45307cb2640"
+        },
+        {
+            "name": "Necessity of Prayer",
+            "reference": "2 Nephi 32:8-9",
+            "passage": "Ye must pray always.",
+            "fullPassage": "TODO",
+            "id": "0576206f-b9e5-496a-aa29-86c9c8f40512"
+        },
+        {
+            "name": "Service to Others",
+            "reference": "Mosiah 2:17",
+            "passage": "When ye are in the service of your fellow beings ye are only in the service of your God.",
+            "fullPassage": "TODO",
+            "id": "dbc56113-0e92-4126-bb6c-2c6dac4ad826"
+        },
+        {
+            "name": "Blessings through Obedience",
+            "reference": "Mosiah 2:41",
+            "passage": "Those that keep the commandments of God \u2026 are blessed in all things.",
+            "fullPassage": "TODO",
+            "id": "099f3835-73d1-497f-9f69-483086d2b523"
+        },
+        {
+            "name": "Overcoming the Natural Man",
+            "reference": "Mosiah 3:19",
+            "passage": "[Put] off the natural man and [become] a saint through the atonement of Christ the Lord.",
+            "fullPassage": "TODO",
+            "id": "22bf306c-1f85-498a-82a2-91a96d2555a0"
+        },
+        {
+            "name": "Belief in God's Wisdom",
+            "reference": "Mosiah 4:9",
+            "passage": "Believe in God; \u2026 believe that he has all wisdom.",
+            "fullPassage": "TODO",
+            "id": "5b349f46-dab8-47a4-b50c-2e61f189c10c"
+        },
+        {
+            "name": "Covenant through Baptism",
+            "reference": "Mosiah 18:8-10",
+            "passage": "Be baptized in the name of the Lord, as a witness \u2026 that ye have entered into a covenant with him.",
+            "fullPassage": "TODO",
+            "id": "3c4d2f09-16fd-4056-bddc-fe96931babef"
+        },
+        {
+            "name": "Christ's Suffering",
+            "reference": "Alma 7:11-13",
+            "passage": "And he shall go forth, suffering pains and afflictions and temptations of every kind.",
+            "fullPassage": "TODO",
+            "id": "8f3123df-a07c-4c59-a3dd-2374b8df38de"
+        },
+        {
+            "name": "The Atonement",
+            "reference": "Alma 34:9-10",
+            "passage": "There must be an atonement made, \u2026 an infinite and eternal sacrifice.",
+            "fullPassage": "TODO",
+            "id": "371c31ea-9142-45a5-8c23-a288b431b510"
+        },
+        {
+            "name": "Avoid Lust",
+            "reference": "Alma 39:9",
+            "passage": "Go no more after the lusts of your eyes.",
+            "fullPassage": "TODO",
+            "id": "7792157f-4ba6-4d0e-ae56-36438bd3f8b6"
+        },
+        {
+            "name": "Consequences of Wickedness",
+            "reference": "Alma 41:10",
+            "passage": "Wickedness never was happiness.",
+            "fullPassage": "TODO",
+            "id": "511f25a7-3805-42e3-b9e0-c106d2310d7c"
+        },
+        {
+            "name": "Solid Foundation",
+            "reference": "Helaman 5:12",
+            "passage": "It is upon the rock of our Redeemer \u2026 that ye must build your foundation.",
+            "fullPassage": "TODO",
+            "id": "3ea8aa1b-8417-43cb-8279-07b4b2effaa6"
+        },
+        {
+            "name": "Christ's Submission",
+            "reference": "3 Nephi 11:10-11",
+            "passage": "I have suffered the will of the Father in all things from the beginning.",
+            "fullPassage": "TODO",
+            "id": "34d892c9-1e51-427c-9c73-b07ff7afd151"
+        },
+        {
+            "name": "Striving for Perfection",
+            "reference": "3 Nephi 12:48",
+            "passage": "Be perfect even as I, or your Father who is in heaven is perfect.",
+            "fullPassage": "TODO",
+            "id": "e3936cf2-fe33-4239-95ea-99a00bb02236"
+        },
+        {
+            "name": "Coming Unto Christ",
+            "reference": "3 Nephi 27:20",
+            "passage": "Come unto me and be baptized \u2026 that ye may be sanctified by the reception of the Holy Ghost.",
+            "fullPassage": "TODO",
+            "id": "3755b0d7-52b4-4fd0-a16d-e272241f5c03"
+        },
+        {
+            "name": "Trial of Faith",
+            "reference": "Ether 12:6",
+            "passage": "Ye receive no witness until after the trial of your faith.",
+            "fullPassage": "TODO",
+            "id": "ca06c9b7-1c0c-4f84-acf9-1afc817c99a8"
+        },
+        {
+            "name": "Strength in Weakness",
+            "reference": "Ether 12:27",
+            "passage": "If men come unto me \u2026 then will I make weak things become strong unto them.",
+            "fullPassage": "TODO",
+            "id": "ff47d1da-d75e-49d3-b7a2-3cefd9c1de52"
+        },
+        {
+            "name": "Charity",
+            "reference": "Moroni 7:45-48",
+            "passage": "Charity is the pure love of Christ.",
+            "fullPassage": "TODO",
+            "id": "54ce9335-721f-4a20-97ff-46a5c6cacdf6"
+        },
+        {
+            "name": "Seeking Truth Through Prayer",
+            "reference": "Moroni 10:4-5",
+            "passage": "Ask with a sincere heart, with real intent, having faith in Christ \u2026 [and] by the power of the Holy Ghost ye may know the truth of all things.",
+            "fullPassage": "TODO",
+            "id": "509f4648-6827-4946-86bb-a6c14afb14a1"
+        }
+    ],
+    "Doctrine And Covenants": [
+        {
+            "name": "The First Vision",
+            "reference": "Joseph Smith\u2014History 1:17",
+            "passage": "saw two Personages, whose brightness and glory defy all description.",
+            "fullPassage": "TODO",
+            "id": "e63da117-24ae-4bb7-af26-939d050d5b22"
+        },
+        {
+            "name": "True and Living Church",
+            "reference": "Doctrine and Covenants 1:30",
+            "passage": "The only true and living church.",
+            "fullPassage": "TODO",
+            "id": "06667ae1-f7bd-44a1-ba43-2079d5bbc1cc"
+        },
+        {
+            "name": "Voice of the Lord",
+            "reference": "Doctrine and Covenants 1:37-38",
+            "passage": "Whether by mine own voice or by the voice of my servants, it is the same.",
+            "fullPassage": "TODO",
+            "id": "a093e35e-244b-47f8-b111-e8037d422227"
+        },
+        {
+            "name": "Trust in Christ",
+            "reference": "Doctrine and Covenants 6:36",
+            "passage": "Look unto me in every thought; doubt not, fear not.",
+            "fullPassage": "TODO",
+            "id": "8b8eedf7-8e33-4dc8-9c16-6b8c5a3a8bbf"
+        },
+        {
+            "name": "Revelation through the Holy Ghost",
+            "reference": "Doctrine and Covenants 8:2-3",
+            "passage": "I will tell you in your mind and in your heart, by the Holy Ghost.",
+            "fullPassage": "TODO",
+            "id": "4b18b8c0-0a79-42f5-99e2-da9108e2d9d5"
+        },
+        {
+            "name": "Aaronic Priesthood",
+            "reference": "Doctrine and Covenants 13:1",
+            "passage": "The Aaronic Priesthood holds the keys of the ministering of angels, and of the gospel of repentance, and of baptism.",
+            "fullPassage": "TODO",
+            "id": "76ccb49f-4265-4118-8822-4a976905cede"
+        },
+        {
+            "name": "Worth of Souls",
+            "reference": "Doctrine and Covenants 18:10-11",
+            "passage": "The worth of souls is great in the sight of God.",
+            "fullPassage": "TODO",
+            "id": "c84de6e1-72a0-4d23-b4f0-560879904055"
+        },
+        {
+            "name": "Joy in Bringing Souls",
+            "reference": "Doctrine and Covenants 18:15-16",
+            "passage": "How great will be your joy if you should bring many souls unto me!",
+            "fullPassage": "TODO",
+            "id": "00f3c30a-3b68-4319-add2-12ccf7a22c4c"
+        },
+        {
+            "name": "Christ's Atonement",
+            "reference": "Doctrine and Covenants 19:16-19",
+            "passage": "I, [Jesus Christ], have suffered these things for all.",
+            "fullPassage": "TODO",
+            "id": "2b45b24d-eaf1-4d22-8c87-9ffc01ef6646"
+        },
+        {
+            "name": "Receiving the Prophet\u2019s Words",
+            "reference": "Doctrine and Covenants 21:4-6",
+            "passage": "The prophet\u2019s word ye shall receive, as if from mine own mouth.",
+            "fullPassage": "TODO",
+            "id": "221c452a-ad6a-4d9f-a07e-79d4ec9dc37a"
+        },
+        {
+            "name": "Second Coming",
+            "reference": "Doctrine and Covenants 29:10-11",
+            "passage": "I will reveal myself from heaven with power and great glory \u2026 and dwell in righteousness with men on earth a thousand years.",
+            "fullPassage": "TODO",
+            "id": "b1089bc5-06bc-46c0-a600-28a63a2a3ff4"
+        },
+        {
+            "name": "Marriage Ordained",
+            "reference": "Doctrine and Covenants 49:15-17",
+            "passage": "Marriage is ordained of God.",
+            "fullPassage": "TODO",
+            "id": "15e45aef-e9a6-4391-b0ad-bbdd1023d5f0"
+        },
+        {
+            "name": "Repentance and Forgiveness",
+            "reference": "Doctrine and Covenants 58:42-43",
+            "passage": "He who has repented of his sins, the same is forgiven.",
+            "fullPassage": "TODO",
+            "id": "f1dca7b9-3f9e-4baa-b7f1-6c1e4ac09cba"
+        },
+        {
+            "name": "Requirement to Forgive",
+            "reference": "Doctrine and Covenants 64:9-11",
+            "passage": "Of you it is required to forgive all men.",
+            "fullPassage": "TODO",
+            "id": "02ac5de6-f6e2-4a38-9b7d-1b3295283294"
+        },
+        {
+            "name": "Creator and Savior",
+            "reference": "Doctrine and Covenants 76:22-24",
+            "passage": "By [Jesus Christ] the worlds are and were created.",
+            "fullPassage": "TODO",
+            "id": "46020897-a1e6-418a-9387-700e20936247"
+        },
+        {
+            "name": "Obedience Binds the Lord",
+            "reference": "Doctrine and Covenants 82:10",
+            "passage": "I, the Lord, am bound when ye do what I say.",
+            "fullPassage": "TODO",
+            "id": "c4d11a21-409c-437b-b470-064ad8fe5248"
+        },
+        {
+            "name": "Power of Godliness",
+            "reference": "Doctrine and Covenants 84:20-22",
+            "passage": "In the ordinances thereof, the power of godliness is manifest.",
+            "fullPassage": "TODO",
+            "id": "2312c70c-5567-4192-9b14-cb29277a8b80"
+        },
+        {
+            "name": "Seek Learning",
+            "reference": "Doctrine and Covenants 88:118",
+            "passage": "Seek learning, even by study and also by faith.",
+            "fullPassage": "TODO",
+            "id": "fe9a7d9a-d0da-4781-a379-4ca7f2a6c646"
+        },
+        {
+            "name": "Word of Wisdom",
+            "reference": "Doctrine and Covenants 89:18-21",
+            "passage": "The blessings of the Word of Wisdom.",
+            "fullPassage": "TODO",
+            "id": "5daee7c2-0935-4069-8595-ff1914ca3801"
+        },
+        {
+            "name": "Melchizedek Priesthood",
+            "reference": "Doctrine and Covenants 107:8",
+            "passage": "The Melchizedek Priesthood \u2026 has power and authority \u2026 to administer in spiritual things.",
+            "fullPassage": "TODO",
+            "id": "ac431490-63cc-4b36-b9b4-b72afc0ccb4e"
+        },
+        {
+            "name": "Rights of the Priesthood",
+            "reference": "Doctrine and Covenants 121:36, 41-42",
+            "passage": "The rights of the priesthood \u2026 cannot be controlled nor handled only on the principles of righteousness.",
+            "fullPassage": "TODO",
+            "id": "4b04af66-eb2f-4399-ac60-967c8a145a00"
+        },
+        {
+            "name": "Nature of God",
+            "reference": "Doctrine and Covenants 130:22-23",
+            "passage": "The Father has a body of flesh and bones \u2026 ; the Son also; but the Holy Ghost \u2026 is a personage of Spirit.",
+            "fullPassage": "TODO",
+            "id": "9c049932-0971-4f0e-8603-89d2cf86e309"
+        },
+        {
+            "name": "Eternal Marriage",
+            "reference": "Doctrine and Covenants 131:1-4",
+            "passage": "The new and everlasting covenant of marriage.",
+            "fullPassage": "TODO",
+            "id": "c32713c5-7b3d-4654-9c55-cb0b36b8e1a9"
+        },
+        {
+            "name": "Joseph Smith and Book of Mormon",
+            "reference": "Doctrine and Covenants 135:3",
+            "passage": "Joseph Smith brought forth the Book of Mormon, which he translated by the gift and power of God.",
+            "fullPassage": "TODO",
+            "id": "d5463ad6-239f-4e96-a156-7d0ee7a7e687"
+        }
+    ]
 }
-
