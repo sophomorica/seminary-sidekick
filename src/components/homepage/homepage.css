@@ -1,0 +1,76 @@
+/* src/App.css */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #404959;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.title {
+  color: #D9805F;
+  font-size: 2.5em;
+}
+
+.subtitle {
+  color: #F2EDD0;
+}
+
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 100px 0;
+}
+
+.content-container {
+  text-align: center;
+}
+
+.content-section {
+  background-color: #618C84;
+  padding: 40px 0;
+}
+
+.section-title {
+  color: #D9805F;
+  font-size: 1.8em;
+}
+
+.section-content {
+  color: #F2EDD0;
+}
+
+.footer {
+  background-color: #404959;
+  padding: 20px 0;
+  text-align: center;
+  color: #F2EDD0;
+}
+body {
+  background-color: #618C84;
+  color: #F2EDD0;
+}
+
+h1, h2, h3 {
+  color: #D9805F;
+}
+
+.header {
+  background-color: #404959;
+}
+
+.button {
+  background-color: #A6524B;
+  color: #F2EDD0;
+}
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
