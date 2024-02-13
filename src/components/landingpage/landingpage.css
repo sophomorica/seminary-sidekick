@@ -1,0 +1,33 @@
+/* Container styling */
+div {
+  background-size: cover; /* Cover the entire div */
+  background-position: center; /* Center the image */
+  height: 100vh; /* Set a full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* White text color */
+}
+
+/* Heading styles */
+h1, h2, h3 {
+  margin: 10px;
+  text-align: center;
+}
+
+/* Link styling */
+a {
+  color: #fff; /* White link color */
+  text-decoration: none;
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  margin-top: 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+/* Link hover effect */
+a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
