@@ -3,6 +3,7 @@ import axios from "axios";
 import "./matchingGame.css";
 import BookSelect from "../bookselect/BookSelect";
 import PassageButton from "./PassageButton";
+// import { Tooltip } from "react-tooltip";
 
 const MatchingGame = () => {
   const [data, setData] = useState([]);
@@ -16,6 +17,7 @@ const MatchingGame = () => {
       .get("./data/passages.json")
       .then((res) => {
         setData(res.data);
+        setSelectedBook(Object.keys(res.data)[2]);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -28,16 +30,32 @@ const MatchingGame = () => {
     setSelectedReference(null);
   };
 
-  const handleNameClick = (id, name) => {
-    setSelectedName({ id, name });
-  };
+  // const handleNameClick = (id, name) => {
+  //   setSelectedName({ id, name });
+  // };
 
-  const handleReferenceClick = (id, reference) => {
-    setSelectedReference({ id, reference });
-  };
+  // const handleReferenceClick = (id, reference) => {
+  //   setSelectedReference({ id, reference });
+  // };
   const handleDragStart = (e, id) => {
     e.dataTransfer.setData("text/plain", id);
   };
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function shuffleReference(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
 
   const handleDrop = (e, item) => {
     e.preventDefault();
@@ -71,7 +89,8 @@ const MatchingGame = () => {
     }
   };
 
-  useEffect(checkMatch, [selectedName, selectedReference]);
+
+  useEffect(checkMatch, [selectedName, selectedReference, matchedIds]);
 
   const books = Object.keys(data);
   let passages = [];
@@ -83,7 +102,8 @@ const MatchingGame = () => {
       passages = passages.concat(data[book]);
     });
   }
-
+  const shuffledPassages = shuffleArray([...passages]);
+  const shuffledReferences = shuffleReference([...passages]);
   return (
     <div className="container matching-game-container">
       <BookSelect books={books} handleBookChange={handleBookChange} />
@@ -91,8 +111,11 @@ const MatchingGame = () => {
       <div className="row">
         <div className="col-sm-6 names">
           <h3 className="text-center">Names</h3>
-          {passages.map((item) => (
+          {shuffledPassages.map((item, index) => (
             <PassageButton
+              key={item.id}
+              data-tip={item.passage}
+              title={item.passage}
               type="name"
               item={item}
               selected={selectedName}
@@ -103,8 +126,9 @@ const MatchingGame = () => {
         </div>
         <div className="col-sm-6 references">
           <h3 className="text-center">References</h3>
-          {passages.map((item) => (
+          {shuffledReferences.map((item) => (
             <PassageButton
+              key={item.id}
               type="reference"
               item={item}
               selected={selectedReference}
@@ -119,3 +143,5 @@ const MatchingGame = () => {
   );
 };
 export default MatchingGame;
+
+// i want to get a tool tip that will show the entire passage
