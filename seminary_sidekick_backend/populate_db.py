@@ -1,50 +1,50 @@
 import json
-from sqlalchemy.orm import Session
-from database import SessionLocal
-import models, schemas
+import uuid
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from models import Base, Testament, Book, Scripture
 
-def populate_database():
-    db = SessionLocal()
-    
-    with open('/Users/pieceofpatrick/Desktop/seminary/seminary-sidekick/public/data/passages.json', 'r') as f:
-        data = json.load(f)
-    
+# Database connection setup
+DATABASE_URL = "postgresql:///seminary_sidekick"
+engine = create_engine(DATABASE_URL)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Load JSON data from file
+with open('/Users/pieceofpatrick/Desktop/seminary/seminary-sidekick/public/data/passages.json') as f:
+    data = json.load(f)
+
+# Function to insert data into the database
+def insert_data():
     for testament_name, books in data.items():
-        testament = create_testament(db, schemas.TestamentCreate(name=testament_name))
-        for book_name, scriptures in books.items():
-            book = create_book(db, schemas.BookCreate(name=book_name, testament_id=testament.id))
-            for scripture in scriptures:
-                create_scripture(db, schemas.ScriptureCreate(
-                    name=scripture['name'],
-                    reference=scripture['reference'],
-                    passage=scripture['passage'],
-                    full_passage=scripture['fullPassage'],
-                    book_id=book.id
-                ))
+        # Insert Testament
+        testament = Testament(name=testament_name)
+        session.add(testament)
+        session.commit()  # Commit to get the ID for the testament
+
+        for book in books:
+            # Insert Book
+            book_name = book.get("reference").split()[0]  # Assuming the book name is the first word in the reference
+            book_record = Book(name=book_name, testament_id=testament.id)
+            session.add(book_record)
+            session.commit()  # Commit to get the ID for the book
+
+            # Insert Scripture
+            scripture = Scripture(
+                id=uuid.UUID(book.get("id")),
+                name=book.get("name"),
+                reference=book.get("reference"),
+                passage=book.get("passage"),
+                full_passage=book.get("fullPassage"),
+                book_id=book_record.id
+            )
+            session.add(scripture)
     
-    db.close()
+    # Commit all changes at once
+    session.commit()
 
-def create_testament(db: Session, testament: schemas.TestamentCreate):
-    db_testament = models.Testament(name=testament.name)
-    db.add(db_testament)
-    db.commit()
-    db.refresh(db_testament)
-    return db_testament
+# Run the insertion
+insert_data()
 
-def create_book(db: Session, book: schemas.BookCreate):
-    db_book = models.Book(**book.dict())
-    db.add(db_book)
-    db.commit()
-    db.refresh(db_book)
-    return db_book
-
-def create_scripture(db: Session, scripture: schemas.ScriptureCreate):
-    db_scripture = models.Scripture(**scripture.dict())
-    db.add(db_scripture)
-    db.commit()
-    db.refresh(db_scripture)
-    return db_scripture
-
-if __name__ == "__main__":
-    populate_database()
-    print("Database populated successfully.")
+# Close the session
+session.close()

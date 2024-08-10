@@ -1,5 +1,5 @@
 {
-    "Old Testament": [
+    "old_testament": [
         {
             "name": "Work and Glory of God",
             "reference": "Moses 1:39",
@@ -169,7 +169,7 @@
             "id": "2cefd094-9d96-4810-840b-5ad0435b091a"
         }
     ],
-    "New Testament": [
+    "new_testament": [
         {
             "name": "Light Shine",
             "reference": "Matthew 5:16",
@@ -374,7 +374,7 @@
             "id": "016cff19-eedf-4936-950d-c39eb7b78b53"
         }
     ],
-    "Book of Mormon": [
+    "book_of_mormon": [
         {
             "name": "Obedience to Commandments",
             "reference": "1 Nephi 3:7",
@@ -544,7 +544,7 @@
             "id": "509f4648-6827-4946-86bb-a6c14afb14a1"
         }
     ],
-    "Doctrine And Covenants": [
+    "doctrine_and_covenants": [
         {
             "name": "The First Vision",
             "reference": "Joseph Smith\u2014History 1:17",
