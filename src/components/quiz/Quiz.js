@@ -10,6 +10,7 @@ const Quiz = () => {
   const [selected, setSelected] = useState("");
   const [correct, setCorrect] = useState(null);
   const [selectedBook, setSelectedBook] = useState("All");
+  const [revealFullScripture, setRevealFullScripture] = useState(false);
 
   useEffect(() => {
     axios
@@ -20,22 +21,25 @@ const Quiz = () => {
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
-  }, [selectedBook]);
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(data).length > 0) {
+      handleBookChange({ target: { value: selectedBook } });
+    }
+  }, [data]);
 
   const handleBookChange = (e) => {
-    setSelectedBook(e.target.value);
-    if (e.target.value !== "All") {
-      setPassages(data[e.target.value]);
-      getNextQuestion(data[e.target.value]);
+    const newSelectedBook = e.target.value;
+    setSelectedBook(newSelectedBook);
+    let selectedPassages;
+    if (newSelectedBook !== "All") {
+      selectedPassages = data[newSelectedBook];
     } else {
-      let allPassages = [];
-      Object.keys(data).forEach((book) => {
-        allPassages = allPassages.concat(data[book]);
-      });
-      setPassages(allPassages);
-      getNextQuestion(allPassages);
+      selectedPassages = Object.values(data).flat();
     }
-    //
+    setPassages(selectedPassages);
+    getNextQuestion(selectedPassages);
   };
 
   const getNextQuestion = (passages) => {
@@ -48,22 +52,24 @@ const Quiz = () => {
       if (!choices.includes(randomChoice)) choices.push(randomChoice);
     }
 
-    // Randomly sort choices
     choices.sort(() => Math.random() - 0.5);
     setQuestion(question);
     setChoices(choices);
     setCorrect(null);
     setSelected("");
+    setRevealFullScripture(false);
   };
 
   const checkAnswer = (choice) => {
     setSelected(choice);
     setCorrect(choice === question.reference);
+    setRevealFullScripture(true);
   };
 
   const nextQuestion = () => {
     getNextQuestion(passages);
   };
+
   const books = Object.keys(data);
 
   return (
@@ -74,6 +80,7 @@ const Quiz = () => {
           id="book-select"
           className="form-control"
           onChange={handleBookChange}
+          value={selectedBook}
         >
           <option value="All">All</option>
           {books.map((book) => (
@@ -86,29 +93,39 @@ const Quiz = () => {
       {question && (
         <div className="quiz-container">
           <h1 className="text-center">Doctrinal Mastery Quiz</h1>
-          <p className="passage">{question.passage}</p>
+          <p className="passage">
+            {revealFullScripture ? question.scripture : question.passage}
+          </p>
           <div className="choices-container">
             {choices.map((choice) => (
               <button
                 key={choice}
                 onClick={() => checkAnswer(choice)}
                 disabled={selected !== ""}
-                className="btn btn-primary choice-button"
-                style={{
-                  color: "black",
-                  backgroundColor:
-                    selected === choice
-                      ? correct
-                        ? "green"
-                        : "red"
-                      : "initial",
-                }}
+                className={`btn btn-primary choice-button ${
+                  selected === choice
+                    ? correct
+                      ? "correct"
+                      : "incorrect"
+                    : ""
+                }`}
               >
                 {choice}
               </button>
             ))}
-            {selected !== "" && <button onClick={nextQuestion}>Next</button>}
           </div>
+          {selected !== "" && (
+            <div className="result-container">
+              <p>
+                {correct
+                  ? `Correct! Well done.\n ${question.fullpassage}`
+                  : `Incorrect. The correct answer is ${question.reference}.`}
+              </p>
+              <button onClick={nextQuestion} className="btn btn-secondary">
+                Next Question
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
