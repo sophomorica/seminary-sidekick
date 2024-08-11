@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
-import models, schemas, crud
+import crud, models, schemas
 
 app = FastAPI()
 
@@ -15,14 +15,30 @@ def get_db():
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Hello": "Welcome to Seminary Sidekick"}
 
-@app.get("/testaments/", response_model=list[schemas.Testament])
+@app.get("/testaments", response_model=list[schemas.Testament])
 def read_testaments(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     testaments = crud.get_testaments(db, skip=skip, limit=limit)
     return testaments
 
-# Add more endpoints here for books, scriptures, etc.
+@app.get("/doctrinal-masteries", response_model=list[schemas.DoctrinalMastery])
+def read_doctrinal_masteries(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    doctrinal_masteries = crud.get_doctrinal_masteries(db, skip=skip, limit=limit)
+    return doctrinal_masteries
 
-# Uncomment this if you need to create tables (though you might prefer to use create_tables.py for this)
-# models.Base.metadata.create_all(bind=engine)
+@app.post("/users", response_model=schemas.User)
+def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    db_user = crud.get_user_by_email(db, email=user.email)
+    if db_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    return crud.create_user(db=db, user=user)
+
+@app.get("/users/{user_id}", response_model=schemas.User)
+def read_user(user_id: str, db: Session = Depends(get_db)):
+    db_user = crud.get_user(db, user_id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
+
+# Add more endpoints as needed
