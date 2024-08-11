@@ -14,10 +14,9 @@ class TestamentEnum(enum.Enum):
     doctrine_and_covenants = "Doctrine and Covenants"
 
 class Testament(Base):
-    __tablename__ = 'testaments'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(Enum(TestamentEnum), nullable=False, unique=True)
+    __tablename__ = "testaments"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False, unique=True)
 
     doctrinal_masteries = relationship('DoctrinalMastery', back_populates='testament')
 

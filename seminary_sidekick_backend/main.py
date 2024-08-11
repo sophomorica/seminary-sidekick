@@ -20,11 +20,17 @@ def read_root():
 @app.get("/testaments", response_model=list[schemas.Testament])
 def read_testaments(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     testaments = crud.get_testaments(db, skip=skip, limit=limit)
+    print("Fetched testaments:", testaments)  # Debug print
     return testaments
 
 @app.get("/doctrinal-masteries", response_model=list[schemas.DoctrinalMastery])
 def read_doctrinal_masteries(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     doctrinal_masteries = crud.get_doctrinal_masteries(db, skip=skip, limit=limit)
+    return doctrinal_masteries
+
+@app.get("/doctrinal-mastery/{testament_id}", response_model=list[schemas.DoctrinalMastery])
+def read_doctrinal_masteries_by_testament_id(testament_id: int, db: Session = Depends(get_db)):
+    doctrinal_masteries = crud.get_doctrinal_masteries_by_testament_id(db, testament_id=testament_id)
     return doctrinal_masteries
 
 @app.post("/users", response_model=schemas.User)

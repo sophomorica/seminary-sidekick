@@ -2,20 +2,14 @@ from pydantic import BaseModel, EmailStr
 from uuid import UUID
 from enum import Enum
 
-class TestamentEnum(str, Enum):
-    new_testament = "New Testament"
-    old_testament = "Old Testament"
-    book_of_mormon = "Book of Mormon"
-    doctrine_and_covenants = "Doctrine and Covenants"
-
 class TestamentBase(BaseModel):
-    name: TestamentEnum
+    name: str
 
 class Testament(TestamentBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class DoctrinalMasteryBase(BaseModel):
     name: str
@@ -28,7 +22,7 @@ class DoctrinalMastery(DoctrinalMasteryBase):
     testament_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -41,6 +35,6 @@ class User(UserBase):
     id: UUID
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Add more Pydantic models as needed
