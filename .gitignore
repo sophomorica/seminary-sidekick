@@ -19,3 +19,5 @@ venv/
 /lib/
 /dist/
 node_modules
+seminary_sidekick_backend/__pycache__/
+
