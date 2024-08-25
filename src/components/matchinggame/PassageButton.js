@@ -1,5 +1,6 @@
 import { useSpring, animated } from "@react-spring/web";
 
+
 const PassageButton = ({
   item,
   selected,
@@ -12,7 +13,6 @@ const PassageButton = ({
   function getRandomPosition() {
     // Generate a random number between 10 and 90
     const pos = Math.floor(Math.random() * 80) + 10;
-    console.log(pos);
     return `${pos}%`;
   }
 
@@ -22,9 +22,8 @@ const PassageButton = ({
   });
   
   return (
-    !matchedIds.includes(item.id) && (
       <animated.div
-        style={{ ...props, position: "absolute" }}
+        // style={{ ...props, position: "absolute" }}
         draggable={type === "name" || type === "reference" ? true : false}
         onDragStart={
           type === "name" ? (e) => handleDragStart(e, item.id) : null
@@ -37,7 +36,6 @@ const PassageButton = ({
       >
         {item[type]}
       </animated.div>
-    )
   );
 };
 

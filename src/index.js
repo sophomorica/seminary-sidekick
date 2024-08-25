@@ -5,11 +5,14 @@ import reportWebVitals from "./reportWebVitals";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <DndProvider backend={HTML5Backend}>
     <App />
-  </React.StrictMode>
+  </DndProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

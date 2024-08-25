@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./matchingGame.css";
 import BookSelect from "../bookselect/BookSelect";
@@ -39,6 +39,7 @@ const MatchingGame = () => {
   // };
   const handleDragStart = (e, id) => {
     e.dataTransfer.setData("text/plain", id);
+    console.log("dragging", id);
   };
 
   function shuffleArray(array) {
@@ -59,6 +60,8 @@ const MatchingGame = () => {
 
   const handleDrop = (e, item) => {
     e.preventDefault();
+    console.log("dropped", item.id);
+    console.log("e", e.dataTransfer);
     const draggedId = e.dataTransfer.getData("text");
     if (draggedId === item.id) {
       // If the dragged item matches the dropped item, update your state
@@ -89,7 +92,6 @@ const MatchingGame = () => {
     }
   };
 
-
   useEffect(checkMatch, [selectedName, selectedReference, matchedIds]);
 
   const books = Object.keys(data);
@@ -111,32 +113,38 @@ const MatchingGame = () => {
       <div className="row">
         <div className="col-sm-6 names">
           <h3 className="text-center">Names</h3>
-          {shuffledPassages.map((item, index) => (
-            <PassageButton
-              key={item.id}
-              data-tip={item.passage}
-              title={item.passage}
-              type="name"
-              item={item}
-              selected={selectedName}
-              handleDragStart={handleDragStart}
-              matchedIds={matchedIds}
-            />
-          ))}
+          {passages.map(
+            (item, index) =>
+              !matchedIds.includes(item.id) && (
+                <PassageButton
+                  key={item.id}
+                  data-tip={item.passage}
+                  title={item.passage}
+                  type="name"
+                  item={item}
+                  selected={selectedName}
+                  handleDragStart={handleDragStart}
+                  matchedIds={matchedIds}
+                />
+              )
+          )}
         </div>
         <div className="col-sm-6 references">
           <h3 className="text-center">References</h3>
-          {shuffledReferences.map((item) => (
-            <PassageButton
-              key={item.id}
-              type="reference"
-              item={item}
-              selected={selectedReference}
-              handleDrop={handleDrop}
-              handleDragOver={handleDragOver}
-              matchedIds={matchedIds}
-            />
-          ))}
+          {passages.map(
+            (item) =>
+              !matchedIds.includes(item.id) && (
+                <PassageButton
+                  key={item.id}
+                  type="reference"
+                  item={item}
+                  selected={selectedReference}
+                  handleDrop={handleDrop}
+                  handleDragOver={handleDragOver}
+                  matchedIds={matchedIds}
+                />
+              )
+          )}
         </div>
       </div>
     </div>
