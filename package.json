@@ -1,6 +1,7 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "seminary-sidekick",
+  "version": "1.0.0",
+  "description": "Interactive scripture mastery games and learning tools for LDS seminary students",
   "private": true,
   "dependencies": {
     "@react-spring/web": "^9.7.3",
@@ -23,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +45,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": ".",
+  "keywords": [
+    "seminary",
+    "scripture",
+    "mastery",
+    "LDS",
+    "education",
+    "quiz",
+    "learning"
+  ],
+  "license": "MIT"
 }
