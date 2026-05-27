@@ -188,6 +188,11 @@
 
 	--animate-float: float 8s ease-in-out infinite;
 
+	/* Demo shake — used for incorrect answers in interactive demos
+	   (Quick Quiz, Scripture Match). Mirrors THEME.md "Demo incorrect"
+	   motion pattern: translateX ±8px ±4px over 400ms with ease-out-soft. */
+	--animate-demo-shake: demo-shake 400ms cubic-bezier(0.22, 1, 0.36, 1);
+
 	/* === Max widths (extend default scale) ===================== */
 	--container-7xl: 80rem;
 }
@@ -200,6 +205,25 @@
 	}
 	50% {
 		transform: translateY(-6px);
+	}
+}
+
+@keyframes demo-shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	20% {
+		transform: translateX(-8px);
+	}
+	40% {
+		transform: translateX(8px);
+	}
+	60% {
+		transform: translateX(-4px);
+	}
+	80% {
+		transform: translateX(4px);
 	}
 }
 
