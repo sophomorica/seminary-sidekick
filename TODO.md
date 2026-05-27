@@ -122,8 +122,10 @@ Must complete in order. Only one agent works on Phase A at a time.
   - `+layout.ts` does NOT set `prerender = true` globally because `/news/[slug]` is dynamic; TASK-006 will set prerender selectively after content discovery lands.
 
 ### TASK-005: Route stubs for every planned page
-- **status:** open
-- **claimed_by:**
+- **status:** done
+- **claimed_by:** agent-claude-cowork
+- **started:** 2026-05-27T17:25:00Z
+- **completed:** 2026-05-27T17:35:00Z
 - **depends_on:** TASK-004
 - **files_to_touch:** `src/routes/+page.svelte`, `src/routes/apps/+page.svelte`, `src/routes/apps/scripture-mastery/+page.svelte`, `src/routes/quick-quiz/+page.svelte`, `src/routes/scripture-match/+page.svelte`, `src/routes/premium/+page.svelte`, `src/routes/for-teachers/+page.svelte`, `src/routes/news/+page.svelte`, `src/routes/about/+page.svelte`, `src/routes/privacy/+page.svelte`, `src/routes/terms/+page.svelte`, `src/routes/contact/+page.svelte`, `src/routes/+error.svelte`
 - **what:** Create a `+page.svelte` for every planned route from CLAUDE.md's site map. Each stub renders a `<section>` with the page name as `text-display-md` and a "Coming soon" line in body text. Each stub includes a `<svelte:head>` with at least a `<title>` and a placeholder description.
