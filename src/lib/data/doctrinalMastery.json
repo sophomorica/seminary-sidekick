@@ -1,0 +1,40 @@
+{
+  "Book of Mormon": [
+    {
+      "id": 1,
+      "name": "Godhead",
+      "reference": "2 Nephi 31:21",
+      "passage": "The Father, the Son, and the Holy Ghost are one."
+    },
+    {
+      "id": 2,
+      "name": "Another Topic",
+      "reference": "Alma 32:21",
+      "passage": "And now as I said concerning faith..."
+    }
+  ],
+  "New Testament": [
+    {
+      "id": 3,
+      "name": "Topic in New Testament",
+      "reference": "John 3:16",
+      "passage": "For God so loved the world..."
+    }
+  ],
+  "Old Testament": [
+    {
+      "id": 4,
+      "name": "Topic in Old Testament",
+      "reference": "Genesis 1:1",
+      "passage": "In the beginning God created the heavens and the earth."
+    }
+  ],
+  "Doctrine and Covenants": [
+    {
+      "id": 5,
+      "name": "Topic in Doctrine and Covenants",
+      "reference": "D&C 76:22",
+      "passage": "And now, after the many testimonies..."
+    }
+  ]
+}
