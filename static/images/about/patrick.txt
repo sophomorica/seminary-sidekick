@@ -1,0 +1,41 @@
+PLACEHOLDER for static/images/about/patrick.png
+
+Intended subject: Patrick, developer and designer of Seminary Sidekick. Two
+options the owner can choose between (or supply something else entirely).
+
+Option A — editorial portrait photo:
+  - Patrick at his desk, three-quarter angle, looking down toward an open
+    laptop showing the Seminary Sidekick app (the Scripture Detail screen
+    with the warm rust accents would be ideal).
+  - A leather-bound set of scriptures sits next to the laptop, slightly
+    out of focus.
+  - Warm window light from the left — late morning or early evening, low
+    color temperature (~3500K). Soft shadows. No harsh overhead light.
+  - Natural, candid expression. Not posed-stiff. A small, genuine smile or
+    a relaxed focused look both work.
+  - Wardrobe: simple, earthy, on-brand — a textured sweater in oatmeal,
+    sage, or rust would echo the site palette without screaming about it.
+  - Background: real workspace, lightly styled. Books, a plant, a mug. Not
+    a stock-photo coworking space.
+
+Option B — editorial illustration:
+  - Hand-drawn, warm muted palette pulled directly from the site tokens
+    (rust #94492C, sage #3B665F, off-white #FFF8F6, soft gold #CCA72F).
+  - A figure at a desk with an open laptop and an open scriptures volume.
+    Face can be soft/stylized rather than identifiable if the owner
+    prefers not to use a photo at all.
+  - Linework gentle, no hard outlines. Closer to a Maira Kalman / New
+    Yorker editorial illustration than a flat vector mascot.
+
+Dimensions: 1200 x 800 px minimum (3:2). Web-optimized .png or .webp.
+File should land at: static/images/about/patrick.png
+
+Sourcing notes:
+  - For Option A, an iPhone portrait-mode shot taken by a friend in window
+    light is plenty. No studio kit required.
+  - For Option B, Unsplash + Procreate or hiring a small illustration
+    commission on Cara or Are.na works well; budget ~$150–$400 for a
+    custom piece in this style.
+
+The page references /images/about/patrick.png. It will 404 until the real
+file is dropped in. That is expected per the asset-placeholder convention.
