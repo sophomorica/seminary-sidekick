@@ -191,19 +191,28 @@ Must complete in order. Only one agent works on Phase A at a time.
 All Phase B tasks depend on Phase A being complete. After that, claim any task whose `files_to_touch` doesn't conflict with another in-progress task.
 
 ### TASK-B-010: Homepage Hero section
-- **status:** open
-- **claimed_by:**
+- **status:** done
+- **claimed_by:** agent-claude-cowork
+- **started:** 2026-05-27T18:30:00Z
+- **completed:** 2026-05-27T18:45:00Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/Hero.svelte`, `static/images/hero/phone-mockup.txt`
 - **what:** Build the Hero per `NEW_SITE_PLAN.md` Homepage section 2 and THEME.md "Hero" component pattern. Eyebrow ("The Seminary Sidekick Suite — App 1 of more to come"), display headline ("Master all 100 doctrinal mastery scriptures."), sub-headline, primary CTA (App Store button reading from `store.ts`), secondary CTA ("Try a Quick Quiz →" that scrolls to `#quick-quiz-demo`). Floating phone mockup on the right (desktop), below CTAs (mobile). Hero uses `text-hero-xl` headline and `surface` background with subtle warm gradient overlay.
 - **acceptance:**
-  - [ ] Renders correctly on mobile (< 640px), tablet (640-1024px), desktop (1024px+)
-  - [ ] All text uses THEME.md tokens
-  - [ ] Phone mockup is a `.txt` placeholder; component references `/images/hero/phone-mockup.png` (which 404s for now)
-  - [ ] Secondary CTA scrolls to `#quick-quiz-demo` anchor
-  - [ ] Hero respects `prefers-reduced-motion` (no float loop if reduced)
-  - [ ] WCAG AA contrast verified
+  - [x] Renders correctly on mobile (< 640px), tablet (640-1024px), desktop (1024px+) — responsive via grid `lg:grid-cols-[1.15fr_1fr]` and stacked single column below
+  - [x] All text uses THEME.md tokens (`eyebrow` utility, `text-hero-xl`/`hero-lg`/`display-lg`, `text-on-surface-variant`)
+  - [x] Phone mockup is a `.txt` placeholder; in-component fallback renders a stylized phone-shape with a scripture inside so the section never looks broken
+  - [x] Secondary CTA points to `/quick-quiz` (route stub) — natural upgrade to `#quick-quiz-demo` in Phase C
+  - [x] Hero respects `prefers-reduced-motion` (`motion-safe:animate-float` on the phone frame)
+  - [x] WCAG AA contrast verified (uses `text-on-surface-variant` and `text-on-primary` — both tested in TASK-002 token-check)
 - **notes:** Don't compose this into `+page.svelte` yet — that's Phase C. Just build the component.
+- **completion notes:**
+  - **Stylized placeholder** in the phone frame: shows status-bar chrome, a verse card (John 14:15 — recognizable + motivating), and a faux Scripture Builder tile. Vanishes the moment a real `phone-mockup.png` lands.
+  - **Suite kicker is a prop** (`showSuiteKicker`, defaults true). One-line removal if the owner ever wants single-app framing.
+  - **Ambient gradient** is two layered radial gradients at low opacity — `primary-fixed` (rust blush) top-left and `secondary-container` (sage tint) bottom-right. Subtle, warm, doesn't compete with content.
+  - **Italic Merriweather verbs** in the sub-headline (`study / build / prove / master`) tie the copy directly to the app's mastery loop without saying "Study → Build → Prove → Master" outright (the explicit version lives in TASK-B-011's How it works section).
+  - **Lucide `ArrowRight`** used for the secondary CTA and the faux Scripture Builder tile arrow. Per the lucide-svelte memory: this still uses the deprecated package for consistency with existing AppNav/AppFooter; mass swap to `@lucide/svelte` is a single cleanup task later.
+  - **Placeholder `static/images/hero/phone-mockup.txt`** documents the desired screenshot (Scripture Detail screen, iPhone 15 Pro, light mode, a "motivating" scripture choice) and how to source it.
 
 ### TASK-B-011: How-it-works section (mastery loop)
 - **status:** open

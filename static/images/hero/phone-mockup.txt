@@ -1,0 +1,53 @@
+# Hero phone mockup — placeholder
+
+Intended final file: `phone-mockup.png` (or `.webp` if exporting from
+Figma/Photoshop with proper compression).
+
+## What this image should be
+
+A high-fidelity screenshot of the Seminary Sidekick Flutter app's
+**Scripture Detail** screen — the one with the scripture text, mastery
+path indicator, and the Scripture Builder entry tile underneath. The
+screen the user lands on when they tap a scripture from Home.
+
+Why this screen specifically: it's the heart of the app. It shows the
+scripture, the mastery progression, and the primary action (Scripture
+Builder) all in one frame. Anyone seeing this screenshot understands
+within 5 seconds what the app does.
+
+## How to source it
+
+1. Open the Flutter app in the iOS simulator (`iPhone 15 Pro` or newer
+   — wider screen reads better in marketing).
+2. Light mode (web hero is light; dark mode is for /premium or a future
+   variant).
+3. Pick a "good" scripture for the screenshot — something with a
+   recognizable, motivating verse. **John 14:15** ("If ye love me, keep
+   my commandments"), **Mosiah 18:9**, or **D&C 18:10** all read well
+   in a hero.
+4. Capture with `Cmd+S` in the simulator → produces a clean PNG at the
+   simulator's native resolution.
+5. Optionally crop to just the device frame (no surrounding chrome).
+6. Save as `static/images/hero/phone-mockup.png` and delete this `.txt`.
+
+## Specs
+
+- Format: PNG (or WebP)
+- Aspect ratio: ~9:19 (iPhone)
+- Width: 1080px or higher (we'll downsize via responsive img)
+- Background of the screenshot: whatever the app's surface color is
+  in light mode (`#FFF8F6`). The hero section's surrounding background
+  is the same color, so the screenshot blends seamlessly.
+
+## Until the real screenshot lands
+
+`Hero.svelte` falls back to a stylized "phone-shaped" card with a single
+scripture verse inside. It looks intentional, not broken. The fallback
+disappears the moment a real `phone-mockup.png` is in this directory.
+
+## Future variants (don't ship in Tier 1)
+
+- `phone-mockup-dark.png` — dark mode version, for a future light/dark
+  hero toggle or for the `/premium` page hero.
+- `phone-mockup@2x.png` — for high-DPI displays. We can render the same
+  PNG at 2× with `srcset` once it exists.
