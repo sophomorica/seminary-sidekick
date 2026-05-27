@@ -545,8 +545,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 After all Phase B tasks complete.
 
 ### TASK-C-100: Compose homepage from section components
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** agent-claude-opus-47
+- **started:** 2026-05-27T19:35:00Z
 - **depends_on:** TASK-B-010 through TASK-B-015
 - **files_to_touch:** `src/routes/+page.svelte`
 - **what:** Replace the homepage stub with the composition shell that imports and renders all section components in order: Hero → HowItWorks → QuickQuizDemo → PremiumPeek → ForTeachersStrip → ScriptureMatchDemo → NewsPreview → FinalCTA.
