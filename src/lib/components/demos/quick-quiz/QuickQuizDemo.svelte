@@ -215,6 +215,17 @@
 
 	/** Missed-reference list for the end card (helps the user, not just scolds). */
 	const missed = $derived(answers.filter((a) => !a.correct));
+
+	/**
+	 * Some scripture keyPhrases in the source data are themselves wrapped
+	 * in curly quotes (e.g. `“God created man in his own image.”`). The
+	 * demo adds its own &ldquo;/&rdquo; for editorial styling, so we trim
+	 * any pre-existing leading/trailing quote characters first to avoid
+	 * doubled-up “” marks in the rendered output.
+	 */
+	function trimWrappingQuotes(s: string): string {
+		return s.replace(/^[“”"']+/, '').replace(/[“”"']+$/, '');
+	}
 </script>
 
 <section
@@ -284,7 +295,7 @@
 				<blockquote
 					class="font-serif italic text-on-surface text-xl leading-relaxed md:text-2xl"
 				>
-					&ldquo;{current.scripture.keyPhrase}&rdquo;
+					&ldquo;{trimWrappingQuotes(current.scripture.keyPhrase)}&rdquo;
 				</blockquote>
 				<p
 					class="mt-6 text-label-md uppercase tracking-[1px] text-on-surface-variant"
@@ -390,7 +401,7 @@
 										{miss.scripture.reference}
 									</span>
 									<span class="text-on-surface-variant">
-										— &ldquo;{miss.scripture.keyPhrase}&rdquo;
+										— &ldquo;{trimWrappingQuotes(miss.scripture.keyPhrase)}&rdquo;
 									</span>
 								</li>
 							{/each}
