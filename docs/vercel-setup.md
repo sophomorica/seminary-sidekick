@@ -5,30 +5,30 @@ The CI workflow (`.github/workflows/ci.yml`) handles type-checking, linting, and
 ## Steps
 
 1. **Create the Vercel project.**
-   - Sign in at https://vercel.com.
-   - Click **Add New… → Project**.
-   - Import the GitHub repo for this project.
-   - Framework preset: **SvelteKit** (auto-detected).
-   - Build command: leave default (`pnpm build`).
-   - Output directory: leave default (Vercel knows where adapter-vercel writes).
-   - Node version: **22**.
-   - Install command: leave default — Vercel detects pnpm via `pnpm-lock.yaml`.
+    - Sign in at https://vercel.com.
+    - Click **Add New… → Project**.
+    - Import the GitHub repo for this project.
+    - Framework preset: **SvelteKit** (auto-detected).
+    - Build command: leave default (`pnpm build`).
+    - Output directory: leave default (Vercel knows where adapter-vercel writes).
+    - Node version: **22**.
+    - Install command: leave default — Vercel detects pnpm via `pnpm-lock.yaml`.
 
 2. **Add environment variables (none required in Tier 1).**
-   - Tier 1 has no secrets. Add later when Plausible/Supabase/Resend land.
+    - Tier 1 has no secrets. Add later when Plausible/Supabase/Resend land.
 
 3. **Configure the production domain.**
-   - In project settings → **Domains**, add the production domain (see open question #1 in `NEW_SITE_PLAN.md`).
-   - If using Vercel's DNS: follow their nameserver instructions.
-   - If using an existing DNS provider: add the CNAME record they show.
-   - Wait for DNS + SSL provisioning (~5 minutes).
+    - In project settings → **Domains**, add the production domain (see open question #1 in `NEW_SITE_PLAN.md`).
+    - If using Vercel's DNS: follow their nameserver instructions.
+    - If using an existing DNS provider: add the CNAME record they show.
+    - Wait for DNS + SSL provisioning (~5 minutes).
 
 4. **Verify preview deploys.**
-   - Open a PR. Vercel should comment with a preview URL within ~60s.
-   - If the preview build fails, the CI workflow will tell you why; the Vercel deploy log shows runtime errors.
+    - Open a PR. Vercel should comment with a preview URL within ~60s.
+    - If the preview build fails, the CI workflow will tell you why; the Vercel deploy log shows runtime errors.
 
 5. **Set the production branch.**
-   - In project settings → **Git**, confirm production branch is `main`.
+    - In project settings → **Git**, confirm production branch is `main`.
 
 ## After launch
 

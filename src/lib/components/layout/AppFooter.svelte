@@ -13,8 +13,8 @@
 			<div>
 				<Logo size="lg" class="mb-3" />
 				<p class="max-w-md text-body-lg text-on-surface-variant">
-					Master the 100 doctrinal mastery scriptures. A focused, fun, reverent way to study,
-					build, prove, and master.
+					Master the 100 doctrinal mastery scriptures. A focused, fun, reverent way to
+					study, build, prove, and master.
 				</p>
 			</div>
 			<div class="flex flex-col items-start gap-4 md:items-end md:justify-end">
@@ -26,7 +26,9 @@
 		<nav aria-label="Footer" class="mb-12 grid grid-cols-2 gap-8 md:grid-cols-5">
 			{#each FOOTER_NAV as group (group.heading)}
 				<div>
-					<h2 class="mb-3 text-label-md uppercase text-on-surface-variant">{group.heading}</h2>
+					<h2 class="mb-3 text-label-md uppercase text-on-surface-variant">
+						{group.heading}
+					</h2>
 					<ul class="flex flex-col gap-2">
 						{#each group.links as link (link.href)}
 							<li>

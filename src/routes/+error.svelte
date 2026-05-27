@@ -12,8 +12,8 @@
 	<p class="eyebrow">{page.status}</p>
 	<h1 class="font-serif text-display-lg md:text-hero-lg">Verse not found.</h1>
 	<p class="mx-auto mt-4 max-w-xl text-body-lg text-on-surface-variant">
-		The page you're looking for doesn't exist {page.status === 404 ? 'yet' : 'right now'}. Try one
-		of these instead.
+		The page you're looking for doesn't exist {page.status === 404 ? 'yet' : 'right now'}. Try
+		one of these instead.
 	</p>
 	<div class="mt-10 flex flex-wrap justify-center gap-3">
 		<Button href="/">Back home</Button>

@@ -53,7 +53,10 @@
 
 <svelte:head>
 	<title>Design Tokens — Seminary Sidekick (TASK-002 verification)</title>
-	<meta name="description" content="Temporary token-showcase page verifying THEME.md tokens render correctly." />
+	<meta
+		name="description"
+		content="Temporary token-showcase page verifying THEME.md tokens render correctly."
+	/>
 </svelte:head>
 
 <main class="mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-20">
@@ -61,9 +64,9 @@
 		<p class="eyebrow">TASK-002 · verification</p>
 		<h1 class="font-serif text-hero-lg">Sacred Editorial — token check.</h1>
 		<p class="mt-4 max-w-2xl text-body-lg text-on-surface-variant">
-			This page is a temporary design-system reference. It exercises every Tailwind utility minted
-			from <code>THEME.md</code>. If it looks right, the foundation is solid. Phase C replaces this
-			with the real homepage.
+			This page is a temporary design-system reference. It exercises every Tailwind utility
+			minted from <code>THEME.md</code>. If it looks right, the foundation is solid. Phase C
+			replaces this with the real homepage.
 		</p>
 	</header>
 
@@ -87,7 +90,9 @@
 			</p>
 			<p class="text-body-md text-on-surface-variant">Body MD — muted, 14px.</p>
 			<p class="text-body-sm text-on-surface-variant">Body SM — 12px caption.</p>
-			<p class="text-label-md text-on-surface-variant uppercase">Label MD — uppercase eyebrow</p>
+			<p class="text-label-md text-on-surface-variant uppercase">
+				Label MD — uppercase eyebrow
+			</p>
 		</div>
 	</section>
 
@@ -113,8 +118,8 @@
 		<p class="eyebrow">Surface hierarchy</p>
 		<h2 class="mb-2 font-serif text-display-md">Stacked sheets of fine, translucent paper.</h2>
 		<p class="mb-6 max-w-2xl text-body-lg text-on-surface-variant">
-			Separation by tone, never by border. Each step lifts perceived elevation without drawing a
-			line.
+			Separation by tone, never by border. Each step lifts perceived elevation without drawing
+			a line.
 		</p>
 		<div class="grid grid-cols-1 gap-2 md:grid-cols-7">
 			{#each surfaces as { name, hex } (name)}
@@ -122,7 +127,9 @@
 					class="flex h-32 flex-col justify-end rounded-2xl p-3"
 					style="background-color: var(--color-{name})"
 				>
-					<p class="text-label-sm uppercase text-on-surface">{name.replace('surface-', '')}</p>
+					<p class="text-label-sm uppercase text-on-surface">
+						{name.replace('surface-', '')}
+					</p>
 					<p class="text-body-sm text-on-surface-variant">{hex}</p>
 				</div>
 			{/each}
@@ -268,8 +275,8 @@
 		<p class="eyebrow">Motion</p>
 		<h2 class="mb-2 font-serif text-display-md">Calm, warm, intentional.</h2>
 		<p class="mb-6 max-w-2xl text-body-md text-on-surface-variant">
-			Hover the left card for the standard card lift. The right card floats ambiently (disabled if
-			your system prefers reduced motion).
+			Hover the left card for the standard card lift. The right card floats ambiently
+			(disabled if your system prefers reduced motion).
 		</p>
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 			<div class="card card-hover cursor-pointer">
@@ -291,8 +298,8 @@
 
 	<footer class="border-t border-outline-variant/40 pt-8 text-body-sm text-on-surface-variant">
 		<p>
-			Generated for TASK-002 verification. Delete this page in TASK-C-100 when the real homepage
-			ships.
+			Generated for TASK-002 verification. Delete this page in TASK-C-100 when the real
+			homepage ships.
 		</p>
 	</footer>
 </main>

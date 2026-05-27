@@ -37,8 +37,12 @@ export default defineConfig(
 		}
 	},
 	{
-		// Override or add rule settings here, such as:
-		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// Static marketing routes don't benefit from `resolve()`'s build-time
+			// link-check (the route shape is hand-curated, not generated). Keeping
+			// this on creates per-link friction with no payoff for Tier 1. Re-enable
+			// (or upgrade per-component) if Tier 3's forum lands a dynamic route map.
+			'svelte/no-navigation-without-resolve': 'off'
+		}
 	}
 );

@@ -27,7 +27,9 @@
 <header
 	class="sticky top-0 z-40 border-b border-outline-variant/0 bg-surface/85 backdrop-blur-md backdrop-saturate-150"
 >
-	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:h-20 md:px-8">
+	<div
+		class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:h-20 md:px-8"
+	>
 		<!-- Brand -->
 		<Logo />
 
