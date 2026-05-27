@@ -1,0 +1,68 @@
+PLACEHOLDER — replace this .txt with the real asset.
+
+Intended final path: /images/premium/chat-screenshot.png
+Referenced from: src/lib/components/sections/PremiumPeek.svelte
+Sized for: roughly 1:1 to 4:5 aspect on desktop (card crops/letterboxes
+gracefully), full width on mobile inside the left column. Export at 2x
+for retina (suggested 1200×1400 PNG or 900×1100 WebP).
+
+Composition
+-----------
+A clean, stylized "screenshot" of the Sidekick AI journal / chat surface
+from inside the Seminary Sidekick app. Not a real screen capture — a
+designed mockup that reads as the app's voice. Shows three things in
+the frame, top to bottom:
+
+  1. A "Today" header chip with a small gold sparkle icon and a date
+     line ("Wednesday, May 27"). Faint Sidekick wordmark on the right.
+
+  2. A Sidekick AI prompt card (the hero element). Soft rounded
+     rectangle (≈32px radius), surface-container-lowest white fill,
+     premium-gold-light (#FFE088) left edge marker stripe ~4px wide.
+     Title in serif italic: "Today's prompt." Body in sans-serif:
+     a short, reverent reflection question tied to a doctrinal mastery
+     scripture (suggested copy: "How does keeping the commandments
+     show love for the Savior in your life this week?"). A "From John
+     14:15" pill in book-nt indigo at the bottom of the card.
+
+  3. A user reply bubble below (right-aligned, primary-fixed (#FFDBCF)
+     fill, on-primary-container text), short two-line answer that
+     trails off mid-thought with a soft caret — implying the journal
+     is being actively written.
+
+  4. A floating "Suggested goal" chip at the very bottom: small
+     premium-gold (#CCA72F) outline, sparkle icon, label
+     "Memorize John 14:15 by Friday."
+
+Style
+-----
+- Editorial, calm, premium. Same brand voice as the rest of the site.
+- Use the THEME.md palette: surface (#FFF8F6) background, on-surface
+  (#221A17) text, premium-gold (#CCA72F) and premium-gold-light
+  (#FFE088) as accents, book-nt (#5C6BC0) for the scripture pill.
+- Merriweather for the prompt title and any italic moments. Inter for
+  body, chips, labels. Match the type scale: ~headline-md for the
+  prompt title, ~body-md for the prompt body, ~label-md for chips.
+- Smooth-stones radii throughout (rounded-3xl on cards, rounded-full
+  on chips). Tinted shadows only (not gray) — the "shadow-floating"
+  recipe from app.css: 0 12px 40px rgb(34 26 23 / 0.04).
+- A subtle premium-gold-light radial glow behind the card (already
+  partly rendered in the Svelte component) so the screenshot still
+  feels premium when dropped into the section.
+- No device chrome / no phone frame. The component already provides
+  a floating card frame; the screenshot itself should look like a
+  flat UI extract, not a phone bezel.
+
+Sourcing
+--------
+First choice: build in Figma using the existing Seminary Sidekick
+component library (mirror of Flutter app theme), export as PNG @2x.
+Second choice: a quick screen capture from the Flutter app itself if
+the AI journal screen has shipped — crop to remove status bar /
+navigation. Third choice: hand-mocked in any vector tool, exported
+flat.
+
+Reduced-motion / dark mode
+--------------------------
+Single static image. No animation. No dark variant needed for v1
+(site is light-only in Tier 1 per THEME.md).

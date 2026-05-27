@@ -1,0 +1,40 @@
+Asset: static/images/how/prove.png (placeholder)
+Owner: replace this .txt with the real PNG / SVG when ready.
+Used by: src/lib/components/sections/HowItWorks.svelte — Step 03 "Prove"
+
+Brief
+─────
+A small editorial illustration of a completed verse line accompanied by a quiet
+mark of confirmation — a soft sage check or laurel half-wreath. The reader's
+role here is recall under their own steam — typing or speaking the verse cold,
+no prompts.
+
+Composition
+- A horizontal typographic line (abstracted, not readable) with a small
+  check / wreath floating to its right.
+- The check sits inside a circle that echoes the icon discs in the live
+  component, so the illustration reads as a "moment", not a UI screenshot.
+- Centered in a square frame.
+
+Style / mood
+- Quiet confidence. Not a trophy moment — that comes at Master.
+- Slight upward float on the check, suggesting "settled into place".
+- Soft sage halo at very low opacity around the check (no hard outline).
+
+Color guidance (semantic tokens)
+- Type line: on-surface-variant.
+- Check / wreath: secondary (sage) at full strength; halo secondary-container
+  @ ~30%.
+- Avoid pure success-green (#66BB6A) — that's the in-app demo feedback color
+  for "correct answer." Prove is calmer.
+- No primary, no gold here. This step is intentionally restrained.
+
+Dimensions / format
+- Square (1:1). 480×480 PNG or SVG. Transparent background.
+
+Sourcing options
+1. Custom SVG (preferred).
+2. Lucide ShieldCheck enlarged + warm-tinted as a starting point.
+3. AI-generated stylized illustration — owner edits.
+
+Swap pattern: see study.txt.

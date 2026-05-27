@@ -1,0 +1,43 @@
+Asset: static/images/how/study.png (placeholder)
+Owner: replace this .txt with the real PNG / SVG when ready.
+Used by: src/lib/components/sections/HowItWorks.svelte — Step 01 "Study"
+
+Brief
+─────
+A small editorial illustration of an open scripture book, gently tilted three-
+quarters view, soft light catching the right-hand page. The reader's role is
+encounter — first contact with the verse.
+
+Composition
+- Open scripture, slight perspective. Two pages visible, right page lit.
+- A faint ribbon bookmark trails off the bottom edge in primary-container coral.
+- Optional: a single highlighted word on the lit page (no specific verse needed,
+  illegible-but-typographic is fine).
+- Centered in a square frame. No background scenery — the card surface IS the
+  background.
+
+Style / mood
+- Sacred Editorial per THEME.md. Hand-illustrated feel, not photographic.
+- Calm, quiet, reverent. The reader has just opened the book.
+- Soft tinted shadow under the book to suggest weight without a hard outline.
+
+Color guidance (semantic tokens, not hex)
+- Pages: surface-container-lowest with on-surface ink type.
+- Book cover edges: book-ot (warm brown) along the spine for grounding.
+- Ribbon: primary-container.
+- Halo / shadow: on-surface @ 6% opacity (shadow-editorial).
+- Avoid premium gold here — gold is reserved for the Master step + premium AI.
+
+Dimensions / format
+- Square (1:1). 480×480 PNG or SVG. Retina ready.
+- Background transparent so the card surface shows through.
+
+Sourcing options
+1. Custom SVG illustration in the Sacred Editorial style (preferred).
+2. Adapted scripture illustration from Noun Project (filter for "scripture", "open
+   book", style: line + soft fill) — verify license allows commercial use.
+3. AI-generated stylized illustration matching THEME.md palette — owner edits.
+
+When the real file lands, swap the lucide BookOpen icon block in HowItWorks.svelte
+for an <img src="/images/how/study.png" alt="..." />. Keep the card's tinted disc
+backdrop for visual rhythm with the other three steps.

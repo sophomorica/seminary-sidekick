@@ -1,0 +1,40 @@
+Asset: static/images/how/build.png (placeholder)
+Owner: replace this .txt with the real PNG / SVG when ready.
+Used by: src/lib/components/sections/HowItWorks.svelte — Step 02 "Build"
+
+Brief
+─────
+A small editorial illustration of word tiles forming a scripture line — the
+"Scripture Builder" metaphor made visual. Some tiles fully snapped into a row,
+one or two still floating into place. The reader's role here is active
+construction — putting the verse back together.
+
+Composition
+- Three to five rectangular word tiles laid out in a tight horizontal row.
+- One tile sits above the row, mid-drop, suggesting motion (just landing).
+- Tiles read as soft pebble-shapes (rounded-2xl-ish corners), not Tetris cubes.
+- Centered in a square frame, slight downward tilt for life.
+
+Style / mood
+- Tactile, calm, playful but not childish. The reader is "building" the verse.
+- Soft tinted shadows beneath each tile (no outlines).
+- Minimal text on tiles — abstracted to typographic blocks, no readable verse.
+
+Color guidance (semantic tokens)
+- Tile surfaces: surface-container-lowest with subtle on-surface marks.
+- One tile (the "next" one) tinted secondary-container (sage) to signal the
+  current target.
+- Tile in motion casts a slightly larger shadow-floating for elevation.
+- Avoid premium gold and brand primary here — primary is reserved for the loop
+  payoff (Master) and primary CTAs.
+
+Dimensions / format
+- Square (1:1). 480×480 PNG or SVG. Background transparent.
+
+Sourcing options
+1. Custom SVG (preferred) — matches the Scripture Builder UI in the app.
+2. Adapted from the Flutter Scripture Builder screen (screen-grab → flatten →
+   simplify into illustration form).
+3. AI-generated stylized illustration matching THEME.md palette — owner edits.
+
+Swap pattern: see study.txt.
