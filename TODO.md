@@ -215,8 +215,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - **Placeholder `static/images/hero/phone-mockup.txt`** documents the desired screenshot (Scripture Detail screen, iPhone 15 Pro, light mode, a "motivating" scripture choice) and how to source it.
 
 ### TASK-B-011: How-it-works section (mastery loop)
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** agent-claude-opus-47
+- **started:** 2026-05-27T19:00:00Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/HowItWorks.svelte`, `static/images/how/study.txt`, `static/images/how/build.txt`, `static/images/how/prove.txt`, `static/images/how/master.txt`
 - **what:** Four-step illustrated section: **Study → Build → Prove → Master.** Each step is a card with an icon (lucide-svelte) or illustration placeholder, a step number/label, a heading (`headline-md`), and one-line description. Layout: 4 columns on desktop, 2×2 on tablet, stacked on mobile. Section background: `surface-container-low` to differentiate from Hero.
