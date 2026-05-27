@@ -70,10 +70,11 @@ Must complete in order. Only one agent works on Phase A at a time.
   - **Verification deferred** — could not run `pnpm check`, `pnpm dev`, or `pnpm lint` for the same reason. Files were written carefully but need a verification pass when deps are installed. See AGENT_DECISIONS.md "Verification needed" section.
 
 ### TASK-003: Install shadcn-svelte and primary components
-- **status:** partial · done for in-sandbox scope
-- **claimed_by:** agent-claude-cowork
+- **status:** in_progress · finishing the 5 deferred primitives
+- **claimed_by:** agent-claude-opus-47 (continuation of agent-claude-cowork's partial)
 - **started:** 2026-05-27T16:55:00Z
-- **completed:** 2026-05-27T17:10:00Z
+- **resumed:** 2026-05-27T17:30:00Z
+- **completed (partial):** 2026-05-27T17:10:00Z
 - **depends_on:** TASK-002
 - **files_to_touch:** `src/lib/components/ui/`, `src/lib/utils.ts`, `components.json`
 - **what:** Initialize shadcn-svelte (`pnpm dlx shadcn-svelte@latest init`). Configure it to use the THEME.md tokens (not the default neutral palette). Install these primitives: `button`, `card`, `dialog`, `dropdown-menu`, `input`, `label`, `separator`, `tabs`, `toggle`, `tooltip`. Override default styling so they conform to THEME.md (large radii, tinted shadows, Merriweather for titles, Inter for body, primary brand colors).
