@@ -323,6 +323,7 @@ Each `<X />` component is built by a different agent in parallel and lands indep
 ```bash
 # Install deps
 pnpm install
+pnpm test:e2e:install  # one-time — downloads Chromium for Playwright (~150MB)
 
 # Dev server
 pnpm dev
@@ -331,16 +332,19 @@ pnpm dev
 pnpm check
 pnpm lint
 
-# Tests
-pnpm test            # unit tests (Vitest)
-pnpm test:e2e        # end-to-end tests (Playwright)
+# Tests — Playwright E2E suite (see tests/README.md)
+pnpm test:e2e          # headless, all tests
+pnpm test:e2e:ui       # Playwright UI mode (best for development)
+pnpm test:e2e:report   # open HTML report from last run
 
 # Production build
 pnpm build
 pnpm preview
 ```
 
-CI must pass `pnpm check` (no TS errors), `pnpm lint`, and `pnpm test`. Lighthouse target: 95+ on all four scores on the homepage.
+CI must pass `pnpm check` (no TS errors), `pnpm lint`, and `pnpm test:e2e`. Lighthouse target: 95+ on all four scores on the homepage.
+
+**The E2E suite is the regression baseline.** Every test in `tests/` documents something that should keep working — every route loads, every nav link resolves, every demo is interactive, every legal page has its required sections, and accessibility basics (alt text, accessible names, single h1, skip link) hold across the site. When a test fails, either the thing broke or the test needs updating — never silence one. See `tests/README.md` for the full coverage map.
 
 ---
 
