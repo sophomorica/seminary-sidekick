@@ -1,0 +1,40 @@
+Asset: static/images/how/master.png (placeholder)
+Owner: replace this .txt with the real PNG / SVG when ready.
+Used by: src/lib/components/sections/HowItWorks.svelte — Step 04 "Master"
+
+Brief
+─────
+A small editorial illustration of a verse line haloed in soft gold — the sealing
+moment. This is the loop payoff and the one step where the sacred-gold palette
+earns its place (mastery-eternal, per THEME.md mastery colors).
+
+Composition
+- A horizontal typographic line (abstracted, not readable) with a delicate gold
+  starburst / sparkle group above it.
+- Sparkles are small, varied in size, scattered (not a uniform pattern).
+- Centered in a square frame.
+
+Style / mood
+- Reverent and quietly celebratory. The end of one pass through the loop and
+  the beginning of the next.
+- Slight ambient glow around the line — soft, no hard rays.
+
+Color guidance (semantic tokens)
+- Sparkles: mastery-eternal (#CCA72F, equal to premium-gold) — this IS the one
+  place in How-it-works where gold is appropriate.
+- Glow halo: premium-gold-light @ ~25% opacity.
+- Type line: on-surface (a touch darker than the Prove step to read as "locked
+  in").
+- Keep the gold restrained — the illustration should still read as warm-paper,
+  not Vegas.
+
+Dimensions / format
+- Square (1:1). 480×480 PNG or SVG. Transparent background.
+
+Sourcing options
+1. Custom SVG (preferred) — owns the brand sparkle vocabulary so it can be
+   reused in the future "achievements" UI.
+2. Lucide Sparkles enlarged + custom gold gradient — starting point only.
+3. AI-generated stylized illustration matching THEME.md palette — owner edits.
+
+Swap pattern: see study.txt.
