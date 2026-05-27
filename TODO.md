@@ -43,8 +43,9 @@ Must complete in order. Only one agent works on Phase A at a time.
   - `seminary_sidekick_backend/` and `LICENSE` retained.
 
 ### TASK-002: Install + configure Tailwind and design tokens
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** agent-claude-cowork
+- **started:** 2026-05-27T16:35:00Z
 - **depends_on:** TASK-001
 - **files_to_touch:** `tailwind.config.js`, `postcss.config.js`, `src/app.css`, `package.json`
 - **what:** Install Tailwind v3+ with PostCSS. Port the full color/typography/radius/shadow/motion token system from `THEME.md` (and from the Flutter app's `lib/theme/app_theme.dart`) into `tailwind.config.js`. Set up `src/app.css` with Tailwind directives, font imports (`@fontsource-variable/inter`, `@fontsource-variable/merriweather`), CSS variables for shadows and easings, and global utilities (focus ring, scripture blockquote, skip link).
