@@ -164,23 +164,25 @@ Must complete in order. Only one agent works on Phase A at a time.
   - **Future resource library schema** should `extend()` `baseFrontmatterSchema` rather than redefining fields. Conventions documented in `src/lib/content/schema.ts`.
 
 ### TASK-007: Deploy pipeline (Vercel)
-- **status:** partial · CI complete, Vercel pending owner action
+- **status:** done
 - **claimed_by:** agent-claude-cowork
 - **started:** 2026-05-27T17:45:00Z
 - **completed (partial):** 2026-05-27T17:55:00Z
+- **completed:** 2026-05-27T18:30:00Z (Vercel side completed by owner)
 - **depends_on:** TASK-001
-- **files_to_touch:** Vercel project config (external — owner does this), `.github/workflows/ci.yml`, `README.md`, `docs/vercel-setup.md`
+- **files_to_touch:** Vercel project config (external — owner did this), `.github/workflows/ci.yml`, `README.md`, `docs/vercel-setup.md`
 - **what:** Connect the repo to Vercel. Configure production branch (`main`) and preview URLs for every PR. Set up a minimal GitHub Actions workflow that runs `pnpm install` + `pnpm check` + `pnpm lint` + `pnpm test` on every PR.
 - **acceptance:**
-  - [owner] Production deploy succeeds and serves the homepage — requires Vercel account, follow `docs/vercel-setup.md`
-  - [owner] Preview URL is generated on PR open — automatic once Vercel integration is set up
+  - [x] Production deploy succeeds and serves the homepage — owner connected the repo via the Vercel dashboard
+  - [x] Preview URL is generated on PR open — automatic via Vercel's GitHub integration
   - [x] CI fails the build on type errors or lint errors — `.github/workflows/ci.yml` runs check + lint + build on push and PR
-- **notes:** Domain mapping waits on the domain decision (open question in NEW_SITE_PLAN.md). Use the Vercel-assigned URL until then.
+- **notes:** Domain mapping still waits on the domain decision (open question in NEW_SITE_PLAN.md). The site is live on the Vercel-assigned URL until then; swap to a custom domain when chosen.
 - **completion notes:**
   - **CI workflow** at `.github/workflows/ci.yml` runs on push to `main` and on every PR. Steps: checkout → pnpm setup → Node 22 → `pnpm install --frozen-lockfile` → `pnpm check` → `pnpm lint` → `pnpm build`. No `pnpm test` yet because no tests exist in Tier 1 (Phase B adds them per demo).
-  - **Vercel setup steps documented in `docs/vercel-setup.md`** — owner runs through these once. Cannot be automated without Vercel credentials.
+  - **Vercel setup steps documented in `docs/vercel-setup.md`** — owner ran through these.
   - **README updated** with quick-start, scripts, project layout, and pointers to CLAUDE/THEME/TODO/PLAN.
   - **No GitHub Actions deploy step.** Vercel's native GitHub integration handles deploys (faster, free, native preview URLs). CI handles the gate.
+  - **Follow-up (not blocking):** TASK-C-111 (submit sitemap to Google Search Console) still waits on the custom domain decision before it can run.
 
 ---
 
@@ -571,6 +573,6 @@ Not for Tier 1. Listed so we know where they slot in.
 
 ## Notes
 
-- **Open question dependencies.** Several Tier-1 questions in `NEW_SITE_PLAN.md` (domain, logo, pricing, Android availability, first post authorship) need owner input. Tasks `TASK-007`, `TASK-B-015`, `TASK-B-041`, `TASK-B-042`, `TASK-C-110` are most affected. Tasks proceed with placeholders that swap via `store.ts` / `site.ts` at launch.
+- **Open question dependencies.** Several Tier-1 questions in `NEW_SITE_PLAN.md` (domain, logo, pricing, Android availability, first post authorship) still need owner input. Tasks `TASK-B-015`, `TASK-B-041`, `TASK-B-042`, `TASK-C-110`, `TASK-C-111` are most affected. Tasks proceed with placeholders that swap via `store.ts` / `site.ts` at launch.
 - **Don't expand scope mid-task.** If you discover work that doesn't fit your claimed task, create a new TASK rather than absorbing it. Keeps file-ownership clean.
 - **Mark blocking issues immediately.** If you hit a blocker, change `status: blocked`, document `blocked_by`, and commit so the next agent sees it.
