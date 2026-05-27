@@ -17,8 +17,9 @@
 Must complete in order. Only one agent works on Phase A at a time.
 
 ### TASK-001: Scaffold SvelteKit project
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** agent-claude-opus-47
+- **started:** 2026-05-27T00:00:00Z
 - **depends_on:** none
 - **files_to_touch:** entire new repo
 - **what:** Initialize a new SvelteKit project with TypeScript, set up pnpm, configure Vite, set up Prettier + ESLint with the Svelte plugin, add `.editorconfig`, set up `tsconfig.json` paths (`$lib/*`).
