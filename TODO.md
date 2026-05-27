@@ -402,18 +402,19 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** Copy is owner-blocked unless owner wants an agent to draft a starting point.
 
 ### TASK-B-051: /privacy and /terms pages
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** parallel-b51
 - **started:** 2026-05-27T20:20:00Z
+- **completed:** 2026-05-27T20:20:21Z
 - **depends_on:** TASK-005
 - **files_to_touch:** `src/routes/privacy/+page.svelte`, `src/routes/terms/+page.svelte`
 - **what:** Standard privacy policy and terms of use. Template-based (no PII collection in Tier 1; mentions Plausible analytics; mentions email if waitlist exists; covers app's premium subscription via RevenueCat). Long-form Merriweather body.
 - **acceptance:**
-  - [ ] Both pages render
-  - [ ] Cover the current data flow honestly (no accounts, no PII server-side in Tier 1)
-  - [ ] Tier 2/3 sections marked TBD (will be updated when auth and forum ship)
-- **notes:** Use a reputable template (e.g., Termly or Iubenda's free generators) as a starting point; adapt to actual practices.
-- **orchestrator note:** Claimed in batch with B-13/B-15/B-40/B-80. Agent must NOT edit TODO.md until final completion report.
+  - [x] Both pages render
+  - [x] Cover the current data flow honestly (no accounts, no PII server-side in Tier 1)
+  - [x] Tier 2/3 sections marked TBD (will be updated when auth and forum ship)
+- **notes:** Used Termly/Iubenda-style templates adapted to exact Tier 1 practices. Calm, transparent Patrick's voice. Full SEO heads, cross-links between pages, mailto CTA. Long-form typography via direct Tailwind utilities (font-serif 18px/1.75, max-w-2xl, generous rhythm). No app.css changes needed. pnpm build succeeded; zero new check/lint errors from these files (pre-existing issues elsewhere untouched).
+- **completion notes (orchestrator):** Agent strictly limited to the two allowed files. Excellent honesty about current minimal data practices + clear TBD markers. Ready for owner legal review before launch.
 
 ### TASK-B-052: /contact page
 - **status:** open
