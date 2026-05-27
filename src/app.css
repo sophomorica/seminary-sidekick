@@ -1,0 +1,333 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * src/app.css — Seminary Sidekick Site
+ *
+ * Tailwind v4 CSS-first theme configuration.
+ * Tokens defined here become utility classes automatically:
+ *   --color-primary             → bg-primary, text-primary, border-primary
+ *   --font-serif                → font-serif
+ *   --shadow-editorial          → shadow-editorial
+ *   --text-hero-xl              → text-hero-xl (with line-height, weight, tracking)
+ *   --ease-out-soft             → ease-out-soft
+ *
+ * Read THEME.md for the design system that this file implements.
+ * ───────────────────────────────────────────────────────────────────── */
+
+@import 'tailwindcss';
+
+/* ─── Font imports (self-hosted via fontsource) ───────────────────── */
+@import '@fontsource-variable/inter';
+@import '@fontsource/merriweather/400.css';
+@import '@fontsource/merriweather/600.css';
+@import '@fontsource/merriweather/700.css';
+@import '@fontsource/merriweather/400-italic.css';
+@import '@fontsource/merriweather/700-italic.css';
+
+/* ─── Theme tokens — Sacred Editorial design system ───────────────── */
+@theme {
+	/* === Brand colors ============================================ */
+	--color-primary: #94492c;
+	--color-primary-container: #d9805f;
+	--color-primary-fixed: #ffdbcf;
+	--color-primary-fixed-dim: #ffb59b;
+	--color-on-primary: #ffffff;
+	--color-on-primary-container: #581c03;
+
+	--color-secondary: #3b665f;
+	--color-secondary-container: #beece2;
+	--color-secondary-fixed-dim: #a3cfc6;
+	--color-on-secondary: #ffffff;
+	--color-on-secondary-container: #426c65;
+
+	--color-tertiary: #735c00;
+	--color-tertiary-container: #cca72f;
+	--color-tertiary-fixed: #ffe088;
+	--color-on-tertiary: #ffffff;
+	--color-on-tertiary-container: #4e3d00;
+
+	--color-accent: #5b8abf;
+	--color-accent-light: #89b4db;
+
+	/* === Surface hierarchy ====================================== */
+	/* "Stacked sheets of fine, translucent paper" — separate via tone, not borders. */
+	--color-surface: #fff8f6;
+	--color-surface-container-lowest: #ffffff;
+	--color-surface-container-low: #fff1ec;
+	--color-surface-container: #fbebe6;
+	--color-surface-container-high: #f5e5e0;
+	--color-surface-container-highest: #efdfda;
+	--color-surface-dim: #e6d7d2;
+	--color-surface-variant: #efdfda;
+
+	--color-on-surface: #221a17;
+	--color-on-surface-variant: #54433d;
+
+	--color-outline: #87736c;
+	--color-outline-variant: #dac1b9;
+
+	/* === Feedback colors ======================================== */
+	--color-success: #66bb6a;
+	--color-success-light: #e8f5e9;
+	--color-warning: #ffa726;
+	--color-error: #ba1a1a;
+	--color-error-container: #ffdad6;
+	--color-error-light: #ffebee;
+
+	/* === Premium (Sacred Moments — use sparingly) =============== */
+	--color-premium-gold: #cca72f;
+	--color-premium-gold-light: #ffe088;
+	--color-premium-gradient-from: #cca72f;
+	--color-premium-gradient-to: #e9c349;
+
+	/* === Book colors ============================================ */
+	--color-book-ot: #8d6e63;
+	--color-book-nt: #5c6bc0;
+	--color-book-bom: #26a69a;
+	--color-book-dc: #ab47bc;
+
+	/* === Mastery level colors =================================== */
+	--color-mastery-new: #9e9e9e;
+	--color-mastery-learning: #ff8a65;
+	--color-mastery-familiar: #ffd54f;
+	--color-mastery-memorized: #81c784;
+	--color-mastery-mastered: #64b5f6;
+	--color-mastery-eternal: #cca72f;
+
+	/* === Dark mode reserved (not used in Tier 1) ================ */
+	--color-dark-background: #1a2226;
+	--color-dark-card: #222e32;
+	--color-dark-on-surface: #e2ebe8;
+
+	/* === Font families ========================================== */
+	--font-serif: 'Merriweather', ui-serif, Georgia, serif;
+	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+	/* === Type scale ============================================= */
+	/* Web-only oversized heros */
+	--text-hero-xl: 4.5rem;
+	--text-hero-xl--line-height: 1.05;
+	--text-hero-xl--letter-spacing: -0.02em;
+	--text-hero-xl--font-weight: 700;
+
+	--text-hero-lg: 3.5rem;
+	--text-hero-lg--line-height: 1.1;
+	--text-hero-lg--letter-spacing: -0.02em;
+	--text-hero-lg--font-weight: 700;
+
+	/* Display scale (ported from Flutter) */
+	--text-display-lg: 2.25rem;
+	--text-display-lg--line-height: 1.15;
+	--text-display-lg--letter-spacing: -0.015em;
+	--text-display-lg--font-weight: 700;
+
+	--text-display-md: 1.875rem;
+	--text-display-md--line-height: 1.2;
+	--text-display-md--letter-spacing: -0.01em;
+	--text-display-md--font-weight: 700;
+
+	--text-display-sm: 1.5rem;
+	--text-display-sm--line-height: 1.25;
+	--text-display-sm--font-weight: 700;
+
+	/* Headline scale */
+	--text-headline-lg: 1.375rem;
+	--text-headline-lg--line-height: 1.3;
+	--text-headline-lg--font-weight: 700;
+
+	--text-headline-md: 1.25rem;
+	--text-headline-md--line-height: 1.3;
+	--text-headline-md--font-weight: 600;
+
+	--text-headline-sm: 1.125rem;
+	--text-headline-sm--line-height: 1.3;
+	--text-headline-sm--font-weight: 600;
+
+	/* Title/body/label scale */
+	--text-title-lg: 1rem;
+	--text-title-lg--line-height: 1.4;
+	--text-title-lg--font-weight: 600;
+
+	--text-body-lg: 1rem;
+	--text-body-lg--line-height: 1.6;
+	--text-body-lg--font-weight: 400;
+
+	--text-body-md: 0.875rem;
+	--text-body-md--line-height: 1.5;
+	--text-body-md--font-weight: 400;
+
+	--text-body-sm: 0.75rem;
+	--text-body-sm--line-height: 1.4;
+	--text-body-sm--font-weight: 400;
+
+	--text-label-lg: 0.875rem;
+	--text-label-lg--line-height: 1.2;
+	--text-label-lg--font-weight: 600;
+	--text-label-lg--letter-spacing: 0.5px;
+
+	--text-label-md: 0.75rem;
+	--text-label-md--line-height: 1.2;
+	--text-label-md--font-weight: 600;
+	--text-label-md--letter-spacing: 1px;
+
+	--text-label-sm: 0.625rem;
+	--text-label-sm--line-height: 1.2;
+	--text-label-sm--font-weight: 600;
+	--text-label-sm--letter-spacing: 1.5px;
+
+	/* === Border radius — "smooth stones" ======================= */
+	--radius-4xl: 2rem; /* 32px — default for cards */
+	--radius-5xl: 3rem; /* 48px — hero sections */
+
+	/* === Shadows — tinted on-surface @ low opacity ============= */
+	--shadow-editorial: 0 4px 20px 0 rgb(34 26 23 / 0.06);
+	--shadow-floating: 0 12px 40px 0 rgb(34 26 23 / 0.04);
+
+	/* === Motion ================================================ */
+	--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+	--default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+
+	--animate-float: float 8s ease-in-out infinite;
+
+	/* === Max widths (extend default scale) ===================== */
+	--container-7xl: 80rem;
+}
+
+/* ─── Custom keyframes ──────────────────────────────────────────── */
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+}
+
+/* ─── Base styles ───────────────────────────────────────────────── */
+@layer base {
+	html {
+		text-size-adjust: 100%;
+	}
+
+	body {
+		background-color: var(--color-surface);
+		color: var(--color-on-surface);
+		font-family: var(--font-sans);
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		line-height: 1.5;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-serif);
+		color: var(--color-on-surface);
+	}
+
+	/* Respect reduced motion for everything ambient */
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.001ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.001ms !important;
+		}
+	}
+}
+
+/* ─── Component utilities ───────────────────────────────────────── */
+@layer components {
+	/* Skip link — first focusable on every page, hidden until focused */
+	.skip-link {
+		position: absolute;
+		top: 0.5rem;
+		left: 0.5rem;
+		z-index: 50;
+		transform: translateY(-200%);
+		background-color: var(--color-primary);
+		color: var(--color-on-primary);
+		padding: 0.5rem 1rem;
+		border-radius: 9999px;
+		font-weight: 600;
+		transition: transform 150ms var(--ease-out-soft);
+	}
+	.skip-link:focus {
+		transform: translateY(0);
+	}
+
+	/* Focus ring helper — apply to any custom interactive element */
+	.focus-ring {
+		outline: none;
+	}
+	.focus-ring:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
+	}
+
+	/* Scripture blockquote — used anywhere scripture is rendered */
+	.scripture {
+		font-family: var(--font-serif);
+		font-style: italic;
+		color: var(--color-on-surface);
+		max-width: 48rem;
+		margin-inline: auto;
+		font-size: 1.25rem;
+		line-height: 1.6;
+	}
+	@media (min-width: 768px) {
+		.scripture {
+			font-size: 1.5rem;
+		}
+	}
+	.scripture footer {
+		font-style: normal;
+		font-family: var(--font-sans);
+		font-size: 0.875rem;
+		color: var(--color-on-surface-variant);
+		margin-top: 0.75rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	/* Eyebrow label — small uppercase tag above a section heading */
+	.eyebrow {
+		font-family: var(--font-sans);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		color: var(--color-primary);
+		margin-bottom: 0.75rem;
+	}
+
+	/* Section default — pads + max-width container */
+	.section {
+		padding-block: 4rem;
+	}
+	@media (min-width: 768px) {
+		.section {
+			padding-block: 6rem;
+		}
+	}
+
+	/* Card default — surface lift, rounded, soft shadow */
+	.card {
+		background-color: var(--color-surface-container-lowest);
+		border-radius: var(--radius-4xl);
+		padding: 2rem;
+		box-shadow: var(--shadow-editorial);
+		transition:
+			box-shadow 250ms var(--ease-out-soft),
+			transform 250ms var(--ease-out-soft);
+	}
+	.card-hover:hover {
+		box-shadow: var(--shadow-floating);
+		transform: translateY(-4px);
+	}
+}
