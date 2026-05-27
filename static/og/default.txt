@@ -1,0 +1,59 @@
+Default Open Graph image for Seminary Sidekick
+================================================
+
+Intended final file: static/og/default.png
+(this .txt is a placeholder — owner generates the real PNG and replaces it)
+
+DIMENSIONS
+----------
+- 1200 x 630 px (standard OG aspect ratio, 1.91:1)
+- Export as PNG, sRGB color space, 8-bit, optimized (<= 300 KB ideal, <= 1 MB hard cap)
+- Safe area: keep critical content within the inner 1100 x 530 region — some
+  platforms (Slack, Discord) crop the outer edges.
+
+COMPOSITION
+-----------
+- Solid dark warm rust background using the brand primary: #94492C
+  (no gradient — flat color reads cleanest at thumbnail sizes)
+- Wordmark "Seminary Sidekick" centered horizontally and vertically, set in
+  Merriweather Bold, white (#FFFFFF), approximately 96 px cap height.
+  Letter-spacing slightly tightened (-0.5 px) to match the in-app display
+  treatment.
+- Tagline directly below the wordmark, set in Inter Regular, white at 85%
+  opacity (#FFFFFF / 0.85), approximately 32 px:
+      "Master all 100 doctrinal mastery scriptures"
+- Optional small app icon (rounded-square mark, 96 x 96 px) in the top-left
+  corner with 64 px padding from each edge. If the rounded-square mark is not
+  ready, omit — the wordmark alone is enough.
+- Optional thin hairline rule (1 px, white at 15% opacity) 64 px from the
+  bottom edge to anchor the composition. Skip if it adds visual noise.
+
+COLOR REFERENCE
+---------------
+- Background:        #94492C  (Tailwind token: primary)
+- Wordmark text:     #FFFFFF  (Tailwind token: on-primary)
+- Tagline text:      #FFFFFF at 85% opacity
+- Optional hairline: #FFFFFF at 15% opacity
+
+FONTS
+-----
+- Headings: Merriweather Bold (Google Fonts)
+- Body:     Inter Regular (Google Fonts)
+- If the generator cannot embed Merriweather, use any modern transitional
+  serif (Source Serif, Lora) as a close stand-in. Avoid Times.
+
+MOOD
+----
+Reverent, warm, confident. Premium feel without being austere. Reads cleanly
+at 200 px wide (Slack unfurl size) as well as full size.
+
+SOURCING OPTIONS
+----------------
+1. Figma — there are free 1200x630 OG templates on Figma Community; drop in
+   the wordmark + tagline, fill background #94492C, export PNG @1x.
+2. Canva — "Open Graph image" template, swap colors and copy as above. Free
+   tier handles this easily.
+
+Once the real default.png lands at static/og/default.png, delete this .txt.
+The intended path is already referenced from src/lib/config/site.ts as
+DEFAULT_OG_IMAGE, so the <Seo> component will pick it up automatically.
