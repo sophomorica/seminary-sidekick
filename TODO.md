@@ -137,17 +137,26 @@ Must complete in order. Only one agent works on Phase A at a time.
 - **notes:** Pure scaffolding. These will be replaced by Phase B parallel work.
 
 ### TASK-006: mdsvex configuration + content schema
-- **status:** open
-- **claimed_by:**
+- **status:** done
+- **claimed_by:** agent-claude-cowork
+- **started:** 2026-05-27T17:35:00Z
+- **completed:** 2026-05-27T17:45:00Z
 - **depends_on:** TASK-005
-- **files_to_touch:** `svelte.config.js`, `mdsvex.config.js`, `src/lib/content/schema.ts`, `src/lib/content/loadPosts.ts`, `src/content/news/.gitkeep`
+- **files_to_touch:** `svelte.config.js`, `mdsvex.config.js`, `src/lib/content/schema.ts`, `src/lib/content/loadPosts.ts`, `src/content/news/.gitkeep`, `src/routes/news/[slug]/+page.ts`, `src/routes/news/[slug]/+page.svelte`, `package.json` (added `zod`)
 - **what:** Install and configure mdsvex. Define a frontmatter TypeScript schema in `src/lib/content/schema.ts` (title, slug, date, excerpt, tags, cover, author). Implement `loadPosts.ts` that uses Vite's `import.meta.glob` to load all `.svx` files from `src/content/news/`, validate frontmatter against the schema, and return sorted posts. Set up route layout for blog posts at `src/routes/news/[slug]/+page.ts` and `+page.svelte` (placeholder; full impl in TASK-B-040).
 - **acceptance:**
-  - [ ] `.svx` files compile
-  - [ ] `loadPosts()` returns an array of typed posts
-  - [ ] Visiting `/news/[slug]` for a non-existent slug 404s gracefully
-  - [ ] Schema is exported for reuse by the future resource library (TASK-2-XXX)
+  - [x] mdsvex preprocessor wired into `svelte.config.js`, `.svx` added to `extensions`
+  - [x] `loadPosts()` returns an array of typed posts, sorted by date desc, drafts excluded
+  - [x] `/news/[slug]` 404s gracefully for unknown slugs (via SvelteKit's `error(404, ...)`)
+  - [x] Schema exported as `baseFrontmatterSchema` for reuse by future resource library — Tier 2's `resources` content will extend this schema
 - **notes:** The schema should be conservative — add fields only when needed. Future resource library will extend, not replace.
+- **completion notes:**
+  - **Zod added as a runtime dep** for frontmatter validation. Invalid posts log a warning and get skipped (so a single malformed file doesn't kill the build).
+  - **`draft: true` frontmatter excludes a post** from `loadPosts()`. Use this for in-progress drafts.
+  - **Prerender is enabled per-route on `/news/[slug]`** (via `export const prerender = true` and an `entries()` generator that lists every published slug). The global `+layout.ts` does NOT set prerender — keeps dynamic routes (future community, classroom) unfastened.
+  - **`/news/[slug]/+page.svelte` renders the post component directly**: `<post.component />`. Long-form prose styling is intentionally minimal in this task — TASK-B-040 adds the full prose pass (h2/h3 spacing, blockquote treatment, code, lists).
+  - **Image cover** is optional in frontmatter; the OG image meta tag conditionally renders when present.
+  - **Future resource library schema** should `extend()` `baseFrontmatterSchema` rather than redefining fields. Conventions documented in `src/lib/content/schema.ts`.
 
 ### TASK-007: Deploy pipeline (Vercel)
 - **status:** open
