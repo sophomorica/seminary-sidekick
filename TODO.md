@@ -545,17 +545,25 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 After all Phase B tasks complete.
 
 ### TASK-C-100: Compose homepage from section components
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** agent-claude-opus-47
 - **started:** 2026-05-27T19:35:00Z
+- **completed:** 2026-05-27T19:50:00Z
 - **depends_on:** TASK-B-010 through TASK-B-015
-- **files_to_touch:** `src/routes/+page.svelte`
+- **files_to_touch:** `src/routes/+page.svelte`, `src/lib/components/sections/Hero.svelte` (1-line cross-task fix — see notes)
 - **what:** Replace the homepage stub with the composition shell that imports and renders all section components in order: Hero → HowItWorks → QuickQuizDemo → PremiumPeek → ForTeachersStrip → ScriptureMatchDemo → NewsPreview → FinalCTA.
 - **acceptance:**
-  - [ ] All sections render in correct order
-  - [ ] No layout shift or alignment issues
-  - [ ] Page loads fast (Lighthouse perf 95+)
+  - [x] All sections render in correct order (verified via playwright DOM scrape — section ids appear in the spec order)
+  - [x] No layout shift or alignment issues (verified visually at 1280×800 desktop and 390×844 mobile — full-page screenshots taken)
+  - [ ] Page loads fast (Lighthouse perf 95+) — deferred to TASK-C-102 (Lighthouse pass)
 - **notes:** This is the only task that should touch `+page.svelte` after Phase A.
+- **completion notes:**
+  - **+page.svelte is a pure composition shell** — token test page (305 lines, from TASK-002) replaced with a 56-line file that just imports and orders the 8 components. Page-level SEO is minimal (`<svelte:head>` with title, description, OG meta); graduates to the `<Seo>` component when TASK-B-060 ships.
+  - **Order is intentional and documented in the file header**: Hero (hook) → HowItWorks (explain) → QuickQuiz (taste 1) → PremiumPeek (paid value) → ForTeachers (adult buyer) → ScriptureMatch (taste 2) → NewsPreview (alive signal) → FinalCTA (closer).
+  - **Demos imported via their barrel exports** — `{ QuickQuizDemo } from '$lib/components/demos/quick-quiz'` and `{ ScriptureMatchDemo } from '$lib/components/demos/scripture-match'`. Sections use default imports.
+  - **Cross-task 1-line fix to `Hero.svelte`** (decided with owner approval): line 117 was `<p class="scripture">` with a nested `<footer>`, which is invalid HTML — `<footer>` auto-closes the surrounding `<p>` per the HTML spec, and Svelte 5's parser errors on the dangling `</p>`. THEME.md's documented scripture pattern uses `<blockquote class="scripture">` instead. Swapped `<p>` → `<blockquote>`; the `.scripture` CSS in `app.css` was always designed for `<blockquote>` (and is already used that way on `/news/[slug]` post bodies). This was a latent build break: it only fired once a real page imported Hero. Fix is documented here rather than spawned as a TASK-FIX because it's one trivial line + Hero is no longer in any agent's in-progress queue.
+  - **TODO drift not addressed**: TODO.md still lists B-014 / B-020 / B-021 as `status: open` even though all three are committed to git and their component files exist on disk (that's how TASK-C-100 could even compose them). Worth a small housekeeping commit later — not folded in here.
+  - **Verified end-to-end against the dev server** (vite picked port 5174 because 5173 was busy). Screenshots saved during development at `/tmp/home-{desktop,mobile}.png` (not committed). `pnpm build` passes in 2.5s. `pnpm check` shows no new errors from this composition; the 2 remaining errors (canvas-confetti type-decl missing on the two demo files) are pre-existing and the demos still render and run fine — they're a type-system gap, not a behavior bug.
 
 ### TASK-C-101: Cross-browser QA pass
 - **status:** open

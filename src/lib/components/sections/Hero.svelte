@@ -114,10 +114,10 @@
 					<!-- Verse card -->
 					<div class="flex flex-1 flex-col items-center justify-center gap-4">
 						<span class="text-label-md uppercase text-primary">John 14</span>
-						<p class="scripture text-xl">
+						<blockquote class="scripture text-xl">
 							"If ye love me, keep my commandments."
 							<footer>John 14:15 — New Testament</footer>
-						</p>
+						</blockquote>
 					</div>
 
 					<!-- Faux Scripture Builder tile -->
