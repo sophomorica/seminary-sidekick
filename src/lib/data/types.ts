@@ -1,103 +1,89 @@
 /**
- * Scripture data types for the ported legacy data (TASK-B-080).
+ * Scripture data — TypeScript types and book metadata.
  *
- * Source of truth:
- *   - `src/lib/data/passages.json` — 101 doctrinal mastery scriptures (the main dataset)
- *   - `src/lib/data/doctrinalMastery.json` — small legacy topic list (~5 entries)
+ * ─── Source of truth ──────────────────────────────────────────────
+ * The canonical scripture corpus lives in the FLUTTER APP at
+ *   /Users/muse/Desktop/active/seminary_sidekick/lib/data/scriptures_data.dart
  *
- * Data recovered via git show from pre-deletion commit in history (public/data/*).
- * passages.json shape: object with 4 snake_case book keys, each an array of entries.
- * Each Passage has short `passage` (for quizzes) + optional `fullPassage` (many are "TODO" in this snapshot).
+ * `src/lib/data/doctrinalMastery.json` is a GENERATED port from that
+ * Dart source. Do not hand-edit the JSON. To regenerate after a Flutter-
+ * side change, re-run the port script (see `src/lib/data/README.md`).
  *
- * Used by (future):
+ * ─── Schema ──────────────────────────────────────────────────────
+ * Fields mirror the Flutter `Scripture` model exactly. Computed fields
+ * from the Dart side (`words`, `wordCount`) are intentionally not
+ * serialized — derive client-side: `scripture.fullText.split(/\s+/)`.
+ *
+ * Used by:
  *  - Quick Quiz demo (TASK-B-020)
  *  - Scripture Match demo (TASK-B-021)
  *  - /apps/scripture-mastery product page (TASK-B-032)
- *  - Any scripture rendering
- *
- * Import pattern in SvelteKit:
- *   import passages from './passages.json' assert { type: 'json' };
- *   const data = passages as PassagesByBook;
+ *  - Anywhere the site renders scripture text
  */
-
-export interface Passage {
-	id: string;
-	name: string;
-	reference: string;
-	passage: string;
-	fullPassage?: string;
-}
-
-export interface PassagesByBook {
-	old_testament: Passage[];
-	new_testament: Passage[];
-	book_of_mormon: Passage[];
-	doctrine_and_covenants: Passage[];
-}
-
-export interface DoctrinalMasteryTopic {
-	id: number;
-	name: string;
-	reference: string;
-	passage: string;
-}
-
-export interface DoctrinalMasteryByBook {
-	'Old Testament': DoctrinalMasteryTopic[];
-	'New Testament': DoctrinalMasteryTopic[];
-	'Book of Mormon': DoctrinalMasteryTopic[];
-	'Doctrine and Covenants': DoctrinalMasteryTopic[];
-}
-
-// Canonical book key lists (derived directly from the JSON shapes)
-export const PASSAGE_BOOK_KEYS = [
-	'old_testament',
-	'new_testament',
-	'book_of_mormon',
-	'doctrine_and_covenants'
-] as const;
-
-export type PassageBookKey = (typeof PASSAGE_BOOK_KEYS)[number];
-
-export const DOCTRINAL_MASTERY_BOOK_KEYS = [
-	'Old Testament',
-	'New Testament',
-	'Book of Mormon',
-	'Doctrine and Covenants'
-] as const;
-
-export type DoctrinalMasteryBookKey = (typeof DOCTRINAL_MASTERY_BOOK_KEYS)[number];
 
 /**
- * Display metadata per book (snake_case keys to match passages.json).
- * Color tokens map to `bg-book-*` / `text-book-*` from src/app.css (per THEME.md).
+ * The four scriptural volumes recognized by the doctrinal mastery
+ * program. Matches the Flutter `ScriptureBook` enum exactly.
+ */
+export type ScriptureBook =
+	| 'oldTestament'
+	| 'newTestament'
+	| 'bookOfMormon'
+	| 'doctrineAndCovenants';
+
+/**
+ * A single doctrinal-mastery scripture. Identical shape to the
+ * Flutter `Scripture` model.
+ */
+export type Scripture = {
+	/** Stable string id, '1' through '100'. */
+	id: string;
+	book: ScriptureBook;
+	/** Volume within the book, e.g. "Genesis", "Moses", "D&C". */
+	volume: string;
+	/** Human-readable reference, e.g. "Genesis 1:26–27". */
+	reference: string;
+	/** Topic / nickname, e.g. "Creation of Man". */
+	name: string;
+	/** Memorable summary line, often a partial quotation. */
+	keyPhrase: string;
+	/** Full verse(s) text — used for Master tier of Scripture Builder and the demos. */
+	fullText: string;
+};
+
+/**
+ * Display metadata per book — labels, abbreviations, brand color tokens.
+ *
+ * Color tokens map to `bg-book-*` / `text-book-*` utilities from
+ * `src/app.css` (THEME.md "Book colors"). Use them in any UI that
+ * needs to color-code by book (filter chips, score breakdowns, etc.)
  */
 export const BOOK_META: Record<
-	PassageBookKey,
+	ScriptureBook,
 	{ label: string; short: string; colorVar: string; tailwindBg: string; tailwindText: string }
 > = {
-	old_testament: {
+	oldTestament: {
 		label: 'Old Testament',
 		short: 'OT',
 		colorVar: 'var(--color-book-ot)',
 		tailwindBg: 'bg-book-ot',
 		tailwindText: 'text-book-ot'
 	},
-	new_testament: {
+	newTestament: {
 		label: 'New Testament',
 		short: 'NT',
 		colorVar: 'var(--color-book-nt)',
 		tailwindBg: 'bg-book-nt',
 		tailwindText: 'text-book-nt'
 	},
-	book_of_mormon: {
+	bookOfMormon: {
 		label: 'Book of Mormon',
 		short: 'BoM',
 		colorVar: 'var(--color-book-bom)',
 		tailwindBg: 'bg-book-bom',
 		tailwindText: 'text-book-bom'
 	},
-	doctrine_and_covenants: {
+	doctrineAndCovenants: {
 		label: 'Doctrine & Covenants',
 		short: 'D&C',
 		colorVar: 'var(--color-book-dc)',
@@ -106,10 +92,10 @@ export const BOOK_META: Record<
 	}
 };
 
-/** Canonical ordering matching the legacy data grouping. */
-export const BOOK_ORDER: PassageBookKey[] = [
-	'old_testament',
-	'new_testament',
-	'book_of_mormon',
-	'doctrine_and_covenants'
+/** Canonical ordering for UIs that want a fixed book sequence. */
+export const BOOK_ORDER: ScriptureBook[] = [
+	'oldTestament',
+	'newTestament',
+	'bookOfMormon',
+	'doctrineAndCovenants'
 ];

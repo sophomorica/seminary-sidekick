@@ -1,41 +1,34 @@
 # `src/lib/data/` — Scripture data
 
-This directory holds the doctrinal-mastery scripture corpus that the
-website needs for demos, product pages, and any in-text scripture
-rendering.
+The doctrinal-mastery scripture corpus the website uses for demos,
+product pages, and any in-text scripture rendering.
+
+## Source of truth
+
+> **The Flutter app is the source of truth, not this repo.**
+
+The canonical scripture corpus lives in the Flutter app at:
+
+```
+/Users/muse/Desktop/active/seminary_sidekick/lib/data/scriptures_data.dart
+```
+
+`src/lib/data/doctrinalMastery.json` in this repo is a **generated
+port** of that Dart source. **Do not hand-edit the JSON.** Any change
+to scripture content must happen in the Flutter app first, then this
+JSON gets regenerated.
+
+This rule exists because the same scripture data drives the live app
+in production. Allowing two sources of truth guarantees they will
+diverge. The Flutter app wins.
 
 ## Files
 
 | File | Purpose |
 | --- | --- |
-| `doctrinalMastery.json` | Authoritative data — 100 scriptures, ported from the Flutter app. |
-| `types.ts` | TypeScript types (`Scripture`, `ScriptureBook`) and book metadata (`BOOK_META`, `BOOK_ORDER`). |
-| `scriptures.ts` | Typed access helpers — `getScripture(id)`, `getScripturesByBook(book)`, `pickRandomScriptures(n)`, etc. |
-
-## Source of truth
-
-`doctrinalMastery.json` is **generated from the Flutter app's
-`lib/data/scriptures_data.dart`**. The Flutter file is the source of
-truth — if scriptures get added, edited, or reordered, update the
-Flutter source first, then re-run the port script to regenerate this
-JSON.
-
-### Re-porting
-
-When the Flutter app's data changes, regenerate this JSON:
-
-```sh
-# From any host with both repos checked out:
-python3 path/to/dart_to_json.py
-```
-
-A copy of the port script lives in the agent session's `outputs/`
-directory under `dart_to_json.py`. It parses the Dart source's
-`Scripture(...)` blocks and emits this JSON. Re-running it overwrites
-`doctrinalMastery.json` in place.
-
-If the Flutter `Scripture` model gains new fields, update both
-`types.ts` and the Python port script before regenerating.
+| `doctrinalMastery.json` | Generated — 100 scriptures from the Flutter app's `scriptures_data.dart`. |
+| `types.ts` | TypeScript types (`Scripture`, `ScriptureBook`) and `BOOK_META` / `BOOK_ORDER` constants. |
+| `scriptures.ts` | Typed access helpers — `getScripture(id)`, `getScripturesByBook(book)`, `pickRandomScriptures(n)`, `countByBook()`, `TOTAL_SCRIPTURES`, `ALL_SCRIPTURES`. **Demos and pages should import from here, not from the JSON directly.** |
 
 ## Distribution
 
@@ -45,6 +38,38 @@ If the Flutter `Scripture` model gains new fields, update both
 - Doctrine & Covenants: 28
 - **Total: 100**
 
+This is the official LDS Doctrinal Mastery program count.
+
+## Regenerating
+
+When the Flutter app's `scriptures_data.dart` changes (scripture added,
+text edited, reference fixed, etc.) the JSON must be regenerated.
+
+The port script lives outside the web repo at:
+
+```
+~/.../local-agent-mode-sessions/.../outputs/dart_to_json.py
+```
+
+(Path varies by Cowork session. The script is short — a Python parser
+that walks `Scripture(...)` blocks in the Dart source and emits the
+JSON shape that mirrors the Flutter model.)
+
+To regenerate:
+
+```sh
+python3 path/to/dart_to_json.py
+# verify the count + distribution
+python3 -c "import json; d=json.load(open('src/lib/data/doctrinalMastery.json')); print(len(d))"
+```
+
+If the Flutter `Scripture` model ever gains new fields, update:
+
+1. `types.ts` (add the field to the `Scripture` type)
+2. The port script (extract the new field from the Dart source)
+
+Then regenerate.
+
 ## Usage
 
 ```svelte
@@ -53,7 +78,7 @@ If the Flutter `Scripture` model gains new fields, update both
   import { BOOK_META } from '$lib/data/types';
 
   const five = pickRandomScriptures(5);
-  const lehi = getScripture('42'); // example
+  const passage = getScripture('42');
 </script>
 
 {#each five as s (s.id)}
@@ -65,9 +90,17 @@ If the Flutter `Scripture` model gains new fields, update both
 {/each}
 ```
 
+## Why no `passages.json`
+
+An earlier parallel attempt recovered a legacy `passages.json` from the
+archived React webpage's git history. That file is **not used** — its
+data was incomplete (most `fullPassage` fields were literally `"TODO"`).
+The Flutter port supersedes it entirely. If you see a `passages.json`
+in this directory in the future, it is stale and should be deleted.
+
 ## Bundle impact
 
-The full JSON inlines at ~30KB. That's acceptable for a marketing site
-where demos use the data on the same pages. If we ever need to ship a
-smaller subset (e.g., a "preview" 10-scripture set for SEO crawlers),
-add a `previewSubset.json` rather than splitting this file.
+The JSON inlines at ~30KB. That's fine for a marketing site where
+demos use the data on the same pages. If we ever need a smaller subset
+(e.g., a 10-scripture preview for SEO crawlers), add a `previewSubset.json`
+rather than splitting `doctrinalMastery.json`.

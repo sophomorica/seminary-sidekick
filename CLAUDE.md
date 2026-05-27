@@ -157,6 +157,26 @@ author: "Patrick"
 
 A shared frontmatter schema lives in `src/lib/content/schema.ts` and is used by the resource library later — so add fields conservatively.
 
+### Scripture data — source of truth lives in the Flutter app
+
+> **The 100 doctrinal-mastery scriptures are owned by the Flutter app, not this repo.**
+
+The canonical scripture corpus lives at
+`/Users/muse/Desktop/active/seminary_sidekick/lib/data/scriptures_data.dart`
+in the Flutter app project. `src/lib/data/doctrinalMastery.json` in this
+repo is a **generated port** of that Dart source. Two sources of truth
+would diverge — the Flutter app wins.
+
+Rules:
+
+- **Never hand-edit `src/lib/data/doctrinalMastery.json`.** If a scripture needs to change, edit the Dart source in the Flutter app, then re-run the port script to regenerate the JSON.
+- **Never derive scripture data from the legacy webpage repo's git history** (`passages.json`, `doctrinalMastery.json` from the deleted React app). That data is incomplete — most `fullPassage` fields were `"TODO"`. The Flutter source is authoritative and complete.
+- **Demos and pages should import from `$lib/data/scriptures`** (the helpers module), not from the JSON directly. `getScripture()`, `getScripturesByBook()`, `pickRandomScriptures()`, etc. live there. This keeps the data shape encapsulated.
+- **Schema mirrors the Flutter `Scripture` model:** `id`, `book` (one of `oldTestament`/`newTestament`/`bookOfMormon`/`doctrineAndCovenants`), `volume`, `reference`, `name`, `keyPhrase`, `fullText`. Computed Flutter fields (`words`, `wordCount`) are not serialized — derive client-side: `s.fullText.split(/\s+/)`.
+
+Regeneration instructions and the port-script reference live in
+`src/lib/data/README.md`.
+
 ### Image and audio assets — placeholder convention
 
 Mirrors the Flutter app's convention. **Never generate real image or audio files.**

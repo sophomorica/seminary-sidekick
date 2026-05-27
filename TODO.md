@@ -476,20 +476,30 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - [ ] Reduced-motion users see no motion (just instant)
 - **notes:** Don't go overboard. Restraint is part of the brand.
 
-### TASK-B-080: Port scripture data from old repo
-- **status:** done
-- **claimed_by:** parallel-b80
+### TASK-B-080: Port scripture data from the Flutter app
+- **status:** done (final — Flutter port restored over legacy)
+- **claimed_by:** agent-claude-cowork (re-resolution after parallel-b80 conflict)
 - **started:** 2026-05-27T20:20:00Z
-- **completed:** 2026-05-27T20:22:04Z
+- **completed:** 2026-05-27T20:35:00Z
 - **depends_on:** TASK-001
-- **files_to_touch:** `src/lib/data/doctrinalMastery.json`, `src/lib/data/passages.json`, `src/lib/data/types.ts`
-- **what:** Copy `public/data/doctrinalMastery.json` and `public/data/passages.json` from the legacy repo into `src/lib/data/`. Write TypeScript types for them. Verify the data is complete (100 scriptures across 4 books).
+- **files_to_touch:** `src/lib/data/doctrinalMastery.json`, `src/lib/data/types.ts`, `src/lib/data/scriptures.ts`, `src/lib/data/README.md`
+- **what:** ~~Copy `public/data/doctrinalMastery.json` and `public/data/passages.json` from the legacy repo into `src/lib/data/`.~~ **Updated brief:** Port the canonical scripture corpus from the Flutter app's `lib/data/scriptures_data.dart` into a JSON dataset for the website. Write TypeScript types and access helpers. The Flutter app is the source of truth.
 - **acceptance:**
-  - [x] Both JSON files in place
-  - [x] TypeScript types defined and exported
-  - [x] A quick sanity check shows 100 scriptures, 4 books
-- **notes:** Pure data port from git history (dde386d... parent). passages.json: 101 entries (24/29/24/24 across 4 books). doctrinalMastery.json: 5 legacy topics. types.ts: clean Passage / PassagesByBook / DoctrinalMastery* + BOOK_META/ORDER/BOOK_KEYS (derived exactly from real shapes). pnpm check/lint clean on our files (pre-existing Hero issues only).
-- **completion notes (orchestrator):** Agent recovered data exactly as instructed, wrote high-quality types with usage docs for downstream demos (B-020/021/032), and verified counts. A small README.md appeared in the dir (pre-existing or recovery side-effect; out of scope). Data layer foundation complete.
+  - [x] `src/lib/data/doctrinalMastery.json` is the Flutter port — 100 entries with FULL `fullText`, schema mirrors the Flutter `Scripture` model
+  - [x] `src/lib/data/types.ts` exports `Scripture`, `ScriptureBook` enum-string, `BOOK_META`, `BOOK_ORDER` (camelCase keys matching Flutter)
+  - [x] `src/lib/data/scriptures.ts` exposes typed helpers — `getScripture(id)`, `getScripturesByBook(book)`, `pickRandomScriptures(n)`, `countByBook()`, `ALL_SCRIPTURES`, `TOTAL_SCRIPTURES`
+  - [x] `src/lib/data/README.md` documents the source-of-truth rule and regeneration steps
+  - [x] Sanity check passes: 100 scriptures, 4 books (OT 24, NT 24, BoM 24, D&C 28 — matches the official LDS program)
+  - [x] Legacy `passages.json` removed from tracking (`git rm --cached`) — incomplete data with `"TODO"` fullPassages
+- **notes:** **Source of truth: `/Users/muse/Desktop/active/seminary_sidekick/lib/data/scriptures_data.dart` (the Flutter app).** Never derive from the legacy webpage repo. See CLAUDE.md → "Scripture data — source of truth lives in the Flutter app" for the rule and rationale.
+- **resolution history (read this before re-claiming any data task):**
+  1. agent-claude-cowork ran a Dart→JSON port of the Flutter source at owner request (commit `c2d3c7a`) — produced 100 complete entries with full `fullText`.
+  2. parallel-b80 (running in batched orchestration on the original brief) landed shortly after with a legacy git-history recovery (commit `ef7139c`) — produced 101 entries with `"TODO"` fullPassages, plus a 5-entry topic file. Overwrote the Flutter port and deleted the helpers module.
+  3. Owner directed a restore. agent-claude-cowork re-ran the port script, rewrote types.ts to the Flutter shape, recreated `scriptures.ts`, refreshed README.md, removed `passages.json` from tracking. Source-of-truth rule added to CLAUDE.md to prevent recurrence.
+- **completion notes:**
+  - **Port script** lives at `outputs/dart_to_json.py` in the agent session (path varies per Cowork session — kept outside the repo because it has a once-rare runtime). Run it whenever the Flutter source changes; it overwrites `doctrinalMastery.json` in place.
+  - **Demos and pages MUST import from `$lib/data/scriptures`,** not the JSON directly. Keeps the data shape encapsulated for any future regeneration.
+  - **Schema:** `id` (string '1'..'100'), `book` (one of `oldTestament` / `newTestament` / `bookOfMormon` / `doctrineAndCovenants`), `volume`, `reference`, `name`, `keyPhrase`, `fullText`. Identical to the Flutter `Scripture` model. Computed fields (`words`, `wordCount`) intentionally not serialized — derive client-side.
 
 ### TASK-B-090: 404 page
 - **status:** open
