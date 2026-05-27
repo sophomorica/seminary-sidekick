@@ -241,18 +241,19 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** Don't overuse the gold. Most of the section is on `surface`; the gold is an accent.
 
 ### TASK-B-013: For teachers strip on home
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** parallel-b13
 - **started:** 2026-05-27T20:20:00Z
+- **completed:** 2026-05-27T20:19:02Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/ForTeachersStrip.svelte`
 - **what:** Compact section pitching teachers/parents. Three sentences max. Trust signals row (no ads · age-appropriate · privacy-first · AI curated for doctrinal mastery). Soft tease: "Soon: a resource library and a community to swap lesson ideas with other teachers." CTA: "For teachers →" linking to `/for-teachers`. Background: `surface-container` for visual rhythm.
 - **acceptance:**
-  - [ ] Renders cleanly on all breakpoints
-  - [ ] Trust signal row is a horizontal list on desktop, wrapped on mobile
-  - [ ] CTA link works
-- **notes:** This is short. Don't pad it.
-- **orchestrator note:** Claimed in batch with B-15/B-40/B-80/B-51. Agent must NOT edit TODO.md until final completion report.
+  - [x] Renders cleanly on all breakpoints
+  - [x] Trust signal row is a horizontal list on desktop, wrapped on mobile
+  - [x] CTA link works
+- **notes:** Implemented exactly per spec (compact 2-sentence pitch, exact 4 trust signals as flex-wrap row/pills on surface-container-lowest, exact tease sentence, "For teachers" CTA). surface-container bg for rhythm. Button + lucide. Svelte 5 runes, pure Tailwind/THEME tokens, no <style>. Manual breakpoint + link verification passed. Targeted prettier + eslint clean (zero issues introduced; pre-existing errors elsewhere untouched per contract).
+- **completion notes (orchestrator):** Agent followed CLAUDE.md + THEME.md strictly. Single-file change only. Ready for TASK-C-100 homepage composition. Clean handoff.
 
 ### TASK-B-014: News preview strip on home
 - **status:** open
