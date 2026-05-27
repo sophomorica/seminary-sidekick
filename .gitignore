@@ -28,3 +28,7 @@ _tmp_*
 # Agent decisions log (uncommitted by design)
 AGENT_DECISIONS.md
 
+# Legacy scripture data — superseded by Flutter port (TASK-B-080).
+# Never re-track. See CLAUDE.md "Scripture data — source of truth".
+src/lib/data/passages.json
+
