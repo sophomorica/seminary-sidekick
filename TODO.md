@@ -159,16 +159,23 @@ Must complete in order. Only one agent works on Phase A at a time.
   - **Future resource library schema** should `extend()` `baseFrontmatterSchema` rather than redefining fields. Conventions documented in `src/lib/content/schema.ts`.
 
 ### TASK-007: Deploy pipeline (Vercel)
-- **status:** open
-- **claimed_by:**
+- **status:** partial · CI complete, Vercel pending owner action
+- **claimed_by:** agent-claude-cowork
+- **started:** 2026-05-27T17:45:00Z
+- **completed (partial):** 2026-05-27T17:55:00Z
 - **depends_on:** TASK-001
-- **files_to_touch:** Vercel project config (external), `.github/workflows/ci.yml`, `README.md`
+- **files_to_touch:** Vercel project config (external — owner does this), `.github/workflows/ci.yml`, `README.md`, `docs/vercel-setup.md`
 - **what:** Connect the repo to Vercel. Configure production branch (`main`) and preview URLs for every PR. Set up a minimal GitHub Actions workflow that runs `pnpm install` + `pnpm check` + `pnpm lint` + `pnpm test` on every PR.
 - **acceptance:**
-  - [ ] Production deploy succeeds and serves the homepage
-  - [ ] Preview URL is generated on PR open
-  - [ ] CI fails the build on type errors or lint errors
+  - [owner] Production deploy succeeds and serves the homepage — requires Vercel account, follow `docs/vercel-setup.md`
+  - [owner] Preview URL is generated on PR open — automatic once Vercel integration is set up
+  - [x] CI fails the build on type errors or lint errors — `.github/workflows/ci.yml` runs check + lint + build on push and PR
 - **notes:** Domain mapping waits on the domain decision (open question in NEW_SITE_PLAN.md). Use the Vercel-assigned URL until then.
+- **completion notes:**
+  - **CI workflow** at `.github/workflows/ci.yml` runs on push to `main` and on every PR. Steps: checkout → pnpm setup → Node 22 → `pnpm install --frozen-lockfile` → `pnpm check` → `pnpm lint` → `pnpm build`. No `pnpm test` yet because no tests exist in Tier 1 (Phase B adds them per demo).
+  - **Vercel setup steps documented in `docs/vercel-setup.md`** — owner runs through these once. Cannot be automated without Vercel credentials.
+  - **README updated** with quick-start, scripts, project layout, and pointers to CLAUDE/THEME/TODO/PLAN.
+  - **No GitHub Actions deploy step.** Vercel's native GitHub integration handles deploys (faster, free, native preview URLs). CI handles the gate.
 
 ---
 
