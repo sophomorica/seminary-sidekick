@@ -319,6 +319,26 @@
 		text-transform: uppercase;
 	}
 
+	/* Reveal — opacity + translateY fade triggered by the `use:reveal`
+	   Svelte action (see src/lib/actions/reveal.ts). The action adds the
+	   `.reveal` class on mount (element starts at opacity 0 / translateY 16px)
+	   and sets `data-revealed="true"` once IntersectionObserver fires. The
+	   global `prefers-reduced-motion` rule in @layer base collapses the
+	   transition to ~0ms; the action also short-circuits to the final state
+	   immediately when reduced motion is requested. */
+	.reveal {
+		opacity: 0;
+		transform: translateY(16px);
+		transition:
+			opacity 450ms var(--ease-out-soft),
+			transform 450ms var(--ease-out-soft);
+		will-change: opacity, transform;
+	}
+	.reveal[data-revealed='true'] {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
 	/* Eyebrow label — small uppercase tag above a section heading */
 	.eyebrow {
 		font-family: var(--font-sans);
