@@ -215,32 +215,55 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - **Placeholder `static/images/hero/phone-mockup.txt`** documents the desired screenshot (Scripture Detail screen, iPhone 15 Pro, light mode, a "motivating" scripture choice) and how to source it.
 
 ### TASK-B-011: How-it-works section (mastery loop)
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** agent-claude-opus-47
 - **started:** 2026-05-27T19:00:00Z
+- **completed:** 2026-05-27T19:20:00Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/HowItWorks.svelte`, `static/images/how/study.txt`, `static/images/how/build.txt`, `static/images/how/prove.txt`, `static/images/how/master.txt`
 - **what:** Four-step illustrated section: **Study → Build → Prove → Master.** Each step is a card with an icon (lucide-svelte) or illustration placeholder, a step number/label, a heading (`headline-md`), and one-line description. Layout: 4 columns on desktop, 2×2 on tablet, stacked on mobile. Section background: `surface-container-low` to differentiate from Hero.
 - **acceptance:**
-  - [ ] Four cards render with correct layout per breakpoint
-  - [ ] Each card hover-lifts per THEME.md motion pattern
-  - [ ] Card images are `.txt` placeholders
-  - [ ] Eyebrow label above section heading ("How it works")
+  - [x] Four cards render with correct layout per breakpoint (1 col mobile, 2 col tablet, 4 col desktop via `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`)
+  - [x] Each card hover-lifts per THEME.md motion pattern (uses Card primitive's `hover` prop)
+  - [x] Card images are `.txt` placeholders (4 placeholders in `static/images/how/`)
+  - [x] Eyebrow label above section heading ("How it works")
 - **notes:** This is the under-told story on the old site. Lean into the editorial feel — generous spacing, serif headings, calm motion.
+- **completion notes:**
+  - **Sequenced as a semantic `<ol>` with `aria-label="The four-step mastery loop"`** — the loop is an ordered sequence, not a parallel feature grid. SR users hear "list of 4 items, 1 of 4 …".
+  - **Icon discs use distinct brand-aligned tints** so the cards read as a sequence without the numbers doing all the work: Study → `primary-fixed` (rust blush) + `text-primary`; Build → `secondary-container` (sage) + `text-secondary`; Prove → `accent-light/30` (soft blue) + `text-accent`; Master → `tertiary-fixed` (soft gold) + `text-tertiary`.
+  - **Gold appears only on Master.** Per THEME.md "Mastery level colors (used in screenshots and the How-it-works section)" — gold here is the *scripture-mastery* moment, not premium-AI usage. The doc explicitly sanctions this spot for the gold palette.
+  - **Lucide icons used as the placeholder visual today** (BookOpen, Blocks, ShieldCheck, Sparkles). When real illustrations land at `static/images/how/{study,build,prove,master}.png`, swap the icon disc block for an `<img>` — pattern documented in each .txt file. Three of the four .txt placeholders (study, build, prove) were already committed by `agent-claude-cowork` at `61eb7ca` with effectively identical content; I added `master.txt` (the missing fourth) and the component.
+  - **Type handshake with lucide-svelte 0.470:** the step `icon` field is typed as `typeof Icon` (lucide's base class). The icons render fine under Svelte 5; mass-swap to `@lucide/svelte` stays deferred (same posture as Hero — to be a separate single chore later, not absorbed into a section task).
+  - **No composition into `+page.svelte`** — that's TASK-C-100. Component lands as a standalone file under `sections/`.
+  - **Verified:** `pnpm check` adds zero new errors (the 2 remaining errors are pre-existing on `Hero.svelte` from the `<footer>` nested in `<p>` issue and are not my work to fix). `pnpm build` passes in 2.7s. `pnpm exec prettier --check` + `pnpm exec eslint` pass on the new file.
 
 ### TASK-B-012: Premium peek section
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** agent-claude-opus-47-1m
 - **started:** 2026-05-27T18:45:00Z
+- **completed:** 2026-05-27T18:55:00Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/PremiumPeek.svelte`, `static/images/premium/chat-screenshot.txt`
 - **what:** Two-column section: left = a screenshot mockup of the AI chat/journal prompt (`.txt` placeholder), right = a short bulleted list of what Sidekick AI does (daily prompt, goal suggestion, reflection questions, scripture connections) + "Learn more about Premium →" link to `/premium`. Visual treatment uses the `premium-gold` gradient on the heading or eyebrow so it reads as distinct. Section background can be `surface` or a soft `premium-gold-light` tint.
 - **acceptance:**
-  - [ ] Premium gold gradient applied to eyebrow or heading
-  - [ ] Screenshot is a `.txt` placeholder
-  - [ ] "Learn more →" links to `/premium`
-  - [ ] Responsive: two-column desktop, stacked mobile
+  - [x] Premium gold gradient applied to eyebrow or heading
+  - [x] Screenshot is a `.txt` placeholder
+  - [x] "Learn more →" links to `/premium`
+  - [x] Responsive: two-column desktop, stacked mobile
 - **notes:** Don't overuse the gold. Most of the section is on `surface`; the gold is an accent.
+- **completion notes:**
+  - **Section background stays `bg-surface`** with a single low-opacity (0.35) `premium-gold-light` radial behind the screenshot column. Gold reads as ambient warmth, not as a fill — per THEME.md "gold is sacred, used as an accent, never a fill."
+  - **Gradient on the eyebrow** (`from-premium-gradient-from` → `to-premium-gradient-to` via `bg-clip-text` + `text-transparent`). Eyebrow copy: "Seminary Sidekick AI · Premium". Heading stays `text-on-surface` so the page rhythm is preserved.
+  - **Layout:** `lg:grid-cols-[1fr_1.05fr]` with reversed `order-*` on the screenshot column so on mobile the headline + copy lead and the screenshot follows (more conversion-friendly than image-first on small screens). Stacks cleanly < `lg`.
+  - **Screenshot column = a designed placeholder card** (white surface-container-lowest, `rounded-[2rem]`, `shadow-floating`) containing a stylized "Today's prompt" card with a premium-gold edge marker, a faux user reply bubble in `bg-primary-fixed`, and a `border-premium-gold/40` "Suggested goal" chip. A faithful preview of what the real screenshot at `/images/premium/chat-screenshot.png` should look like — the .txt spec describes the exact composition for whoever ships the real asset. Swap recipe is documented in an inline comment in the component.
+  - **Feature list uses `headline-sm` (serif) titles** + `body-md` (sans) bodies, each prefixed by a 40px premium-gold-light disc with a lucide icon (`Sun`, `Target`, `MessageCircleQuestion`, `BookOpen`). All four items mirror the acceptance list: daily prompt, suggested goals, reflection questions, scripture connections.
+  - **CTA:** outlined `Button` linking to `/premium` with the same `ArrowRight` rightward-iconography pattern Hero and ForTeachersStrip use.
+  - **Verification:**
+    - `pnpm build` ✅ (3.05s, 0 errors)
+    - `pnpm exec prettier --check src/lib/components/sections/PremiumPeek.svelte` ✅
+    - `pnpm exec eslint src/lib/components/sections/PremiumPeek.svelte` ✅ (0 issues)
+    - `pnpm check` ✅ for this file (the pre-existing errors in Hero.svelte and HowItWorks.svelte are not introduced by this work — they belong to TASK-B-010 and TASK-B-011)
+  - **Not composed into the homepage yet** — that's TASK-C-100, per the parallel-safe component pattern in CLAUDE.md. The section already has `id="premium-peek"` so it can be anchor-linked.
 
 ### TASK-B-013: For teachers strip on home
 - **status:** done
