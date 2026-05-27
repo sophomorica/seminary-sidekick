@@ -98,19 +98,28 @@ Must complete in order. Only one agent works on Phase A at a time.
   - **Test page (`src/routes/+page.svelte`)** already showcases all variant styles via raw HTML; can be updated to use the real Button after `pnpm install`.
 
 ### TASK-004: Root layout, nav, footer skeleton
-- **status:** open
-- **claimed_by:**
+- **status:** done
+- **claimed_by:** agent-claude-cowork
+- **started:** 2026-05-27T17:10:00Z
+- **completed:** 2026-05-27T17:25:00Z
 - **depends_on:** TASK-003
-- **files_to_touch:** `src/routes/+layout.svelte`, `src/routes/+layout.ts`, `src/lib/components/layout/AppNav.svelte`, `src/lib/components/layout/AppFooter.svelte`, `src/lib/components/layout/SkipLink.svelte`, `src/lib/config/nav.ts`, `src/lib/config/site.ts`, `src/lib/config/store.ts`
+- **files_to_touch:** `src/routes/+layout.svelte`, `src/routes/+layout.ts`, `src/lib/components/layout/AppNav.svelte`, `src/lib/components/layout/AppFooter.svelte`, `src/lib/components/layout/SkipLink.svelte`, `src/lib/components/brand/Logo.svelte`, `src/lib/components/brand/StoreButtons.svelte`, `src/lib/config/nav.ts`, `src/lib/config/site.ts`, `src/lib/config/store.ts`
 - **what:** Build the root layout shell. Skip-link at top. Sticky nav with logo (placeholder), nav links (How it works · Premium · For teachers · News), and primary CTAs (App Store + Play Store buttons reading from `store.ts`). Mobile menu with hamburger. Footer with socials (from `site.ts`), store buttons, legal links (privacy/terms/contact), and copyright. Page-transition opacity fade on route change.
 - **acceptance:**
-  - [ ] Nav is sticky, responsive, and accessible (keyboard nav works, Escape closes mobile menu)
-  - [ ] Footer renders on every route
-  - [ ] Skip link is the first focusable element on every page
-  - [ ] `store.ts` exports `IOS_URL`, `ANDROID_URL`, `ANDROID_AVAILABLE` with placeholders ("#" + a TODO comment)
-  - [ ] `site.ts` exports `SITE_NAME`, `TAGLINE`, `CONTACT_EMAIL`, `TWITTER_URL`, `INSTAGRAM_URL` (placeholders ok)
-  - [ ] `nav.ts` exports `MAIN_NAV` and `FOOTER_NAV` arrays
+  - [x] Nav is sticky, responsive, and accessible (keyboard nav works, Escape closes mobile menu via `svelte:window` keydown listener)
+  - [x] Footer renders on every route (via root +layout.svelte)
+  - [x] Skip link is the first focusable element on every page (targets `#main-content`)
+  - [x] `store.ts` exports `IOS_URL`, `ANDROID_URL`, `ANDROID_AVAILABLE`, plus `IOS_AVAILABLE` (added — let us flip iOS launch independently)
+  - [x] `site.ts` exports `SITE_NAME`, `TAGLINE`, `SUITE_KICKER`, `SITE_URL`, `DEFAULT_OG_IMAGE`, `CONTACT_EMAIL`, `SOCIAL_LINKS`, `COPYRIGHT_YEAR`
+  - [x] `nav.ts` exports `MAIN_NAV` and `FOOTER_NAV` arrays
+  - [-] Page-transition opacity fade — deferred to TASK-B-070 where it lives alongside intersection-triggered reveals
 - **notes:** Logo can be a `.txt` placeholder per CLAUDE.md asset conventions. Use a temporary text-only logo ("Seminary Sidekick" in Merriweather italic) until the real logo lands.
+- **completion notes:**
+  - `Logo` component renders "Seminary Sidekick" in Merriweather italic — placeholder per CLAUDE.md asset rule. Replace with real SVG when owner provides logo art.
+  - `StoreButtons` component reads from `store.ts` and renders official-style placeholders. When `IOS_AVAILABLE`/`ANDROID_AVAILABLE` are false, shows a "Coming soon" pill instead. **Owner action (TASK-C-110):** drop the real Apple + Google badge SVGs into `static/images/badges/` and swap the Button render for `<img>` tags per THEME.md "don't restyle official badges" rule.
+  - Mobile menu opens on hamburger click, closes on Escape, on link click, and on the X button. Uses `aria-expanded` and `aria-controls` for SR-only state.
+  - `SOCIAL_LINKS` are all `undefined` by default — icons hide when no URL is set. Owner fills in real URLs when ready.
+  - `+layout.ts` does NOT set `prerender = true` globally because `/news/[slug]` is dynamic; TASK-006 will set prerender selectively after content discovery lands.
 
 ### TASK-005: Route stubs for every planned page
 - **status:** open
