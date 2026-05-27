@@ -330,4 +330,154 @@
 		box-shadow: var(--shadow-floating);
 		transform: translateY(-4px);
 	}
+
+	/* ─── Long-form post body (TASK-B-040) ─────────────────────────
+	   Beautiful book-like reading experience per THEME.md:
+	   - Merriweather serif body at 18px / 1.7 line-height
+	   - Generous vertical rhythm (no cramped paragraphs)
+	   - Scripture blockquotes: support both generic MD blockquotes (subtle accent rail)
+	     and explicit class="scripture" for the full centered THEME pattern (no border)
+	   - Clean h2/h3, lists, code, hr (no hard lines; tonal gradients)
+	   - Accent links, good code blocks
+	   Applied inside the prose container on /news/[slug]
+	*/
+	.post-body {
+		font-family: var(--font-serif);
+		font-size: 1.125rem; /* 18px base for long-form per THEME */
+		line-height: 1.7;
+		color: var(--color-on-surface);
+	}
+
+	/* Section headings inside posts — editorial weight, breathing room */
+	.post-body h2 {
+		font-size: 1.5rem;
+		font-weight: 700;
+		margin-top: 2.5em;
+		margin-bottom: 0.75em;
+		line-height: 1.25;
+	}
+	.post-body h3 {
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin-top: 2em;
+		margin-bottom: 0.5em;
+		line-height: 1.3;
+	}
+
+	/* Paragraph rhythm */
+	.post-body p {
+		margin-bottom: 1.25em;
+	}
+	.post-body p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Lists — generous, not dense */
+	.post-body ul,
+	.post-body ol {
+		margin-bottom: 1.5em;
+		padding-left: 1.5em;
+	}
+	.post-body li {
+		margin-bottom: 0.5em;
+	}
+	.post-body ul ul,
+	.post-body ol ol {
+		margin-bottom: 0.5em;
+	}
+
+	/* Scripture & quote blockquotes — THEME.md sacred style */
+	/* Default MD blockquote gets a warm left rail for visual separation */
+	.post-body blockquote {
+		font-family: var(--font-serif);
+		font-style: italic;
+		color: var(--color-on-surface);
+		max-width: 100%;
+		margin: 2em auto;
+		padding-left: 1.25rem;
+		border-left: 3px solid var(--color-primary);
+		font-size: 1.125rem;
+		line-height: 1.65;
+	}
+	.post-body blockquote footer {
+		font-style: normal;
+		font-family: var(--font-sans);
+		font-size: 0.875rem;
+		color: var(--color-on-surface-variant);
+		margin-top: 0.75rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		display: block;
+	}
+
+	/* Explicit .scripture class inside posts: full centered THEME treatment (no rail) */
+	.post-body blockquote.scripture {
+		border-left: none;
+		padding-left: 0;
+		max-width: 42rem;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 1.25rem;
+		line-height: 1.6;
+	}
+	@media (min-width: 768px) {
+		.post-body blockquote.scripture {
+			font-size: 1.375rem;
+		}
+	}
+
+	/* Inline code */
+	.post-body code {
+		font-family:
+			ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+			monospace;
+		background-color: var(--color-surface-container);
+		padding: 0.1em 0.35em;
+		border-radius: 0.25rem;
+		font-size: 0.95em;
+	}
+
+	/* Code blocks */
+	.post-body pre {
+		background-color: var(--color-surface-container-high);
+		padding: 1rem 1.25rem;
+		border-radius: var(--radius-4xl);
+		overflow-x: auto;
+		margin-bottom: 1.5em;
+		font-size: 0.95rem;
+		line-height: 1.5;
+	}
+	.post-body pre code {
+		background: none;
+		padding: 0;
+	}
+
+	/* Subtle horizontal rule (no hard lines per "No-Line" philosophy) */
+	.post-body hr {
+		border: none;
+		height: 1px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			var(--color-outline-variant),
+			transparent
+		);
+		margin: 2.5em 0;
+	}
+
+	/* Links in prose */
+	.post-body a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.post-body a:hover {
+		color: var(--color-primary);
+	}
+
+	/* Emphasis */
+	.post-body strong,
+	.post-body b {
+		font-weight: 600;
+	}
 }
