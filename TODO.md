@@ -17,18 +17,30 @@
 Must complete in order. Only one agent works on Phase A at a time.
 
 ### TASK-001: Scaffold SvelteKit project
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** agent-claude-opus-47
 - **started:** 2026-05-27T00:00:00Z
+- **completed:** 2026-05-27T00:00:00Z
 - **depends_on:** none
 - **files_to_touch:** entire new repo
 - **what:** Initialize a new SvelteKit project with TypeScript, set up pnpm, configure Vite, set up Prettier + ESLint with the Svelte plugin, add `.editorconfig`, set up `tsconfig.json` paths (`$lib/*`).
 - **acceptance:**
-  - [ ] `pnpm dev` runs and shows the default SvelteKit page
-  - [ ] `pnpm check` passes
-  - [ ] `pnpm lint` passes
-  - [ ] Repo committed with initial structure
+  - [x] `pnpm dev` runs and shows the default SvelteKit page
+  - [x] `pnpm check` passes
+  - [x] `pnpm lint` passes
+  - [x] Repo committed with initial structure
 - **notes:** Use Svelte 5 (with runes). Use `@sveltejs/adapter-vercel`.
+- **completion notes:**
+  - Scaffolded with `sv create` (minimal template, TypeScript). Svelte 5 runes forced on via `compilerOptions.runes` in `svelte.config.js`.
+  - pnpm activated via `corepack` (pnpm 11.4.0). `pnpm-workspace.yaml` and `.npmrc` are scaffold defaults.
+  - Adapter swapped: `@sveltejs/adapter-auto` removed, `@sveltejs/adapter-vercel` (6.3.3) installed and wired in `svelte.config.js`.
+  - Prettier + ESLint installed via `sv add prettier eslint` (flat ESLint config + `eslint-plugin-svelte` + `eslint-config-prettier`). Scripts: `pnpm lint`, `pnpm format`.
+  - `.editorconfig` added (tabs, LF, final newline; spaces for YAML/JSON).
+  - `$lib` alias works out of the box via SvelteKit (`src/lib/`).
+  - `.prettierignore` extended to skip the planning docs (CLAUDE.md/THEME.md/TODO.md/NEW_SITE_PLAN.md) and the legacy `seminary_sidekick_backend/` (Python).
+  - Legacy React app deleted (`src/`, `public/`, old `package.json`/`package-lock.json`, `Dockerfile`, `docker-compose.yml`, `nginx.conf`, old `README.md`, `.gitignore`, `.env.example`). Uncommitted CSS edits to `gamePage.css` / `messagingPage.css` were stashed first (stash@{0}) and remain recoverable from git history.
+  - Legacy `public/data/{doctrinalMastery.json,passages.json}` are preserved in git history (commit before the delete) for TASK-B-080.
+  - `seminary_sidekick_backend/` and `LICENSE` retained.
 
 ### TASK-002: Install + configure Tailwind and design tokens
 - **status:** open

@@ -1,63 +1,23 @@
-# Python virtual environment
-venv/
-.venv/
-env/
+node_modules
 
-# Compiled Python files
-*.pyc
-__pycache__/
-*.pyo
-*.pyd
-.Python
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Logs
-*.log
-logs/
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-!.env.example
-
-# Dependency directories
-/lib/
-/dist/
-node_modules/
-seminary_sidekick_backend/__pycache__/
-
-# Build outputs
-build/
-*.egg-info/
-.eggs/
-
-# Testing
-.coverage
-htmlcov/
-.pytest_cache/
-.tox/
-
-# React/npm
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Docker
-.docker/
-
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
-# Database
-*.db
-*.sqlite3
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
