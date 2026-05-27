@@ -228,8 +228,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** This is the under-told story on the old site. Lean into the editorial feel — generous spacing, serif headings, calm motion.
 
 ### TASK-B-012: Premium peek section
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** agent-claude-opus-47-1m
+- **started:** 2026-05-27T18:45:00Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/PremiumPeek.svelte`, `static/images/premium/chat-screenshot.txt`
 - **what:** Two-column section: left = a screenshot mockup of the AI chat/journal prompt (`.txt` placeholder), right = a short bulleted list of what Sidekick AI does (daily prompt, goal suggestion, reflection questions, scripture connections) + "Learn more about Premium →" link to `/premium`. Visual treatment uses the `premium-gold` gradient on the heading or eyebrow so it reads as distinct. Section background can be `surface` or a soft `premium-gold-light` tint.
