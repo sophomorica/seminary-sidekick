@@ -1,3 +1,2 @@
 allowBuilds:
   esbuild: true
-storeDir: /sessions/wizardly-practical-lamport/.pnpm-store
