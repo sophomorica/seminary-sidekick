@@ -241,8 +241,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** Don't overuse the gold. Most of the section is on `surface`; the gold is an accent.
 
 ### TASK-B-013: For teachers strip on home
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** parallel-b13
+- **started:** 2026-05-27T20:20:00Z
 - **depends_on:** TASK-004, TASK-002, TASK-003
 - **files_to_touch:** `src/lib/components/sections/ForTeachersStrip.svelte`
 - **what:** Compact section pitching teachers/parents. Three sentences max. Trust signals row (no ads · age-appropriate · privacy-first · AI curated for doctrinal mastery). Soft tease: "Soon: a resource library and a community to swap lesson ideas with other teachers." CTA: "For teachers →" linking to `/for-teachers`. Background: `surface-container` for visual rhythm.
@@ -251,6 +252,7 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - [ ] Trust signal row is a horizontal list on desktop, wrapped on mobile
   - [ ] CTA link works
 - **notes:** This is short. Don't pad it.
+- **orchestrator note:** Claimed in batch with B-15/B-40/B-80/B-51. Agent must NOT edit TODO.md until final completion report.
 
 ### TASK-B-014: News preview strip on home
 - **status:** open
@@ -266,8 +268,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** If there are no posts yet, render a placeholder card ("New posts coming soon") so the section never appears empty.
 
 ### TASK-B-015: Final CTA band
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** parallel-b15
+- **started:** 2026-05-27T20:20:00Z
 - **depends_on:** TASK-004
 - **files_to_touch:** `src/lib/components/sections/FinalCTA.svelte`
 - **what:** Big band, `bg-primary` background, white text. Heading: "Start with the first scripture. Get the app." Sub: short line. App Store + Play Store buttons. Reads URLs from `store.ts`.
@@ -276,6 +279,7 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - [ ] Buttons render as real Apple/Google badges (placeholders ok until TASK-B-080)
   - [ ] Contrast verified — white text on primary
 - **notes:** Final CTA = last conversion attempt before footer. Make it confident, not desperate.
+- **orchestrator note:** Claimed in batch with B-13/B-40/B-80/B-51. Agent must NOT edit TODO.md until final completion report.
 
 ### TASK-B-020: Quick Quiz demo component
 - **status:** open
@@ -344,8 +348,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** The product page is the "Tier 1 app, but framed as suite member" idea made concrete. Don't duplicate homepage copy — go deeper.
 
 ### TASK-B-040: News blog index + post template
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** parallel-b40
+- **started:** 2026-05-27T20:20:00Z
 - **depends_on:** TASK-006
 - **files_to_touch:** `src/routes/news/+page.svelte`, `src/routes/news/[slug]/+page.svelte`, `src/routes/news/[slug]/+page.ts`, `src/lib/components/news/PostCard.svelte`, `src/routes/news/rss.xml/+server.ts`
 - **what:** Blog index page (lists all posts, paginated if >12). Individual post page with Merriweather long-form body (18px, 1.7 line-height, `max-w-2xl` for readability), proper headings, scripture blockquotes per THEME.md, date + author + tags. RSS feed auto-generated.
@@ -356,6 +361,7 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - [ ] RSS feed at `/news/rss.xml` is valid
   - [ ] Post pages have OG meta
 - **notes:** Long-form readability matters. Test with real lorem-ipsum at typical post length (800-1500 words).
+- **orchestrator note:** Claimed in batch with B-13/B-15/B-80/B-51. Agent must NOT edit TODO.md until final completion report.
 
 ### TASK-B-041: First news post — launch announcement
 - **status:** open · **owner-blocked**
@@ -394,8 +400,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** Copy is owner-blocked unless owner wants an agent to draft a starting point.
 
 ### TASK-B-051: /privacy and /terms pages
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** parallel-b51
+- **started:** 2026-05-27T20:20:00Z
 - **depends_on:** TASK-005
 - **files_to_touch:** `src/routes/privacy/+page.svelte`, `src/routes/terms/+page.svelte`
 - **what:** Standard privacy policy and terms of use. Template-based (no PII collection in Tier 1; mentions Plausible analytics; mentions email if waitlist exists; covers app's premium subscription via RevenueCat). Long-form Merriweather body.
@@ -404,6 +411,7 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - [ ] Cover the current data flow honestly (no accounts, no PII server-side in Tier 1)
   - [ ] Tier 2/3 sections marked TBD (will be updated when auth and forum ship)
 - **notes:** Use a reputable template (e.g., Termly or Iubenda's free generators) as a starting point; adapt to actual practices.
+- **orchestrator note:** Claimed in batch with B-13/B-15/B-40/B-80. Agent must NOT edit TODO.md until final completion report.
 
 ### TASK-B-052: /contact page
 - **status:** open
@@ -465,8 +473,9 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
 - **notes:** Don't go overboard. Restraint is part of the brand.
 
 ### TASK-B-080: Port scripture data from old repo
-- **status:** open
-- **claimed_by:**
+- **status:** in_progress
+- **claimed_by:** parallel-b80
+- **started:** 2026-05-27T20:20:00Z
 - **depends_on:** TASK-001
 - **files_to_touch:** `src/lib/data/doctrinalMastery.json`, `src/lib/data/passages.json`, `src/lib/data/types.ts`
 - **what:** Copy `public/data/doctrinalMastery.json` and `public/data/passages.json` from the legacy repo into `src/lib/data/`. Write TypeScript types for them. Verify the data is complete (100 scriptures across 4 books).
@@ -475,6 +484,7 @@ All Phase B tasks depend on Phase A being complete. After that, claim any task w
   - [ ] TypeScript types defined and exported
   - [ ] A quick sanity check shows 100 scriptures, 4 books
 - **notes:** Pure data port. No transformation unless needed.
+- **orchestrator note:** Claimed in batch with B-13/B-15/B-40/B-51. Agent must NOT edit TODO.md until final completion report. Data must be recovered via: git show dde386dbfc73dab459e4bf8ff741248a5a9d98e2:public/data/....json > target.
 
 ### TASK-B-090: 404 page
 - **status:** open
