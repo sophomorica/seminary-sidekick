@@ -103,7 +103,9 @@ test.describe('Mobile menu', () => {
 	test.use({ viewport: { width: 375, height: 800 } });
 
 	test('hamburger opens, link click closes, Escape closes', async ({ page }) => {
-		await page.goto('/');
+		// Wait for hydration before clicking — the toggle handler is only attached
+		// after Svelte hydrates, so a click sent against the SSR'd HTML is a no-op.
+		await page.goto('/', { waitUntil: 'networkidle' });
 
 		// Open via hamburger button (aria-label "Open menu").
 		const trigger = page.getByRole('button', { name: /open menu/i });

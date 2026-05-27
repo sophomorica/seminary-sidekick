@@ -17,18 +17,21 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import WaitlistForm from '$lib/components/forms/WaitlistForm.svelte';
 	import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '$lib/config/site';
 	import {
 		Icon,
 		Timer,
 		Repeat,
-		Users,
 		ShieldCheck,
 		BookOpenCheck,
 		Lock,
 		Mail,
 		ArrowRight,
-		Sparkles
+		Sparkles,
+		Trophy,
+		Zap,
+		Users
 	} from 'lucide-svelte';
 
 	const pageTitle = `For teachers — ${SITE_NAME}`;
@@ -45,6 +48,9 @@
 		hint?: string;
 	};
 
+	// Class Play (live group competition) used to sit here as the third
+	// card. It's been elevated to its own marquee section further down
+	// the page (see #class-play) — too important to be a tile.
 	const classroomUses: ClassroomUse[] = [
 		{
 			title: '5-minute class warmup',
@@ -59,14 +65,6 @@
 			icon: Repeat,
 			iconBg: 'bg-secondary-container',
 			iconColor: 'text-secondary'
-		},
-		{
-			title: 'Group competition',
-			body: 'Run a class round on the board — books, references, key phrases. A live Kahoot-style multiplayer mode is coming next.',
-			icon: Users,
-			iconBg: 'bg-accent-light/30',
-			iconColor: 'text-accent',
-			hint: 'Coming soon'
 		}
 	];
 
@@ -190,17 +188,17 @@
 				id="how-a-class-can-use-it"
 				class="font-serif text-display-md tracking-tight md:text-display-lg"
 			>
-				Three shapes that already work.
+				Two shapes that already work.
 			</h2>
 			<p class="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
 				You don’t need to redesign your class around an app. Pick one of these and try it
-				for a week.
+				for a week. A third, live shape — <a href="#class-play" class="text-accent underline underline-offset-2 hover:text-primary">Class Play</a> — is on its way.
 			</p>
 		</div>
 
 		<ul
-			class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3 lg:mt-16"
-			aria-label="Three classroom uses"
+			class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16"
+			aria-label="Two classroom uses"
 		>
 			{#each classroomUses as use (use.title)}
 				{@const Icon = use.icon}
@@ -232,8 +230,123 @@
 	</div>
 </section>
 
+<!-- ─── Class Play (Coming soon) ───────────────────────────────── -->
+<!--
+  Marquee section for the upcoming live classroom multiplayer mode.
+  Elevated from a small tile in the classroom-uses grid above because
+  this is the viral mechanic of the whole product — one teacher running
+  a live round = 20-30 students opening the app at once.
+
+  Anchor id `class-play` is referenced from:
+    - the homepage <ClassPlay /> section's "Read more" CTA
+    - the /apps/scripture-mastery features grid's Class Play card
+-->
+<section
+	id="class-play"
+	class="relative overflow-hidden bg-surface-container-low py-16 md:py-24"
+	aria-labelledby="class-play-headline"
+>
+	<div
+		class="pointer-events-none absolute inset-0"
+		style="background:
+			radial-gradient(ellipse 45% 55% at 80% 20%, var(--color-primary-fixed) 0%, transparent 60%),
+			radial-gradient(ellipse 40% 50% at 10% 90%, var(--color-secondary-container) 0%, transparent 65%);
+			opacity: 0.4;"
+		aria-hidden="true"
+	></div>
+
+	<div
+		class="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:px-8 lg:grid-cols-[1fr_1fr] lg:gap-16"
+	>
+		<div class="max-w-xl">
+			<p class="eyebrow">Coming soon · Class Play</p>
+			<h2
+				id="class-play-headline"
+				class="font-serif text-display-md tracking-tight md:text-display-lg"
+			>
+				The whole class, on the same board.
+			</h2>
+
+			<div class="mt-6 space-y-4 text-lg leading-relaxed text-on-surface-variant">
+				<p>
+					Five minutes before class, you open the app on the projector and start a
+					round. Students join from their phones — no app store run, no logins, just a
+					class code. Books, references, key phrases. Their answers stream onto the
+					leaderboard in real time.
+				</p>
+				<p>
+					It’s the warmup that wakes everyone up. The five minutes that turn into
+					ten. The Friday tradition. The thing students text their friends about. We
+					call it <span class="font-serif italic text-on-surface">Class Play</span>, and
+					it’s the part of Seminary Sidekick that turns scripture mastery into something
+					a whole classroom does together.
+				</p>
+			</div>
+
+			<!-- Three quick value props -->
+			<ul class="mt-8 space-y-3" aria-label="What Class Play gives a teacher">
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-fixed text-primary"
+						aria-hidden="true"
+					>
+						<Users class="h-4 w-4" stroke-width={1.75} />
+					</span>
+					<p class="text-on-surface">
+						<span class="font-semibold">Live, class-wide rounds.</span>
+						<span class="text-on-surface-variant">
+							Project from the front; students play from the pews.
+						</span>
+					</p>
+				</li>
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary-container text-secondary"
+						aria-hidden="true"
+					>
+						<Zap class="h-4 w-4" stroke-width={1.75} />
+					</span>
+					<p class="text-on-surface">
+						<span class="font-semibold">Five-minute warmup.</span>
+						<span class="text-on-surface-variant">
+							Short rounds across this week’s references. Hyper engagement, every time.
+						</span>
+					</p>
+				</li>
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-tertiary-fixed text-tertiary"
+						aria-hidden="true"
+					>
+						<Trophy class="h-4 w-4" stroke-width={1.75} />
+					</span>
+					<p class="text-on-surface">
+						<span class="font-semibold">A real-time leaderboard.</span>
+						<span class="text-on-surface-variant">
+							Reverent competition that celebrates learners, not noise.
+						</span>
+					</p>
+				</li>
+			</ul>
+
+			<div class="mt-10">
+				<WaitlistForm placement="for-teachers" />
+			</div>
+		</div>
+
+		<div class="relative">
+			<img
+				src="/images/illustrations/practice.jpg"
+				alt="Seminary students engaged in a fast, fun classroom learning round"
+				class="aspect-[4/5] w-full rounded-4xl object-cover shadow-floating"
+				loading="lazy"
+			/>
+		</div>
+	</div>
+</section>
+
 <!-- ─── What about AI safety? ──────────────────────────────────── -->
-<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="ai-safety">
+<section class="bg-surface py-16 md:py-24" aria-labelledby="ai-safety">
 	<div class="mx-auto max-w-6xl px-4 md:px-8">
 		<div class="max-w-3xl">
 			<p class="eyebrow">What about AI safety?</p>
@@ -280,7 +393,7 @@
 </section>
 
 <!-- ─── Coming soon ────────────────────────────────────────────── -->
-<section class="bg-surface py-16 md:py-20" aria-labelledby="coming-soon">
+<section class="bg-surface-container-low py-16 md:py-20" aria-labelledby="coming-soon">
 	<div class="mx-auto max-w-4xl px-4 md:px-8">
 		<div
 			class="flex flex-col gap-6 rounded-5xl bg-surface-container-lowest p-8 shadow-editorial md:flex-row md:items-center md:gap-8 md:p-12"
@@ -301,9 +414,9 @@
 				</h2>
 				<p class="mt-3 text-on-surface-variant">
 					Lesson outlines, object lessons, printable handouts, and a small community of
-					teachers sharing what worked this week. We’re building it next, alongside the
-					multiplayer class mode. Want a say in what ships first? The mailto below goes
-					straight to me.
+					teachers sharing what worked this week. We’re building it next, alongside
+					<a href="#class-play" class="text-accent underline underline-offset-2 hover:text-primary">Class Play</a>. Want a say in what ships first? The mailto below goes straight
+					to me.
 				</p>
 			</div>
 		</div>
@@ -311,7 +424,7 @@
 </section>
 
 <!-- ─── Get in touch ───────────────────────────────────────────── -->
-<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="get-in-touch">
+<section class="bg-surface py-16 md:py-24" aria-labelledby="get-in-touch">
 	<div class="mx-auto max-w-3xl px-4 text-center md:px-8">
 		<p class="eyebrow">Get in touch</p>
 		<h2 id="get-in-touch" class="font-serif text-display-md tracking-tight md:text-display-lg">

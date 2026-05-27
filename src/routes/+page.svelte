@@ -5,17 +5,21 @@
   every section is owned by its own file under sections/ (or demos/)
   and lands independently; this file just orders them.
 
-  Order per TASK-C-100:
+  Order per TASK-C-100 (updated when Class Play landed):
     Hero → HowItWorks → QuickQuizDemo → PremiumPeek →
-    ForTeachersStrip → ScriptureMatchDemo → NewsPreview → FinalCTA
+    ScriptureMatchDemo → ClassPlay → ForTeachersStrip →
+    NewsPreview → FinalCTA
 
   The order is deliberate:
   - Hero lands the headline + the two CTAs.
   - HowItWorks explains the loop so the demos make sense.
   - QuickQuizDemo is the first taste — fast, low-stakes.
   - PremiumPeek introduces Sidekick AI before the visitor decides.
+  - ScriptureMatchDemo gives a second, different taste — you've now
+    played alone, twice.
+  - ClassPlay reframes: "now imagine your whole class on the same
+    board, live." Captures teacher waitlist signups pre-launch.
   - ForTeachersStrip pivots to the adult buyer/recommender.
-  - ScriptureMatchDemo gives a second, different taste.
   - NewsPreview shows the project is alive.
   - FinalCTA is the last conversion attempt before the footer.
 
@@ -29,8 +33,9 @@
 	import HowItWorks from '$lib/components/sections/HowItWorks.svelte';
 	import { QuickQuizDemo } from '$lib/components/demos/quick-quiz';
 	import PremiumPeek from '$lib/components/sections/PremiumPeek.svelte';
-	import ForTeachersStrip from '$lib/components/sections/ForTeachersStrip.svelte';
 	import { ScriptureMatchDemo } from '$lib/components/demos/scripture-match';
+	import ClassPlay from '$lib/components/sections/ClassPlay.svelte';
+	import ForTeachersStrip from '$lib/components/sections/ForTeachersStrip.svelte';
 	import NewsPreview from '$lib/components/sections/NewsPreview.svelte';
 	import FinalCTA from '$lib/components/sections/FinalCTA.svelte';
 
@@ -54,7 +59,8 @@
 <HowItWorks />
 <QuickQuizDemo />
 <PremiumPeek />
-<ForTeachersStrip />
 <ScriptureMatchDemo />
+<ClassPlay />
+<ForTeachersStrip />
 <NewsPreview />
 <FinalCTA />

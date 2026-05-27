@@ -18,7 +18,9 @@ The website's purpose is bigger than "marketing for the scripture mastery app." 
 ### The 4-tier roadmap
 
 **Tier 1 — Today: marketing + first app (months 0–3)**
-Single static-feeling site. Hero, how-it-works, two playable demos, premium AI peek, for-teachers strip, news/blog. CTA is "Get the app." No accounts. This is what Phase 0–7 in the build plan below covers.
+Single static-feeling site. Hero, how-it-works, two playable demos, premium AI peek, **Class Play teaser + teacher waitlist**, for-teachers strip, news/blog. CTA is "Get the app." No accounts. This is what Phase 0–7 in the build plan below covers.
+
+Class Play — the live, classroom-wide, Kahoot-style multiplayer mode — is the viral mechanic of the whole product, even though it ships in a later Flutter app update. The marketing site already leads with it and captures teacher waitlist signups so the feature has momentum on launch day. Submissions land in Formspree (or whichever no-code endpoint is configured in `src/lib/config/site.ts`).
 
 **Tier 2 — Suite portfolio + teacher resource library (months 3–9)**
 - Home page reframes as "The Seminary Sidekick Suite" with app cards.
@@ -239,6 +241,14 @@ Footer everywhere: socials, App Store / Play Store buttons, privacy, terms, cont
 ### 5. Try it: Scripture Match demo (React island)
 - One round, ~8 pairs, drag-and-drop or tap-to-select.
 - Ends with the same store-CTA card.
+
+### 5b. Class Play — live, class-wide multiplayer (Coming soon)
+- Sits right after the two solo demos so the pivot lands: "you just played alone — now imagine your whole class on the same board, live."
+- Eyebrow "Coming soon · Class Play", headline "Like Kahoot, for scripture mastery.", one-line sub.
+- Visual: stylised live-leaderboard mockup (faux class code, active question card, 3-4 plausible first names with scores).
+- Primary CTA: inline teacher waitlist form (`<WaitlistForm placement="homepage" />`). Submissions go to Formspree (or whichever endpoint is configured in `src/lib/config/site.ts` — log-only fallback if unconfigured).
+- Secondary CTA: outlined "Read more →" linking to `/for-teachers#class-play` where the feature gets a full pitch.
+- The viral mechanic of the whole product. Ships in a later Flutter update; the site advertises it now so it has momentum on launch day.
 
 ### 6. Premium peek — Seminary Sidekick AI
 - Two-up: a screenshot of the chat / journal prompt and a short bullet list of what the AI does (daily prompt, goal suggestion, reflection questions, smart connections).

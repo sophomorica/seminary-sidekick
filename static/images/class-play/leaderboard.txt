@@ -1,0 +1,45 @@
+Class Play — live leaderboard screenshot
+
+PURPOSE
+A real screenshot (or polished mockup) of the Class Play live-round
+view, to replace the stylised placeholder card inside
+`src/lib/components/sections/ClassPlay.svelte` on the homepage. Until
+this file lands, the inline placeholder renders.
+
+COMPOSITION
+- Card-shaped, portrait orientation, ~4:5 aspect ratio.
+- Top: a "Live" pill (red dot + LIVE label) on the left and a class
+  code on the right (e.g. "Class code SEM-417").
+- Middle: an active question card — a doctrinal-mastery scripture
+  blockquote ("For with God nothing shall be impossible.") with a
+  short prompt ("Which reference is this?") and four answer chips,
+  one highlighted as the correct/active selection.
+- Bottom: a live leaderboard with 3-4 plausible student first names
+  (NOT real students — Sarah / Eli / Maya / Jonas are the names used
+  in the placeholder so the screenshot can keep continuity), each
+  with a rank, name, and score (e.g. 1840 / 1720 / 1610 / 1495).
+  First-place row subtly highlighted in the tertiary-fixed tint.
+
+STYLE
+- Sacred Editorial design system: Merriweather serif for the verse
+  and leaderboard scores, Inter sans for labels and chips.
+- Warm rust + sage + premium-gold-light accents only. No raw pure
+  blacks or grays.
+- Rounded-4xl (32px) outer card, shadow-floating.
+- Background: surface-container-lowest (white-ish off-white).
+
+DIMENSIONS
+- 720 x 900 px (or matching 4:5 ratio at higher density).
+- PNG or WebP. Compress for web (target < 120KB).
+
+SOURCING
+- Screenshot from the Flutter app's Class Play screen once it ships
+  (TASK-048).
+- Until then, a polished Figma export following the placeholder shape
+  is fine.
+
+WHEN REAL FILE LANDS
+- Drop the .png (or .webp) at this same path (replace this .txt).
+- Inside `ClassPlay.svelte`, replace the inner `[data-placeholder]`
+  block with an `<img src="/images/class-play/leaderboard.png" alt="…"
+  class="block w-full" loading="lazy" decoding="async" />`.

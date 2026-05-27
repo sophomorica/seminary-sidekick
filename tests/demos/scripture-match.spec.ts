@@ -23,6 +23,8 @@ test.describe('Scripture Match demo', () => {
 			// Filter out any "Skip" or "Reset" CTAs.
 			hasNotText: /skip|reset|back|home/i
 		});
+		// Items are populated in onMount, so wait for the first one before counting.
+		await expect(items.first()).toBeVisible();
 		const count = await items.count();
 		expect(count, 'Scripture Match should expose ~16 selectable items').toBeGreaterThanOrEqual(16);
 	});

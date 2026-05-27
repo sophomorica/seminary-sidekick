@@ -41,9 +41,14 @@ function trackErrors(page: Page): string[] {
 	page.on('pageerror', (err) => errors.push(`pageerror: ${err.message}`));
 	page.on('console', (msg) => {
 		if (msg.type() === 'error') {
-			// Filter expected dev-only noise (e.g. Vite HMR connection messages).
 			const text = msg.text();
+			// Filter expected dev-only noise (e.g. Vite HMR connection messages).
 			if (text.includes('vite') && text.includes('connecting')) return;
+			// Filter resource-load 404s. Per CLAUDE.md, image/audio assets follow
+			// a `.txt` placeholder convention — code references the intended final
+			// path which 404s until the real asset lands. Real JS errors surface
+			// via `pageerror` or with a different message format.
+			if (text.startsWith('Failed to load resource') && text.includes('404')) return;
 			errors.push(`console.error: ${text}`);
 		}
 	});
@@ -59,9 +64,11 @@ for (const route of ROUTES) {
 		expect(response!.status(), `${route} status`).toBe(200);
 
 		// Structural sanity: every page must render the layout shell.
+		// Use ARIA landmarks so we don't collide with inner page <header>/<footer>
+		// elements nested inside <main> (those don't have banner/contentinfo roles).
 		await expect(page.locator('#main-content')).toBeVisible();
-		await expect(page.locator('header[role]').or(page.locator('header'))).toBeVisible();
-		await expect(page.locator('footer')).toBeVisible();
+		await expect(page.getByRole('banner')).toBeVisible();
+		await expect(page.getByRole('contentinfo')).toBeVisible();
 
 		// One <h1> per page (accessibility requirement).
 		const h1Count = await page.locator('h1').count();

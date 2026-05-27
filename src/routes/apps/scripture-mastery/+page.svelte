@@ -37,6 +37,7 @@
 		Star,
 		Layers,
 		HelpCircle,
+		Users,
 		type Icon
 	} from 'lucide-svelte';
 
@@ -73,6 +74,10 @@
 		body: string;
 		iconBg: string;
 		iconColor: string;
+		/** Optional href — when set, the card becomes a link. */
+		href?: string;
+		/** Optional "coming soon" style hint, displayed beside the title. */
+		hint?: string;
 	};
 	const features: Feature[] = [
 		{
@@ -106,6 +111,16 @@
 			body: 'Six levels driven by Scripture Builder progress. Climb tier by tier as you prove the verse, and reach Eternal after six months of sustained mastery — a tier that never decays. Gentle review nudges keep you honest without nagging.',
 			iconBg: 'bg-tertiary-fixed',
 			iconColor: 'text-tertiary'
+		},
+		{
+			icon: Users,
+			eyebrow: 'For teachers',
+			title: 'Class Play',
+			body: 'Live, class-wide rounds. Coming soon.',
+			iconBg: 'bg-accent-light/30',
+			iconColor: 'text-accent',
+			href: '/for-teachers#class-play',
+			hint: 'Coming soon'
 		}
 	];
 
@@ -291,7 +306,7 @@
 				id="sm-features-headline"
 				class="text-display-md md:text-display-lg font-serif tracking-tight"
 			>
-				Four tools, one quiet loop.
+				A handful of tools, one quiet loop.
 			</h2>
 			<p class="text-on-surface-variant mt-5 max-w-2xl text-lg leading-relaxed">
 				Each one earns its place against a single test: does it help a student move
@@ -302,21 +317,58 @@
 		<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16">
 			{#each features as feature (feature.title)}
 				{@const FeatureIcon = feature.icon}
-				<Card.Root class="flex h-full flex-col gap-5">
-					<div
-						class="flex h-14 w-14 items-center justify-center rounded-full {feature.iconBg}"
-						aria-hidden="true"
+				{#if feature.href}
+					<a
+						href={feature.href}
+						class="block h-full rounded-4xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
 					>
-						<FeatureIcon class="h-7 w-7 {feature.iconColor}" stroke-width={1.5} />
-					</div>
+						<Card.Root hover class="flex h-full flex-col gap-5">
+							<div
+								class="flex h-14 w-14 items-center justify-center rounded-full {feature.iconBg}"
+								aria-hidden="true"
+							>
+								<FeatureIcon class="h-7 w-7 {feature.iconColor}" stroke-width={1.5} />
+							</div>
 
-					<div>
-						<p class="text-label-md text-on-surface-variant uppercase">{feature.eyebrow}</p>
-						<h3 class="text-headline-md mt-2 font-serif">{feature.title}</h3>
-					</div>
+							<div>
+								<p class="text-label-md text-on-surface-variant uppercase">{feature.eyebrow}</p>
+								<div class="mt-2 flex flex-wrap items-baseline gap-3">
+									<h3 class="text-headline-md font-serif">{feature.title}</h3>
+									{#if feature.hint}
+										<span
+											class="rounded-full bg-surface-container-low px-2.5 py-0.5 text-xs font-medium tracking-wide text-on-surface-variant uppercase"
+										>
+											{feature.hint}
+										</span>
+									{/if}
+								</div>
+							</div>
 
-					<p class="text-on-surface-variant">{feature.body}</p>
-				</Card.Root>
+							<p class="text-on-surface-variant">{feature.body}</p>
+
+							<span class="mt-auto inline-flex items-center gap-1.5 text-label-lg text-primary">
+								Learn more
+								<ArrowRight class="h-4 w-4" aria-hidden="true" />
+							</span>
+						</Card.Root>
+					</a>
+				{:else}
+					<Card.Root class="flex h-full flex-col gap-5">
+						<div
+							class="flex h-14 w-14 items-center justify-center rounded-full {feature.iconBg}"
+							aria-hidden="true"
+						>
+							<FeatureIcon class="h-7 w-7 {feature.iconColor}" stroke-width={1.5} />
+						</div>
+
+						<div>
+							<p class="text-label-md text-on-surface-variant uppercase">{feature.eyebrow}</p>
+							<h3 class="text-headline-md mt-2 font-serif">{feature.title}</h3>
+						</div>
+
+						<p class="text-on-surface-variant">{feature.body}</p>
+					</Card.Root>
+				{/if}
 			{/each}
 		</div>
 	</div>

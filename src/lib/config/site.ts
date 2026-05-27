@@ -46,3 +46,13 @@ export const SOCIAL_LINKS = {
  * Year baked into the footer copyright. Update annually or compute at build time.
  */
 export const COPYRIGHT_YEAR = new Date().getFullYear();
+
+/**
+ * Formspree (or other waitlist provider) endpoint for the Class Play
+ * teacher waitlist. Until owner signs up at formspree.io and pastes
+ * the endpoint URL here, submissions are logged server-side only.
+ *
+ * Replace 'YOUR_ENDPOINT' with the real Formspree form id, e.g.
+ * 'https://formspree.io/f/xkgwlqjy'.
+ */
+export const CLASS_PLAY_WAITLIST_ENDPOINT = 'https://formspree.io/f/YOUR_ENDPOINT';
