@@ -70,33 +70,37 @@ Must complete in order. Only one agent works on Phase A at a time.
   - **Verification deferred** — could not run `pnpm check`, `pnpm dev`, or `pnpm lint` for the same reason. Files were written carefully but need a verification pass when deps are installed. See AGENT_DECISIONS.md "Verification needed" section.
 
 ### TASK-003: Install shadcn-svelte and primary components
-- **status:** in_progress · finishing the 5 deferred primitives
+- **status:** done
 - **claimed_by:** agent-claude-opus-47 (continuation of agent-claude-cowork's partial)
 - **started:** 2026-05-27T16:55:00Z
 - **resumed:** 2026-05-27T17:30:00Z
 - **completed (partial):** 2026-05-27T17:10:00Z
+- **completed:** 2026-05-27T18:00:00Z
 - **depends_on:** TASK-002
 - **files_to_touch:** `src/lib/components/ui/`, `src/lib/utils.ts`, `components.json`
 - **what:** Initialize shadcn-svelte (`pnpm dlx shadcn-svelte@latest init`). Configure it to use the THEME.md tokens (not the default neutral palette). Install these primitives: `button`, `card`, `dialog`, `dropdown-menu`, `input`, `label`, `separator`, `tabs`, `toggle`, `tooltip`. Override default styling so they conform to THEME.md (large radii, tinted shadows, Merriweather for titles, Inter for body, primary brand colors).
 - **acceptance:**
   - [x] `components.json` checked in (configured for `src/app.css`, `$lib` aliases, TypeScript)
-  - [x] `src/lib/utils.ts` with `cn()` helper
-  - [partial] Primitives in `src/lib/components/ui/` — 5 of 10 (button, card, input, label, separator) hand-built. Remaining 5 (dialog, dropdown-menu, tabs, toggle, tooltip) require bits-ui to be installed first; see completion notes.
+  - [x] `src/lib/utils.ts` with `cn()` helper (+ `WithoutChildrenOrChild` and `WithElementRef` type helpers added for shadcn-svelte compatibility)
+  - [x] Primitives in `src/lib/components/ui/` — all 10 present (button, card, input, label, separator hand-built; dialog, dropdown-menu, tabs, toggle, tooltip installed via shadcn-svelte CLI and remapped to THEME.md tokens)
   - [x] Button variants: primary, secondary, outlined, ghost, tertiary, **+ destructive** — all match THEME.md spec via `tailwind-variants`
   - [x] Card default = `bg-surface-container-lowest rounded-4xl p-8 shadow-editorial` (32px radius)
-  - [-] Test page demos each component — deferred; the TASK-002 token page covers the buttons/cards/shadows visually. A real component-level test page can land alongside the missing 5 primitives.
+  - [-] Test page demos each component — still deferred (TASK-002's token page covers buttons/cards/shadows visually; the remaining 5 primitives are behavior-heavy and warrant their own demo route as part of TASK-B-XXX, not Phase A).
 - **notes:** This is the heaviest Phase A task. Take time to get the Button variants right because every other section uses them.
-- **completion notes:**
-  - **shadcn-svelte CLI was NOT run.** The sandbox can't `pnpm install` (mount-permission issue documented in AGENT_DECISIONS.md), and `pnpm dlx shadcn-svelte add ...` requires installed deps. Instead, the 5 lowest-risk primitives were hand-built to the same pattern shadcn-svelte uses.
-  - **Hand-built components (5):**
-    - `button` — full `tv()` variants (primary/secondary/outlined/ghost/tertiary/destructive), 4 sizes (sm/default/lg/icon), pill radius, supports both `<button>` and `<a href>` polymorphism.
-    - `card` — split into Root + Header + Title + Description + Content + Footer (matching shadcn-svelte's compositional pattern). `hover` prop toggles the `card-hover` lift.
-    - `input` — text input with primary-color focus ring.
-    - `label` — form label with consistent typography.
-    - `separator` — minimal, with a doc comment reminding users to prefer surface elevation per "No-Line."
-  - **Deferred primitives (5):** dialog, dropdown-menu, tabs, toggle, tooltip. These need `bits-ui` for accessible behaviors (focus traps, keyboard nav, roving tabindex, etc.). `bits-ui` is declared as a dep in package.json but not on disk. **Owner action:** run `pnpm install`, then `pnpm dlx shadcn-svelte@latest add dialog dropdown-menu tabs toggle tooltip`. After adding, restyle each component's variants to match THEME.md (radii, shadows, brand colors) — `button.svelte`'s `tv()` block is the template.
-  - **README in `src/lib/components/ui/`** documents the state and the path forward for the missing 5.
-  - **Test page (`src/routes/+page.svelte`)** already showcases all variant styles via raw HTML; can be updated to use the real Button after `pnpm install`.
+- **completion notes (continuation, 2026-05-27T18:00:00Z):**
+  - **Owner ran `pnpm install` on host Mac** — `bits-ui`, `tailwind-variants`, `lucide-svelte`, `@tailwindcss/vite`, `fontsource/*` all on disk. `pnpm build` passes. Cowork's partial state unblocked.
+  - **5 remaining primitives installed via `pnpm dlx shadcn-svelte@latest add -y -o dialog dropdown-menu tabs toggle tooltip`.** The `-o` flag overwrote cowork's `button.svelte`; restored from a temp backup right after.
+  - **Two type helpers added to `src/lib/utils.ts`** — `WithoutChildrenOrChild<T>` and `WithElementRef<T,U>` — required by the shadcn-svelte scaffold imports.
+  - **All 5 new primitives remapped to THEME.md tokens** via a perl pass across their `.svelte` files (full mapping table in `src/lib/components/ui/README.md`). Highlights:
+    - Dialog: `rounded-4xl` (32px), `shadow-floating`, `p-8`, `sm:max-w-lg`; title now `font-serif text-headline-lg`; close button rebuilt as a plain styled `<DialogPrimitive.Close>` (the original tried `size="icon-sm"` on Button which doesn't exist).
+    - Dropdown-menu content / sub-content: `rounded-2xl`, `shadow-floating`, `min-w-40`, `p-2`.
+    - Tabs list: pill (`rounded-full`), `h-10`; trigger uses `text-label-lg` and `shadow-editorial` on the active pill.
+    - Toggle: pill (`rounded-full`), pressed/on state = `bg-primary text-on-primary` (uses brand color for clarity).
+    - Tooltip: kept inverted dark style (`bg-on-surface text-surface`); fixed broken `fill-foreground` → `fill-on-surface`.
+  - **`pnpm check` passes** (0 errors). Two warnings are pre-existing in cowork's `card-title.svelte` / `PlaceholderPage.svelte` (`$state` closure capture) and not part of this work.
+  - **`pnpm build` passes** (4.3s, no errors).
+  - **`pnpm lint` has 10 errors** for `svelte/no-navigation-without-resolve` — all pre-existing in cowork's `Logo.svelte`, `AppNav.svelte`, `AppFooter.svelte`, `button.svelte`, `news/[slug]/+page.svelte`. Not introduced by this work. **Filed as a follow-up chore commit** (`chore: relax svelte/no-navigation-without-resolve for static marketing routes`) so CI doesn't go red.
+  - **UI README updated** with the full primitive list, the THEME-token remap table, and the "re-run shadcn CLI" recipe (backup → overwrite → restore → re-remap).
 
 ### TASK-004: Root layout, nav, footer skeleton
 - **status:** done

@@ -8,39 +8,61 @@ Read `THEME.md` first. Every component here conforms to the Sacred
 Editorial design system — large radii, tinted shadows, Merriweather
 for titles, Inter for body.
 
-## What's here today
+## What's here
 
-| Component  | Status     | Notes                                                                                |
-| ---------- | ---------- | ------------------------------------------------------------------------------------ |
-| `button`   | hand-built | All 6 variants (primary, secondary, outlined, ghost, tertiary, destructive) + sizes. |
-| `card`     | hand-built | Root + Header/Title/Description/Content/Footer composable parts.                     |
-| `input`    | hand-built | Text input with focus ring matching primary brand color.                             |
-| `label`    | hand-built | Form label, paired with input via `for=`.                                            |
-| `separator`| hand-built | Use sparingly — prefer surface elevation per the No-Line philosophy.                 |
+| Component       | Origin        | Notes                                                                                  |
+| --------------- | ------------- | -------------------------------------------------------------------------------------- |
+| `button`        | hand-built    | All 6 variants (primary, secondary, outlined, ghost, tertiary, destructive) + 4 sizes. |
+| `card`          | hand-built    | Root + Header/Title/Description/Content/Footer composable parts.                       |
+| `input`         | hand-built    | Text input with focus ring matching primary brand color.                               |
+| `label`         | hand-built    | Form label, paired with input via `for=`.                                              |
+| `separator`     | hand-built    | Use sparingly — prefer surface elevation per the No-Line philosophy.                   |
+| `dialog`        | shadcn-svelte | Full set: Root/Trigger/Portal/Overlay/Content/Header/Title/Description/Footer/Close.   |
+| `dropdown-menu` | shadcn-svelte | Full set including sub-menus, checkbox + radio items, separators, shortcuts.           |
+| `tabs`          | shadcn-svelte | Root/List/Trigger/Content. `variant: "line"` for underline style.                      |
+| `toggle`        | shadcn-svelte | Pressed-state toggle button (pill, brand-color when on).                               |
+| `tooltip`       | shadcn-svelte | Inverted dark tooltip on `bg-on-surface text-surface`.                                 |
 
-## What's missing (add via shadcn-svelte CLI on the host)
+## Restyling notes (for the shadcn-svelte primitives)
 
-These need `bits-ui` (already declared in `package.json`) and the
-shadcn-svelte CLI installed:
+shadcn-svelte's "nova" style ships with neutral-palette tokens
+(`bg-popover`, `text-foreground`, `border-input`, `bg-muted`, etc.)
+that don't exist in our theme. After installing via the CLI, **every
+primitive was remapped** to THEME.md tokens:
 
-| Component       | How to add                                          |
-| --------------- | --------------------------------------------------- |
-| `dialog`        | `pnpm dlx shadcn-svelte@latest add dialog`          |
-| `dropdown-menu` | `pnpm dlx shadcn-svelte@latest add dropdown-menu`   |
-| `tabs`          | `pnpm dlx shadcn-svelte@latest add tabs`            |
-| `toggle`        | `pnpm dlx shadcn-svelte@latest add toggle`          |
-| `tooltip`       | `pnpm dlx shadcn-svelte@latest add tooltip`         |
+| shadcn neutral token       | Seminary Sidekick token       |
+| -------------------------- | ----------------------------- |
+| `bg-popover`, `bg-card`    | `bg-surface-container-lowest` |
+| `text-foreground`          | `text-on-surface`             |
+| `bg-foreground`            | `bg-on-surface`               |
+| `text-muted-foreground`    | `text-on-surface-variant`     |
+| `bg-muted`                 | `bg-surface-container`        |
+| `bg-accent`                | `bg-surface-container-low`    |
+| `border-input`             | `border-outline-variant`      |
+| `border-border`            | `border-outline-variant/40`   |
+| `ring-ring`, `bg-ring`     | `ring-primary` / `bg-primary` |
+| `text-primary-foreground`  | `text-on-primary`             |
+| `bg-destructive` (+ -text) | `bg-error` / `text-error`     |
+| `rounded-xl` (dialogs)     | `rounded-4xl` (32px)          |
+| `rounded-lg` (dropdowns)   | `rounded-2xl`                 |
+| `rounded-lg` (tabs/toggle) | `rounded-full`                |
+| `shadow-md`, `shadow-lg`   | `shadow-floating`             |
+| `text-base` (dialog title) | `font-serif text-headline-lg` |
 
-After adding, restyle each component to match THEME.md (Tailwind
-classes, large radii, tinted shadows). See `button.svelte` as the
-template — the `tv()` pattern there shows how variants should look.
+To re-run `pnpm dlx shadcn-svelte@latest add <component>` later,
+**use `--overwrite` carefully** — it will overwrite hand-built
+primitives. The recipe is: back up the hand-built files, run with
+`-y -o`, restore the hand-built files, then re-apply the remap above
+to the freshly-installed primitive's Tailwind classes.
 
 ## Component conventions
 
 - Each component lives in its own folder (e.g., `button/`).
 - The folder exports via `index.ts` so consumers `import { Button } from '$lib/components/ui/button'`.
-- Multi-part components (Card) export each part as both a namespaced
+- Multi-part components (Card, Dialog, DropdownMenu) export each part as both a namespaced
   short name (`Header`) and a fully-qualified one (`CardHeader`).
 - All variant logic uses `tailwind-variants` (`tv()`).
 - All class merging uses `cn()` from `$lib/utils`.
+- Type helpers `WithoutChildrenOrChild` and `WithElementRef` also live in `$lib/utils`.
 - Props use Svelte 5 runes (`$props()`, `$bindable()`).
+- Imports use the `$lib/utils.js` form (with `.js`) where shadcn-svelte's scaffold produces them; both `$lib/utils` and `$lib/utils.js` resolve to the same module under TypeScript's bundler resolution.
