@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
 
-	const lastUpdated = 'May 27, 2026';
+	const lastUpdated = 'June 10, 2026';
 	const pageTitle = `Terms of Use — ${SITE_NAME}`;
 	const canonical = `${SITE_URL}/terms`;
 </script>
@@ -51,8 +51,10 @@
 		optional premium features for those who choose to subscribe.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		The current phase of the project does not require or support user accounts. Everything you
-		do on the website and in the apps stays on your device.
+		The current phase of the project does not require or support user accounts. The core
+		single-player experience stays on your device. Optional features such as Group Play
+		multiplayer and premium AI features involve limited data processing by service providers,
+		as described in our Privacy Policy.
 	</p>
 
 	<!-- Eligibility -->
@@ -70,7 +72,8 @@
 	</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		In this phase, you do not need to create an account or provide personal information to use
-		the website or apps. Your progress and settings are stored locally on your device. Future
+		the website or apps. Your progress and settings for the core single-player experience are
+		stored locally on your device. Future
 		phases may introduce optional accounts for features such as teacher resources or community
 		sharing. When that happens, we will update these Terms and provide clear notice.
 	</p>
@@ -96,14 +99,36 @@
 		RevenueCat to help the apps recognize valid subscriptions on your device. We do not handle
 		payments, store credit card information, or manage billing directly.
 	</p>
+	<p class="mb-4 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
+		The following terms apply to all auto-renewing subscriptions:
+	</p>
+	<ul
+		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
+	>
+		<li>
+			Payment will be charged to your Apple ID or Google account at confirmation of purchase.
+		</li>
+		<li>
+			Your subscription automatically renews unless auto-renew is turned off at least 24 hours
+			before the end of the current period.
+		</li>
+		<li>
+			Your account will be charged for renewal within 24 hours prior to the end of the current
+			period, at the price of the plan you selected.
+		</li>
+		<li>
+			You can manage your subscriptions and turn off auto-renewal at any time in your App Store
+			or Google Play account settings after purchase.
+		</li>
+		<li>
+			Any unused portion of a free trial period, if offered, will be forfeited when you purchase
+			a subscription.
+		</li>
+	</ul>
 	<ul
 		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
 	>
 		<li>Payment is processed entirely by Apple or Google according to their own terms.</li>
-		<li>
-			You may manage, cancel, or change your subscription at any time through your device’s
-			App Store or Play Store settings.
-		</li>
 		<li>Refunds and billing disputes are handled by Apple or Google under their policies.</li>
 		<li>
 			Subscription prices are set by us and may change; any changes will be communicated
