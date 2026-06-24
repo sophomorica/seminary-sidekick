@@ -178,15 +178,9 @@
 		Some optional premium features are powered by <strong>Grok</strong>, an AI service operated
 		by
 		<strong>xAI</strong>. These include Ask Your Sidekick chat, AI-generated journal prompts,
-		AI-driven goal suggestions, and Grok-voiced narration. When you use one of these features,
-		the text you enter (such as a chat question or journal-related input) is sent to xAI's
-		servers to generate a response. For narration, the scripture or app text being read aloud is
-		sent to generate the audio.
-	</p>
-	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		If you use the voice-to-journal feature, your speech is converted to text on your device,
-		and that transcribed text is then sent to xAI to generate journal prompts or responses. Your
-		audio recording itself is not sent.
+		and AI-driven goal suggestions. When you use one of these features, the text you enter (such
+		as a chat question or journal-related input) is sent to xAI's servers to generate a
+		response.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		We do not send your name, email, or other identifying information with these requests, and
@@ -233,6 +227,14 @@
 		accounts and more data handling. When those features are ready, we will update this Privacy
 		Policy well in advance, explain the new practices clearly, and give you control over your
 		information. Until then, the practices described above remain in effect.
+	</p>
+	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
+		We also plan to add premium AI capabilities such as <strong>Grok-voiced narration</strong>
+		and a <strong>voice-to-journal</strong> feature. Narration would send scripture or app text to
+		xAI to generate read-aloud audio. Voice-to-journal would convert your speech to text on your device
+		and send that transcribed text to xAI to generate journal prompts or responses; your audio recording
+		itself would not be sent. When these ship, we will describe their data practices here before they
+		go live.
 	</p>
 
 	<!-- Children’s privacy -->
