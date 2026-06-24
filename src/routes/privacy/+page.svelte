@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
 
-	const effectiveDate = 'June 10, 2026';
+	const effectiveDate = 'June 23, 2026';
 	const pageTitle = `Privacy Policy — ${SITE_NAME}`;
 	const canonical = `${SITE_URL}/privacy`;
 </script>
@@ -197,6 +197,18 @@
 		>. If you never use the AI features, no data is sent to xAI.
 	</p>
 
+	<!-- Crash and error diagnostics (Sentry) -->
+	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">
+		Crash and error diagnostics
+	</h2>
+	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
+		To keep the apps stable, we use <strong>Sentry</strong> to collect anonymous crash and error reports
+		when something goes wrong. These reports include technical information such as the type of error,
+		the device model, and the app version. They do not include your name, email, journal entries,
+		scripture notes, chat messages, nicknames, screenshots, or any other personal or user-generated
+		content. We use this data only to find and fix bugs.
+	</p>
+
 	<!-- How we use and share -->
 	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">
 		How we use and share information
@@ -204,9 +216,9 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		Because we collect so little, there is almost nothing to use or share. Anonymous aggregated
 		analytics help us improve the site and apps. We never sell, rent, or trade information. The
-		service providers described above—Supabase (Group Play), xAI (AI features), and RevenueCat
-		(subscription validation)—process data only to provide their respective services to us, and
-		we choose partners who meet high privacy standards.
+		service providers described above—Supabase (Group Play), xAI (AI features), RevenueCat
+		(subscription validation), and Sentry (crash diagnostics)—process data only to provide their
+		respective services to us, and we choose partners who meet high privacy standards.
 	</p>
 
 	<!-- Future features -->
@@ -222,10 +234,11 @@
 	<!-- Children’s privacy -->
 	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">Children’s privacy</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		Our services are intended for seminary students, generally ages 14–18, and the adults who
-		teach and support them. Consistent with our Terms of Use, the Services are available to
-		anyone 13 or older. We do not knowingly collect personal information from children under
-		13. If you believe we have received information from a child under 13, please contact us
+		Our services are intended for seminary students, ages 13 and older, and the adults who teach
+		and support them. The apps are not directed to children under 13, and we ask that anyone
+		under 13 not use them. Consistent with our Terms of Use, the Services are available to
+		anyone 13 or older. We do not knowingly collect personal information from children under 13.
+		If you believe we have received information from a child under 13, please contact us
 		immediately so we can address it.
 	</p>
 
