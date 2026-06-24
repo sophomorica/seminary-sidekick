@@ -38,12 +38,13 @@
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		In the current phase of this project (often referred to internally as Tier 1), the website
-		and apps are built with <strong>no user accounts</strong> and <strong>no collection of your
-		name, email address, or other directly identifying information</strong>. The core
-		single-player experience stays entirely on your device. A small amount of pseudonymous data
-		is processed by trusted service providers to power optional features—Group Play multiplayer
-		and premium AI features—as described below. This page explains exactly what that means in
-		plain terms.
+		and apps are built with <strong>no user accounts</strong> and
+		<strong
+			>no collection of your name, email address, or other directly identifying information</strong
+		>. The core single-player experience stays entirely on your device. A small amount of
+		pseudonymous data is processed by trusted service providers to power optional features—Group
+		Play multiplayer and premium AI features—as described below. This page explains exactly what
+		that means in plain terms.
 	</p>
 
 	<!-- Information We Collect -->
@@ -63,9 +64,9 @@
 		</li>
 		<li>
 			<strong>Mobile apps:</strong> For the core single-player experience, all progress, notes,
-			and settings live entirely on your device and nothing is sent to our servers. Optional
-			features—Group Play and premium AI features—send limited data to service providers as
-			described in the "Group Play" and "AI features" sections below.
+			and settings live entirely on your device and nothing is sent to our servers. Optional features—Group
+			Play and premium AI features—send limited data to service providers as described in the "Group
+			Play" and "AI features" sections below.
 		</li>
 		<li>
 			<strong>Contact:</strong> When you email us, we receive the message you send. We treat it
@@ -79,24 +80,26 @@
 		Group Play and multiplayer features
 	</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		The optional <strong>Group Play</strong> feature lets students practice together in real time.
-		To make this work, the app sends a limited amount of data to <strong>Supabase</strong>, the
-		cloud service that hosts our multiplayer infrastructure. When you use Group Play, the
-		following is transmitted to and stored on Supabase's servers:
+		The optional <strong>Group Play</strong> feature lets students practice together in real
+		time. To make this work, the app sends a limited amount of data to
+		<strong>Supabase</strong>, the cloud service that hosts our multiplayer infrastructure. When
+		you use Group Play, the following is transmitted to and stored on Supabase's servers:
 	</p>
 	<ul
 		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
 	>
 		<li>
 			<strong>An anonymous user ID:</strong> a randomly generated, persistent identifier created
-			on your device. It is not linked to your name, email, or any account, but it does allow
-			the service to recognize the same device across sessions.
+			on your device. It is not linked to your name, email, or any account, but it does allow the
+			service to recognize the same device across sessions.
 		</li>
 		<li>
-			<strong>Your nickname:</strong> the display name you choose when joining a room. We
-			encourage players not to use their full real name.
+			<strong>Your nickname:</strong> the display name you choose when joining a room. We encourage
+			players not to use their full real name.
 		</li>
-		<li><strong>Room participation records:</strong> which rooms you have created or joined.</li>
+		<li>
+			<strong>Room participation records:</strong> which rooms you have created or joined.
+		</li>
 		<li>
 			<strong>Gameplay data:</strong> your quiz answers and Scripture Builder finish times, used
 			to run the game and show results to other players in the room.
@@ -172,23 +175,24 @@
 		Premium AI features (xAI Grok)
 	</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		Some optional premium features are powered by <strong>Grok</strong>, an AI service operated by
+		Some optional premium features are powered by <strong>Grok</strong>, an AI service operated
+		by
 		<strong>xAI</strong>. These include Ask Your Sidekick chat, AI-generated journal prompts,
-		AI-driven goal suggestions, and Grok-voiced narration. When you use one of these features, the
-		text you enter (such as a chat question or journal-related input) is sent to xAI's servers to
-		generate a response. For narration, the scripture or app text being read aloud is sent to
-		generate the audio.
+		AI-driven goal suggestions, and Grok-voiced narration. When you use one of these features,
+		the text you enter (such as a chat question or journal-related input) is sent to xAI's
+		servers to generate a response. For narration, the scripture or app text being read aloud is
+		sent to generate the audio.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		If you use the voice-to-journal feature, your speech is converted to text on your device, and
-		that transcribed text is then sent to xAI to generate journal prompts or responses. Your audio
-		recording itself is not sent.
+		If you use the voice-to-journal feature, your speech is converted to text on your device,
+		and that transcribed text is then sent to xAI to generate journal prompts or responses. Your
+		audio recording itself is not sent.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		We do not send your name, email, or other identifying information with these requests, and we
-		do not use your AI conversations for advertising. We encourage you not to include sensitive
-		personal details in text you submit to AI features. xAI processes this data as a service
-		provider under <a
+		We do not send your name, email, or other identifying information with these requests, and
+		we do not use your AI conversations for advertising. We encourage you not to include
+		sensitive personal details in text you submit to AI features. xAI processes this data as a
+		service provider under <a
 			href="https://x.ai/legal/privacy-policy"
 			target="_blank"
 			rel="noopener noreferrer"
@@ -236,9 +240,8 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		Our services are intended for seminary students, ages 13 and older, and the adults who teach
 		and support them. The apps are not directed to children under 13, and we ask that anyone
-		under 13 not use them. Consistent with our Terms of Use, the Services are available to
-		anyone 13 or older. We do not knowingly collect personal information from children under 13.
-		If you believe we have received information from a child under 13, please contact us
+		under 13 not use them. We do not knowingly collect personal information from children under
+		13. If you believe we have received information from a child under 13, please contact us
 		immediately so we can address it.
 	</p>
 
