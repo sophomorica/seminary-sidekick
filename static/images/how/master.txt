@@ -20,13 +20,13 @@ Style / mood
 - Slight ambient glow around the line — soft, no hard rays.
 
 Color guidance (semantic tokens)
-- Sparkles: mastery-eternal (#CCA72F, equal to premium-gold) — this IS the one
+- Sparkles: mastery-eternal (#B8942A, equal to premium-gold) — this IS the one
   place in How-it-works where gold is appropriate.
 - Glow halo: premium-gold-light @ ~25% opacity.
 - Type line: on-surface (a touch darker than the Prove step to read as "locked
   in").
-- Keep the gold restrained — the illustration should still read as warm-paper,
-  not Vegas.
+- Keep the gold restrained — the illustration should still read as quiet
+  midnight-paper, not Vegas.
 
 Dimensions / format
 - Square (1:1). 480×480 PNG or SVG. Transparent background.

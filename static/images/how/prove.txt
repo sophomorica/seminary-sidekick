@@ -19,12 +19,12 @@ Composition
 Style / mood
 - Quiet confidence. Not a trophy moment — that comes at Master.
 - Slight upward float on the check, suggesting "settled into place".
-- Soft sage halo at very low opacity around the check (no hard outline).
+- Soft steel-blue halo at very low opacity around the check (no hard outline).
 
 Color guidance (semantic tokens)
 - Type line: on-surface-variant.
-- Check / wreath: secondary (sage) at full strength; halo secondary-container
-  @ ~30%.
+- Check / wreath: secondary (steel blue #3F6E9C) at full strength; halo
+  secondary-container @ ~30%.
 - Avoid pure success-green (#66BB6A) — that's the in-app demo feedback color
   for "correct answer." Prove is calmer.
 - No primary, no gold here. This step is intentionally restrained.
@@ -34,7 +34,7 @@ Dimensions / format
 
 Sourcing options
 1. Custom SVG (preferred).
-2. Lucide ShieldCheck enlarged + warm-tinted as a starting point.
+2. Lucide ShieldCheck enlarged + steel-blue-tinted as a starting point.
 3. AI-generated stylized illustration — owner edits.
 
 Swap pattern: see study.txt.

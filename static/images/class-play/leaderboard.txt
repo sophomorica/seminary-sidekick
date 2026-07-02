@@ -23,8 +23,8 @@ COMPOSITION
 STYLE
 - Sacred Editorial design system: Merriweather serif for the verse
   and leaderboard scores, Inter sans for labels and chips.
-- Warm rust + sage + premium-gold-light accents only. No raw pure
-  blacks or grays.
+- Deep navy + steel blue + premium-gold-light accents only. No raw
+  pure blacks or grays.
 - Rounded-4xl (32px) outer card, shadow-floating.
 - Background: surface-container-lowest (white-ish off-white).
 

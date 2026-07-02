@@ -13,7 +13,7 @@ DIMENSIONS
 
 COMPOSITION
 -----------
-- Solid dark warm rust background using the brand primary: #94492C
+- Solid deep navy background using the brand primary: #2F4374
   (no gradient — flat color reads cleanest at thumbnail sizes)
 - Wordmark "Seminary Sidekick" centered horizontally and vertically, set in
   Merriweather Bold, white (#FFFFFF), approximately 96 px cap height.
@@ -30,7 +30,7 @@ COMPOSITION
 
 COLOR REFERENCE
 ---------------
-- Background:        #94492C  (Tailwind token: primary)
+- Background:        #2F4374  (Tailwind token: primary)
 - Wordmark text:     #FFFFFF  (Tailwind token: on-primary)
 - Tagline text:      #FFFFFF at 85% opacity
 - Optional hairline: #FFFFFF at 15% opacity
@@ -50,7 +50,7 @@ at 200 px wide (Slack unfurl size) as well as full size.
 SOURCING OPTIONS
 ----------------
 1. Figma — there are free 1200x630 OG templates on Figma Community; drop in
-   the wordmark + tagline, fill background #94492C, export PNG @1x.
+   the wordmark + tagline, fill background #2F4374, export PNG @1x.
 2. Canva — "Open Graph image" template, swap colors and copy as above. Free
    tier handles this easily.
 

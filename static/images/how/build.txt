@@ -22,8 +22,8 @@ Style / mood
 
 Color guidance (semantic tokens)
 - Tile surfaces: surface-container-lowest with subtle on-surface marks.
-- One tile (the "next" one) tinted secondary-container (sage) to signal the
-  current target.
+- One tile (the "next" one) tinted secondary-container (soft steel blue
+  #C7DDF0) to signal the current target.
 - Tile in motion casts a slightly larger shadow-floating for elevation.
 - Avoid premium gold and brand primary here — primary is reserved for the loop
   payoff (Master) and primary CTAs.

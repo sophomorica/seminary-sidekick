@@ -10,7 +10,8 @@ encounter — first contact with the verse.
 
 Composition
 - Open scripture, slight perspective. Two pages visible, right page lit.
-- A faint ribbon bookmark trails off the bottom edge in primary-container coral.
+- A faint ribbon bookmark trails off the bottom edge in primary-container
+  (soft navy #5C77AE).
 - Optional: a single highlighted word on the lit page (no specific verse needed,
   illegible-but-typographic is fine).
 - Centered in a square frame. No background scenery — the card surface IS the

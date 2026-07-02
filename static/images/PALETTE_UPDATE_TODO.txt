@@ -1,0 +1,39 @@
+Midnight & Gold palette migration — image assets to regenerate
+================================================================
+2026-07-02: the site and app moved from the warm rust/sage "Sacred
+Editorial" palette to "Midnight & gold" (navy #2F4374 primary, steel
+blue #3F6E9C secondary, brass gold #B8942A, cool paper #F7F8FC).
+All code tokens are updated. The binary image assets below were made
+with the OLD palette and need to be regenerated or re-exported.
+Delete each line (and this file, when empty) as assets are replaced.
+
+EXISTING IMAGES (old palette baked in — regenerate)
+---------------------------------------------------
+[ ] static/images/brand/app-icon.png        — app icon, all sizes below too
+[ ] static/images/brand/app-icon-64.png
+[ ] static/images/brand/app-icon-128.png
+[ ] static/images/brand/app-icon-256.png
+[ ] static/images/brand/app-icon-512.png
+[ ] static/images/brand/app_icon.png
+[ ] static/favicon.png                      — derived from app icon
+[ ] static/apple-touch-icon.png             — derived from app icon
+[ ] static/images/illustrations/study.jpg   — warm-toned illustration
+[ ] static/images/illustrations/builder.jpg — warm-toned illustration
+[ ] static/images/illustrations/practice.jpg — warm-toned illustration
+
+NOTE: the Flutter app repo's icons/screenshots have the same problem —
+regenerate the source app icon once in the new palette and export both
+repos' variants from it.
+
+PENDING PLACEHOLDERS (specs already updated to the new palette in
+their .txt briefs — just follow the brief when creating them)
+---------------------------------------------------------------
+[ ] static/images/hero/phone-mockup.png     — must be a NEW-palette app build
+[ ] static/images/premium/chat-screenshot.png
+[ ] static/images/class-play/leaderboard.png
+[ ] static/images/how/study.png
+[ ] static/images/how/build.png
+[ ] static/images/how/prove.png
+[ ] static/images/how/master.png
+[ ] static/images/about/patrick.png         — wardrobe/illustration colors updated
+[ ] static/og/default.png                   — background now navy #2F4374

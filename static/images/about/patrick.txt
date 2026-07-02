@@ -6,21 +6,23 @@ options the owner can choose between (or supply something else entirely).
 Option A — editorial portrait photo:
   - Patrick at his desk, three-quarter angle, looking down toward an open
     laptop showing the Seminary Sidekick app (the Scripture Detail screen
-    with the warm rust accents would be ideal).
+    with the deep navy accents would be ideal).
   - A leather-bound set of scriptures sits next to the laptop, slightly
     out of focus.
   - Warm window light from the left — late morning or early evening, low
     color temperature (~3500K). Soft shadows. No harsh overhead light.
   - Natural, candid expression. Not posed-stiff. A small, genuine smile or
     a relaxed focused look both work.
-  - Wardrobe: simple, earthy, on-brand — a textured sweater in oatmeal,
-    sage, or rust would echo the site palette without screaming about it.
+  - Wardrobe: simple, understated, on-brand — a textured sweater in navy,
+    slate blue, or oatmeal would echo the site palette without screaming
+    about it.
   - Background: real workspace, lightly styled. Books, a plant, a mug. Not
     a stock-photo coworking space.
 
 Option B — editorial illustration:
-  - Hand-drawn, warm muted palette pulled directly from the site tokens
-    (rust #94492C, sage #3B665F, off-white #FFF8F6, soft gold #CCA72F).
+  - Hand-drawn, cool muted palette pulled directly from the site tokens
+    (navy #2F4374, steel blue #3F6E9C, cool white #F7F8FC, soft gold
+    #B8942A).
   - A figure at a desk with an open laptop and an open scriptures volume.
     Face can be soft/stylized rather than identifiable if the owner
     prefers not to use a photo at all.

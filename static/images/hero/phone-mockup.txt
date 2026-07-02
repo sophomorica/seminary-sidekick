@@ -36,8 +36,11 @@ within 5 seconds what the app does.
 - Aspect ratio: ~9:19 (iPhone)
 - Width: 1080px or higher (we'll downsize via responsive img)
 - Background of the screenshot: whatever the app's surface color is
-  in light mode (`#FFF8F6`). The hero section's surrounding background
+  in light mode (`#F7F8FC`). The hero section's surrounding background
   is the same color, so the screenshot blends seamlessly.
+- IMPORTANT: capture with the Midnight & gold palette build (navy
+  #2F4374 primary) — screenshots taken before 2026-07-02 show the old
+  rust palette and no longer match the site.
 
 ## Until the real screenshot lands
 
