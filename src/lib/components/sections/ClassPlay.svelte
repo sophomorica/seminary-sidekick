@@ -119,8 +119,8 @@
 					<p class="text-on-surface">
 						<span class="font-semibold">Two ways to play.</span>
 						<span class="text-on-surface-variant">
-							Fast Quick Quiz rounds for warmups, or a Scripture Builder race to
-							prove verses cold — head to head.
+							Fast Quick Quiz rounds for warmups, or a Scripture Builder race to prove
+							verses cold — head to head.
 						</span>
 					</p>
 				</li>
@@ -174,7 +174,8 @@
 						Live
 					</span>
 					<span class="text-body-sm text-on-surface-variant">
-						Join code <span class="font-mono font-semibold tracking-widest text-on-surface"
+						Join code <span
+							class="font-mono font-semibold tracking-widest text-on-surface"
 							>MAZE</span
 						>
 					</span>
@@ -242,7 +243,8 @@
 								<span class="flex-1 text-body-lg text-on-surface">{row.name}</span>
 								{#if row.delta}
 									<span
-										class="inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-label-sm tabular-nums {row.delta > 0
+										class="inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-label-sm tabular-nums {row.delta >
+										0
 											? 'bg-secondary-container text-secondary'
 											: 'bg-error/10 text-error'}"
 									>

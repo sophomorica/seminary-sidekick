@@ -225,9 +225,9 @@
 				One subscription. Two ways to pay.
 			</h2>
 			<p class="mx-auto mt-5 max-w-xl text-body-lg leading-relaxed text-on-surface-variant">
-				Premium unlocks Seminary Sidekick AI for the whole school year. Subscribe inside
-				the app — billing manages through the App Store or Google Play, and you can cancel
-				any time, right from your device settings.
+				Premium unlocks Seminary Sidekick AI for the whole school year. Subscribe inside the
+				app — billing manages through the App Store or Google Play, and you can cancel any
+				time, right from your device settings.
 			</p>
 
 			<!-- Plan cards — prices locked 2026-06-13; keep in sync with the app's upgrade screen. -->

@@ -60,11 +60,11 @@
 	>
 		<li>
 			<strong>Website:</strong> The marketing site is largely static. The one exception is an
-			optional <strong>teacher launch-notification form</strong>: if you choose to submit
-			your email address there, we store it (via our form provider, Formspree) solely to
-			notify you about the app's launch and Class Play. We never sell it, never share it, and
-			you can ask us to delete it at any time. Otherwise, the only way we receive information
-			is if you voluntarily email us at {CONTACT_EMAIL}.
+			optional <strong>teacher launch-notification form</strong>: if you choose to submit your
+			email address there, we store it (via our form provider, Formspree) solely to notify you
+			about the app's launch and Class Play. We never sell it, never share it, and you can ask
+			us to delete it at any time. Otherwise, the only way we receive information is if you
+			voluntarily email us at {CONTACT_EMAIL}.
 		</li>
 		<li>
 			<strong>Mobile apps:</strong> For the core single-player experience, all progress, notes,
@@ -255,8 +255,8 @@
 		For the core experience, we do not collect or store personal data on our servers, so there
 		are no individual records for us to retrieve, correct, or delete. If you have used Group
 		Play and would like the data associated with your anonymous ID or nickname removed, if you
-		joined the teacher notification list and want off it, or if you have corresponded with us
-		by email and would like us to remove or forget that conversation, simply ask—we will honor
+		joined the teacher notification list and want off it, or if you have corresponded with us by
+		email and would like us to remove or forget that conversation, simply ask—we will honor
 		reasonable requests.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
