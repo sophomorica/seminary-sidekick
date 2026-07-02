@@ -1,5 +1,6 @@
 <script lang="ts" module>
-	import { type VariantProps, tv } from 'tailwind-variants';
+	import { type VariantProps } from 'tailwind-variants';
+	import { tv } from '$lib/utils.js';
 
 	export const toggleVariants = tv({
 		base: "text-on-surface-variant hover:text-on-surface aria-pressed:bg-primary aria-pressed:text-on-primary data-[state=on]:bg-primary data-[state=on]:text-on-primary focus-visible:ring-primary aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error gap-1 rounded-full text-label-lg transition-colors ease-out-soft [&_svg:not([class*='size-'])]:size-4 group/toggle hover:bg-surface-container-low inline-flex items-center justify-center whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",

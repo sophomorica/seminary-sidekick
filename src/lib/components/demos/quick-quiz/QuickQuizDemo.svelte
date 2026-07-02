@@ -28,12 +28,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Check, X } from 'lucide-svelte';
-	import { tv } from 'tailwind-variants';
-
 	import { ALL_SCRIPTURES, pickRandomScriptures, TOTAL_SCRIPTURES } from '$lib/data/scriptures';
 	import type { Scripture } from '$lib/data/types';
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
-	import { cn } from '$lib/utils';
+	import { cn, tv } from '$lib/utils';
 
 	const QUESTION_COUNT = 5;
 	const CHOICE_COUNT = 4;
