@@ -24,9 +24,10 @@ test.describe('Quick Quiz demo', () => {
 		const choices = page.locator('#quick-quiz-demo').getByRole('button');
 		await expect(choices.first()).toBeVisible({ timeout: 10_000 });
 		const choiceCount = await choices.count();
-		expect(choiceCount, 'Quick Quiz should show at least 4 choice buttons').toBeGreaterThanOrEqual(
-			4
-		);
+		expect(
+			choiceCount,
+			'Quick Quiz should show at least 4 choice buttons'
+		).toBeGreaterThanOrEqual(4);
 	});
 
 	test('playing all 5 questions reaches the end-card with store CTAs', async ({ page }) => {
@@ -36,10 +37,13 @@ test.describe('Quick Quiz demo', () => {
 		// Click the first visible choice on each of the 5 rounds.
 		// We don't care if we get the answer right — just that the demo advances.
 		for (let i = 0; i < 5; i++) {
-			const choices = page.locator('#quick-quiz-demo').getByRole('button').filter({
-				// Skip any nav-style buttons that might exist (e.g. exit).
-				hasNotText: /skip|back|home/i
-			});
+			const choices = page
+				.locator('#quick-quiz-demo')
+				.getByRole('button')
+				.filter({
+					// Skip any nav-style buttons that might exist (e.g. exit).
+					hasNotText: /skip|back|home/i
+				});
 
 			// Wait for at least one choice to be enabled.
 			await expect(choices.first()).toBeVisible({ timeout: 5_000 });

@@ -1,6 +1,13 @@
 <!--
-  ClassPlay — homepage marquee section for the upcoming live
-  classroom multiplayer mode.
+  ClassPlay — homepage marquee section for the live classroom
+  multiplayer mode.
+
+  Status: SHIPPED in the app (v1, May 2026) — two modes (live Quick
+  Quiz + Scripture Builder Race), 4-letter join codes + QR, lobby,
+  live leaderboard with rank deltas, podium results. The app itself
+  is still pre-launch, so the framing is "built and ready at launch"
+  and the waitlist captures teachers who want to know when the app
+  ships.
 
   Strategic role: this is the viral mechanic of Seminary Sidekick.
   One teacher running a live class round = 20-30 students opening the
@@ -26,22 +33,25 @@
 <script lang="ts">
 	import WaitlistForm from '$lib/components/forms/WaitlistForm.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import { ArrowRight, Trophy, Users, Zap } from 'lucide-svelte';
+	import { ArrowRight, TrendingDown, TrendingUp, Trophy, Users, Zap } from 'lucide-svelte';
+	import { reveal } from '$lib/actions';
 
 	type LeaderboardRow = {
 		rank: number;
 		name: string;
 		score: number;
+		/** Positions gained (+) or lost (−) since the last question — mirrors the app's rank deltas. */
+		delta?: number;
 		highlight?: boolean;
 	};
 
 	// Stylised live-game leaderboard. Plausible first names only;
 	// "Sarah" sits at the top with a subtle highlight so the eye lands.
 	const leaderboard: LeaderboardRow[] = [
-		{ rank: 1, name: 'Sarah', score: 1840, highlight: true },
-		{ rank: 2, name: 'Eli', score: 1720 },
+		{ rank: 1, name: 'Sarah', score: 1840, delta: 1, highlight: true },
+		{ rank: 2, name: 'Eli', score: 1720, delta: -1 },
 		{ rank: 3, name: 'Maya', score: 1610 },
-		{ rank: 4, name: 'Jonas', score: 1495 }
+		{ rank: 4, name: 'Jonas', score: 1495, delta: 2 }
 	];
 </script>
 
@@ -63,10 +73,11 @@
 
 	<div
 		class="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:px-8 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
+		use:reveal
 	>
 		<!-- Copy column -->
 		<div class="max-w-xl">
-			<p class="eyebrow">Coming soon · Class Play</p>
+			<p class="eyebrow">In the app · Class Play</p>
 
 			<h2
 				id="class-play-headline"
@@ -76,8 +87,9 @@
 			</h2>
 
 			<p class="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-				Class-wide live rounds. Books, references, key phrases — your students compete on the
-				same board, in real time, from the phones in their pockets.
+				Class-wide live rounds, built in and ready at launch. Students join with a
+				four-letter code or a QR scan — then it's live Quick Quiz or a Scripture Builder
+				race, on the same board, in real time, from the phones in their pockets.
 			</p>
 
 			<!-- Three quick value props above the form so the waitlist has weight. -->
@@ -92,7 +104,8 @@
 					<p class="text-on-surface">
 						<span class="font-semibold">A whole class on one board.</span>
 						<span class="text-on-surface-variant">
-							Project the live leaderboard from the front; students play on their phones.
+							Project the live leaderboard from the front; students play on their
+							phones.
 						</span>
 					</p>
 				</li>
@@ -104,9 +117,10 @@
 						<Zap class="h-4 w-4" stroke-width={1.75} />
 					</span>
 					<p class="text-on-surface">
-						<span class="font-semibold">A five-minute warmup.</span>
+						<span class="font-semibold">Two ways to play.</span>
 						<span class="text-on-surface-variant">
-							Quick rounds across this week's references — fast wins, hyper engagement.
+							Fast Quick Quiz rounds for warmups, or a Scripture Builder race to prove
+							verses cold — head to head.
 						</span>
 					</p>
 				</li>
@@ -155,11 +169,15 @@
 					<span
 						class="inline-flex items-center gap-1.5 rounded-full bg-error/10 px-3 py-1 text-label-md uppercase text-error"
 					>
-						<span class="h-2 w-2 rounded-full bg-error motion-safe:animate-pulse"></span>
+						<span class="h-2 w-2 rounded-full bg-error motion-safe:animate-pulse"
+						></span>
 						Live
 					</span>
 					<span class="text-body-sm text-on-surface-variant">
-						Class code <span class="font-mono font-semibold text-on-surface">SEM-417</span>
+						Join code <span
+							class="font-mono font-semibold tracking-widest text-on-surface"
+							>MAZE</span
+						>
 					</span>
 				</div>
 
@@ -167,14 +185,15 @@
 				<div
 					class="relative mt-5 overflow-hidden rounded-3xl bg-surface-container-low p-5 shadow-editorial"
 				>
-					<span
-						class="absolute top-4 bottom-4 left-0 w-1 rounded-r-full bg-primary"
+					<span class="absolute top-4 bottom-4 left-0 w-1 rounded-r-full bg-primary"
 					></span>
 					<p class="text-label-md uppercase text-on-surface-variant">Question 4 of 10</p>
 					<p class="mt-2 font-serif text-headline-md italic text-on-surface">
 						"For with God nothing shall be impossible."
 					</p>
-					<p class="mt-3 text-body-md text-on-surface-variant">Which reference is this?</p>
+					<p class="mt-3 text-body-md text-on-surface-variant">
+						Which reference is this?
+					</p>
 
 					<!-- Faux answer chips -->
 					<div class="mt-4 grid grid-cols-2 gap-2">
@@ -204,7 +223,9 @@
 				<!-- Leaderboard -->
 				<div class="mt-5">
 					<div class="mb-3 flex items-center justify-between">
-						<p class="text-label-md uppercase text-on-surface-variant">Live leaderboard</p>
+						<p class="text-label-md uppercase text-on-surface-variant">
+							Live leaderboard
+						</p>
 						<span class="text-body-sm text-on-surface-variant">28 in class</span>
 					</div>
 					<ol class="space-y-2">
@@ -220,7 +241,24 @@
 									{row.rank}
 								</span>
 								<span class="flex-1 text-body-lg text-on-surface">{row.name}</span>
-								<span class="font-serif text-headline-sm font-semibold text-on-surface tabular-nums">
+								{#if row.delta}
+									<span
+										class="inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-label-sm tabular-nums {row.delta >
+										0
+											? 'bg-secondary-container text-secondary'
+											: 'bg-error/10 text-error'}"
+									>
+										{#if row.delta > 0}
+											<TrendingUp class="h-3 w-3" aria-hidden="true" />
+										{:else}
+											<TrendingDown class="h-3 w-3" aria-hidden="true" />
+										{/if}
+										{Math.abs(row.delta)}
+									</span>
+								{/if}
+								<span
+									class="font-serif text-headline-sm font-semibold text-on-surface tabular-nums"
+								>
 									{row.score.toLocaleString()}
 								</span>
 							</li>

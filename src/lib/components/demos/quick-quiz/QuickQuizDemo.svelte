@@ -27,14 +27,10 @@
 -->
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Check, X, RotateCcw } from 'lucide-svelte';
+	import { Check, X } from 'lucide-svelte';
 	import { tv } from 'tailwind-variants';
 
-	import {
-		ALL_SCRIPTURES,
-		pickRandomScriptures,
-		TOTAL_SCRIPTURES
-	} from '$lib/data/scriptures';
+	import { ALL_SCRIPTURES, pickRandomScriptures, TOTAL_SCRIPTURES } from '$lib/data/scriptures';
 	import type { Scripture } from '$lib/data/types';
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
 	import { cn } from '$lib/utils';
@@ -188,11 +184,12 @@
 					'ring-2 ring-error',
 					'motion-safe:animate-shake'
 				].join(' '),
-				dimmed: ['bg-surface-container-lowest text-on-surface-variant opacity-60'].join(' '),
-				revealed: [
-					'bg-success-light/60 text-on-surface',
-					'ring-2 ring-success/60'
-				].join(' ')
+				dimmed: ['bg-surface-container-lowest text-on-surface-variant opacity-60'].join(
+					' '
+				),
+				revealed: ['bg-success-light/60 text-on-surface', 'ring-2 ring-success/60'].join(
+					' '
+				)
 			}
 		},
 		defaultVariants: { state: 'idle' }
@@ -249,10 +246,7 @@
 	<div class="relative mx-auto max-w-3xl px-4 md:px-8">
 		<header class="mb-10 text-center">
 			<p class="eyebrow">Quick Quiz</p>
-			<h2
-				id="quick-quiz-demo-heading"
-				class="font-serif text-display-md md:text-display-lg"
-			>
+			<h2 id="quick-quiz-demo-heading" class="font-serif text-display-md md:text-display-lg">
 				Five scriptures. One round.
 			</h2>
 			<p class="mt-3 text-body-lg text-on-surface-variant">
@@ -270,14 +264,10 @@
 			>
 				<!-- Progress + counter -->
 				<div class="mb-6 flex items-center justify-between gap-4">
-					<span
-						class="text-label-md uppercase tracking-[1px] text-on-surface-variant"
-					>
+					<span class="text-label-md uppercase tracking-[1px] text-on-surface-variant">
 						Question {Math.min(currentIndex + 1, questions.length)} of {questions.length}
 					</span>
-					<span
-						class="text-label-md uppercase tracking-[1px] text-on-surface-variant"
-					>
+					<span class="text-label-md uppercase tracking-[1px] text-on-surface-variant">
 						Score {score}
 					</span>
 				</div>
@@ -297,9 +287,7 @@
 				>
 					&ldquo;{trimWrappingQuotes(current.scripture.keyPhrase)}&rdquo;
 				</blockquote>
-				<p
-					class="mt-6 text-label-md uppercase tracking-[1px] text-on-surface-variant"
-				>
+				<p class="mt-6 text-label-md uppercase tracking-[1px] text-on-surface-variant">
 					Which reference?
 				</p>
 
@@ -383,15 +371,13 @@
 					{/if}
 				</h3>
 				<p class="mt-4 max-w-xl text-body-lg text-on-surface-variant">
-					Mastery tracking, three more game modes, and the Sidekick AI — all inside
-					the app.
+					Mastery tracking, three more game modes, and the Sidekick AI — all inside the
+					app.
 				</p>
 
 				{#if missed.length > 0}
 					<div class="mt-8 rounded-2xl bg-surface-container-low p-5">
-						<p
-							class="text-label-md uppercase tracking-[1px] text-on-surface-variant"
-						>
+						<p class="text-label-md uppercase tracking-[1px] text-on-surface-variant">
 							A second look
 						</p>
 						<ul class="mt-3 grid gap-3">
@@ -401,7 +387,9 @@
 										{miss.scripture.reference}
 									</span>
 									<span class="text-on-surface-variant">
-										— &ldquo;{trimWrappingQuotes(miss.scripture.keyPhrase)}&rdquo;
+										— &ldquo;{trimWrappingQuotes(
+											miss.scripture.keyPhrase
+										)}&rdquo;
 									</span>
 								</li>
 							{/each}

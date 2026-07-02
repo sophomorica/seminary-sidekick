@@ -24,6 +24,7 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
 	import { Icon, BookOpen, Blocks, ShieldCheck, Sparkles } from 'lucide-svelte';
+	import { reveal } from '$lib/actions';
 
 	type Step = {
 		number: string;
@@ -78,7 +79,7 @@
 	class="bg-surface-container-low py-16 md:py-24"
 	aria-labelledby="how-it-works-headline"
 >
-	<div class="mx-auto max-w-6xl px-4 md:px-8">
+	<div class="mx-auto max-w-6xl px-4 md:px-8" use:reveal>
 		<div class="max-w-3xl">
 			<p class="eyebrow">How it works</p>
 			<h2

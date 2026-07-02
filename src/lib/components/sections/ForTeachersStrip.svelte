@@ -20,10 +20,11 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowRight } from 'lucide-svelte';
+	import { reveal } from '$lib/actions';
 </script>
 
 <section class="bg-surface-container py-12 md:py-16" aria-labelledby="for-teachers-strip-headline">
-	<div class="mx-auto max-w-6xl px-4 md:px-8">
+	<div class="mx-auto max-w-6xl px-4 md:px-8" use:reveal>
 		<p class="eyebrow">For teachers & parents</p>
 
 		<h2

@@ -34,6 +34,7 @@
 		MessageCircleQuestion,
 		BookOpen
 	} from 'lucide-svelte';
+	import { reveal } from '$lib/actions';
 
 	type Feature = {
 		icon: typeof Sun;
@@ -85,6 +86,7 @@
 
 	<div
 		class="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:px-8 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
+		use:reveal
 	>
 		<!-- Screenshot column -->
 		<div class="order-2 lg:order-1">

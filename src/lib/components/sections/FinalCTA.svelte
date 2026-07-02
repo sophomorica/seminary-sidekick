@@ -19,6 +19,7 @@
 -->
 <script lang="ts">
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
+	import { reveal } from '$lib/actions';
 </script>
 
 <section
@@ -26,7 +27,7 @@
 	class="bg-primary py-16 text-on-primary md:py-20 lg:py-24"
 	aria-labelledby="final-cta-headline"
 >
-	<div class="mx-auto max-w-4xl px-4 text-center md:px-8">
+	<div class="mx-auto max-w-4xl px-4 text-center md:px-8" use:reveal>
 		<h2
 			id="final-cta-headline"
 			class="font-serif text-display-lg tracking-tight md:text-4xl lg:text-5xl"

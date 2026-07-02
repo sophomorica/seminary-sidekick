@@ -12,13 +12,7 @@
  *   <Seo jsonLd={[softwareApplication(), webSite()]} ... />
  */
 
-import {
-	SITE_NAME,
-	SITE_URL,
-	TAGLINE,
-	DEFAULT_OG_IMAGE,
-	CONTACT_EMAIL
-} from '$lib/config/site';
+import { SITE_NAME, SITE_URL, TAGLINE, DEFAULT_OG_IMAGE, CONTACT_EMAIL } from '$lib/config/site';
 
 /**
  * Generic JSON-LD payload shape. We stay loose with `unknown`
@@ -41,9 +35,7 @@ function absolute(pathOrUrl: string): string {
  * Offers are listed as free with optional premium upgrade; we don't
  * embed real prices here (those live in the stores and shift over time).
  */
-export function softwareApplication(
-	overrides: Partial<JsonLd> = {}
-): JsonLd {
+export function softwareApplication(overrides: Partial<JsonLd> = {}): JsonLd {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareApplication',
@@ -84,9 +76,7 @@ export function article(input: {
 			? input.datePublished.toISOString()
 			: input.datePublished;
 	const dateModified =
-		input.dateModified instanceof Date
-			? input.dateModified.toISOString()
-			: input.dateModified;
+		input.dateModified instanceof Date ? input.dateModified.toISOString() : input.dateModified;
 
 	return {
 		'@context': 'https://schema.org',

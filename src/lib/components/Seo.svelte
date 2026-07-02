@@ -20,11 +20,7 @@
   This is a head-only component. It renders nothing in the body.
 -->
 <script lang="ts">
-	import {
-		SITE_NAME,
-		SITE_URL,
-		DEFAULT_OG_IMAGE
-	} from '$lib/config/site';
+	import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from '$lib/config/site';
 	import type { JsonLd } from '$lib/utils/jsonLd';
 
 	type OgType = 'website' | 'article' | 'profile' | 'book' | 'video.other';
@@ -74,9 +70,7 @@
 	const articleModified = $derived(asIso(article?.modifiedTime));
 
 	/** Normalize jsonLd to an array for easy iteration. */
-	const jsonLdList = $derived(
-		jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
-	);
+	const jsonLdList = $derived(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []);
 </script>
 
 <svelte:head>
@@ -120,6 +114,7 @@
 
 	<!-- JSON-LD structured data -->
 	{#each jsonLdList as payload, i (i)}
-		{@html `<script type="application/ld+json">${JSON.stringify(payload)}<\/script>`}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed JsonLd props -->
+		{@html '<script type="application/ld+json">' + JSON.stringify(payload) + '<' + '/script>'}
 	{/each}
 </svelte:head>

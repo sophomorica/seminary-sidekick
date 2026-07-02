@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
 
-	const effectiveDate = 'June 23, 2026';
+	const effectiveDate = 'July 1, 2026';
 	const pageTitle = `Privacy Policy — ${SITE_NAME}`;
 	const canonical = `${SITE_URL}/privacy`;
 </script>
@@ -38,12 +38,14 @@
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		In the current phase of this project (often referred to internally as Tier 1), the website
-		and apps are built with <strong>no user accounts</strong> and <strong>no collection of your
-		name, email address, or other directly identifying information</strong>. The core
-		single-player experience stays entirely on your device. A small amount of pseudonymous data
-		is processed by trusted service providers to power optional features—Group Play multiplayer
-		and premium AI features—as described below. This page explains exactly what that means in
-		plain terms.
+		and apps are built with <strong>no user accounts</strong> and
+		<strong
+			>no collection of your name, email address, or other directly identifying information</strong
+		>. The core single-player experience stays entirely on your device. A small amount of
+		pseudonymous data is processed by trusted service providers to power optional features—Group
+		Play multiplayer and premium AI features—as described below. The only place we accept an
+		email address is an optional teacher launch-notification form on the website. This page
+		explains exactly what all of that means in plain terms.
 	</p>
 
 	<!-- Information We Collect -->
@@ -57,15 +59,18 @@
 		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
 	>
 		<li>
-			<strong>Website:</strong> The marketing site is static. We do not run forms that store
-			your data, newsletters, or waitlists at this time. The only way we receive information
-			is if you voluntarily email us at {CONTACT_EMAIL}.
+			<strong>Website:</strong> The marketing site is largely static. The one exception is an
+			optional <strong>teacher launch-notification form</strong>: if you choose to submit your
+			email address there, we store it (via our form provider, Formspree) solely to notify you
+			about the app's launch and Class Play. We never sell it, never share it, and you can ask
+			us to delete it at any time. Otherwise, the only way we receive information is if you
+			voluntarily email us at {CONTACT_EMAIL}.
 		</li>
 		<li>
 			<strong>Mobile apps:</strong> For the core single-player experience, all progress, notes,
-			and settings live entirely on your device and nothing is sent to our servers. Optional
-			features—Group Play and premium AI features—send limited data to service providers as
-			described in the "Group Play" and "AI features" sections below.
+			and settings live entirely on your device and nothing is sent to our servers. Optional features—Group
+			Play and premium AI features—send limited data to service providers as described in the "Group
+			Play" and "AI features" sections below.
 		</li>
 		<li>
 			<strong>Contact:</strong> When you email us, we receive the message you send. We treat it
@@ -79,24 +84,26 @@
 		Group Play and multiplayer features
 	</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		The optional <strong>Group Play</strong> feature lets students practice together in real time.
-		To make this work, the app sends a limited amount of data to <strong>Supabase</strong>, the
-		cloud service that hosts our multiplayer infrastructure. When you use Group Play, the
-		following is transmitted to and stored on Supabase's servers:
+		The optional <strong>Group Play</strong> feature lets students practice together in real
+		time. To make this work, the app sends a limited amount of data to
+		<strong>Supabase</strong>, the cloud service that hosts our multiplayer infrastructure. When
+		you use Group Play, the following is transmitted to and stored on Supabase's servers:
 	</p>
 	<ul
 		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
 	>
 		<li>
 			<strong>An anonymous user ID:</strong> a randomly generated, persistent identifier created
-			on your device. It is not linked to your name, email, or any account, but it does allow
-			the service to recognize the same device across sessions.
+			on your device. It is not linked to your name, email, or any account, but it does allow the
+			service to recognize the same device across sessions.
 		</li>
 		<li>
-			<strong>Your nickname:</strong> the display name you choose when joining a room. We
-			encourage players not to use their full real name.
+			<strong>Your nickname:</strong> the display name you choose when joining a room. We encourage
+			players not to use their full real name.
 		</li>
-		<li><strong>Room participation records:</strong> which rooms you have created or joined.</li>
+		<li>
+			<strong>Room participation records:</strong> which rooms you have created or joined.
+		</li>
 		<li>
 			<strong>Gameplay data:</strong> your quiz answers and Scripture Builder finish times, used
 			to run the game and show results to other players in the room.
@@ -172,23 +179,18 @@
 		Premium AI features (xAI Grok)
 	</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		Some optional premium features are powered by <strong>Grok</strong>, an AI service operated by
+		Some optional premium features are powered by <strong>Grok</strong>, an AI service operated
+		by
 		<strong>xAI</strong>. These include Ask Your Sidekick chat, AI-generated journal prompts,
-		AI-driven goal suggestions, and Grok-voiced narration. When you use one of these features, the
-		text you enter (such as a chat question or journal-related input) is sent to xAI's servers to
-		generate a response. For narration, the scripture or app text being read aloud is sent to
-		generate the audio.
+		and AI-driven goal suggestions. When you use one of these features, the text you enter (such
+		as a chat question or journal-related input) is sent to xAI's servers to generate a
+		response.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		If you use the voice-to-journal feature, your speech is converted to text on your device, and
-		that transcribed text is then sent to xAI to generate journal prompts or responses. Your audio
-		recording itself is not sent.
-	</p>
-	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		We do not send your name, email, or other identifying information with these requests, and we
-		do not use your AI conversations for advertising. We encourage you not to include sensitive
-		personal details in text you submit to AI features. xAI processes this data as a service
-		provider under <a
+		We do not send your name, email, or other identifying information with these requests, and
+		we do not use your AI conversations for advertising. We encourage you not to include
+		sensitive personal details in text you submit to AI features. xAI processes this data as a
+		service provider under <a
 			href="https://x.ai/legal/privacy-policy"
 			target="_blank"
 			rel="noopener noreferrer"
@@ -225,10 +227,16 @@
 	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">Future features (TBD)</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		We are planning additional capabilities in later phases of the Seminary Sidekick Suite, such
-		as optional waitlists, teacher resource sharing, and community features. These will require
+		as teacher resource sharing, saved class rosters, and community features. These will require
 		accounts and more data handling. When those features are ready, we will update this Privacy
 		Policy well in advance, explain the new practices clearly, and give you control over your
 		information. Until then, the practices described above remain in effect.
+	</p>
+	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
+		We also plan to add premium AI capabilities such as a <strong>voice-to-journal</strong> feature.
+		Voice-to-journal would convert your speech to text on your device and send that transcribed text
+		to xAI to generate journal prompts or responses; your audio recording itself would not be sent.
+		When it ships, we will describe its data practices here before it goes live.
 	</p>
 
 	<!-- Children’s privacy -->
@@ -236,9 +244,8 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		Our services are intended for seminary students, ages 13 and older, and the adults who teach
 		and support them. The apps are not directed to children under 13, and we ask that anyone
-		under 13 not use them. Consistent with our Terms of Use, the Services are available to
-		anyone 13 or older. We do not knowingly collect personal information from children under 13.
-		If you believe we have received information from a child under 13, please contact us
+		under 13 not use them. We do not knowingly collect personal information from children under
+		13. If you believe we have received information from a child under 13, please contact us
 		immediately so we can address it.
 	</p>
 
@@ -247,9 +254,16 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		For the core experience, we do not collect or store personal data on our servers, so there
 		are no individual records for us to retrieve, correct, or delete. If you have used Group
-		Play and would like the data associated with your anonymous ID or nickname removed, or if
-		you have corresponded with us by email and would like us to remove or forget that
-		conversation, simply ask—we will honor reasonable requests.
+		Play and would like the data associated with your anonymous ID or nickname removed, if you
+		joined the teacher notification list and want off it, or if you have corresponded with us by
+		email and would like us to remove or forget that conversation, simply ask—we will honor
+		reasonable requests.
+	</p>
+	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
+		The apps also include a built-in <strong>"Delete All My Data"</strong> option in Settings. It
+		erases everything stored on your device—progress, notes, journal entries, and settings—and disconnects
+		the anonymous Group Play session associated with your device, all in one tap. No email or request
+		needed.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		You are always free to stop using the site and apps at any time.

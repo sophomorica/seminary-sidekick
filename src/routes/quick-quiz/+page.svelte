@@ -53,8 +53,8 @@
 			Five scriptures. One round.
 		</h1>
 		<p class="mx-auto mt-5 max-w-xl text-body-lg text-on-surface-variant md:text-lg">
-			A 30-second taste of Seminary Sidekick — no signup, no install. Read the
-			phrase, pick the reference.
+			A 30-second taste of Seminary Sidekick — no signup, no install. Read the phrase, pick
+			the reference.
 		</p>
 	</div>
 </section>

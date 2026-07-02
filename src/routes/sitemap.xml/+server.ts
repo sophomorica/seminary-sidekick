@@ -16,14 +16,7 @@ import { SITE_URL } from '$lib/config/site';
 type SitemapEntry = {
 	loc: string;
 	lastmod: string; // ISO date (YYYY-MM-DD)
-	changefreq:
-		| 'always'
-		| 'hourly'
-		| 'daily'
-		| 'weekly'
-		| 'monthly'
-		| 'yearly'
-		| 'never';
+	changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 	priority: string; // 0.0–1.0
 };
 

@@ -241,7 +241,11 @@
 	</header>
 
 	{#if !showEndCard}
-		<div class="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8" role="group" aria-label="Matching board">
+		<div
+			class="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8"
+			role="group"
+			aria-label="Matching board"
+		>
 			<!-- Key phrases column -->
 			<ul class="flex flex-col gap-3 md:gap-4" aria-label="Key phrases">
 				{#each phrases as item (item.key)}
@@ -350,4 +354,3 @@
 	<!-- Visually hidden live region for screen readers -->
 	<div class="sr-only" aria-live="polite" aria-atomic="true">{liveMessage}</div>
 </section>
-

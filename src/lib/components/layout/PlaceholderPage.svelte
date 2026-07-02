@@ -14,7 +14,7 @@
 		taskRef?: string;
 	} = $props();
 
-	const pageTitle = `${title} — ${SITE_NAME}`;
+	const pageTitle = $derived(`${title} — ${SITE_NAME}`);
 </script>
 
 <svelte:head>

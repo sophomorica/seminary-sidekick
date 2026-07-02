@@ -6,14 +6,14 @@ One-stop SEO + Open Graph + Twitter + JSON-LD for every page. Replaces hand-roll
 
 ```svelte
 <script lang="ts">
-  import Seo from '$lib/components/Seo.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 </script>
 
 <Seo
-  title="Seminary Sidekick AI — Premium"
-  description="Personal AI study companion for the 100 doctrinal mastery scriptures."
-  canonical="/premium"
-  ogImage="/og/premium.png"
+	title="Seminary Sidekick AI — Premium"
+	description="Personal AI study companion for the 100 doctrinal mastery scriptures."
+	canonical="/premium"
+	ogImage="/og/premium.png"
 />
 ```
 
@@ -23,20 +23,20 @@ One-stop SEO + Open Graph + Twitter + JSON-LD for every page. Replaces hand-roll
 
 ```svelte
 <Seo
-  title={`${post.title} — Seminary Sidekick`}
-  description={post.excerpt}
-  canonical={`/news/${post.slug}`}
-  ogImage={post.cover}
-  type="article"
-  article={{ publishedTime: post.date, author: post.author, tags: post.tags }}
-  jsonLd={article({
-    headline: post.title,
-    description: post.excerpt,
-    image: post.cover,
-    datePublished: post.date,
-    author: post.author,
-    url: `/news/${post.slug}`
-  })}
+	title={`${post.title} — Seminary Sidekick`}
+	description={post.excerpt}
+	canonical={`/news/${post.slug}`}
+	ogImage={post.cover}
+	type="article"
+	article={{ publishedTime: post.date, author: post.author, tags: post.tags }}
+	jsonLd={article({
+		headline: post.title,
+		description: post.excerpt,
+		image: post.cover,
+		datePublished: post.date,
+		author: post.author,
+		url: `/news/${post.slug}`
+	})}
 />
 ```
 
@@ -46,15 +46,15 @@ Helpers live in `$lib/utils/jsonLd`. Pass a single object or an array:
 
 ```svelte
 <script lang="ts">
-  import Seo from '$lib/components/Seo.svelte';
-  import { softwareApplication, webSite } from '$lib/utils/jsonLd';
+	import Seo from '$lib/components/Seo.svelte';
+	import { softwareApplication, webSite } from '$lib/utils/jsonLd';
 </script>
 
 <Seo
-  title="Seminary Sidekick — Master the 100 doctrinal mastery scriptures"
-  description="..."
-  canonical="/"
-  jsonLd={[softwareApplication(), webSite()]}
+	title="Seminary Sidekick — Master the 100 doctrinal mastery scriptures"
+	description="..."
+	canonical="/"
+	jsonLd={[softwareApplication(), webSite()]}
 />
 ```
 

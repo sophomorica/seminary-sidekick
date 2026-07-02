@@ -12,8 +12,10 @@
     3. "Sample outputs"    — three hand-curated example cards
                              (SampleOutput) that prove the AI without
                              a live Grok call.
-    4. Pricing             — short note: free trial inside the app,
-                             subscription managed via the stores.
+    4. Pricing             — real plan cards ($4.99/mo, $34.99/yr,
+                             "Save 42%"), subscription managed via
+                             the stores. No free trial (owner
+                             decision, 2026-06-13).
     5. Final CTA           — StoreButtons + outlined "Read about the
                              app →" link to /apps/scripture-mastery.
 
@@ -103,9 +105,7 @@
 		></div>
 
 		<div class="relative mx-auto max-w-4xl px-4 text-center md:px-8">
-			<p
-				class="text-xs font-semibold uppercase tracking-[1.5px] text-on-tertiary-container"
-			>
+			<p class="text-xs font-semibold uppercase tracking-[1.5px] text-on-tertiary-container">
 				Seminary Sidekick AI · Premium
 			</p>
 
@@ -128,16 +128,13 @@
 			</div>
 
 			<p class="mt-6 text-body-sm text-on-tertiary-container/75">
-				Free trial inside the app · Subscription manages through the App Store or Play Store
+				$4.99/month or $34.99/year · Managed through the App Store or Play Store
 			</p>
 		</div>
 	</section>
 
 	<!-- ─── 2. What you get ───────────────────────────────────────── -->
-	<section
-		class="relative bg-surface py-16 md:py-24"
-		aria-labelledby="premium-features-headline"
-	>
+	<section class="relative bg-surface py-16 md:py-24" aria-labelledby="premium-features-headline">
 		<div class="mx-auto max-w-6xl px-4 md:px-8">
 			<div class="max-w-2xl">
 				<p class="eyebrow">What you get</p>
@@ -156,11 +153,7 @@
 
 			<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each features as feature (feature.title)}
-					<PremiumFeature
-						icon={feature.icon}
-						title={feature.title}
-						body={feature.body}
-					/>
+					<PremiumFeature icon={feature.icon} title={feature.title} body={feature.body} />
 				{/each}
 			</div>
 		</div>
@@ -222,33 +215,54 @@
 	</section>
 
 	<!-- ─── 4. Pricing ───────────────────────────────────────────── -->
-	<section
-		class="relative bg-surface py-16 md:py-24"
-		aria-labelledby="premium-pricing-headline"
-	>
+	<section class="relative bg-surface py-16 md:py-24" aria-labelledby="premium-pricing-headline">
 		<div class="mx-auto max-w-3xl px-4 text-center md:px-8">
 			<p class="eyebrow">Pricing</p>
 			<h2
 				id="premium-pricing-headline"
 				class="font-serif text-display-md tracking-tight md:text-display-lg"
 			>
-				Free trial inside the app.
+				One subscription. Two ways to pay.
 			</h2>
 			<p class="mx-auto mt-5 max-w-xl text-body-lg leading-relaxed text-on-surface-variant">
-				Premium unlocks Seminary Sidekick AI for the whole school year. Subscription
-				manages through the App Store or Google Play — cancel any time, right from your
-				device settings.
+				Premium unlocks Seminary Sidekick AI for the whole school year. Subscribe inside the
+				app — billing manages through the App Store or Google Play, and you can cancel any
+				time, right from your device settings.
 			</p>
 
+			<!-- Plan cards — prices locked 2026-06-13; keep in sync with the app's upgrade screen. -->
+			<div class="mx-auto mt-10 grid max-w-lg grid-cols-1 gap-4 sm:grid-cols-2">
+				<div
+					class="flex flex-col items-center gap-1 rounded-4xl bg-surface-container-lowest px-8 py-8 shadow-editorial"
+				>
+					<span class="text-label-md uppercase text-on-surface-variant">Monthly</span>
+					<p class="mt-2 font-serif text-display-md text-on-surface">$4.99</p>
+					<p class="text-body-sm text-on-surface-variant">per month</p>
+				</div>
+				<div
+					class="relative flex flex-col items-center gap-1 rounded-4xl bg-surface-container-lowest px-8 py-8 shadow-floating ring-2 ring-premium-gold/60"
+				>
+					<span
+						class="absolute -top-3 rounded-full bg-premium-gold px-3 py-1 text-label-sm font-semibold uppercase text-on-tertiary-container"
+					>
+						Save 42%
+					</span>
+					<span class="text-label-md uppercase text-on-surface-variant">Yearly</span>
+					<p class="mt-2 font-serif text-display-md text-on-surface">$34.99</p>
+					<p class="text-body-sm text-on-surface-variant">per year</p>
+				</div>
+			</div>
+
 			<div
-				class="mx-auto mt-10 inline-flex flex-col items-center gap-3 rounded-4xl bg-surface-container-lowest px-8 py-6 shadow-editorial"
+				class="mx-auto mt-8 inline-flex flex-col items-center gap-3 rounded-4xl bg-surface-container-lowest px-8 py-6 shadow-editorial"
 			>
 				<span class="text-label-md uppercase text-tertiary">Included with Premium</span>
 				<p class="font-serif text-headline-md text-on-surface">
 					Daily prompt · Journal · Goals · Reflection · Connections · Chat
 				</p>
 				<p class="text-body-sm text-on-surface-variant">
-					Everything on this page, plus future Sidekick AI features as they ship.
+					Plus full-size Class Play hosting — class rooms for up to 30 players — and
+					future Sidekick AI features as they ship.
 				</p>
 			</div>
 		</div>
@@ -267,7 +281,7 @@
 				Try Premium inside the app.
 			</h2>
 			<p class="mx-auto mt-5 max-w-xl text-body-lg leading-relaxed text-on-surface-variant">
-				Download {SITE_NAME}, start the free trial, and meet your Sidekick.
+				Download {SITE_NAME}, subscribe in a couple of taps, and meet your Sidekick.
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center justify-center gap-3">

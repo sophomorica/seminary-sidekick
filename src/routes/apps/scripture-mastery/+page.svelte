@@ -116,11 +116,11 @@
 			icon: Users,
 			eyebrow: 'For teachers',
 			title: 'Class Play',
-			body: 'Live, class-wide rounds. Coming soon.',
+			body: 'Live, class-wide rounds — Kahoot-style Quick Quiz or a Scripture Builder race. Students join with a four-letter code or QR scan; the leaderboard updates in real time.',
 			iconBg: 'bg-accent-light/30',
 			iconColor: 'text-accent',
 			href: '/for-teachers#class-play',
-			hint: 'Coming soon'
+			hint: 'Built in'
 		}
 	];
 
@@ -136,7 +136,7 @@
 		},
 		{
 			q: 'Do I need an account?',
-			a: 'No account is required to use the free tier. Your progress lives on your device. Premium adds an account so your AI study companion has the right context.'
+			a: 'No. There are no accounts at all — free or premium. Your progress lives on your device, premium is unlocked through your App Store subscription, and Class Play uses anonymous session IDs and nicknames.'
 		},
 		{
 			q: 'What about Android?',
@@ -146,7 +146,7 @@
 		},
 		{
 			q: 'Is it actually free?',
-			a: 'The full mastery loop — Scripture Builder, study tools, practice quizzes, progress tracking — is free. The Seminary Sidekick AI companion is the premium tier and adds journal prompts, suggested goals, and reflection questions. Free trial inside the app.'
+			a: 'The full mastery loop — Scripture Builder, study tools, practice quizzes, progress tracking, and casual Class Play rooms — is free. Premium ($4.99/month or $34.99/year) adds the Seminary Sidekick AI companion — journal prompts, suggested goals, reflection questions, chat — plus full-size Class Play rooms for up to 30 players.'
 		}
 	];
 </script>
@@ -191,9 +191,8 @@
 
 			<p class="text-on-surface-variant mt-6 max-w-xl text-lg leading-relaxed md:text-xl">
 				Most scripture mastery apps test recognition. Scripture Sidekick tests
-				<em class="font-serif italic">production</em> — can you type the verse cold,
-				without prompts, three times in a row? When the answer is yes, you've mastered it.
-				Not before.
+				<em class="font-serif italic">production</em> — can you type the verse cold, without prompts,
+				three times in a row? When the answer is yes, you've mastered it. Not before.
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center gap-3">
@@ -215,7 +214,9 @@
 				class="bg-surface-container-lowest shadow-floating motion-safe:animate-float relative mx-auto aspect-[9/19] w-full max-w-[320px] overflow-hidden rounded-[3rem] lg:max-w-[360px]"
 				data-placeholder
 			>
-				<div class="absolute inset-0 flex flex-col items-center justify-between p-8 text-center">
+				<div
+					class="absolute inset-0 flex flex-col items-center justify-between p-8 text-center"
+				>
 					<div class="flex w-full items-center justify-between">
 						<span class="text-label-sm text-on-surface-variant uppercase">9:41</span>
 						<span class="bg-on-surface/20 h-1.5 w-12 rounded-full"></span>
@@ -249,10 +250,7 @@
 </section>
 
 <!-- ─── By the numbers ─────────────────────────────────────────── -->
-<section
-	class="bg-surface-container-low py-16 md:py-24"
-	aria-labelledby="sm-numbers-headline"
->
+<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="sm-numbers-headline">
 	<div class="mx-auto max-w-6xl px-4 md:px-8">
 		<div class="max-w-3xl">
 			<p class="eyebrow">By the numbers</p>
@@ -273,7 +271,9 @@
 				<div class="card flex flex-col gap-3">
 					<dt class="text-label-md text-on-surface-variant uppercase">{stat.label}</dt>
 					<dd>
-						<p class="text-on-surface font-serif text-5xl font-bold tracking-tight md:text-6xl">
+						<p
+							class="text-on-surface font-serif text-5xl font-bold tracking-tight md:text-6xl"
+						>
 							{stat.value}
 						</p>
 						<p class="text-on-surface-variant mt-3 text-body-md">{stat.sub}</p>
@@ -289,7 +289,8 @@
 				<span
 					class="bg-surface-container-lowest text-on-surface inline-flex items-center gap-2 rounded-full px-4 py-2 text-body-md"
 				>
-					<span class="h-2.5 w-2.5 rounded-full {meta.tailwindBg}" aria-hidden="true"></span>
+					<span class="h-2.5 w-2.5 rounded-full {meta.tailwindBg}" aria-hidden="true"
+					></span>
 					{meta.label} · {byBook[book] ?? 0}
 				</span>
 			{/each}
@@ -309,8 +310,8 @@
 				A handful of tools, one quiet loop.
 			</h2>
 			<p class="text-on-surface-variant mt-5 max-w-2xl text-lg leading-relaxed">
-				Each one earns its place against a single test: does it help a student move
-				from "I sort of remember this" to "I can produce this from memory"?
+				Each one earns its place against a single test: does it help a student move from "I
+				sort of remember this" to "I can produce this from memory"?
 			</p>
 		</div>
 
@@ -327,11 +328,16 @@
 								class="flex h-14 w-14 items-center justify-center rounded-full {feature.iconBg}"
 								aria-hidden="true"
 							>
-								<FeatureIcon class="h-7 w-7 {feature.iconColor}" stroke-width={1.5} />
+								<FeatureIcon
+									class="h-7 w-7 {feature.iconColor}"
+									stroke-width={1.5}
+								/>
 							</div>
 
 							<div>
-								<p class="text-label-md text-on-surface-variant uppercase">{feature.eyebrow}</p>
+								<p class="text-label-md text-on-surface-variant uppercase">
+									{feature.eyebrow}
+								</p>
 								<div class="mt-2 flex flex-wrap items-baseline gap-3">
 									<h3 class="text-headline-md font-serif">{feature.title}</h3>
 									{#if feature.hint}
@@ -346,7 +352,9 @@
 
 							<p class="text-on-surface-variant">{feature.body}</p>
 
-							<span class="mt-auto inline-flex items-center gap-1.5 text-label-lg text-primary">
+							<span
+								class="mt-auto inline-flex items-center gap-1.5 text-label-lg text-primary"
+							>
 								Learn more
 								<ArrowRight class="h-4 w-4" aria-hidden="true" />
 							</span>
@@ -362,7 +370,9 @@
 						</div>
 
 						<div>
-							<p class="text-label-md text-on-surface-variant uppercase">{feature.eyebrow}</p>
+							<p class="text-label-md text-on-surface-variant uppercase">
+								{feature.eyebrow}
+							</p>
 							<h3 class="text-headline-md mt-2 font-serif">{feature.title}</h3>
 						</div>
 
@@ -400,8 +410,8 @@
 				A study companion lives inside the app.
 			</h2>
 			<p class="text-on-surface-variant mt-3 text-body-lg leading-relaxed">
-				Daily prompts, dynamic journal questions, suggested goals, reflection prompts —
-				all curated for doctrinal mastery, never an open chat.
+				Daily prompts, dynamic journal questions, suggested goals, reflection prompts — all
+				curated for doctrinal mastery, never an open chat.
 			</p>
 		</div>
 
@@ -437,7 +447,9 @@
 			{#each faqs as faq (faq.q)}
 				<div class="card">
 					<dt class="text-headline-sm font-serif">{faq.q}</dt>
-					<dd class="text-on-surface-variant mt-3 text-body-lg leading-relaxed">{faq.a}</dd>
+					<dd class="text-on-surface-variant mt-3 text-body-lg leading-relaxed">
+						{faq.a}
+					</dd>
 				</div>
 			{/each}
 		</dl>
