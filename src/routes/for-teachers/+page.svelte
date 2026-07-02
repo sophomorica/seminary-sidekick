@@ -192,7 +192,11 @@
 			</h2>
 			<p class="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
 				You don’t need to redesign your class around an app. Pick one of these and try it
-				for a week. A third, live shape — <a href="#class-play" class="text-accent underline underline-offset-2 hover:text-primary">Class Play</a> — is on its way.
+				for a week. A third, live shape — <a
+					href="#class-play"
+					class="text-accent underline underline-offset-2 hover:text-primary"
+					>Class Play</a
+				> — is built in and ready on day one.
 			</p>
 		</div>
 
@@ -230,9 +234,11 @@
 	</div>
 </section>
 
-<!-- ─── Class Play (Coming soon) ───────────────────────────────── -->
+<!-- ─── Class Play (built in, ships with the app) ──────────────── -->
 <!--
-  Marquee section for the upcoming live classroom multiplayer mode.
+  Marquee section for the live classroom multiplayer mode. Shipped
+  in-app v1, May 2026 (live Quick Quiz + Scripture Builder Race);
+  the app itself is pre-launch, hence the launch-notify waitlist.
   Elevated from a small tile in the classroom-uses grid above because
   this is the viral mechanic of the whole product — one teacher running
   a live round = 20-30 students opening the app at once.
@@ -259,7 +265,7 @@
 		class="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:px-8 lg:grid-cols-[1fr_1fr] lg:gap-16"
 	>
 		<div class="max-w-xl">
-			<p class="eyebrow">Coming soon · Class Play</p>
+			<p class="eyebrow">Built in · Class Play</p>
 			<h2
 				id="class-play-headline"
 				class="font-serif text-display-md tracking-tight md:text-display-lg"
@@ -269,17 +275,18 @@
 
 			<div class="mt-6 space-y-4 text-lg leading-relaxed text-on-surface-variant">
 				<p>
-					Five minutes before class, you open the app on the projector and start a
-					round. Students join from their phones — no app store run, no logins, just a
-					class code. Books, references, key phrases. Their answers stream onto the
-					leaderboard in real time.
+					Five minutes before class, you open the app on the projector and start a round.
+					Students join from their phones — no accounts, no logins, just a four-letter
+					code or a QR scan. Run a live Quick Quiz across books, references, and key
+					phrases, or a Scripture Builder race to see who can prove a verse cold first.
+					Their answers stream onto the leaderboard in real time.
 				</p>
 				<p>
-					It’s the warmup that wakes everyone up. The five minutes that turn into
-					ten. The Friday tradition. The thing students text their friends about. We
-					call it <span class="font-serif italic text-on-surface">Class Play</span>, and
-					it’s the part of Seminary Sidekick that turns scripture mastery into something
-					a whole classroom does together.
+					It’s the warmup that wakes everyone up. The five minutes that turn into ten. The
+					Friday tradition. The thing students text their friends about. We call it <span
+						class="font-serif italic text-on-surface">Class Play</span
+					>, and it’s the part of Seminary Sidekick that turns scripture mastery into
+					something a whole classroom does together.
 				</p>
 			</div>
 
@@ -309,7 +316,8 @@
 					<p class="text-on-surface">
 						<span class="font-semibold">Five-minute warmup.</span>
 						<span class="text-on-surface-variant">
-							Short rounds across this week’s references. Hyper engagement, every time.
+							Short rounds across this week’s references. Hyper engagement, every
+							time.
 						</span>
 					</p>
 				</li>
@@ -414,8 +422,12 @@
 				</h2>
 				<p class="mt-3 text-on-surface-variant">
 					Lesson outlines, object lessons, printable handouts, and a small community of
-					teachers sharing what worked this week. We’re building it next, alongside
-					<a href="#class-play" class="text-accent underline underline-offset-2 hover:text-primary">Class Play</a>. Want a say in what ships first? The mailto below goes straight
+					teachers sharing what worked this week — plus saved class rosters so
+					<a
+						href="#class-play"
+						class="text-accent underline underline-offset-2 hover:text-primary"
+						>Class Play</a
+					> setup takes seconds. Want a say in what ships first? The mailto below goes straight
 					to me.
 				</p>
 			</div>

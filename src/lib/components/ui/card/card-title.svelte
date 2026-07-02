@@ -14,7 +14,7 @@
 		level?: 1 | 2 | 3 | 4 | 5 | 6;
 	} = $props();
 
-	const tag = `h${level}` as const;
+	const tag = $derived(`h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6');
 </script>
 
 <svelte:element

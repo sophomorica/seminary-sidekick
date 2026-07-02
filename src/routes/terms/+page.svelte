@@ -53,8 +53,8 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		The current phase of the project does not require or support user accounts. The core
 		single-player experience stays on your device. Optional features such as Group Play
-		multiplayer and premium AI features involve limited data processing by service providers,
-		as described in our Privacy Policy.
+		multiplayer and premium AI features involve limited data processing by service providers, as
+		described in our Privacy Policy.
 	</p>
 
 	<!-- Eligibility -->
@@ -73,9 +73,9 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		In this phase, you do not need to create an account or provide personal information to use
 		the website or apps. Your progress and settings for the core single-player experience are
-		stored locally on your device. Future
-		phases may introduce optional accounts for features such as teacher resources or community
-		sharing. When that happens, we will update these Terms and provide clear notice.
+		stored locally on your device. Future phases may introduce optional accounts for features
+		such as teacher resources or community sharing. When that happens, we will update these
+		Terms and provide clear notice.
 	</p>
 
 	<!-- License -->
@@ -117,12 +117,12 @@
 			period, at the price of the plan you selected.
 		</li>
 		<li>
-			You can manage your subscriptions and turn off auto-renewal at any time in your App Store
-			or Google Play account settings after purchase.
+			You can manage your subscriptions and turn off auto-renewal at any time in your App
+			Store or Google Play account settings after purchase.
 		</li>
 		<li>
-			Any unused portion of a free trial period, if offered, will be forfeited when you purchase
-			a subscription.
+			Any unused portion of a free trial period, if offered, will be forfeited when you
+			purchase a subscription.
 		</li>
 	</ul>
 	<ul

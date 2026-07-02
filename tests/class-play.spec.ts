@@ -32,9 +32,7 @@ test.describe('Class Play — homepage section', () => {
 
 		// The waitlist form exposes its email field via aria-label and a
 		// "Join the waitlist" button.
-		const emailField = section
-			.getByRole('textbox', { name: /class play/i })
-			.first();
+		const emailField = section.getByRole('textbox', { name: /class play/i }).first();
 		await expect(emailField).toBeVisible();
 		await expect(emailField).toHaveAttribute('type', 'email');
 
@@ -53,9 +51,7 @@ test.describe('Class Play — homepage section', () => {
 			.first()
 			.fill('teacher@example.com');
 
-		await section
-			.getByRole('button', { name: /join the class play waitlist/i })
-			.click();
+		await section.getByRole('button', { name: /join the class play waitlist/i }).click();
 
 		// Success card is announced via role="status".
 		await expect(section.getByRole('status')).toContainText(/on the list/i);
@@ -65,14 +61,10 @@ test.describe('Class Play — homepage section', () => {
 		await page.goto('/');
 
 		const section = page.locator('#class-play');
-		const emailField = section
-			.getByRole('textbox', { name: /class play/i })
-			.first();
+		const emailField = section.getByRole('textbox', { name: /class play/i }).first();
 		await emailField.fill('not-an-email');
 
-		await section
-			.getByRole('button', { name: /join the class play waitlist/i })
-			.click();
+		await section.getByRole('button', { name: /join the class play waitlist/i }).click();
 
 		// The success state should NOT appear — the browser blocked submit.
 		await expect(section.getByRole('status')).toHaveCount(0);
@@ -93,9 +85,7 @@ test.describe('Class Play — /for-teachers', () => {
 		).toBeVisible();
 
 		// The dedicated page also gets its own waitlist form.
-		await expect(
-			section.getByRole('textbox', { name: /class play/i }).first()
-		).toBeVisible();
+		await expect(section.getByRole('textbox', { name: /class play/i }).first()).toBeVisible();
 		await expect(
 			section.getByRole('button', { name: /join the class play waitlist/i })
 		).toBeVisible();

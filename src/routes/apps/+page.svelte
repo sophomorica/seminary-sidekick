@@ -63,13 +63,11 @@
 			One app today. More coming.
 		</h1>
 
-		<p
-			class="text-on-surface-variant mt-5 max-w-2xl text-lg leading-relaxed md:text-xl"
-		>
+		<p class="text-on-surface-variant mt-5 max-w-2xl text-lg leading-relaxed md:text-xl">
 			Seminary Sidekick is growing into a suite of focused, reverent tools for seminary
-			students and the teachers who shape them. Scripture Mastery is the first. The next
-			ones are built with the same craft and the same conviction — that this hour of the
-			day deserves a tool that takes it seriously.
+			students and the teachers who shape them. Scripture Mastery is the first. The next ones
+			are built with the same craft and the same conviction — that this hour of the day
+			deserves a tool that takes it seriously.
 		</p>
 	</div>
 </section>
@@ -102,19 +100,19 @@
 </section>
 
 <!-- ─── Why a suite? footer band ─────────────────────────────── -->
-<section
-	class="bg-surface-container-low py-16 md:py-24"
-	aria-labelledby="why-suite-headline"
->
+<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="why-suite-headline">
 	<div class="mx-auto max-w-3xl px-4 text-center md:px-8">
 		<p class="eyebrow">Why a suite?</p>
-		<h2 id="why-suite-headline" class="text-display-md md:text-display-lg font-serif tracking-tight">
+		<h2
+			id="why-suite-headline"
+			class="text-display-md md:text-display-lg font-serif tracking-tight"
+		>
 			One brand. Many tools. The same standard.
 		</h2>
 		<p class="text-on-surface-variant mt-5 text-body-lg leading-relaxed md:text-lg">
-			Every Sidekick app earns its place against a simple test: does it make seminary
-			feel like the best hour of the day? When the answer is yes, it ships. When it isn't,
-			it waits. That's why there's one app on this page today instead of three.
+			Every Sidekick app earns its place against a simple test: does it make seminary feel
+			like the best hour of the day? When the answer is yes, it ships. When it isn't, it
+			waits. That's why there's one app on this page today instead of three.
 		</p>
 	</div>
 </section>

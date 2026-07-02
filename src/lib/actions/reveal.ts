@@ -26,9 +26,7 @@ export const reveal: Action<HTMLElement> = (node) => {
 
 	node.classList.add('reveal');
 
-	const prefersReducedMotion = window.matchMedia(
-		'(prefers-reduced-motion: reduce)'
-	).matches;
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	// IntersectionObserver may not exist in very old browsers — fall back gracefully.
 	if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {

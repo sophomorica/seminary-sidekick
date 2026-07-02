@@ -33,14 +33,14 @@ yourself.
 
 ## What's covered
 
-| File | What it asserts |
-| --- | --- |
-| `smoke.spec.ts` | Every public route returns 200, renders the layout shell, has at least one `<h1>`, and throws zero JS console errors. Also: 404 page works, RSS feed serves valid XML. |
-| `nav.spec.ts` | Logo links home from any page. Every AppNav link (Premium, For teachers, News, How it works) routes to the right place. Every AppFooter link returns 200. Skip link is keyboard-first and jumps to `#main-content`. Mobile menu opens/closes correctly. |
-| `demos/quick-quiz.spec.ts` | The Quick Quiz at `/quick-quiz` renders with interactive choice buttons, advances through 5 questions when clicked, and ends on a card containing store CTAs. |
-| `demos/scripture-match.spec.ts` | The Scripture Match at `/scripture-match` renders 16+ selectable items in two columns, exposes `aria-pressed`, and toggles selection state on click. |
-| `legal.spec.ts` | Privacy and Terms pages render every required `<h2>` section (so a copy-edit can't silently delete the children's-privacy clause, etc.). |
-| `a11y.spec.ts` | Per-route: every `<img>` has alt, every interactive control has an accessible name, exactly one `<h1>`. Site-wide: skip link is the first keyboard target. |
+| File                            | What it asserts                                                                                                                                                                                                                                         |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `smoke.spec.ts`                 | Every public route returns 200, renders the layout shell, has at least one `<h1>`, and throws zero JS console errors. Also: 404 page works, RSS feed serves valid XML.                                                                                  |
+| `nav.spec.ts`                   | Logo links home from any page. Every AppNav link (Premium, For teachers, News, How it works) routes to the right place. Every AppFooter link returns 200. Skip link is keyboard-first and jumps to `#main-content`. Mobile menu opens/closes correctly. |
+| `demos/quick-quiz.spec.ts`      | The Quick Quiz at `/quick-quiz` renders with interactive choice buttons, advances through 5 questions when clicked, and ends on a card containing store CTAs.                                                                                           |
+| `demos/scripture-match.spec.ts` | The Scripture Match at `/scripture-match` renders 16+ selectable items in two columns, exposes `aria-pressed`, and toggles selection state on click.                                                                                                    |
+| `legal.spec.ts`                 | Privacy and Terms pages render every required `<h2>` section (so a copy-edit can't silently delete the children's-privacy clause, etc.).                                                                                                                |
+| `a11y.spec.ts`                  | Per-route: every `<img>` has alt, every interactive control has an accessible name, exactly one `<h1>`. Site-wide: skip link is the first keyboard target.                                                                                              |
 
 ## "Timestamp of things that work"
 

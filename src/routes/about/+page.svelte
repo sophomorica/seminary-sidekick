@@ -48,11 +48,11 @@
 	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">The mission</h2>
 	<!-- TODO(owner): refine voice -->
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		Seminary Sidekick exists to make the 100 doctrinal mastery scriptures stick — not as a chore,
-		but as a focused, reverent, satisfying daily habit. The doctrinal mastery program is a real
-		gift from the Church Educational System, and the scriptures inside it are some of the most
-		important verses a teenager will ever carry with them. They deserve a study tool that respects
-		that weight while still being genuinely fun to open.
+		Seminary Sidekick exists to make the 100 doctrinal mastery scriptures stick — not as a
+		chore, but as a focused, reverent, satisfying daily habit. The doctrinal mastery program is
+		a real gift from the Church Educational System, and the scriptures inside it are some of the
+		most important verses a teenager will ever carry with them. They deserve a study tool that
+		respects that weight while still being genuinely fun to open.
 	</p>
 	<!-- TODO(owner): refine voice -->
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
@@ -68,16 +68,17 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		I started building Seminary Sidekick because every scripture mastery tool I could find felt
 		either like flashcards in a trench coat or a worksheet pretending to be an app. None of them
-		captured what the experience is actually supposed to feel like — quiet, focused, a little bit
-		sacred, and (this is the part most tools miss) genuinely satisfying. I wanted something my own
-		seminary self would have opened on the bus without being told to.
+		captured what the experience is actually supposed to feel like — quiet, focused, a little
+		bit sacred, and (this is the part most tools miss) genuinely satisfying. I wanted something
+		my own seminary self would have opened on the bus without being told to.
 	</p>
 	<!-- TODO(owner): refine voice -->
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		So I built the Flutter app first — design, code, scripture data, animations, every confetti
 		particle. It's a real labor of love. The Scripture Builder is the heart of it: progressively
 		harder tiers that ask you to actually produce the words, not just recognize them. When you
-		nail the Master tier three times in a row, the app calls that mastered, and you've earned it.
+		nail the Master tier three times in a row, the app calls that mastered, and you've earned
+		it.
 	</p>
 	<!-- TODO(owner): refine voice -->
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">

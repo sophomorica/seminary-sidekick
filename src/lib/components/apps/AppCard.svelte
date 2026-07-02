@@ -114,7 +114,7 @@
 		{#if href}
 			<div class="mt-auto pt-2">
 				<a
-					href={href}
+					{href}
 					class="focus-ring text-label-lg text-primary group inline-flex items-center gap-1.5 underline decoration-primary/0 underline-offset-4 transition-colors hover:decoration-primary/40"
 				>
 					Learn more

@@ -43,9 +43,11 @@
 		<h1 class="font-serif text-display-lg tracking-tight md:text-hero-lg">
 			Eight scriptures. Match them.
 		</h1>
-		<p class="mx-auto mt-5 max-w-xl text-body-lg leading-relaxed text-on-surface-variant md:text-lg">
-			A taste of the doctrinal-mastery loop. Pair each key phrase with its reference, then bring the
-			other 92 home in the app.
+		<p
+			class="mx-auto mt-5 max-w-xl text-body-lg leading-relaxed text-on-surface-variant md:text-lg"
+		>
+			A taste of the doctrinal-mastery loop. Pair each key phrase with its reference, then
+			bring the other 92 home in the app.
 		</p>
 	</div>
 </section>

@@ -27,6 +27,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowRight } from 'lucide-svelte';
 	import { loadPosts } from '$lib/content/loadPosts';
+	import { reveal } from '$lib/actions';
 
 	const posts = $derived(loadPosts().slice(0, 3));
 
@@ -45,7 +46,7 @@
 	class="bg-surface-container py-16 md:py-24"
 	aria-labelledby="news-preview-headline"
 >
-	<div class="mx-auto max-w-6xl px-4 md:px-8">
+	<div class="mx-auto max-w-6xl px-4 md:px-8" use:reveal>
 		<p class="eyebrow">What's new</p>
 
 		<h2
@@ -56,8 +57,8 @@
 		</h2>
 
 		<p class="mt-4 max-w-2xl text-body-lg text-on-surface-variant">
-			Short reads from the Seminary Sidekick team — a steady, quiet thread of
-			scripture, craft, and the work of building this thing.
+			Short reads from the Seminary Sidekick team — a steady, quiet thread of scripture,
+			craft, and the work of building this thing.
 		</p>
 
 		<div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -73,8 +74,8 @@
 						The first posts land with launch.
 					</h3>
 					<p class="mt-3 mx-auto max-w-xl text-body-md text-on-surface-variant">
-						Devotionals, release notes, and behind-the-scenes writing are on
-						the way. Subscribe via the news feed once it goes live.
+						Devotionals, release notes, and behind-the-scenes writing are on the way.
+						Subscribe via the news feed once it goes live.
 					</p>
 				</div>
 			{:else}
@@ -94,10 +95,7 @@
 							/>
 						{/if}
 
-						<time
-							datetime={post.date}
-							class="text-body-sm text-on-surface-variant"
-						>
+						<time datetime={post.date} class="text-body-sm text-on-surface-variant">
 							{formatDate(post.date)}
 						</time>
 

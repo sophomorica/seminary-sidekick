@@ -26,7 +26,9 @@ test.describe('Scripture Match demo', () => {
 		// Items are populated in onMount, so wait for the first one before counting.
 		await expect(items.first()).toBeVisible();
 		const count = await items.count();
-		expect(count, 'Scripture Match should expose ~16 selectable items').toBeGreaterThanOrEqual(16);
+		expect(count, 'Scripture Match should expose ~16 selectable items').toBeGreaterThanOrEqual(
+			16
+		);
 	});
 
 	test('items are focusable and use aria-pressed for selection state', async ({ page }) => {
@@ -39,7 +41,10 @@ test.describe('Scripture Match demo', () => {
 
 		// Before click: aria-pressed is "false" (selectable).
 		const beforeAria = await first.getAttribute('aria-pressed');
-		expect(beforeAria, 'items should expose aria-pressed for SR-friendly selection').not.toBeNull();
+		expect(
+			beforeAria,
+			'items should expose aria-pressed for SR-friendly selection'
+		).not.toBeNull();
 	});
 
 	test('clicking an item toggles its visual selection state', async ({ page }) => {

@@ -33,7 +33,7 @@
 
 	let {
 		placement,
-		label = 'Teachers — get notified when Class Play launches'
+		label = 'Teachers — get notified when the app launches'
 	}: {
 		placement: Placement;
 		label?: string;
@@ -42,7 +42,8 @@
 	// Stable id per instance so multiple forms on one page each have a
 	// unique input id. The placement is unique per page in practice; a
 	// random suffix guards against accidental duplicates on the same page.
-	const fieldId = `waitlist-email-${placement}-${Math.random().toString(36).slice(2, 8)}`;
+	const idSuffix = Math.random().toString(36).slice(2, 8);
+	const fieldId = $derived(`waitlist-email-${placement}-${idSuffix}`);
 
 	let email = $state('');
 	let status: 'idle' | 'submitting' | 'success' | 'error' = $state('idle');

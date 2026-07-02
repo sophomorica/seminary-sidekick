@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
 
-	const effectiveDate = 'June 23, 2026';
+	const effectiveDate = 'July 1, 2026';
 	const pageTitle = `Privacy Policy — ${SITE_NAME}`;
 	const canonical = `${SITE_URL}/privacy`;
 </script>
@@ -43,8 +43,9 @@
 			>no collection of your name, email address, or other directly identifying information</strong
 		>. The core single-player experience stays entirely on your device. A small amount of
 		pseudonymous data is processed by trusted service providers to power optional features—Group
-		Play multiplayer and premium AI features—as described below. This page explains exactly what
-		that means in plain terms.
+		Play multiplayer and premium AI features—as described below. The only place we accept an
+		email address is an optional teacher launch-notification form on the website. This page
+		explains exactly what all of that means in plain terms.
 	</p>
 
 	<!-- Information We Collect -->
@@ -58,8 +59,11 @@
 		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
 	>
 		<li>
-			<strong>Website:</strong> The marketing site is static. We do not run forms that store
-			your data, newsletters, or waitlists at this time. The only way we receive information
+			<strong>Website:</strong> The marketing site is largely static. The one exception is an
+			optional <strong>teacher launch-notification form</strong>: if you choose to submit
+			your email address there, we store it (via our form provider, Formspree) solely to
+			notify you about the app's launch and Class Play. We never sell it, never share it, and
+			you can ask us to delete it at any time. Otherwise, the only way we receive information
 			is if you voluntarily email us at {CONTACT_EMAIL}.
 		</li>
 		<li>
@@ -223,18 +227,16 @@
 	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">Future features (TBD)</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		We are planning additional capabilities in later phases of the Seminary Sidekick Suite, such
-		as optional waitlists, teacher resource sharing, and community features. These will require
+		as teacher resource sharing, saved class rosters, and community features. These will require
 		accounts and more data handling. When those features are ready, we will update this Privacy
 		Policy well in advance, explain the new practices clearly, and give you control over your
 		information. Until then, the practices described above remain in effect.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		We also plan to add premium AI capabilities such as <strong>Grok-voiced narration</strong>
-		and a <strong>voice-to-journal</strong> feature. Narration would send scripture or app text to
-		xAI to generate read-aloud audio. Voice-to-journal would convert your speech to text on your device
-		and send that transcribed text to xAI to generate journal prompts or responses; your audio recording
-		itself would not be sent. When these ship, we will describe their data practices here before they
-		go live.
+		We also plan to add premium AI capabilities such as a <strong>voice-to-journal</strong> feature.
+		Voice-to-journal would convert your speech to text on your device and send that transcribed text
+		to xAI to generate journal prompts or responses; your audio recording itself would not be sent.
+		When it ships, we will describe its data practices here before it goes live.
 	</p>
 
 	<!-- Children’s privacy -->
@@ -252,9 +254,16 @@
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		For the core experience, we do not collect or store personal data on our servers, so there
 		are no individual records for us to retrieve, correct, or delete. If you have used Group
-		Play and would like the data associated with your anonymous ID or nickname removed, or if
-		you have corresponded with us by email and would like us to remove or forget that
-		conversation, simply ask—we will honor reasonable requests.
+		Play and would like the data associated with your anonymous ID or nickname removed, if you
+		joined the teacher notification list and want off it, or if you have corresponded with us
+		by email and would like us to remove or forget that conversation, simply ask—we will honor
+		reasonable requests.
+	</p>
+	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
+		The apps also include a built-in <strong>"Delete All My Data"</strong> option in Settings. It
+		erases everything stored on your device—progress, notes, journal entries, and settings—and disconnects
+		the anonymous Group Play session associated with your device, all in one tap. No email or request
+		needed.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		You are always free to stop using the site and apps at any time.

@@ -18,9 +18,7 @@ import { CLASS_PLAY_WAITLIST_ENDPOINT } from '$lib/config/site';
 /** Strict-enough email regex for first-pass validation. */
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export type WaitlistResult =
-	| { ok: true; mode?: 'logged-only' }
-	| { ok: false; error: string };
+export type WaitlistResult = { ok: true; mode?: 'logged-only' } | { ok: false; error: string };
 
 /**
  * Submit a teacher email to the Class Play waitlist.

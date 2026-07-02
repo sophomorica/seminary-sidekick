@@ -25,16 +25,16 @@ test.describe('Skip link', () => {
 test.describe('AppNav', () => {
 	test('logo links back to home from any page', async ({ page }) => {
 		await page.goto('/privacy');
-		await page.getByRole('link', { name: /seminary sidekick.*home/i }).first().click();
+		await page
+			.getByRole('link', { name: /seminary sidekick.*home/i })
+			.first()
+			.click();
 		await expect(page).toHaveURL('/');
 	});
 
 	test('Premium link goes to /premium', async ({ page }) => {
 		await page.goto('/');
-		await page
-			.locator('header')
-			.getByRole('link', { name: 'Premium', exact: true })
-			.click();
+		await page.locator('header').getByRole('link', { name: 'Premium', exact: true }).click();
 		await expect(page).toHaveURL('/premium');
 	});
 
@@ -49,16 +49,16 @@ test.describe('AppNav', () => {
 
 	test('News link goes to /news', async ({ page }) => {
 		await page.goto('/');
-		await page
-			.locator('header')
-			.getByRole('link', { name: 'News', exact: true })
-			.click();
+		await page.locator('header').getByRole('link', { name: 'News', exact: true }).click();
 		await expect(page).toHaveURL('/news');
 	});
 
 	test('How it works link routes to homepage with #how-it-works anchor', async ({ page }) => {
 		await page.goto('/about');
-		await page.locator('header').getByRole('link', { name: 'How it works', exact: true }).click();
+		await page
+			.locator('header')
+			.getByRole('link', { name: 'How it works', exact: true })
+			.click();
 		await expect(page).toHaveURL(/\/#how-it-works$/);
 		// NOTE: the #how-it-works anchor element is created when TASK-C-100
 		// composes the HowItWorks section into the homepage. Until then,
@@ -73,11 +73,13 @@ test.describe('AppFooter', () => {
 		await page.goto('/');
 
 		// Pull every internal href the footer renders.
-		const hrefs = await page.locator('footer a[href]').evaluateAll((els) =>
-			els
-				.map((el) => el.getAttribute('href')!)
-				.filter((h) => h && !h.startsWith('mailto:') && !h.startsWith('http'))
-		);
+		const hrefs = await page
+			.locator('footer a[href]')
+			.evaluateAll((els) =>
+				els
+					.map((el) => el.getAttribute('href')!)
+					.filter((h) => h && !h.startsWith('mailto:') && !h.startsWith('http'))
+			);
 
 		const unique = [...new Set(hrefs)];
 		expect(unique.length).toBeGreaterThan(5);

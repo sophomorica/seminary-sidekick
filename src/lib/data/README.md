@@ -24,11 +24,11 @@ diverge. The Flutter app wins.
 
 ## Files
 
-| File | Purpose |
-| --- | --- |
-| `doctrinalMastery.json` | Generated — 100 scriptures from the Flutter app's `scriptures_data.dart`. |
-| `types.ts` | TypeScript types (`Scripture`, `ScriptureBook`) and `BOOK_META` / `BOOK_ORDER` constants. |
-| `scriptures.ts` | Typed access helpers — `getScripture(id)`, `getScripturesByBook(book)`, `pickRandomScriptures(n)`, `countByBook()`, `TOTAL_SCRIPTURES`, `ALL_SCRIPTURES`. **Demos and pages should import from here, not from the JSON directly.** |
+| File                    | Purpose                                                                                                                                                                                                                            |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `doctrinalMastery.json` | Generated — 100 scriptures from the Flutter app's `scriptures_data.dart`.                                                                                                                                                          |
+| `types.ts`              | TypeScript types (`Scripture`, `ScriptureBook`) and `BOOK_META` / `BOOK_ORDER` constants.                                                                                                                                          |
+| `scriptures.ts`         | Typed access helpers — `getScripture(id)`, `getScripturesByBook(book)`, `pickRandomScriptures(n)`, `countByBook()`, `TOTAL_SCRIPTURES`, `ALL_SCRIPTURES`. **Demos and pages should import from here, not from the JSON directly.** |
 
 ## Distribution
 
@@ -74,19 +74,19 @@ Then regenerate.
 
 ```svelte
 <script lang="ts">
-  import { ALL_SCRIPTURES, getScripture, pickRandomScriptures } from '$lib/data/scriptures';
-  import { BOOK_META } from '$lib/data/types';
+	import { ALL_SCRIPTURES, getScripture, pickRandomScriptures } from '$lib/data/scriptures';
+	import { BOOK_META } from '$lib/data/types';
 
-  const five = pickRandomScriptures(5);
-  const passage = getScripture('42');
+	const five = pickRandomScriptures(5);
+	const passage = getScripture('42');
 </script>
 
 {#each five as s (s.id)}
-  <article>
-    <p class={BOOK_META[s.book].tailwindText}>{BOOK_META[s.book].label}</p>
-    <h2>{s.reference} — {s.name}</h2>
-    <p>{s.keyPhrase}</p>
-  </article>
+	<article>
+		<p class={BOOK_META[s.book].tailwindText}>{BOOK_META[s.book].label}</p>
+		<h2>{s.reference} — {s.name}</h2>
+		<p>{s.keyPhrase}</p>
+	</article>
 {/each}
 ```
 
