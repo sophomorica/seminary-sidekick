@@ -28,18 +28,18 @@ All colors live in `tailwind.config.js` under semantic names. **Never use raw he
 
 | Token | Hex | Tailwind | Use for |
 |---|---|---|---|
-| `primary` | `#94492C` | `bg-primary` / `text-primary` | Active states, primary CTAs ("Get the app"), brand moments. Deep warm rust. |
-| `primary-container` | `#D9805F` | `bg-primary-container` | Softer primary surface — secondary CTA fills, primary-tinted backgrounds. |
-| `primary-fixed` | `#FFDBCF` | `bg-primary-fixed` | Subtle primary tint — hover backgrounds, soft chips. |
-| `primary-fixed-dim` | `#FFB59B` | `bg-primary-fixed-dim` | Dark-mode primary, slightly louder primary tint in light mode. |
+| `primary` | `#2F4374` | `bg-primary` / `text-primary` | Active states, primary CTAs ("Get the app"), brand moments. Deep navy. |
+| `primary-container` | `#5C77AE` | `bg-primary-container` | Softer primary surface — secondary CTA fills, primary-tinted backgrounds. |
+| `primary-fixed` | `#DCE4F9` | `bg-primary-fixed` | Subtle primary tint — hover backgrounds, soft chips. |
+| `primary-fixed-dim` | `#9FB4E8` | `bg-primary-fixed-dim` | Dark-mode primary, slightly louder primary tint in light mode. |
 | `on-primary` | `#FFFFFF` | `text-on-primary` | Text on `primary` backgrounds. |
-| `on-primary-container` | `#581C03` | `text-on-primary-container` | Text on `primary-container` backgrounds. |
-| `secondary` | `#3B665F` | `bg-secondary` | Calming elements — progress, completion states, secondary CTAs. Deep sage. |
-| `secondary-container` | `#BEECE2` | `bg-secondary-container` | Soft sage surface — "completed" badges, calm backgrounds. |
+| `on-primary-container` | `#12224A` | `text-on-primary-container` | Text on `primary-container` backgrounds. |
+| `secondary` | `#3F6E9C` | `bg-secondary` | Calming elements — progress, completion states, secondary CTAs. Steel blue. |
+| `secondary-container` | `#C7DDF0` | `bg-secondary-container` | Soft blue surface — "completed" badges, calm backgrounds. |
 | `on-secondary` | `#FFFFFF` | `text-on-secondary` | Text on `secondary`. |
-| `tertiary` | `#735C00` | `bg-tertiary` / `text-tertiary` | **Sacred moments only.** Achievements, scripture mastery, premium features. Deep gold. |
-| `tertiary-container` | `#CCA72F` | `bg-tertiary-container` | Premium gold for the AI Sidekick section and premium CTAs. |
-| `tertiary-fixed` | `#FFE088` | `bg-tertiary-fixed` | Light premium tint — sample journal cards, achievement glows. |
+| `tertiary` | `#6F5A10` | `bg-tertiary` / `text-tertiary` | **Sacred moments only.** Achievements, scripture mastery, premium features. Deep gold. |
+| `tertiary-container` | `#B8942A` | `bg-tertiary-container` | Premium gold for the AI Sidekick section and premium CTAs. |
+| `tertiary-fixed` | `#F4E3A6` | `bg-tertiary-fixed` | Light premium tint — sample journal cards, achievement glows. |
 | `accent` | `#5B8ABF` | `bg-accent` / `text-accent` | Links, highlight strokes, blue moments. Calm blue. Use sparingly. |
 
 ### Surface hierarchy ("stacked sheets of fine, translucent paper")
@@ -48,14 +48,14 @@ This is the most important and least obvious part of the system. Surfaces don't 
 
 | Token | Hex | Tailwind | Use for |
 |---|---|---|---|
-| `surface` | `#FFF8F6` | `bg-surface` | Page background. The base "paper." |
+| `surface` | `#F7F8FC` | `bg-surface` | Page background. The base "paper." |
 | `surface-container-lowest` | `#FFFFFF` | `bg-surface-container-lowest` | Floating, lifted elements. Cards that should feel "above" the page. Pair with `shadow-editorial`. |
-| `surface-container-low` | `#FFF1EC` | `bg-surface-container-low` | Section backgrounds. The "next sheet up." |
-| `surface-container` | `#FBEBE6` | `bg-surface-container` | Slightly more emphasis than `low`. |
-| `surface-container-high` | `#F5E5E0` | `bg-surface-container-high` | More emphasized sections. |
-| `surface-container-highest` | `#EFDFDA` | `bg-surface-container-highest` | Strongest surface tone without going to a brand color. |
-| `surface-dim` | `#E6D7D2` | `bg-surface-dim` | Pressed states, disabled fills. |
-| `surface-variant` | `#EFDFDA` | `bg-surface-variant` | Alternate surface for chips, tags. |
+| `surface-container-low` | `#EFF2F9` | `bg-surface-container-low` | Section backgrounds. The "next sheet up." |
+| `surface-container` | `#E9EDF6` | `bg-surface-container` | Slightly more emphasis than `low`. |
+| `surface-container-high` | `#E2E7F2` | `bg-surface-container-high` | More emphasized sections. |
+| `surface-container-highest` | `#DBE1EE` | `bg-surface-container-highest` | Strongest surface tone without going to a brand color. |
+| `surface-dim` | `#D4DBEA` | `bg-surface-dim` | Pressed states, disabled fills. |
+| `surface-variant` | `#DBE1EE` | `bg-surface-variant` | Alternate surface for chips, tags. |
 
 **Rule of thumb:** alternating sections on the homepage step through `surface` → `surface-container-low` → `surface` → `surface-container` to create rhythm without lines.
 
@@ -63,10 +63,10 @@ This is the most important and least obvious part of the system. Surfaces don't 
 
 | Token | Hex | Tailwind | Use for |
 |---|---|---|---|
-| `on-surface` | `#221A17` | `text-on-surface` | Default body text. Near-black, slightly warm. |
-| `on-surface-variant` | `#54433D` | `text-on-surface-variant` | Muted text — captions, metadata, secondary copy. |
-| `outline` | `#87736C` | `border-outline` | When you absolutely need a border (rare). |
-| `outline-variant` | `#DAC1B9` | `border-outline-variant` | Even softer border. Use this 99% of the time you reach for a border. |
+| `on-surface` | `#1B2233` | `text-on-surface` | Default body text. Near-black, slightly cool. |
+| `on-surface-variant` | `#4E5871` | `text-on-surface-variant` | Muted text — captions, metadata, secondary copy. |
+| `outline` | `#737E98` | `border-outline` | When you absolutely need a border (rare). |
+| `outline-variant` | `#C9D2E5` | `border-outline-variant` | Even softer border. Use this 99% of the time you reach for a border. |
 
 ### Feedback colors
 
@@ -85,10 +85,10 @@ Use **only** in the premium AI section, the `/premium` page, and Sidekick chat U
 
 | Token | Hex | Tailwind | Use for |
 |---|---|---|---|
-| `premium-gold` | `#CCA72F` | `bg-premium-gold` | Premium icons, badges, accent strokes. |
-| `premium-gold-light` | `#FFE088` | `bg-premium-gold-light` | Soft premium backgrounds, sample journal cards. |
-| `premium-gradient-from` | `#CCA72F` | `from-premium-gradient-from` | Gradient start (use with Tailwind's `bg-gradient-*`). |
-| `premium-gradient-to` | `#E9C349` | `to-premium-gradient-to` | Gradient end. |
+| `premium-gold` | `#B8942A` | `bg-premium-gold` | Premium icons, badges, accent strokes. |
+| `premium-gold-light` | `#F4E3A6` | `bg-premium-gold-light` | Soft premium backgrounds, sample journal cards. |
+| `premium-gradient-from` | `#B8942A` | `from-premium-gradient-from` | Gradient start (use with Tailwind's `bg-gradient-*`). |
+| `premium-gradient-to` | `#D6B45E` | `to-premium-gradient-to` | Gradient end. |
 
 ### Book colors (used in screenshots, demo cards, scripture references)
 
@@ -108,17 +108,17 @@ Use **only** in the premium AI section, the `/premium` page, and Sidekick chat U
 | `mastery-familiar` | `#FFD54F` | `bg-mastery-familiar` | Familiar |
 | `mastery-memorized` | `#81C784` | `bg-mastery-memorized` | Memorized |
 | `mastery-mastered` | `#64B5F6` | `bg-mastery-mastered` | Mastered |
-| `mastery-eternal` | `#CCA72F` | `bg-mastery-eternal` | Eternal — sacred gold |
+| `mastery-eternal` | `#B8942A` | `bg-mastery-eternal` | Eternal — sacred gold |
 
-### Dark mode — "Deep Grove" (Tier 1 plans light only, ship dark in a follow-up)
+### Dark mode — "Midnight" (Tier 1 plans light only, ship dark in a follow-up)
 
 Reserved tokens (not built in v1):
 
 | Token | Hex | Use for |
 |---|---|---|
-| `dark-background` | `#1A2226` | Page background in dark mode |
-| `dark-card` | `#222E32` | Card background in dark mode |
-| `dark-on-surface` | `#E2EBE8` | Default text in dark mode — cool sage-tinted white |
+| `dark-background` | `#131A2B` | Page background in dark mode |
+| `dark-card` | `#1C2438` | Card background in dark mode |
+| `dark-on-surface` | `#E4E9F5` | Default text in dark mode — cool blue-tinted white |
 
 ---
 
@@ -216,8 +216,8 @@ Two named shadows. **Never** use Tailwind's default `shadow-lg`, `shadow-xl` —
 ```css
 /* in src/app.css */
 :root {
-  --shadow-editorial: 0 4px 20px 0 rgb(34 26 23 / 0.06); /* on-surface @ 6% */
-  --shadow-floating: 0 12px 40px 0 rgb(34 26 23 / 0.04); /* on-surface @ 4% */
+  --shadow-editorial: 0 4px 20px 0 rgb(27 34 51 / 0.06); /* on-surface @ 6% */
+  --shadow-floating: 0 12px 40px 0 rgb(27 34 51 / 0.04); /* on-surface @ 4% */
 }
 ```
 
@@ -395,32 +395,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: '#94492C', container: '#D9805F', fixed: '#FFDBCF', 'fixed-dim': '#FFB59B' },
-        'on-primary': { DEFAULT: '#FFFFFF', container: '#581C03' },
-        secondary: { DEFAULT: '#3B665F', container: '#BEECE2' },
+        primary: { DEFAULT: '#2F4374', container: '#5C77AE', fixed: '#DCE4F9', 'fixed-dim': '#9FB4E8' },
+        'on-primary': { DEFAULT: '#FFFFFF', container: '#12224A' },
+        secondary: { DEFAULT: '#3F6E9C', container: '#C7DDF0' },
         'on-secondary': { DEFAULT: '#FFFFFF' },
-        tertiary: { DEFAULT: '#735C00', container: '#CCA72F', fixed: '#FFE088' },
+        tertiary: { DEFAULT: '#6F5A10', container: '#B8942A', fixed: '#F4E3A6' },
         accent: { DEFAULT: '#5B8ABF', light: '#89B4DB' },
         surface: {
-          DEFAULT: '#FFF8F6',
+          DEFAULT: '#F7F8FC',
           'container-lowest': '#FFFFFF',
-          'container-low': '#FFF1EC',
-          container: '#FBEBE6',
-          'container-high': '#F5E5E0',
-          'container-highest': '#EFDFDA',
-          dim: '#E6D7D2',
-          variant: '#EFDFDA',
+          'container-low': '#EFF2F9',
+          container: '#E9EDF6',
+          'container-high': '#E2E7F2',
+          'container-highest': '#DBE1EE',
+          dim: '#D4DBEA',
+          variant: '#DBE1EE',
         },
-        'on-surface': { DEFAULT: '#221A17', variant: '#54433D' },
-        outline: { DEFAULT: '#87736C', variant: '#DAC1B9' },
+        'on-surface': { DEFAULT: '#1B2233', variant: '#4E5871' },
+        outline: { DEFAULT: '#737E98', variant: '#C9D2E5' },
         success: { DEFAULT: '#66BB6A', light: '#E8F5E9' },
         warning: { DEFAULT: '#FFA726' },
         error: { DEFAULT: '#BA1A1A', container: '#FFDAD6', light: '#FFEBEE' },
-        'premium-gold': { DEFAULT: '#CCA72F', light: '#FFE088' },
+        'premium-gold': { DEFAULT: '#B8942A', light: '#F4E3A6' },
         book: { ot: '#8D6E63', nt: '#5C6BC0', bom: '#26A69A', dc: '#AB47BC' },
         mastery: {
           new: '#9E9E9E', learning: '#FF8A65', familiar: '#FFD54F',
-          memorized: '#81C784', mastered: '#64B5F6', eternal: '#CCA72F',
+          memorized: '#81C784', mastered: '#64B5F6', eternal: '#B8942A',
         },
       },
       fontFamily: {
@@ -440,8 +440,8 @@ export default {
         '5xl': '3rem',      // 48px
       },
       boxShadow: {
-        editorial: '0 4px 20px 0 rgb(34 26 23 / 0.06)',
-        floating: '0 12px 40px 0 rgb(34 26 23 / 0.04)',
+        editorial: '0 4px 20px 0 rgb(27 34 51 / 0.06)',
+        floating: '0 12px 40px 0 rgb(27 34 51 / 0.04)',
       },
       transitionTimingFunction: {
         'out-soft': 'cubic-bezier(0.22, 1, 0.36, 1)',

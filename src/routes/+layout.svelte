@@ -57,7 +57,7 @@
 <svelte:head>
 	<link rel="icon" type="image/png" href="/favicon.png" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-	<meta name="theme-color" content="#FFF8F6" />
+	<meta name="theme-color" content="#F7F8FC" />
 </svelte:head>
 
 <SkipLink />

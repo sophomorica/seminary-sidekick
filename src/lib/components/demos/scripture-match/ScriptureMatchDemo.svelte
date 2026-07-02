@@ -174,7 +174,7 @@
 				startVelocity: 35,
 				origin: { y: 0.6 },
 				// Brand colors only per THEME.md "Confetti"
-				colors: ['#94492C', '#A3CFC6', '#CCA72F', '#5B8ABF']
+				colors: ['#2F4374', '#8FB5D9', '#B8942A', '#5B8ABF']
 			});
 		} catch {
 			// canvas-confetti not installed yet — silently no-op. The

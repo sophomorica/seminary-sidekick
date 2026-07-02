@@ -141,7 +141,7 @@
 				particleCount: 80,
 				spread: 70,
 				origin: { y: 0.4 },
-				colors: ['#94492C', '#3B665F', '#CCA72F', '#5B8ABF'],
+				colors: ['#2F4374', '#3F6E9C', '#B8942A', '#5B8ABF'],
 				disableForReducedMotion: true
 			});
 		} catch {

@@ -24,45 +24,45 @@
 
 /* ─── Theme tokens — Sacred Editorial design system ───────────────── */
 @theme {
-	/* === Brand colors ============================================ */
-	--color-primary: #94492c;
-	--color-primary-container: #d9805f;
-	--color-primary-fixed: #ffdbcf;
-	--color-primary-fixed-dim: #ffb59b;
+	/* === Brand colors — "Midnight & Gold" ======================== */
+	--color-primary: #2f4374;
+	--color-primary-container: #5c77ae;
+	--color-primary-fixed: #dce4f9;
+	--color-primary-fixed-dim: #9fb4e8;
 	--color-on-primary: #ffffff;
-	--color-on-primary-container: #581c03;
+	--color-on-primary-container: #12224a;
 
-	--color-secondary: #3b665f;
-	--color-secondary-container: #beece2;
-	--color-secondary-fixed-dim: #a3cfc6;
+	--color-secondary: #3f6e9c;
+	--color-secondary-container: #c7ddf0;
+	--color-secondary-fixed-dim: #8fb5d9;
 	--color-on-secondary: #ffffff;
-	--color-on-secondary-container: #426c65;
+	--color-on-secondary-container: #33608c;
 
-	--color-tertiary: #735c00;
-	--color-tertiary-container: #cca72f;
-	--color-tertiary-fixed: #ffe088;
+	--color-tertiary: #6f5a10;
+	--color-tertiary-container: #b8942a;
+	--color-tertiary-fixed: #f4e3a6;
 	--color-on-tertiary: #ffffff;
-	--color-on-tertiary-container: #4e3d00;
+	--color-on-tertiary-container: #4a3b08;
 
 	--color-accent: #5b8abf;
 	--color-accent-light: #89b4db;
 
 	/* === Surface hierarchy ====================================== */
-	/* "Stacked sheets of fine, translucent paper" — separate via tone, not borders. */
-	--color-surface: #fff8f6;
+	/* Cool "midnight paper" sheets — separate via tone, not borders. */
+	--color-surface: #f7f8fc;
 	--color-surface-container-lowest: #ffffff;
-	--color-surface-container-low: #fff1ec;
-	--color-surface-container: #fbebe6;
-	--color-surface-container-high: #f5e5e0;
-	--color-surface-container-highest: #efdfda;
-	--color-surface-dim: #e6d7d2;
-	--color-surface-variant: #efdfda;
+	--color-surface-container-low: #eff2f9;
+	--color-surface-container: #e9edf6;
+	--color-surface-container-high: #e2e7f2;
+	--color-surface-container-highest: #dbe1ee;
+	--color-surface-dim: #d4dbea;
+	--color-surface-variant: #dbe1ee;
 
-	--color-on-surface: #221a17;
-	--color-on-surface-variant: #54433d;
+	--color-on-surface: #1b2233;
+	--color-on-surface-variant: #4e5871;
 
-	--color-outline: #87736c;
-	--color-outline-variant: #dac1b9;
+	--color-outline: #737e98;
+	--color-outline-variant: #c9d2e5;
 
 	/* === Feedback colors ======================================== */
 	--color-success: #66bb6a;
@@ -73,10 +73,10 @@
 	--color-error-light: #ffebee;
 
 	/* === Premium (Sacred Moments — use sparingly) =============== */
-	--color-premium-gold: #cca72f;
-	--color-premium-gold-light: #ffe088;
-	--color-premium-gradient-from: #cca72f;
-	--color-premium-gradient-to: #e9c349;
+	--color-premium-gold: #b8942a;
+	--color-premium-gold-light: #f4e3a6;
+	--color-premium-gradient-from: #b8942a;
+	--color-premium-gradient-to: #d6b45e;
 
 	/* === Book colors ============================================ */
 	--color-book-ot: #8d6e63;
@@ -90,12 +90,12 @@
 	--color-mastery-familiar: #ffd54f;
 	--color-mastery-memorized: #81c784;
 	--color-mastery-mastered: #64b5f6;
-	--color-mastery-eternal: #cca72f;
+	--color-mastery-eternal: #b8942a;
 
 	/* === Dark mode reserved (not used in Tier 1) ================ */
-	--color-dark-background: #1a2226;
-	--color-dark-card: #222e32;
-	--color-dark-on-surface: #e2ebe8;
+	--color-dark-background: #131a2b;
+	--color-dark-card: #1c2438;
+	--color-dark-on-surface: #e4e9f5;
 
 	/* === Font families ========================================== */
 	--font-serif: 'Merriweather', ui-serif, Georgia, serif;
@@ -178,8 +178,8 @@
 	--radius-5xl: 3rem; /* 48px — hero sections */
 
 	/* === Shadows — tinted on-surface @ low opacity ============= */
-	--shadow-editorial: 0 4px 20px 0 rgb(34 26 23 / 0.06);
-	--shadow-floating: 0 12px 40px 0 rgb(34 26 23 / 0.04);
+	--shadow-editorial: 0 4px 20px 0 rgb(27 34 51 / 0.06);
+	--shadow-floating: 0 12px 40px 0 rgb(27 34 51 / 0.04);
 
 	/* === Motion ================================================ */
 	--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
