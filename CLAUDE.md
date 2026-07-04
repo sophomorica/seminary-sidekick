@@ -360,7 +360,7 @@ CI must pass `pnpm check` (no TS errors), `pnpm lint`, and `pnpm test:e2e`. Ligh
 | `src/app.css` | Tailwind directives, global CSS variables, focus utility, scripture blockquote styles. |
 | `src/lib/config/store.ts` | iOS/Android URLs and feature flags. Launch-day swap is one file. |
 | `src/lib/config/site.ts` | Site metadata, tagline, contact, socials. |
-| `src/lib/data/passages.json` | The 100 doctrinal mastery scriptures. Ported from the old repo. |
+| `src/lib/data/doctrinalMastery.json` | The 100 doctrinal mastery scriptures — generated port of the Flutter app's `scriptures_data.dart`. Never hand-edit. (`passages.json` is stale legacy data — 101 entries incl. verses not in the corpus — and is unused by code; safe to delete.) |
 
 ---
 

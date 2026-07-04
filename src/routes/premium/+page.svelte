@@ -191,16 +191,16 @@
 					label="Daily prompt"
 					icon={Sun}
 					title="Today’s prompt."
-					body="How does keeping the commandments show love for the Savior in your life this week?"
-					reference="From John 14:15"
+					body="Where did you feel God's love for you this week — and how did you pass it along to someone else?"
+					reference="From John 3:16"
 				/>
 
 				<SampleOutput
 					label="Reflection question"
 					icon={MessageCircleQuestion}
 					title="Sit with this."
-					body="Where in your life right now do you most need to remember that you are God’s “workmanship, created in Christ Jesus unto good works”?"
-					reference="From Ephesians 2:10"
+					body="The Lord promises that if we humble ourselves, he will “make weak things become strong.” Where in your life do you most need that promise right now?"
+					reference="From Ether 12:27"
 				/>
 
 				<SampleOutput

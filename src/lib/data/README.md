@@ -45,21 +45,17 @@ This is the official LDS Doctrinal Mastery program count.
 When the Flutter app's `scriptures_data.dart` changes (scripture added,
 text edited, reference fixed, etc.) the JSON must be regenerated.
 
-The port script lives outside the web repo at:
+The port script is checked into this repo at `scripts/dart_to_json.py`
+(a Python parser that walks `Scripture(...)` blocks in the Dart source
+and emits the JSON shape that mirrors the Flutter model — computed
+fields `words`/`wordCount` excluded).
 
-```
-~/.../local-agent-mode-sessions/.../outputs/dart_to_json.py
-```
-
-(Path varies by Cowork session. The script is short — a Python parser
-that walks `Scripture(...)` blocks in the Dart source and emits the
-JSON shape that mirrors the Flutter model.)
-
-To regenerate:
+To regenerate (from the repo root):
 
 ```sh
-python3 path/to/dart_to_json.py
-# verify the count + distribution
+python3 scripts/dart_to_json.py            # uses ../seminary_sidekick/... by default
+python3 scripts/dart_to_json.py /path/to/scriptures_data.dart   # explicit source
+# verify the count + distribution (the script also asserts 100 + ordered ids)
 python3 -c "import json; d=json.load(open('src/lib/data/doctrinalMastery.json')); print(len(d))"
 ```
 

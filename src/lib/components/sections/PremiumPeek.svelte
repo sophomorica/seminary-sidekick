@@ -130,14 +130,14 @@
 						Today’s prompt.
 					</p>
 					<p class="mt-3 text-body-md leading-relaxed text-on-surface">
-						How does keeping the commandments show love for the Savior in your life this
-						week?
+						Where did you feel God&rsquo;s love for you this week — and how did you
+						pass it along to someone else?
 					</p>
 
 					<span
 						class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-book-nt/10 px-3 py-1 text-label-md text-book-nt"
 					>
-						From John 14:15
+						From John 3:16
 					</span>
 				</div>
 
@@ -157,7 +157,7 @@
 						class="inline-flex items-center gap-2 rounded-full border border-premium-gold/40 px-3 py-1.5 text-label-md text-on-surface"
 					>
 						<Sparkles class="h-3.5 w-3.5 text-premium-gold" aria-hidden="true" />
-						Suggested goal — memorize John 14:15 by Friday
+						Suggested goal — memorize John 3:16 by Friday
 					</span>
 				</div>
 			</div>

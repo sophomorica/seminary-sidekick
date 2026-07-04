@@ -189,7 +189,7 @@
 					></span>
 					<p class="text-label-md uppercase text-on-surface-variant">Question 4 of 10</p>
 					<p class="mt-2 font-serif text-headline-md italic text-on-surface">
-						"For with God nothing shall be impossible."
+						"Ye are the light of the world."
 					</p>
 					<p class="mt-3 text-body-md text-on-surface-variant">
 						Which reference is this?
@@ -200,17 +200,17 @@
 						<span
 							class="rounded-2xl bg-primary px-3 py-2 text-center text-label-md text-on-primary"
 						>
-							Luke 1:37
+							Matt 5:14–16
 						</span>
 						<span
 							class="rounded-2xl bg-surface-container-lowest px-3 py-2 text-center text-label-md text-on-surface"
 						>
-							Matt 5:14
+							Hel 5:12
 						</span>
 						<span
 							class="rounded-2xl bg-surface-container-lowest px-3 py-2 text-center text-label-md text-on-surface"
 						>
-							John 14:15
+							John 3:16
 						</span>
 						<span
 							class="rounded-2xl bg-surface-container-lowest px-3 py-2 text-center text-label-md text-on-surface"

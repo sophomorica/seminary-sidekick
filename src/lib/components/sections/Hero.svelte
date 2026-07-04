@@ -113,10 +113,10 @@
 
 					<!-- Verse card -->
 					<div class="flex flex-1 flex-col items-center justify-center gap-4">
-						<span class="text-label-md uppercase text-primary">John 14</span>
+						<span class="text-label-md uppercase text-primary">John 3</span>
 						<blockquote class="scripture text-xl">
-							"If ye love me, keep my commandments."
-							<footer>John 14:15 — New Testament</footer>
+							"For God so loved the world, that he gave his only begotten Son."
+							<footer>John 3:16 — New Testament</footer>
 						</blockquote>
 					</div>
 
