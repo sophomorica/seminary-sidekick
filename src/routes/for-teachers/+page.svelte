@@ -337,6 +337,21 @@
 				</li>
 			</ul>
 
+			<!-- Free vs Premium hosting — the one thing a teacher needs to know
+			     before planning a class round. Only the host needs Premium;
+			     limits mirror the app (group_play_service.dart). -->
+			<p
+				class="mt-8 rounded-2xl bg-surface-container px-4 py-3 text-body-md text-on-surface-variant"
+			>
+				<span class="font-semibold text-on-surface">What it costs:</span>
+				anyone can host one casual game a week with up to 6 players, free. Hosting a full
+				class — rooms of up to 30 students, unlimited games — is part of
+				<a
+					href="/premium"
+					class="font-semibold text-tertiary underline-offset-2 hover:underline">Premium</a
+				>. Only you, the host, need it; your students join free, no accounts.
+			</p>
+
 			<div class="mt-10">
 				<WaitlistForm placement="for-teachers" />
 			</div>

@@ -29,6 +29,11 @@ Class Play — the live, classroom-wide, Kahoot-style multiplayer mode — is th
 - "Submit a tip" form for teachers; you (or a small invited group) curate before publishing. This is the on-ramp to community without taking on open-forum moderation cost yet.
 - Still mostly static. No backend yet (the form goes to email or a simple no-code endpoint like Formspree).
 
+**Explicit product exception — Class Play web join:** `/join` and `/join/[code]` may use
+Supabase anonymous auth, the server-authoritative `join_room` RPC, and Realtime so students
+can join a teacher-hosted room from a browser. This narrow participant flow does not add
+general site accounts or expand the Tier-2 resource/community backend scope.
+
 **Tier 3 — Teacher community + accounts (months 6–12)**
 - Real auth (Supabase Auth) for teachers. Verified-teacher flag for trust.
 - Open posting, threaded replies, reactions, categories, moderation tools.

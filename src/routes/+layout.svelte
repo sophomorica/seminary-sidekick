@@ -1,12 +1,16 @@
 <script lang="ts">
 	import '../app.css';
 	import { fade } from 'svelte/transition';
+	import { MediaQuery } from 'svelte/reactivity';
 	import { page } from '$app/state';
 	import SkipLink from '$lib/components/layout/SkipLink.svelte';
 	import AppNav from '$lib/components/layout/AppNav.svelte';
 	import AppFooter from '$lib/components/layout/AppFooter.svelte';
 
 	let { children } = $props();
+	const isJoinRoute = $derived(
+		page.url.pathname === '/join' || page.url.pathname.startsWith('/join/')
+	);
 
 	/**
 	 * Brand easing — mirrors `--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1)`.
@@ -38,20 +42,8 @@
 		return ((ay * u + by) * u + cy) * u;
 	}
 
-	// Reactively track the user's reduced-motion preference. When reduced,
-	// we render children directly with no transition wrapper at all.
-	let prefersReducedMotion = $state(false);
-
-	$effect(() => {
-		if (typeof window === 'undefined') return;
-		const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-		prefersReducedMotion = mq.matches;
-		const onChange = (e: MediaQueryListEvent) => {
-			prefersReducedMotion = e.matches;
-		};
-		mq.addEventListener('change', onChange);
-		return () => mq.removeEventListener('change', onChange);
-	});
+	// MediaQuery handles browser subscription and SSR fallback reactively.
+	const prefersReducedMotion = new MediaQuery('(prefers-reduced-motion: reduce)', false);
 </script>
 
 <svelte:head>
@@ -61,10 +53,12 @@
 </svelte:head>
 
 <SkipLink />
-<AppNav />
+{#if !isJoinRoute}
+	<AppNav />
+{/if}
 
 <main id="main-content" class="min-h-[60vh]">
-	{#if prefersReducedMotion}
+	{#if prefersReducedMotion.current}
 		{@render children()}
 	{:else}
 		{#key page.url.pathname}
@@ -75,4 +69,6 @@
 	{/if}
 </main>
 
-<AppFooter />
+{#if !isJoinRoute}
+	<AppFooter />
+{/if}

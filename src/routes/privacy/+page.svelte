@@ -84,22 +84,26 @@
 		Group Play and multiplayer features
 	</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
-		The optional <strong>Group Play</strong> feature lets students practice together in real
-		time. To make this work, the app sends a limited amount of data to
-		<strong>Supabase</strong>, the cloud service that hosts our multiplayer infrastructure. When
-		you use Group Play, the following is transmitted to and stored on Supabase's servers:
+		The optional <strong>Group Play</strong> (Class Play) feature lets students practice together in
+		real time from the <strong>mobile app</strong> or from this website at
+		<code class="rounded bg-surface-container-high px-1.5 py-0.5 text-[0.95em]">/join</code>. To
+		make this work, we send a limited amount of data to <strong>Supabase</strong>, the cloud service
+		that hosts our multiplayer infrastructure. When you use Group Play — including joining via a QR
+		code or link on seminarysidekick.com — the following is transmitted to and stored on Supabase's
+		servers:
 	</p>
 	<ul
 		class="mb-6 list-disc space-y-2 pl-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface marker:text-primary"
 	>
 		<li>
 			<strong>An anonymous user ID:</strong> a randomly generated, persistent identifier created
-			on your device. It is not linked to your name, email, or any account, but it does allow the
-			service to recognize the same device across sessions.
+			in the app or browser. It is not linked to your name, email, or any account, but it does
+			allow the service to recognize the same device or browser across sessions. Stale anonymous
+			IDs may be purged periodically.
 		</li>
 		<li>
 			<strong>Your nickname:</strong> the display name you choose when joining a room. We encourage
-			players not to use their full real name.
+			players not to use their full real name — especially for minors in a classroom setting.
 		</li>
 		<li>
 			<strong>Room participation records:</strong> which rooms you have created or joined.

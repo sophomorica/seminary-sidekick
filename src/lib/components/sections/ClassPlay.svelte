@@ -15,6 +15,11 @@
   pre-launch via a waitlist and (b) advertise the feature so it has
   momentum on launch day.
 
+  Free vs Premium (keep in sync with the app — group_play_service.dart):
+    Free host  = 1 game per week, rooms up to 6 players.
+    Premium    = unlimited hosting, class rooms up to 30 players.
+    Joining is always free — only the HOST needs Premium.
+
   Sits between <ScriptureMatchDemo /> and <ForTeachersStrip /> in the
   homepage composition so the narrative flow becomes:
     "You just played alone… now imagine your whole class on the same
@@ -139,6 +144,16 @@
 					</p>
 				</li>
 			</ul>
+
+			<!-- Free vs Premium clarity line — everyone can try it; Premium
+			     is what unlocks real classroom hosting. -->
+			<p class="mt-8 rounded-2xl bg-surface-container-low px-4 py-3 text-body-md text-on-surface-variant">
+				<span class="font-semibold text-on-surface">Free to try, built to scale.</span>
+				Every host can run one casual game a week with up to 6 players — free.
+				<a href="/premium" class="font-semibold text-tertiary underline-offset-2 hover:underline">Premium</a>
+				unlocks class rooms of up to 30 players, as many games as you want. Students
+				always join free.
+			</p>
 
 			<!-- Waitlist form + secondary read-more. Form first; CTA second. -->
 			<div class="mt-10 space-y-4">
