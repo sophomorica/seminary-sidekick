@@ -20,6 +20,7 @@ export type NavLink = {
  */
 export const MAIN_NAV: NavLink[] = [
 	{ label: 'How it works', href: '/#how-it-works' },
+	{ label: 'Join a room', href: '/join' },
 	{ label: 'Premium', href: '/premium' },
 	{ label: 'For teachers', href: '/for-teachers' },
 	{ label: 'News', href: '/news' }
@@ -53,6 +54,7 @@ export const FOOTER_NAV: FooterGroup[] = [
 	{
 		heading: 'Try it',
 		links: [
+			{ label: 'Join a room', href: '/join' },
 			{ label: 'Quick Quiz', href: '/quick-quiz' },
 			{ label: 'Scripture Match', href: '/scripture-match' }
 		]

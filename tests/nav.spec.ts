@@ -32,6 +32,15 @@ test.describe('AppNav', () => {
 		await expect(page).toHaveURL('/');
 	});
 
+	test('Join a room link goes to /join', async ({ page }) => {
+		await page.goto('/');
+		await page
+			.locator('header')
+			.getByRole('link', { name: 'Join a room', exact: true })
+			.click();
+		await expect(page).toHaveURL('/join');
+	});
+
 	test('Premium link goes to /premium', async ({ page }) => {
 		await page.goto('/');
 		await page.locator('header').getByRole('link', { name: 'Premium', exact: true }).click();
