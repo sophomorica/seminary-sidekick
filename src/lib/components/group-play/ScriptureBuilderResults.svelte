@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { AlertTriangle, Crown, LoaderCircle, Medal, Trophy } from 'lucide-svelte';
 	import type { GroupPlayPlayer, GroupPlayRoom, GroupSbFinish } from '$lib/services/groupPlay';
+	import PostGameAppCta from './PostGameAppCta.svelte';
 	import { parseScriptureBuilderSetup, rankScriptureBuilderPlayers } from './scriptureBuilder';
 
 	type Props = {
@@ -99,4 +100,6 @@
 			{/each}
 		</ol>
 	{/if}
+
+	<PostGameAppCta />
 </section>

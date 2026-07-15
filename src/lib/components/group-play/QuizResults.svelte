@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Crown, Medal, Trophy } from 'lucide-svelte';
 	import type { GroupPlayPlayer } from '$lib/services/groupPlay';
+	import PostGameAppCta from './PostGameAppCta.svelte';
 
 	type Props = {
 		players: GroupPlayPlayer[];
@@ -75,4 +76,6 @@
 			</li>
 		{/each}
 	</ol>
+
+	<PostGameAppCta />
 </section>

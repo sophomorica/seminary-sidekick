@@ -19,8 +19,8 @@
 </script>
 
 <!--
-  Placeholder store buttons. TODO (TASK-C-110): replace with the
-  official Apple App Store + Google Play badges from:
+  Store CTAs read from $lib/config/store.ts. Optional follow-up: replace
+  with official Apple App Store + Google Play badges from:
     https://developer.apple.com/app-store/marketing/guidelines/
     https://play.google.com/intl/en_us/badges/
   Drop the SVGs in static/images/badges/ and use <img> instead of <Button>.

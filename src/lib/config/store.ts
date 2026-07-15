@@ -4,15 +4,13 @@
  * Launch-day update is a single-file change here. Every CTA on the
  * site reads from these constants — App Store badge in nav, "Get the
  * app" buttons throughout, hero CTAs, footer links.
- *
- * TODO: Replace placeholders with real URLs before TASK-C-110.
  */
 
 /**
  * Apple App Store listing URL. Use the long `https://apps.apple.com/...`
  * format with UTM tags so we can track web→install conversion.
  */
-export const IOS_URL = '#'; // TODO: real App Store URL on launch
+export const IOS_URL = 'https://apps.apple.com/us/app/seminary-sidekick/id6780003239';
 
 /**
  * Google Play Store listing URL. Use UTM tags. Empty `#` until Android
@@ -28,4 +26,4 @@ export const ANDROID_URL = '#'; // TODO: real Play Store URL on Android launch
 export const ANDROID_AVAILABLE = false;
 
 /** Whether the iOS app is in the App Store. Almost always true once we launch. */
-export const IOS_AVAILABLE = false; // flip to true the moment we go live
+export const IOS_AVAILABLE = true;

@@ -13,6 +13,7 @@
  */
 
 import { SITE_NAME, SITE_URL, TAGLINE, DEFAULT_OG_IMAGE, CONTACT_EMAIL } from '$lib/config/site';
+import { IOS_AVAILABLE, IOS_URL } from '$lib/config/store';
 
 /**
  * Generic JSON-LD payload shape. We stay loose with `unknown`
@@ -42,8 +43,9 @@ export function softwareApplication(overrides: Partial<JsonLd> = {}): JsonLd {
 		name: SITE_NAME,
 		description: TAGLINE,
 		applicationCategory: 'EducationalApplication',
-		operatingSystem: 'iOS, Android',
+		operatingSystem: 'iOS',
 		url: SITE_URL,
+		...(IOS_AVAILABLE ? { downloadUrl: IOS_URL, installUrl: IOS_URL } : {}),
 		image: absolute(DEFAULT_OG_IMAGE),
 		offers: {
 			'@type': 'Offer',

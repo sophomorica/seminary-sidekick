@@ -588,15 +588,17 @@ After all Phase B tasks complete.
 - **notes:** Common offenders: image lazy-loading missing, font preload missing, color contrast on muted text.
 
 ### TASK-C-110: Launch-day URL swap
-- **status:** open · **owner-blocked**
-- **claimed_by:**
+- **status:** done
+- **claimed_by:** agent-cursor
+- **completed:** 2026-07-14T00:00:00Z
 - **depends_on:** App is live in the App Store
 - **files_to_touch:** `src/lib/config/store.ts`
 - **what:** Swap the placeholder iOS URL for the real App Store URL. Same for Android if launching both. Set `ANDROID_AVAILABLE: true` if Play Store is live.
 - **acceptance:**
-  - [ ] All CTAs link to real store listings
-  - [ ] No broken links anywhere
-- **notes:** This is a one-file change. Push to main, Vercel auto-deploys.
+  - [x] All CTAs link to real store listings
+  - [x] No broken links anywhere
+- **notes:** iOS live at https://apps.apple.com/us/app/seminary-sidekick/id6780003239. Android still unavailable (`ANDROID_AVAILABLE: false`).
+- **completion notes:** Set `IOS_URL` + `IOS_AVAILABLE: true`. Left Android as coming-soon. JSON-LD `operatingSystem` / download URLs updated to match.
 
 ### TASK-C-111: Submit sitemap to Google Search Console
 - **status:** open
@@ -641,6 +643,6 @@ Not for Tier 1. Listed so we know where they slot in.
 
 ## Notes
 
-- **Open question dependencies.** Several Tier-1 questions in `NEW_SITE_PLAN.md` (domain, logo, pricing, Android availability, first post authorship) still need owner input. Tasks `TASK-B-015`, `TASK-B-041`, `TASK-B-042`, `TASK-C-110`, `TASK-C-111` are most affected. Tasks proceed with placeholders that swap via `store.ts` / `site.ts` at launch.
+- **Open question dependencies.** Several Tier-1 questions in `NEW_SITE_PLAN.md` (domain, logo, pricing, Android availability, first post authorship) still need owner input. Tasks `TASK-B-015`, `TASK-B-041`, `TASK-B-042`, `TASK-C-111` are most affected. iOS store URL is live (TASK-C-110 done); Android stays coming-soon until Play Store ships.
 - **Don't expand scope mid-task.** If you discover work that doesn't fit your claimed task, create a new TASK rather than absorbing it. Keeps file-ownership clean.
 - **Mark blocking issues immediately.** If you hit a blocker, change `status: blocked`, document `blocked_by`, and commit so the next agent sees it.
