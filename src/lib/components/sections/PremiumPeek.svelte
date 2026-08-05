@@ -130,8 +130,8 @@
 						Today’s prompt.
 					</p>
 					<p class="mt-3 text-body-md leading-relaxed text-on-surface">
-						Where did you feel God&rsquo;s love for you this week — and how did you
-						pass it along to someone else?
+						Where did you feel God&rsquo;s love for you this week — and how did you pass
+						it along to someone else?
 					</p>
 
 					<span

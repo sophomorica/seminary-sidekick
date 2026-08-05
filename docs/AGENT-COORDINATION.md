@@ -47,6 +47,7 @@ If two agents claim the same task, the second push fails with a non-fast-forward
 Two agents should never edit the same file concurrently. **The TODO.md `files_to_touch` field is the contract.** Before claiming a task, scan the other in-progress tasks and verify no overlap.
 
 **Shared files (extra caution):**
+
 - `tailwind.config.js`
 - `src/app.css`
 - `src/routes/+layout.svelte`
@@ -72,13 +73,13 @@ Homepage sections live in `src/lib/components/sections/` as standalone files (on
 ```svelte
 <!-- src/routes/+page.svelte (one agent owns this composition) -->
 <script lang="ts">
-  import Hero from '$lib/components/sections/Hero.svelte';
-  import HowItWorks from '$lib/components/sections/HowItWorks.svelte';
-  import QuickQuizDemo from '$lib/components/demos/quick-quiz/QuickQuizDemo.svelte';
-  import PremiumPeek from '$lib/components/sections/PremiumPeek.svelte';
-  import ForTeachersStrip from '$lib/components/sections/ForTeachersStrip.svelte';
-  import NewsPreview from '$lib/components/sections/NewsPreview.svelte';
-  import FinalCTA from '$lib/components/sections/FinalCTA.svelte';
+	import Hero from '$lib/components/sections/Hero.svelte';
+	import HowItWorks from '$lib/components/sections/HowItWorks.svelte';
+	import QuickQuizDemo from '$lib/components/demos/quick-quiz/QuickQuizDemo.svelte';
+	import PremiumPeek from '$lib/components/sections/PremiumPeek.svelte';
+	import ForTeachersStrip from '$lib/components/sections/ForTeachersStrip.svelte';
+	import NewsPreview from '$lib/components/sections/NewsPreview.svelte';
+	import FinalCTA from '$lib/components/sections/FinalCTA.svelte';
 </script>
 
 <Hero />

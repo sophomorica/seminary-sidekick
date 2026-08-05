@@ -263,10 +263,10 @@
 				<!-- Class Play hosting limits — keep in sync with the app
 				     (group_play_service.dart: free = 1 game/week, cap 6). -->
 				<p class="max-w-md text-body-sm text-on-surface-variant">
-					Plus unlimited Class Play hosting with class rooms for up to 30 players.
-					Free accounts can host one casual game a week with up to 6 players —
-					Premium removes both limits. Players always join free. Future Sidekick AI
-					features included as they ship.
+					Plus unlimited Class Play hosting with class rooms for up to 30 players. Free
+					accounts can host one casual game a week with up to 6 players — Premium removes
+					both limits. Players always join free. Future Sidekick AI features included as
+					they ship.
 				</p>
 			</div>
 		</div>

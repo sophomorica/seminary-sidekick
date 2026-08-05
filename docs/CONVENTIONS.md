@@ -6,25 +6,25 @@ Moved verbatim from the original CLAUDE.md.
 
 ### Naming
 
-| Type | Convention | Example |
-|---|---|---|
-| Routes | SvelteKit's `+page.svelte` / `+layout.svelte` | `routes/premium/+page.svelte` |
-| Components | `PascalCase.svelte` | `Hero.svelte`, `QuickQuiz.svelte` |
-| Component folders (multi-file) | `kebab-case/` | `components/demos/quick-quiz/` |
-| TypeScript / JS files | `camelCase.ts` | `loadPosts.ts`, `formatDate.ts` |
-| Config files | `kebab-case.ts` in `src/lib/config/` | `store.ts`, `nav.ts` |
-| Content files | `kebab-case-slug.svx` | `seminary-sidekick-is-live.svx` |
-| Tailwind classes | semantic tokens only | `bg-primary`, not `bg-[#94492C]` |
+| Type                           | Convention                                    | Example                           |
+| ------------------------------ | --------------------------------------------- | --------------------------------- |
+| Routes                         | SvelteKit's `+page.svelte` / `+layout.svelte` | `routes/premium/+page.svelte`     |
+| Components                     | `PascalCase.svelte`                           | `Hero.svelte`, `QuickQuiz.svelte` |
+| Component folders (multi-file) | `kebab-case/`                                 | `components/demos/quick-quiz/`    |
+| TypeScript / JS files          | `camelCase.ts`                                | `loadPosts.ts`, `formatDate.ts`   |
+| Config files                   | `kebab-case.ts` in `src/lib/config/`          | `store.ts`, `nav.ts`              |
+| Content files                  | `kebab-case-slug.svx`                         | `seminary-sidekick-is-live.svx`   |
+| Tailwind classes               | semantic tokens only                          | `bg-primary`, not `bg-[#94492C]`  |
 
 ### Svelte 5 conventions
 
 - Use runes for component state: `$state`, `$derived`, `$effect`, `$props`.
 - Use `$props()` for component props, with TypeScript types:
-  ```svelte
-  <script lang="ts">
-    let { title, kicker = undefined }: { title: string; kicker?: string } = $props();
-  </script>
-  ```
+    ```svelte
+    <script lang="ts">
+    	let { title, kicker = undefined }: { title: string; kicker?: string } = $props();
+    </script>
+    ```
 - Use snippets (`{#snippet}`) over slots for new code.
 - Server load functions live in `+page.ts` (universal) or `+page.server.ts` (server-only).
 
@@ -43,13 +43,13 @@ Posts live in `src/content/news/[slug].svx` with frontmatter:
 
 ```yaml
 ---
-title: "Seminary Sidekick is live in the App Store"
-slug: "seminary-sidekick-is-live"
+title: 'Seminary Sidekick is live in the App Store'
+slug: 'seminary-sidekick-is-live'
 date: 2026-05-28
-excerpt: "After months of building, Seminary Sidekick is now available to download."
-tags: ["release", "announcement"]
-cover: "/images/news/launch-cover.png"
-author: "Patrick"
+excerpt: 'After months of building, Seminary Sidekick is now available to download.'
+tags: ['release', 'announcement']
+cover: '/images/news/launch-cover.png'
+author: 'Patrick'
 ---
 ```
 
@@ -113,10 +113,10 @@ Every page exports SEO metadata via a `<svelte:head>` block or a shared `<Seo>` 
 
 ```svelte
 <Seo
-  title="Seminary Sidekick — Master the 100 Doctrinal Mastery scriptures"
-  description="..."
-  ogImage="/og/home.png"
-  canonical="/"
+	title="Seminary Sidekick — Master the 100 Doctrinal Mastery scriptures"
+	description="..."
+	ogImage="/og/home.png"
+	canonical="/"
 />
 ```
 
