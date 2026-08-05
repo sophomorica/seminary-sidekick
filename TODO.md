@@ -622,6 +622,20 @@ After all Phase B tasks complete.
   - [ ] OG image renders correctly when shared
 - **notes:** Marketing moment.
 
+### TASK-C-113: Web /join seat-claim parity (P1)
+- **status:** blocked
+- **priority:** P1
+- **claimed_by:**
+- **depends_on:** app branch `cursor/critical-bug-management-09ae` merging (app repo)
+- **blocked_by:** app-side migrations not yet merged — do not start until the app branch lands
+- **files_to_touch:** `src/lib/services/groupPlay.ts`, `src/lib/components/group-play/JoinForm.svelte`, `src/lib/components/group-play/JoinShell.svelte` (exact set TBD at claim time)
+- **what:** Mirror of the app repo's TASK-092. App migrations 0010/0012 make class-linked (roster) rooms require `p_seat_id`/`p_claim_token` on join; the web join flow sends only `p_code` + `p_nickname` and will get `SEAT_REQUIRED` for roster rooms. Bring the web `/join` flow to parity with the app's seat-claim protocol so students joining a roster-linked room from the browser can claim their seat.
+- **acceptance:**
+  - [ ] Web join of a class-linked (roster) room succeeds via seat claim (`p_seat_id`/`p_claim_token`)
+  - [ ] Non-roster rooms keep the current `p_code` + `p_nickname` flow unchanged
+  - [ ] `SEAT_REQUIRED` surfaced as a friendly UI state, not a raw error, if a seat claim is needed but missing
+- **notes:** Blocked until app branch `cursor/critical-bug-management-09ae` merges. Protocol reference: `app/docs/GROUP_PLAY_PROTOCOL.md` in the app repo. Filed 2026-08-05 so the web/app drift is tracked; do NOT implement ahead of the app merge.
+
 ---
 
 ## Future tiers (placeholder backlog)

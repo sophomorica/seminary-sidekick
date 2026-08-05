@@ -2,18 +2,20 @@
   ClassPlay — homepage marquee section for the live classroom
   multiplayer mode.
 
-  Status: SHIPPED in the app (v1, May 2026) — two modes (live Quick
+  Status: LIVE — the app shipped on iOS (v1.0.4) and Class Play is in
+  active testing with our first classrooms. Two modes (live Quick
   Quiz + Scripture Builder Race), 4-letter join codes + QR, lobby,
-  live leaderboard with rank deltas, podium results. The app itself
-  is still pre-launch, so the framing is "built and ready at launch"
-  and the waitlist captures teachers who want to know when the app
-  ships.
+  live leaderboard with rank deltas, podium results. A Teacher Roster
+  feature is also in testing in the app. The framing is "live today,
+  honestly in testing" — see <ClassPlayTestingNotice /> — and the
+  waitlist now captures teachers who want Class Play updates as it
+  matures (not a launch-notify list; the app already launched).
 
   Strategic role: this is the viral mechanic of Seminary Sidekick.
   One teacher running a live class round = 20-30 students opening the
   app at once. The section's job is to (a) capture teacher interest
-  pre-launch via a waitlist and (b) advertise the feature so it has
-  momentum on launch day.
+  via the updates list and (b) advertise the feature while it builds
+  momentum with early classrooms.
 
   Free vs Premium (keep in sync with the app — group_play_service.dart):
     Free host  = 1 game per week, rooms up to 6 players.
@@ -36,6 +38,7 @@
    - Plausible-but-fake student first names only (Sarah, Eli, Maya, Jonas).
 -->
 <script lang="ts">
+	import ClassPlayTestingNotice from '$lib/components/ClassPlayTestingNotice.svelte';
 	import WaitlistForm from '$lib/components/forms/WaitlistForm.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowRight, TrendingDown, TrendingUp, Trophy, Users, Zap } from 'lucide-svelte';
@@ -92,10 +95,14 @@
 			</h2>
 
 			<p class="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-				Class-wide live rounds, built in and ready at launch. Students join with a
+				Class-wide live rounds, built into the app and live today. Students join with a
 				four-letter code or a QR scan — then it's live Quick Quiz or a Scripture Builder
 				race, on the same board, in real time, from the phones in their pockets.
 			</p>
+
+			<!-- Honest status note — Class Play is live but still in active
+			     testing with our first classrooms. Remove when it graduates. -->
+			<ClassPlayTestingNotice />
 
 			<!-- Three quick value props above the form so the waitlist has weight. -->
 			<ul class="mt-8 space-y-3" aria-label="What Class Play unlocks">
@@ -147,12 +154,18 @@
 
 			<!-- Free vs Premium clarity line — everyone can try it; Premium
 			     is what unlocks real classroom hosting. -->
-			<p class="mt-8 rounded-2xl bg-surface-container-low px-4 py-3 text-body-md text-on-surface-variant">
+			<p
+				class="mt-8 rounded-2xl bg-surface-container-low px-4 py-3 text-body-md text-on-surface-variant"
+			>
 				<span class="font-semibold text-on-surface">Free to try, built to scale.</span>
 				Every host can run one casual game a week with up to 6 players — free.
-				<a href="/premium" class="font-semibold text-tertiary underline-offset-2 hover:underline">Premium</a>
-				unlocks class rooms of up to 30 players, as many games as you want. Students
-				always join free.
+				<a
+					href="/premium"
+					class="font-semibold text-tertiary underline-offset-2 hover:underline"
+					>Premium</a
+				>
+				unlocks class rooms of up to 30 players, as many games as you want. Students always join
+				free.
 			</p>
 
 			<!-- Waitlist form + secondary read-more. Form first; CTA second. -->

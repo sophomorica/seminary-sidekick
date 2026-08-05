@@ -1,5 +1,11 @@
 <!--
-  WaitlistForm — Class Play teacher waitlist.
+  WaitlistForm — Class Play teacher updates list.
+
+  Originally a pre-launch waitlist; the app is now live on iOS and
+  Class Play is in active testing, so the copy frames this as an
+  updates list for teachers who want to follow Class Play as it
+  matures. Field/action names keep the "waitlist" wording to avoid
+  churning the server helper and form-action contract.
 
   Reused on the homepage <ClassPlay /> section and embedded in
   /for-teachers. Posts to a SvelteKit form action — `?/joinWaitlist`
@@ -33,7 +39,7 @@
 
 	let {
 		placement,
-		label = 'Teachers — get notified when the app launches'
+		label = 'Teachers — get Class Play updates'
 	}: {
 		placement: Placement;
 		label?: string;
@@ -93,7 +99,8 @@
 			<div>
 				<p class="font-serif text-headline-sm">You're on the list.</p>
 				<p class="mt-1 text-body-md text-on-surface-variant">
-					We'll email you the moment Class Play is ready for your classroom.
+					We'll keep you posted as Class Play grows out of testing and new classroom
+					features land.
 				</p>
 			</div>
 		</div>
@@ -119,10 +126,10 @@
 					type="submit"
 					variant="primary"
 					disabled={status === 'submitting'}
-					aria-label="Join the Class Play waitlist"
+					aria-label="Get Class Play updates by email"
 				>
 					<Send aria-hidden="true" />
-					{status === 'submitting' ? 'Joining…' : 'Join the waitlist'}
+					{status === 'submitting' ? 'Joining…' : 'Get updates'}
 				</Button>
 			</div>
 
@@ -135,7 +142,7 @@
 				{#if status === 'error'}
 					{errorMessage}
 				{:else}
-					No spam. One email when it launches.
+					No spam. Occasional Class Play news, nothing else.
 				{/if}
 			</p>
 		</div>

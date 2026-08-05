@@ -17,6 +17,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import ClassPlayTestingNotice from '$lib/components/ClassPlayTestingNotice.svelte';
 	import WaitlistForm from '$lib/components/forms/WaitlistForm.svelte';
 	import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '$lib/config/site';
 	import {
@@ -196,7 +197,7 @@
 					href="#class-play"
 					class="text-accent underline underline-offset-2 hover:text-primary"
 					>Class Play</a
-				> — is built in and ready on day one.
+				> — is built in and live in the app today.
 			</p>
 		</div>
 
@@ -234,11 +235,13 @@
 	</div>
 </section>
 
-<!-- ─── Class Play (built in, ships with the app) ──────────────── -->
+<!-- ─── Class Play (built in, live in the app) ─────────────────── -->
 <!--
   Marquee section for the live classroom multiplayer mode. Shipped
   in-app v1, May 2026 (live Quick Quiz + Scripture Builder Race);
-  the app itself is pre-launch, hence the launch-notify waitlist.
+  the app is now live on iOS and Class Play is in active testing with
+  our first classrooms — hence the <ClassPlayTestingNotice /> and the
+  waitlist reframed as a Class Play updates list.
   Elevated from a small tile in the classroom-uses grid above because
   this is the viral mechanic of the whole product — one teacher running
   a live round = 20-30 students opening the app at once.
@@ -344,13 +347,18 @@
 				class="mt-8 rounded-2xl bg-surface-container px-4 py-3 text-body-md text-on-surface-variant"
 			>
 				<span class="font-semibold text-on-surface">What it costs:</span>
-				anyone can host one casual game a week with up to 6 players, free. Hosting a full
-				class — rooms of up to 30 students, unlimited games — is part of
+				anyone can host one casual game a week with up to 6 players, free. Hosting a full class
+				— rooms of up to 30 students, unlimited games — is part of
 				<a
 					href="/premium"
-					class="font-semibold text-tertiary underline-offset-2 hover:underline">Premium</a
+					class="font-semibold text-tertiary underline-offset-2 hover:underline"
+					>Premium</a
 				>. Only you, the host, need it; your students join free, no accounts.
 			</p>
+
+			<!-- Honest status note — Class Play is live but still in active
+			     testing with our first classrooms. Remove when it graduates. -->
+			<ClassPlayTestingNotice />
 
 			<div class="mt-10">
 				<WaitlistForm placement="for-teachers" />

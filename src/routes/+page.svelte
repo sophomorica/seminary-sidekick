@@ -18,7 +18,8 @@
   - ScriptureMatchDemo gives a second, different taste — you've now
     played alone, twice.
   - ClassPlay reframes: "now imagine your whole class on the same
-    board, live." Captures teacher waitlist signups pre-launch.
+    board, live." Live in the app (in active testing with first
+    classrooms) — captures teacher signups for Class Play updates.
   - ForTeachersStrip pivots to the adult buyer/recommender.
   - NewsPreview shows the project is alive.
   - FinalCTA is the last conversion attempt before the footer.

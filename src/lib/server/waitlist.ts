@@ -9,8 +9,8 @@
  * `src/lib/config/site.ts` (`CLASS_PLAY_WAITLIST_ENDPOINT`). Until the
  * owner pastes a real Formspree form id, this module runs in "log-only"
  * mode — submissions are validated, written to the server console, and
- * reported back to the form as a success (so the UI keeps working for
- * pre-launch demos).
+ * reported back to the form as a success (so the UI keeps working even
+ * before the endpoint is configured).
  */
 
 import { CLASS_PLAY_WAITLIST_ENDPOINT } from '$lib/config/site';
