@@ -78,6 +78,8 @@
 	const myRank = $derived(sortedPlayers.findIndex((player) => player.id === selfId) + 1);
 	const isLocked = $derived(submitting || feedback !== null || timedOut || answerClosed);
 	const roundClosed = $derived(timedOut || answerClosed);
+	// Choice colors only — outcome text banner uses `feedback` alone so host
+	// advance (component remount) cannot skip the points/correctness message.
 	const revealResult = $derived(roundClosed && feedback !== null);
 
 	onMount(() => {
@@ -239,7 +241,7 @@
 			</ul>
 
 			<div class="mt-6 min-h-16" aria-live="polite">
-				{#if revealResult && feedback}
+				{#if feedback}
 					<div
 						class={cn(
 							'flex items-center gap-3 rounded-2xl px-4 py-3 text-title-lg',
@@ -257,10 +259,6 @@
 						{/if}
 					</div>
 					<p class="mt-3 text-center text-body-md text-on-surface-variant">
-						Locked in. Waiting for your teacher…
-					</p>
-				{:else if feedback}
-					<p class="text-center text-body-md text-on-surface-variant">
 						Locked in. Waiting for your teacher…
 					</p>
 				{:else if roundClosed}
