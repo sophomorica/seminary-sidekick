@@ -77,6 +77,10 @@
 	const me = $derived(players.find((player) => player.id === selfId));
 	const myRank = $derived(sortedPlayers.findIndex((player) => player.id === selfId) + 1);
 	const isLocked = $derived(submitting || feedback !== null || timedOut || answerClosed);
+	const roundClosed = $derived(timedOut || answerClosed);
+	// Choice colors only — outcome text banner uses `feedback` alone so host
+	// advance (component remount) cannot skip the points/correctness message.
+	const revealResult = $derived(roundClosed && feedback !== null);
 
 	onMount(() => {
 		const timer = window.setInterval(() => {
@@ -115,7 +119,9 @@
 				!isLocked && 'hover:-translate-y-0.5 hover:shadow-floating'
 			);
 		}
-		if (!feedback) return 'bg-primary-fixed text-on-primary-container ring-2 ring-primary';
+		if (!revealResult || !feedback) {
+			return 'bg-primary-fixed text-on-primary-container ring-2 ring-primary';
+		}
 		return feedback.is_correct
 			? 'bg-success-light text-on-surface ring-2 ring-success'
 			: 'bg-error-light text-on-surface ring-2 ring-error';
@@ -209,19 +215,22 @@
 								<span
 									class={cn(
 										'flex size-8 shrink-0 items-center justify-center rounded-full',
-										feedback?.is_correct && 'bg-success text-on-primary',
-										feedback &&
+										revealResult &&
+											feedback?.is_correct &&
+											'bg-success text-on-primary',
+										revealResult &&
+											feedback &&
 											!feedback.is_correct &&
 											'bg-error text-on-primary',
-										!feedback && 'bg-primary text-on-primary'
+										!revealResult && 'bg-primary text-on-primary'
 									)}
 									aria-hidden="true"
 								>
 									{#if submitting}
 										<LoaderCircle class="size-4 motion-safe:animate-spin" />
-									{:else if feedback?.is_correct}
+									{:else if revealResult && feedback?.is_correct}
 										<Check class="size-5" />
-									{:else if feedback}
+									{:else if revealResult && feedback}
 										<X class="size-5" />
 									{/if}
 								</span>
@@ -252,7 +261,7 @@
 					<p class="mt-3 text-center text-body-md text-on-surface-variant">
 						Locked in. Waiting for your teacher…
 					</p>
-				{:else if timedOut || answerClosed}
+				{:else if roundClosed}
 					<p
 						class="rounded-2xl bg-surface-container-low px-4 py-3 text-center text-body-md"
 					>

@@ -2,13 +2,17 @@
 	import { onMount } from 'svelte';
 	import { Clock3, LoaderCircle } from 'lucide-svelte';
 	import type { Scripture } from '$lib/data/types';
-	import type { GroupSbChunkDifficulty } from '$lib/services/groupPlay';
 	import { cn } from '$lib/utils';
-	import { buildRaceChunks, DNF_MISTAKE_COUNT, type RaceChunk } from './scriptureBuilder';
+	import {
+		buildRaceChunks,
+		DNF_MISTAKE_COUNT,
+		type GroupSbTapDifficulty,
+		type RaceChunk
+	} from './scriptureBuilder';
 
 	type Props = {
 		scripture: Scripture;
-		difficulty: GroupSbChunkDifficulty;
+		difficulty: GroupSbTapDifficulty;
 		distractorPool: Scripture[];
 		timeoutSeconds?: number;
 		onfinish: (elapsedMs: number, mistakeCount: number) => void;

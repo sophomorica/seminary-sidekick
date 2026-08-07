@@ -11,7 +11,7 @@ export const ROOM_CODE_LENGTH = 4;
 
 export type GroupPlayStatus = 'lobby' | 'active' | 'ended';
 export type GroupPlayMode = 'quiz' | 'scriptureBuilder';
-export type GroupSbChunkDifficulty = 'beginner' | 'intermediate';
+export type GroupSbChunkDifficulty = 'beginner' | 'intermediate' | 'advanced' | 'master';
 export type GroupSbPlayMode = 'roundByRound' | 'setOfN';
 
 export type GroupSbConfig = {
