@@ -8,7 +8,7 @@ export type WordCommitResult = {
 };
 
 /** Punctuation that is auto-filled (never typed by the user). Matches Dart WordCommitEngine.punctuation. */
-export const punctuation = /[,;:!?\-\—\–\.'\"\'\'\"\"\(\)\[\]]/;
+export const punctuation = /[,;:!?\-.—–.'"''""()[\]]/;
 
 const nonAlphanumeric = /[^a-z0-9]/g;
 

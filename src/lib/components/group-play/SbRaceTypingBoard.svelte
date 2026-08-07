@@ -3,10 +3,7 @@
 	import { Clock3 } from 'lucide-svelte';
 	import type { Scripture } from '$lib/data/types';
 	import { cn } from '$lib/utils';
-	import {
-		GroupSbTypingController,
-		type GroupSbTypedChar
-	} from './groupSbTypingController';
+	import { GroupSbTypingController, type GroupSbTypedChar } from './groupSbTypingController';
 	import { DNF_MISTAKE_COUNT, type GroupSbTypingDifficulty } from './scriptureBuilder';
 	import { punctuation } from './wordCommitEngine';
 
@@ -52,9 +49,7 @@
 		isMaster ? ([] as number[]) : firstLetterIndices(controller.targetText)
 	);
 	const cursorIndex = $derived(
-		isMaster || hasActiveError
-			? -1
-			: nextLetterIndex(controller.targetText, typedChars.length)
+		isMaster || hasActiveError ? -1 : nextLetterIndex(controller.targetText, typedChars.length)
 	);
 	const glyphs = $derived(
 		buildGlyphs(controller.targetText, typedChars, {
@@ -244,13 +239,9 @@
 		<p class="font-serif text-title-lg leading-relaxed whitespace-pre-wrap">
 			{#each glyphs as glyph (glyph.index)}
 				{#if glyph.kind === 'typed-correct'}
-					<span
-						class="font-bold text-success bg-success/10"
-					>{glyph.text}</span>
+					<span class="font-bold text-success bg-success/10">{glyph.text}</span>
 				{:else if glyph.kind === 'typed-wrong'}
-					<span
-						class="font-bold text-error bg-error/15"
-					>{glyph.text}</span>
+					<span class="font-bold text-error bg-error/15">{glyph.text}</span>
 				{:else if glyph.kind === 'space'}
 					{glyph.text}
 				{:else if glyph.kind === 'hint'}
@@ -258,8 +249,8 @@
 						class={cn(
 							'font-semibold text-accent',
 							glyph.atCursor ? 'bg-accent/15 text-accent' : 'text-accent/70'
-						)}
-					>{glyph.text}</span>
+						)}>{glyph.text}</span
+					>
 				{:else}
 					<span
 						class={cn(
@@ -267,8 +258,8 @@
 							glyph.atCursor
 								? 'bg-accent/15 text-on-surface/45'
 								: 'text-on-surface/25'
-						)}
-					>{glyph.text}</span>
+						)}>{glyph.text}</span
+					>
 				{/if}
 			{/each}
 		</p>
