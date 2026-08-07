@@ -1,9 +1,34 @@
 import { getScripture } from '$lib/data/scriptures';
 import type { Scripture } from '$lib/data/types';
-import type { GroupPlayPlayer, GroupSbConfig, GroupSbFinish } from '$lib/services/groupPlay';
+import type {
+	GroupPlayPlayer,
+	GroupSbChunkDifficulty,
+	GroupSbConfig,
+	GroupSbFinish
+} from '$lib/services/groupPlay';
 
 export const DNF_MISTAKE_COUNT = -1;
 export const INTERMEDIATE_DISTRACTOR_COUNT = 3;
+
+export type GroupSbTapDifficulty = Extract<GroupSbChunkDifficulty, 'beginner' | 'intermediate'>;
+export type GroupSbTypingDifficulty = Extract<GroupSbChunkDifficulty, 'advanced' | 'master'>;
+
+export function isTypingDifficulty(
+	difficulty: GroupSbChunkDifficulty
+): difficulty is GroupSbTypingDifficulty {
+	return difficulty === 'advanced' || difficulty === 'master';
+}
+
+export function isTapDifficulty(
+	difficulty: GroupSbChunkDifficulty
+): difficulty is GroupSbTapDifficulty {
+	return difficulty === 'beginner' || difficulty === 'intermediate';
+}
+
+function parseChunkDifficulty(value: unknown): GroupSbChunkDifficulty {
+	if (value === 'intermediate' || value === 'advanced' || value === 'master') return value;
+	return 'beginner';
+}
 
 export type RaceChunk = {
 	id: string;
@@ -28,7 +53,7 @@ export function parseScriptureBuilderSetup(scope: Record<string, unknown>): Scri
 	}
 
 	const value = raw as Record<string, unknown>;
-	const chunkDifficulty = value.chunkDifficulty === 'intermediate' ? 'intermediate' : 'beginner';
+	const chunkDifficulty = parseChunkDifficulty(value.chunkDifficulty);
 	const playMode = value.playMode === 'setOfN' ? 'setOfN' : 'roundByRound';
 	const scriptureIds = Array.isArray(value.scriptureIds)
 		? value.scriptureIds.filter((id): id is string => typeof id === 'string')
@@ -74,9 +99,10 @@ export function scriptureWords(scripture: Scripture): string[] {
 		.filter(Boolean);
 }
 
+/** Chunk-tap race only — callers must pass beginner/intermediate, never typing tiers. */
 export function buildRaceChunks(
 	scripture: Scripture,
-	difficulty: GroupSbConfig['chunkDifficulty'],
+	difficulty: GroupSbTapDifficulty,
 	distractorPool: Scripture[],
 	random: () => number = Math.random
 ): { targets: RaceChunk[]; pool: RaceChunk[] } {

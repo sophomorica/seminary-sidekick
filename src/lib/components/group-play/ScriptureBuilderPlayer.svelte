@@ -9,9 +9,11 @@
 		type GroupSbFinish
 	} from '$lib/services/groupPlay';
 	import SbRaceBoard from './SbRaceBoard.svelte';
+	import SbRaceTypingBoard from './SbRaceTypingBoard.svelte';
 	import {
 		DNF_MISTAKE_COUNT,
 		formatSeconds,
+		isTypingDifficulty,
 		parseScriptureBuilderSetup
 	} from './scriptureBuilder';
 
@@ -216,13 +218,22 @@
 				</div>
 			{:else}
 				{#key `${scripture.id}-${scriptureIndex}`}
-					<SbRaceBoard
-						{scripture}
-						difficulty={setup.config.chunkDifficulty}
-						{distractorPool}
-						timeoutSeconds={setup.config.perScriptureTimeoutSeconds}
-						onfinish={recordFinish}
-					/>
+					{#if isTypingDifficulty(setup.config.chunkDifficulty)}
+						<SbRaceTypingBoard
+							{scripture}
+							difficulty={setup.config.chunkDifficulty}
+							timeoutSeconds={setup.config.perScriptureTimeoutSeconds}
+							onfinish={recordFinish}
+						/>
+					{:else}
+						<SbRaceBoard
+							{scripture}
+							difficulty={setup.config.chunkDifficulty}
+							{distractorPool}
+							timeoutSeconds={setup.config.perScriptureTimeoutSeconds}
+							onfinish={recordFinish}
+						/>
+					{/if}
 				{/key}
 
 				<div class="mt-6 min-h-12" aria-live="polite">
