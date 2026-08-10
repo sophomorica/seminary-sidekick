@@ -13,17 +13,17 @@
 export const IOS_URL = 'https://apps.apple.com/us/app/seminary-sidekick/id6780003239';
 
 /**
- * Google Play Store listing URL. Use UTM tags. Empty `#` until Android
- * launches; the buttons check `ANDROID_AVAILABLE` before linking.
+ * Google Play Store listing URL. Use UTM tags when available.
+ * Buttons check `ANDROID_AVAILABLE` before linking.
  */
-export const ANDROID_URL = '#'; // TODO: real Play Store URL on Android launch
+export const ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.seminarysidekick.app';
 
 /**
  * Toggle this when the Android build is live in the Play Store.
  * When false, the Play Store button renders as a disabled "Coming
  * soon to Android" pill instead of a link.
  */
-export const ANDROID_AVAILABLE = false;
+export const ANDROID_AVAILABLE = true;
 
 /** Whether the iOS app is in the App Store. Almost always true once we launch. */
 export const IOS_AVAILABLE = true;

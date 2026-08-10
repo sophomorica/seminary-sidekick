@@ -32,7 +32,7 @@ The CI workflow (`.github/workflows/ci.yml`) handles type-checking, linting, and
 
 ## After launch
 
-- **TASK-C-110** (done) set the real iOS App Store URL in `src/lib/config/store.ts`. Flip `ANDROID_AVAILABLE` + `ANDROID_URL` the same way when Play Store ships.
+- **TASK-C-110** (done) set real store URLs in `src/lib/config/store.ts` — iOS App Store + Google Play (`ANDROID_AVAILABLE: true`).
 - **TASK-C-111** submits the production sitemap (`https://<domain>/sitemap.xml`) to Google Search Console.
 
 ## If the production build fails on Vercel but passes locally

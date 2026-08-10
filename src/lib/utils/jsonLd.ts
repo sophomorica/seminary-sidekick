@@ -13,7 +13,7 @@
  */
 
 import { SITE_NAME, SITE_URL, TAGLINE, DEFAULT_OG_IMAGE, CONTACT_EMAIL } from '$lib/config/site';
-import { IOS_AVAILABLE, IOS_URL } from '$lib/config/store';
+import { ANDROID_AVAILABLE, ANDROID_URL, IOS_AVAILABLE, IOS_URL } from '$lib/config/store';
 
 /**
  * Generic JSON-LD payload shape. We stay loose with `unknown`
@@ -29,6 +29,24 @@ function absolute(pathOrUrl: string): string {
 	return `${SITE_URL}${path}`;
 }
 
+/** Live store platforms + download URLs, derived from `store.ts` flags. */
+function liveStoreListing(): { operatingSystem?: string; downloadUrls: string[] } {
+	const systems: string[] = [];
+	const downloadUrls: string[] = [];
+	if (IOS_AVAILABLE) {
+		systems.push('iOS');
+		downloadUrls.push(IOS_URL);
+	}
+	if (ANDROID_AVAILABLE) {
+		systems.push('Android');
+		downloadUrls.push(ANDROID_URL);
+	}
+	return {
+		...(systems.length ? { operatingSystem: systems.join(', ') } : {}),
+		downloadUrls
+	};
+}
+
 /**
  * SoftwareApplication — for the home page and /apps/scripture-mastery.
  * Tells Google "this is an app" so it can render rich app cards.
@@ -37,15 +55,19 @@ function absolute(pathOrUrl: string): string {
  * embed real prices here (those live in the stores and shift over time).
  */
 export function softwareApplication(overrides: Partial<JsonLd> = {}): JsonLd {
+	const { operatingSystem, downloadUrls } = liveStoreListing();
+	const primaryUrl = downloadUrls[0];
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareApplication',
 		name: SITE_NAME,
 		description: TAGLINE,
 		applicationCategory: 'EducationalApplication',
-		operatingSystem: 'iOS',
+		...(operatingSystem ? { operatingSystem } : {}),
 		url: SITE_URL,
-		...(IOS_AVAILABLE ? { downloadUrl: IOS_URL, installUrl: IOS_URL } : {}),
+		...(primaryUrl ? { downloadUrl: primaryUrl, installUrl: primaryUrl } : {}),
+		// Extra store URLs when both platforms are live (schema.org allows multi-value).
+		...(downloadUrls.length > 1 ? { sameAs: downloadUrls } : {}),
 		image: absolute(DEFAULT_OG_IMAGE),
 		offers: {
 			'@type': 'Offer',
