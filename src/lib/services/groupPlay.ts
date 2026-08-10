@@ -88,6 +88,28 @@ export type JoinRoomResult = {
 	player: GroupPlayPlayer;
 };
 
+export type RoomJoinSeat = {
+	id: string;
+	displayName: string;
+	isClaimed: boolean;
+	sortOrder: number;
+};
+
+export type RoomJoinInfo = {
+	hasClass: boolean;
+	roomCode: string;
+	status: GroupPlayStatus;
+	classId?: string;
+	className?: string;
+	requireClaimCodes: boolean;
+	seats: RoomJoinSeat[];
+};
+
+export type SeatJoinOptions = {
+	seatId: string;
+	claimCode?: string;
+};
+
 export type SubmitAnswerResult = {
 	answer: GroupPlayAnswer;
 	is_correct: boolean;
@@ -138,7 +160,16 @@ const ERROR_MESSAGES: Readonly<Record<string, string>> = {
 	QUESTION_NOT_STARTED: 'This question has not started yet.',
 	INVALID_QUESTION: 'This question is no longer available.',
 	NOT_IN_ROOM: 'You are no longer in this room.',
-	ROOM_NOT_ACTIVE: 'This room is not playing a quiz right now.'
+	ROOM_NOT_ACTIVE: 'This room is not playing a quiz right now.',
+	SEAT_REQUIRED: 'This game uses a class list — pick your name to join.',
+	SEAT_NOT_FOUND: 'That name is no longer in the class. Ask your teacher to check the roster.',
+	SEAT_ALREADY_CLAIMED:
+		'That name is already claimed on another device. Ask your teacher to reattach the seat.',
+	CLAIM_TOKEN_IN_USE:
+		'This device already claimed a different name in this class. Ask your teacher to reattach a seat if you need to switch.',
+	INVALID_CLAIM_CODE: 'That claim code is incorrect. Check the code from your teacher.',
+	INVALID_CLAIM_TOKEN: 'Could not claim that seat. Refresh the page and try again.',
+	CLASS_NOT_FOUND: 'This class no longer exists. Ask your teacher for a new code.'
 };
 
 export class GroupPlayError extends Error {
@@ -195,6 +226,25 @@ function mapError(error: unknown): GroupPlayError {
 	return new GroupPlayError('Class Play could not complete that action. Check your connection.');
 }
 
+// Durable per-browser claim token binding this browser to class seats —
+// the web analog of the app's Hive ClaimTokenStore. Falls back to an
+// in-memory token when storage is unavailable (private browsing).
+const CLAIM_TOKEN_KEY = 'seminary-sidekick:claim-token';
+let memoryClaimToken = '';
+
+function getOrCreateClaimToken(): string {
+	try {
+		const existing = localStorage.getItem(CLAIM_TOKEN_KEY);
+		if (existing && existing.length >= 8) return existing;
+		const token = crypto.randomUUID();
+		localStorage.setItem(CLAIM_TOKEN_KEY, token);
+		return token;
+	} catch {
+		if (memoryClaimToken.length < 8) memoryClaimToken = crypto.randomUUID();
+		return memoryClaimToken;
+	}
+}
+
 async function ensureAnonymousSession(supabase: SupabaseClient): Promise<void> {
 	const {
 		data: { session },
@@ -207,7 +257,50 @@ async function ensureAnonymousSession(supabase: SupabaseClient): Promise<void> {
 	if (error) throw error;
 }
 
-export async function joinRoom(code: string, nickname: string): Promise<JoinRoomResult> {
+/// Peek a room before joining: class-linked rooms return the seat roster so
+/// the UI can show a name picker instead of a nickname field.
+export async function getRoomJoinInfo(code: string): Promise<RoomJoinInfo> {
+	const normalizedCode = normalizeRoomCode(code);
+	if (!isValidRoomCode(normalizedCode)) {
+		throw new GroupPlayError('Enter the 4-character code from your teacher.', 'INVALID_CODE');
+	}
+
+	try {
+		const supabase = getClient();
+		await ensureAnonymousSession(supabase);
+		const { data, error } = await supabase.rpc('get_room_join_info', {
+			p_code: normalizedCode
+		});
+		if (error) throw error;
+		const raw = (data ?? {}) as Record<string, unknown>;
+		const rawSeats = Array.isArray(raw.seats) ? raw.seats : [];
+		return {
+			hasClass: raw.has_class === true,
+			roomCode: typeof raw.room_code === 'string' ? raw.room_code : normalizedCode,
+			status: (typeof raw.status === 'string' ? raw.status : 'lobby') as GroupPlayStatus,
+			classId: typeof raw.class_id === 'string' ? raw.class_id : undefined,
+			className: typeof raw.class_name === 'string' ? raw.class_name : undefined,
+			requireClaimCodes: raw.require_claim_codes === true,
+			seats: rawSeats.map((value) => {
+				const seat = value as Record<string, unknown>;
+				return {
+					id: String(seat.id ?? ''),
+					displayName: String(seat.display_name ?? ''),
+					isClaimed: seat.is_claimed === true,
+					sortOrder: Number(seat.sort_order ?? 0)
+				};
+			})
+		};
+	} catch (error) {
+		throw mapError(error);
+	}
+}
+
+export async function joinRoom(
+	code: string,
+	nickname: string,
+	seat?: SeatJoinOptions
+): Promise<JoinRoomResult> {
 	const normalizedCode = normalizeRoomCode(code);
 	const normalizedNickname = nickname.trim();
 
@@ -221,9 +314,17 @@ export async function joinRoom(code: string, nickname: string): Promise<JoinRoom
 	try {
 		const supabase = getClient();
 		await ensureAnonymousSession(supabase);
+		const claimCode = seat?.claimCode?.trim().toUpperCase();
 		const { data, error } = await supabase.rpc('join_room', {
 			p_code: normalizedCode,
-			p_nickname: normalizedNickname
+			p_nickname: normalizedNickname,
+			...(seat
+				? {
+						p_seat_id: seat.seatId,
+						p_claim_token: getOrCreateClaimToken(),
+						...(claimCode ? { p_claim_code: claimCode } : {})
+					}
+				: {})
 		});
 		if (error) throw error;
 		if (!data || typeof data !== 'object' || !('room' in data) || !('player' in data)) {

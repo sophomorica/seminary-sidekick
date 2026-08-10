@@ -5,6 +5,7 @@
 	import JoinForm from './JoinForm.svelte';
 	import KickRemoved from './KickRemoved.svelte';
 	import {
+		getRoomJoinInfo,
 		GroupPlayError,
 		isValidRoomCode,
 		joinRoom,
@@ -14,7 +15,9 @@
 		type GroupPlayPlayer,
 		type GroupPlaySubscription,
 		type GroupSbFinish,
-		type JoinRoomResult
+		type JoinRoomResult,
+		type RoomJoinInfo,
+		type RoomJoinSeat
 	} from '$lib/services/groupPlay';
 
 	type Props = {
@@ -24,6 +27,11 @@
 	let { initialCode = '' }: Props = $props();
 	const LAST_ROOM_KEY = 'seminary-sidekick:group-play-room';
 	let joined = $state<JoinRoomResult | null>(null);
+	let joinInfo = $state<RoomJoinInfo | null>(null);
+	// Codes we've already peeked and found to be classic (no roster) — avoids
+	// a second get_room_join_info round-trip at submit time.
+	let peekedClassicCode = '';
+	let peekInFlightCode = '';
 	let players = $state<GroupPlayPlayer[]>([]);
 	let answers = $state<GroupPlayAnswer[]>([]);
 	let sbFinishes = $state<GroupSbFinish[]>([]);
@@ -95,19 +103,105 @@
 		startWatching(result);
 	}
 
+	// Peek whether a room is roster-backed as soon as a complete code exists.
+	// Best-effort: on failure the submit path re-peeks (and falls back to a
+	// classic join attempt with a friendly SEAT_REQUIRED message).
+	async function peekCode(code: string) {
+		if (!isValidRoomCode(code)) return;
+		if (joinInfo?.roomCode === code || peekedClassicCode === code) return;
+		if (peekInFlightCode === code) return;
+		peekInFlightCode = code;
+		try {
+			const info = await getRoomJoinInfo(code);
+			if (info.hasClass) {
+				joinInfo = info;
+				error = '';
+			} else {
+				peekedClassicCode = code;
+			}
+		} catch (cause) {
+			// Surface definite outcomes right away; ignore transient failures.
+			if (
+				cause instanceof GroupPlayError &&
+				(cause.code === 'ROOM_NOT_FOUND' || cause.code === 'ROOM_ENDED')
+			) {
+				error = cause.message;
+			}
+		} finally {
+			if (peekInFlightCode === code) peekInFlightCode = '';
+		}
+	}
+
+	function handleResetJoinInfo() {
+		joinInfo = null;
+		error = '';
+	}
+
 	async function handleJoin(code: string, nickname: string) {
 		busy = true;
 		error = '';
 		connectionWarning = false;
 
 		try {
+			// A roster room needs the name picker — make sure we didn't miss it
+			// (e.g. the background peek failed on a flaky connection).
+			if (peekedClassicCode !== code) {
+				try {
+					const info = await getRoomJoinInfo(code);
+					if (info.hasClass) {
+						joinInfo = info;
+						return;
+					}
+					peekedClassicCode = code;
+				} catch {
+					// Fall through to the classic join attempt below.
+				}
+			}
 			const result = await joinRoom(code, nickname);
+			enterRoom(result);
+		} catch (cause) {
+			if (cause instanceof GroupPlayError) {
+				error =
+					cause.code === 'SEAT_REQUIRED'
+						? 'This game uses a class list, but it could not be loaded. Check your connection and try again.'
+						: cause.message;
+			} else {
+				error = 'Could not join the room. Check your connection and try again.';
+			}
+		} finally {
+			busy = false;
+		}
+	}
+
+	async function handleSeatJoin(code: string, seat: RoomJoinSeat, claimCode: string) {
+		busy = true;
+		error = '';
+		connectionWarning = false;
+
+		try {
+			const result = await joinRoom(code, seat.displayName, {
+				seatId: seat.id,
+				claimCode: claimCode || undefined
+			});
 			enterRoom(result);
 		} catch (cause) {
 			error =
 				cause instanceof GroupPlayError
 					? cause.message
 					: 'Could not join the room. Check your connection and try again.';
+			// Claim conflicts mean the roster changed under us — refresh it so
+			// the picker shows current claimed states.
+			if (
+				cause instanceof GroupPlayError &&
+				(cause.code === 'SEAT_ALREADY_CLAIMED' || cause.code === 'SEAT_NOT_FOUND')
+			) {
+				try {
+					const info = await getRoomJoinInfo(code);
+					if (info.hasClass) joinInfo = info;
+				} catch {
+					// Keep the stale list — the error message still explains the state.
+				}
+			}
 		} finally {
 			busy = false;
 		}
@@ -166,7 +260,13 @@
 					// Stale marker — the room ended or this browser is no longer
 					// part of it. Clear it so we don't re-resume forever.
 					clearRoomMarker();
-					if (markerCode === resumeCode) sessionUnavailable = true;
+					if (markerCode === resumeCode) {
+						sessionUnavailable = true;
+					} else if (isValidRoomCode(initialCode)) {
+						// Fresh /join/CODE link (QR scan): peek right away so a
+						// roster room greets the student with the name picker.
+						void peekCode(initialCode);
+					}
 				}
 			})
 			.catch(() => {
@@ -191,6 +291,8 @@
 		void subscription?.stop();
 		subscription = undefined;
 		joined = null;
+		joinInfo = null;
+		peekedClassicCode = '';
 		players = [];
 		answers = [];
 		sbFinishes = [];
@@ -199,6 +301,7 @@
 		sessionUnavailable = false;
 		connectionWarning = false;
 		error = '';
+		if (isValidRoomCode(initialCode)) void peekCode(initialCode);
 	}
 
 	// Warn before leaving mid-session (joined/playing), but not once results
@@ -255,12 +358,30 @@
 		{:else}
 			<header class="mb-8 text-center">
 				<p class="eyebrow">Class Play</p>
-				<h1 class="font-serif text-display-lg">Join your class</h1>
-				<p class="mt-3 text-body-lg text-on-surface-variant">
-					Enter your class code and a nickname. No account needed.
-				</p>
+				{#if joinInfo?.hasClass}
+					<h1 class="font-serif text-display-lg">Pick your name</h1>
+					<p class="mt-3 text-body-lg text-on-surface-variant">
+						{joinInfo.className
+							? `Your teacher set up “${joinInfo.className}” — find your name to join.`
+							: 'Your teacher set up a class list — find your name to join.'}
+					</p>
+				{:else}
+					<h1 class="font-serif text-display-lg">Join your class</h1>
+					<p class="mt-3 text-body-lg text-on-surface-variant">
+						Enter the game code from your teacher's screen. No account needed.
+					</p>
+				{/if}
 			</header>
-			<JoinForm {initialCode} {busy} {error} onjoin={handleJoin} />
+			<JoinForm
+				{initialCode}
+				{busy}
+				{error}
+				{joinInfo}
+				oncodecomplete={(code) => void peekCode(code)}
+				onjoin={handleJoin}
+				onseatjoin={handleSeatJoin}
+				onreset={handleResetJoinInfo}
+			/>
 		{/if}
 	</div>
 </div>

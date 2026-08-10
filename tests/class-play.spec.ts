@@ -4,7 +4,7 @@
  * Class Play is the viral mechanic the brand leads with. These tests
  * pin down the contract:
  *   - Homepage renders the marquee ClassPlay section with a working
- *     waitlist form (input + submit button, accessible by name).
+ *     updates form (input + submit button, accessible by name).
  *   - Submitting a valid email transitions the form to a success state.
  *   - Submitting an invalid email is blocked client-side (HTML5
  *     validation is the first-pass requirement).
@@ -37,13 +37,16 @@ test.describe('Class Play — homepage section', () => {
 		await expect(emailField).toHaveAttribute('type', 'email');
 
 		const submit = section.getByRole('button', {
-			name: /join the class play waitlist/i
+			name: /get class play updates/i
 		});
 		await expect(submit).toBeVisible();
 	});
 
 	test('submitting a valid email transitions to the success state', async ({ page }) => {
 		await page.goto('/');
+		// Let hydration attach `use:enhance` before submitting — a pre-hydration
+		// click falls back to a full-page POST and the success card never shows.
+		await page.waitForLoadState('networkidle');
 
 		const section = page.locator('#class-play');
 		await section
@@ -51,7 +54,7 @@ test.describe('Class Play — homepage section', () => {
 			.first()
 			.fill('teacher@example.com');
 
-		await section.getByRole('button', { name: /join the class play waitlist/i }).click();
+		await section.getByRole('button', { name: /get class play updates/i }).click();
 
 		// Success card is announced via role="status".
 		await expect(section.getByRole('status')).toContainText(/on the list/i);
@@ -64,7 +67,7 @@ test.describe('Class Play — homepage section', () => {
 		const emailField = section.getByRole('textbox', { name: /class play/i }).first();
 		await emailField.fill('not-an-email');
 
-		await section.getByRole('button', { name: /join the class play waitlist/i }).click();
+		await section.getByRole('button', { name: /get class play updates/i }).click();
 
 		// The success state should NOT appear — the browser blocked submit.
 		await expect(section.getByRole('status')).toHaveCount(0);
@@ -87,7 +90,7 @@ test.describe('Class Play — /for-teachers', () => {
 		// The dedicated page also gets its own waitlist form.
 		await expect(section.getByRole('textbox', { name: /class play/i }).first()).toBeVisible();
 		await expect(
-			section.getByRole('button', { name: /join the class play waitlist/i })
+			section.getByRole('button', { name: /get class play updates/i })
 		).toBeVisible();
 	});
 });
