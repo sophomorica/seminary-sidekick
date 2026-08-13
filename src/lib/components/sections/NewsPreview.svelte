@@ -69,12 +69,12 @@
 					at the same elevation a real post card would.
 				-->
 				<div class="card lg:col-span-3 text-center">
-					<p class="eyebrow">News</p>
-					<h3 class="font-serif text-headline-lg text-on-surface">No posts here yet.</h3>
+					<h3 class="font-serif text-headline-lg text-on-surface">
+						Nothing published yet.
+					</h3>
 					<p class="mt-3 mx-auto max-w-xl text-body-md text-on-surface-variant">
-						Devotionals and release notes will show up here when we publish them. The
-						app is already live on iPhone and Android — get it from the store buttons
-						above.
+						The app is live on iPhone and Android. Devotionals and release notes will
+						show up here.
 					</p>
 				</div>
 			{:else}
