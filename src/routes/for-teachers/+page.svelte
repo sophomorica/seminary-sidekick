@@ -5,10 +5,11 @@
   Expands the homepage <ForTeachersStrip /> into a real pitch:
     1. Hero with eyebrow + serif headline
     2. "Why we built this" — Patrick's voice (TODO marker for owner refine)
-    3. "How a class can use it" — three cards (warmup / habit / group)
-    4. "What about AI safety?" — curated, age-appropriate, privacy-first
-    5. "Coming soon" forward-looking strip — resource library + community
-    6. "Get in touch" CTA — mailto
+    3. "How a class can use it" — three cards (warmup / habit / save class)
+    4. Class Play marquee + saved-class how-to (#saved-class)
+    5. "What about AI safety?" — curated, age-appropriate, privacy-first
+    6. "Coming soon" forward-looking strip — resource library + community
+    7. "Get in touch" CTA — mailto
 
   Visuals follow THEME.md exactly: tinted surfaces, rounded-4xl cards,
   shadow-editorial, lucide icons, no <style> blocks, no raw hex.
@@ -19,6 +20,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import ClassPlayTestingNotice from '$lib/components/ClassPlayTestingNotice.svelte';
 	import WaitlistForm from '$lib/components/forms/WaitlistForm.svelte';
+	import SavedClass from '$lib/components/sections/SavedClass.svelte';
 	import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '$lib/config/site';
 	import {
 		Icon,
@@ -32,12 +34,13 @@
 		Sparkles,
 		Trophy,
 		Zap,
-		Users
+		Users,
+		Bookmark
 	} from 'lucide-svelte';
 
 	const pageTitle = `For teachers — ${SITE_NAME}`;
 	const pageDescription =
-		'Why we built Seminary Sidekick, how a class can use it, and how we think about AI safety, privacy, and age-appropriateness.';
+		'Save your classroom once, load it for Class Play, and help students master the 100 doctrinal-mastery scriptures — without ads or student accounts.';
 	const canonical = `${SITE_URL}/for-teachers`;
 
 	type ClassroomUse = {
@@ -49,9 +52,9 @@
 		hint?: string;
 	};
 
-	// Class Play (live group competition) used to sit here as the third
-	// card. It's been elevated to its own marquee section further down
-	// the page (see #class-play) — too important to be a tile.
+	// Class Play is its own marquee (#class-play). Saved classrooms
+	// get a dedicated how-to (#saved-class). These cards stay the
+	// quick shapes a teacher can try this week.
 	const classroomUses: ClassroomUse[] = [
 		{
 			title: '5-minute class warmup',
@@ -66,6 +69,13 @@
 			icon: Repeat,
 			iconBg: 'bg-secondary-container',
 			iconColor: 'text-secondary'
+		},
+		{
+			title: 'Save the classroom',
+			body: 'Type the names once. Load that class whenever you host. Students pick their name — no accounts, no retyping the roll next period.',
+			icon: Bookmark,
+			iconBg: 'bg-tertiary-fixed',
+			iconColor: 'text-tertiary'
 		}
 	];
 
@@ -189,21 +199,28 @@
 				id="how-a-class-can-use-it"
 				class="font-serif text-display-md tracking-tight md:text-display-lg"
 			>
-				Two shapes that already work.
+				Shapes that already work.
 			</h2>
 			<p class="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
 				You don’t need to redesign your class around an app. Pick one of these and try it
-				for a week. A third, live shape — <a
+				for a week. <a
 					href="#class-play"
 					class="text-accent underline underline-offset-2 hover:text-primary"
 					>Class Play</a
-				> — is built in and live in the app today.
+				>
+				and
+				<a
+					href="#saved-class"
+					class="text-accent underline underline-offset-2 hover:text-primary"
+					>saved classrooms</a
+				>
+				are built in and live in the app today.
 			</p>
 		</div>
 
 		<ul
-			class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16"
-			aria-label="Two classroom uses"
+			class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16 lg:grid-cols-3"
+			aria-label="Classroom uses"
 		>
 			{#each classroomUses as use (use.title)}
 				{@const Icon = use.icon}
@@ -338,6 +355,25 @@
 						</span>
 					</p>
 				</li>
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-fixed text-primary"
+						aria-hidden="true"
+					>
+						<Bookmark class="h-4 w-4" stroke-width={1.75} />
+					</span>
+					<p class="text-on-surface">
+						<span class="font-semibold">Save the class once.</span>
+						<span class="text-on-surface-variant">
+							Load it every time you host.
+							<a
+								href="#saved-class"
+								class="font-semibold text-accent underline-offset-2 hover:underline"
+								>How it works</a
+							>.
+						</span>
+					</p>
+				</li>
 			</ul>
 
 			<!-- Free vs Premium hosting — the one thing a teacher needs to know
@@ -375,6 +411,8 @@
 		</div>
 	</div>
 </section>
+
+<SavedClass />
 
 <!-- ─── What about AI safety? ──────────────────────────────────── -->
 <section class="bg-surface py-16 md:py-24" aria-labelledby="ai-safety">
@@ -445,13 +483,8 @@
 				</h2>
 				<p class="mt-3 text-on-surface-variant">
 					Lesson outlines, object lessons, printable handouts, and a small community of
-					teachers sharing what worked this week — plus saved class rosters so
-					<a
-						href="#class-play"
-						class="text-accent underline underline-offset-2 hover:text-primary"
-						>Class Play</a
-					> setup takes seconds. Want a say in what ships first? The mailto below goes straight
-					to me.
+					teachers sharing what worked this week. Want a say in what ships first? The
+					mailto below goes straight to me.
 				</p>
 			</div>
 		</div>

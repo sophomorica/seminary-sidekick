@@ -5,8 +5,9 @@
   Status: LIVE — the app shipped on iOS (v1.0.4) and Class Play is in
   active testing with our first classrooms. Two modes (live Quick
   Quiz + Scripture Builder Race), 4-letter join codes + QR, lobby,
-  live leaderboard with rank deltas, podium results. A Teacher Roster
-  feature is also in testing in the app. The framing is "live today,
+  live leaderboard with rank deltas, podium results. Teachers can
+  save a classroom (Teacher Roster) and load it into a game — how-to
+  lives at /for-teachers#saved-class. The framing is "live today,
   honestly in testing" — see <ClassPlayTestingNotice /> — and the
   waitlist now captures teachers who want Class Play updates as it
   matures (not a launch-notify list; the app already launched).
@@ -41,7 +42,15 @@
 	import ClassPlayTestingNotice from '$lib/components/ClassPlayTestingNotice.svelte';
 	import WaitlistForm from '$lib/components/forms/WaitlistForm.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import { ArrowRight, TrendingDown, TrendingUp, Trophy, Users, Zap } from 'lucide-svelte';
+	import {
+		ArrowRight,
+		Bookmark,
+		TrendingDown,
+		TrendingUp,
+		Trophy,
+		Users,
+		Zap
+	} from 'lucide-svelte';
 	import { reveal } from '$lib/actions';
 
 	type LeaderboardRow = {
@@ -150,6 +159,26 @@
 						</span>
 					</p>
 				</li>
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-fixed text-primary"
+						aria-hidden="true"
+					>
+						<Bookmark class="h-4 w-4" stroke-width={1.75} />
+					</span>
+					<p class="text-on-surface">
+						<span class="font-semibold">Save the class once.</span>
+						<span class="text-on-surface-variant">
+							Type names as seats, load the roster next period — students pick their
+							name.
+							<a
+								href="/for-teachers#saved-class"
+								class="font-semibold text-accent underline-offset-2 hover:underline"
+								>How it works</a
+							>.
+						</span>
+					</p>
+				</li>
 			</ul>
 
 			<!-- Free vs Premium clarity line — everyone can try it; Premium
@@ -171,9 +200,13 @@
 			<!-- Waitlist form + secondary read-more. Form first; CTA second. -->
 			<div class="mt-10 space-y-4">
 				<WaitlistForm placement="homepage" />
-				<div>
+				<div class="flex flex-wrap gap-3">
 					<Button href="/for-teachers#class-play" variant="outlined">
 						Read more
+						<ArrowRight aria-hidden="true" />
+					</Button>
+					<Button href="/for-teachers#saved-class" variant="outlined">
+						Save your class
 						<ArrowRight aria-hidden="true" />
 					</Button>
 				</div>

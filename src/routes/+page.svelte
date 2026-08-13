@@ -12,7 +12,8 @@
 
   The order is deliberate:
   - Hero lands the headline + the two CTAs.
-  - HowItWorks explains the loop so the demos make sense.
+  - HowItWorks explains the loop and plays Scripture Builder
+    (study → build → prove → master) so the demos make sense.
   - QuickQuizDemo is the first taste — fast, low-stakes.
   - PremiumPeek introduces Sidekick AI before the visitor decides.
   - ScriptureMatchDemo gives a second, different taste — you've now

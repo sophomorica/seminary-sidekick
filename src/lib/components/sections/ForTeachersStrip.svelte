@@ -3,8 +3,8 @@
 
   Compact homepage strip pitching Seminary Sidekick to teachers and parents.
   Three sentences max for the pitch. Trust signals as a clean horizontal row
-  (wraps on mobile). Soft "coming soon" tease. CTA links to the /for-teachers
-  page.
+  (wraps on mobile). Live saved-class pointer + a light "coming soon" tease.
+  CTAs link to /for-teachers and /for-teachers#saved-class.
 
   Visuals follow Hero.svelte + THEME.md exactly:
   - surface-container background for section rhythm
@@ -37,7 +37,8 @@
 		<div class="mt-4 max-w-2xl space-y-3 text-body-lg text-on-surface-variant">
 			<p>
 				Seminary Sidekick helps your students internalize the scriptures without ads, social
-				noise, or distractions.
+				noise, or distractions. Save the classroom once — students pick their name next
+				period.
 			</p>
 			<p>
 				Everything is age-appropriate and privacy-first. The AI is curated specifically to
@@ -57,12 +58,21 @@
 		</div>
 
 		<p class="mt-6 max-w-2xl text-body-md text-on-surface-variant">
-			Soon: a resource library and a community to swap lesson ideas with other teachers.
+			<a
+				href="/for-teachers#saved-class"
+				class="font-semibold text-accent underline-offset-2 hover:underline"
+				>Save your class</a
+			>
+			in the app today. Soon: a resource library and a place to swap lesson ideas.
 		</p>
 
-		<div class="mt-6">
+		<div class="mt-6 flex flex-wrap gap-3">
 			<Button href="/for-teachers" variant="outlined">
 				For teachers
+				<ArrowRight aria-hidden="true" />
+			</Button>
+			<Button href="/for-teachers#saved-class" variant="outlined">
+				How to save a class
 				<ArrowRight aria-hidden="true" />
 			</Button>
 		</div>

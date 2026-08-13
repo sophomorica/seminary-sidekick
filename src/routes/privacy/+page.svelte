@@ -106,6 +106,12 @@
 			players not to use their full real name — especially for minors in a classroom setting.
 		</li>
 		<li>
+			<strong>Saved classrooms (optional, teacher-created):</strong> if a teacher saves a class
+			in the app, we store the class name and the first names they type as seats, plus anonymous
+			claim records so those students can pick their name next time. Teachers should use first names
+			only, not full legal names. Students still do not create accounts.
+		</li>
+		<li>
 			<strong>Room participation records:</strong> which rooms you have created or joined.
 		</li>
 		<li>
@@ -231,10 +237,11 @@
 	<h2 class="mt-10 mb-4 font-serif text-headline-md text-on-surface">Future features (TBD)</h2>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		We are planning additional capabilities in later phases of the Seminary Sidekick Suite, such
-		as teacher resource sharing, saved class rosters, and community features. These will require
-		accounts and more data handling. When those features are ready, we will update this Privacy
-		Policy well in advance, explain the new practices clearly, and give you control over your
-		information. Until then, the practices described above remain in effect.
+		as teacher resource sharing and community features. These may require accounts and more data
+		handling. When those features are ready, we will update this Privacy Policy well in advance,
+		explain the new practices clearly, and give you control over your information. Until then,
+		the practices described above remain in effect. Saved classrooms are already live and
+		described in the Group Play section above.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		We also plan to add premium AI capabilities such as a <strong>voice-to-journal</strong> feature.

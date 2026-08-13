@@ -28,6 +28,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
+	import { ScriptureBuilderShowcase } from '$lib/components/demos/scripture-builder';
 	import { TOTAL_SCRIPTURES, countByBook } from '$lib/data/scriptures';
 	import { BOOK_META, BOOK_ORDER } from '$lib/data/types';
 	import {
@@ -86,7 +87,8 @@
 			title: 'Scripture Builder',
 			body: 'The heart of the app. Four progressive tiers — drag word chunks, then type with hints, then type cold. The Master tier asks you to produce every word from memory, three runs in a row, before it calls anything mastered.',
 			iconBg: 'bg-primary-fixed',
-			iconColor: 'text-primary'
+			iconColor: 'text-primary',
+			href: '#see-scripture-builder'
 		},
 		{
 			icon: Eye,
@@ -116,7 +118,7 @@
 			icon: Users,
 			eyebrow: 'For teachers',
 			title: 'Class Play',
-			body: 'Live, class-wide rounds — Kahoot-style Quick Quiz or a Scripture Builder race. Students join with a four-letter code or QR scan; the leaderboard updates in real time. Free hosts get one 6-player game a week; Premium hosts run unlimited games with up to 30 players.',
+			body: 'Live, class-wide rounds — Kahoot-style Quick Quiz or a Scripture Builder race. Save the class once; students join with a four-letter code, pick their name, and the leaderboard updates in real time. Free hosts get one 6-player game a week and one saved class of 6; Premium hosts run unlimited games with up to 30 players.',
 			iconBg: 'bg-accent-light/30',
 			iconColor: 'text-accent',
 			href: '/for-teachers#class-play',
@@ -136,7 +138,7 @@
 		},
 		{
 			q: 'Do I need an account?',
-			a: 'No. There are no accounts at all — free or premium. Your progress lives on your device, premium is unlocked through your App Store subscription, and Class Play uses anonymous session IDs and nicknames.'
+			a: 'No. There are no accounts at all — free or premium. Your progress lives on your device, premium is unlocked through your App Store subscription, and Class Play uses anonymous session IDs. Teachers can save a class of first names so students pick their seat instead of inventing a nickname.'
 		},
 		{
 			q: 'What about Android?',
@@ -197,7 +199,11 @@
 
 			<div class="mt-10 flex flex-wrap items-center gap-3">
 				<StoreButtons size="default" showComingSoon />
-				<Button href="/quick-quiz" variant="outlined">
+				<Button href="#see-scripture-builder" variant="outlined">
+					Watch Scripture Builder
+					<ArrowRight aria-hidden="true" />
+				</Button>
+				<Button href="/quick-quiz" variant="ghost">
 					Try a Quick Quiz
 					<ArrowRight aria-hidden="true" />
 				</Button>
@@ -246,6 +252,29 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</section>
+
+<section
+	id="see-scripture-builder"
+	class="scroll-mt-24 bg-surface-container py-16 md:py-24"
+	aria-labelledby="see-sb-headline"
+>
+	<div class="mx-auto max-w-6xl px-4 md:px-8">
+		<div class="max-w-3xl">
+			<p class="eyebrow">See it work</p>
+			<h2
+				id="see-sb-headline"
+				class="font-serif text-display-md tracking-tight md:text-display-lg"
+			>
+				Study it. Build it. Prove it. Master it.
+			</h2>
+			<p class="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
+				This is Scripture Builder — not a quiz you recognize, a verse you can produce. Watch
+				2 Nephi 2:25 come together the way it does in the app.
+			</p>
+		</div>
+		<ScriptureBuilderShowcase />
 	</div>
 </section>
 

@@ -95,6 +95,29 @@ test.describe('Class Play — /for-teachers', () => {
 	});
 });
 
+test.describe('Saved class — /for-teachers', () => {
+	test('how-to section renders at #saved-class', async ({ page }) => {
+		await page.goto('/for-teachers#saved-class');
+
+		const section = page.locator('#saved-class');
+		await expect(section).toBeVisible();
+		await expect(page.getByRole('heading', { name: /type the names once/i })).toBeVisible();
+		await expect(page.getByRole('list', { name: /how to save a classroom/i })).toBeVisible();
+		await expect(section.getByText(/create the class/i)).toBeVisible();
+		await expect(section.getByText(/students pick their name/i)).toBeVisible();
+	});
+});
+
+test.describe('Saved class — homepage', () => {
+	test('points teachers to /for-teachers#saved-class', async ({ page }) => {
+		await page.goto('/');
+
+		const link = page.getByRole('link', { name: /save your class/i }).first();
+		await expect(link).toBeVisible();
+		await expect(link).toHaveAttribute('href', /\/for-teachers#saved-class$/);
+	});
+});
+
 test.describe('Class Play — /apps/scripture-mastery', () => {
 	test('feature card is visible and links to /for-teachers#class-play', async ({ page }) => {
 		await page.goto('/apps/scripture-mastery');
