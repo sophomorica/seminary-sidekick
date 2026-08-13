@@ -51,7 +51,7 @@
 			class="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-5 py-3 text-label-lg text-on-surface-variant"
 		>
 			<Smartphone aria-hidden="true" />
-			Coming to Android
+			Coming soon
 		</span>
 	{/if}
 </div>
