@@ -3,13 +3,13 @@
 Context is loaded by role — read only what your role lists. Don't preload other standards; the validator enforces them.
 
 - **Workers:** this file + your task spec. Definition of done is below; everything else comes from the spec.
-- **Validator / design-reviewer:** your agent file tells you which standards to read (`../../narrow-road-hq/standards/`).
-- **Main / planning sessions only:** also follow `../../narrow-road-hq/standards/OPERATING_MANUAL.md` — especially §4 (re-derive, never vibes), §5 (VERIFIED/INFERRED/ASSUMED labels), and the pre-send self-test.
+- **Validator / design-reviewer:** your agent file tells you which standards to read (`../../hub/standards/`).
+- **Main / planning sessions only:** also follow `../../hub/standards/OPERATING_MANUAL.md` — especially §4 (re-derive, never vibes), §5 (VERIFIED/INFERRED/ASSUMED labels), and the pre-send self-test.
 
 Design identity for THIS product lives in `THEME.md` (this repo). Universal floors are shared; the vibe is this product's own.
 
 ## Non-negotiables
-- Definition of done = `../../narrow-road-hq/standards/CODE_STANDARDS.md` §Definition of done. The Stop hook enforces the deterministic parts; do not try to bypass it.
+- Definition of done = `../../hub/standards/CODE_STANDARDS.md` §Definition of done. The Stop hook enforces the deterministic parts; do not try to bypass it.
 - Work is not complete until `/review` (validator subagent) returns PASS.
 - Workers make no architectural decisions — escalate instead of improvising.
 - No orphaned components: everything merged must be reachable and imported.
@@ -31,7 +31,7 @@ SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte + mdsvex, deployed 
 - No Tier-2/3 additions now (Supabase, Resend, Pagefind) — Tier 1 has no general backend, accounts, or database. **Explicit product exception:** Class Play web join uses Supabase anonymous auth, `join_room`, and Realtime under `/join`; this exception is limited to the Group Play participant flow.
 
 ## Repo-specific notes
-- Scripture data is owned by the Flutter app (`/Users/muse/Desktop/active/seminary_sidekick/lib/data/scriptures_data.dart`). Never hand-edit `src/lib/data/doctrinalMastery.json`; import via `$lib/data/scriptures` helpers. Full rules in `docs/CONVENTIONS.md`.
+- Scripture data is owned by the Flutter app (`../app/lib/data/scriptures_data.dart`). Never hand-edit `src/lib/data/doctrinalMastery.json`; import via `$lib/data/scriptures` helpers. Full rules in `docs/CONVENTIONS.md`.
 - Never generate real image/audio assets — `.txt` placeholders at the intended final path (see `docs/CONVENTIONS.md`).
 - Launch-day values (store URLs, site metadata, nav) live in `src/lib/config/*.ts` — every CTA reads from these.
 - Parallel agents coordinate via `TODO.md` claim/complete protocol — read `docs/AGENT-COORDINATION.md` before claiming a task.
