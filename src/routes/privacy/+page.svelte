@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
 
-	const effectiveDate = 'July 1, 2026';
+	const effectiveDate = 'August 13, 2026';
 	const pageTitle = `Privacy Policy — ${SITE_NAME}`;
 	const canonical = `${SITE_URL}/privacy`;
 </script>
@@ -44,8 +44,8 @@
 		>. The core single-player experience stays entirely on your device. A small amount of
 		pseudonymous data is processed by trusted service providers to power optional features—Group
 		Play multiplayer and premium AI features—as described below. The only place we accept an
-		email address is an optional teacher launch-notification form on the website. This page
-		explains exactly what all of that means in plain terms.
+		email address is an optional teacher contact form on the website. This page explains exactly
+		what all of that means in plain terms.
 	</p>
 
 	<!-- Information We Collect -->
@@ -60,11 +60,11 @@
 	>
 		<li>
 			<strong>Website:</strong> The marketing site is largely static. The one exception is an
-			optional <strong>teacher launch-notification form</strong>: if you choose to submit your
-			email address there, we store it (via our form provider, Formspree) solely to notify you
-			about the app's launch and Class Play. We never sell it, never share it, and you can ask
-			us to delete it at any time. Otherwise, the only way we receive information is if you
-			voluntarily email us at {CONTACT_EMAIL}.
+			optional <strong>teacher contact form</strong>: if you choose to submit your email address
+			there, we store it (via our form provider, Formspree) solely to follow up about Class
+			Play, classroom use, and related teacher updates. We never sell it, never share it, and
+			you can ask us to delete it at any time. Otherwise, the only way we receive information is
+			if you voluntarily email us at {CONTACT_EMAIL}.
 		</li>
 		<li>
 			<strong>Mobile apps:</strong> For the core single-player experience, all progress, notes,
@@ -266,9 +266,9 @@
 		For the core experience, we do not collect or store personal data on our servers, so there
 		are no individual records for us to retrieve, correct, or delete. If you have used Group
 		Play and would like the data associated with your anonymous ID or nickname removed, if you
-		joined the teacher notification list and want off it, or if you have corresponded with us by
-		email and would like us to remove or forget that conversation, simply ask—we will honor
-		reasonable requests.
+		submitted the teacher contact form and want your email removed, or if you have corresponded
+		with us by email and would like us to remove or forget that conversation, simply ask—we will
+		honor reasonable requests.
 	</p>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		The apps also include a built-in <strong>"Delete All My Data"</strong> option in Settings. It

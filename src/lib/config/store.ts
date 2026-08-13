@@ -19,11 +19,11 @@ export const IOS_URL = 'https://apps.apple.com/us/app/seminary-sidekick/id678000
 export const ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.seminarysidekick.app';
 
 /**
- * Toggle this when the Android build is live in the Play Store.
- * When false, the Play Store button renders as a disabled "Coming
- * soon to Android" pill instead of a link.
+ * Android is live on Google Play (package com.seminarysidekick.app).
+ * Keep true. If ever flipped false, StoreButtons shows a non-link
+ * "Coming to Android" pill instead of the Play Store CTA.
  */
 export const ANDROID_AVAILABLE = true;
 
-/** Whether the iOS app is in the App Store. Almost always true once we launch. */
+/** iOS is live on the App Store. Keep true. */
 export const IOS_AVAILABLE = true;
