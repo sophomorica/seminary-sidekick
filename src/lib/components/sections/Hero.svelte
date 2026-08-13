@@ -86,7 +86,7 @@
 			</div>
 
 			<p class="mt-6 text-body-sm text-on-surface-variant">
-				Free to start · Built for seminary students
+				Get the app — iPhone and Android. Free to start.
 			</p>
 		</div>
 
