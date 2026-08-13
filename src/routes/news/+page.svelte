@@ -42,11 +42,11 @@
 	{#if posts.length === 0}
 		<!-- Graceful empty state — on-brand, useful, hopeful. Critical while content/news/ is empty. -->
 		<div class="card mx-auto max-w-2xl text-center">
-			<p class="eyebrow">Coming soon</p>
+			<p class="eyebrow">News</p>
 			<h2 class="font-serif text-display-sm">No posts yet</h2>
 			<p class="mt-3 text-body-lg text-on-surface-variant">
-				The first post — launch notes plus a special devotional — is on the way. The app is
-				already live on the App Store and Google Play.
+				Devotionals and release notes will land here when we publish them. Meanwhile the app
+				is live on the App Store and Google Play.
 			</p>
 
 			<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">

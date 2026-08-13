@@ -21,7 +21,7 @@ export const ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.se
 /**
  * Android is live on Google Play (package com.seminarysidekick.app).
  * Keep true. If ever flipped false, StoreButtons shows a non-link
- * "Coming to Android" pill instead of the Play Store CTA.
+ * "Coming soon" pill instead of the Play Store CTA.
  */
 export const ANDROID_AVAILABLE = true;
 
