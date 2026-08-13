@@ -16,7 +16,8 @@
   Scripture text comes from $lib/data/scriptures — never invented.
 -->
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { page } from '$app/state';
+	import { MediaQuery } from 'svelte/reactivity';
 	import {
 		BookOpen,
 		Blocks,
@@ -118,7 +119,7 @@
 			id: 'prove',
 			number: '03',
 			title: 'Prove',
-			body: 'Type or say it cold, no prompts. The moment you know you know it.',
+			body: 'Type it with first-letter hints — then type it cold, no prompts. The moment you know you know it.',
 			caption: 'Type it. First-letter hints first — then you prove it cold.',
 			icon: ShieldCheck,
 			iconBg: 'bg-accent-light/30',
@@ -150,17 +151,18 @@
 	let typedCount = $state(0);
 	let masteryLit = $state(0);
 	let playing = $state(false);
-	let reducedMotion = $state(false);
 	let liveMessage = $state('');
+
+	const reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', false);
+	const reducedMotion = $derived(reducedMotionQuery.current);
+	const startPaused = $derived(page.url.searchParams.get('sb') === 'pause');
 
 	const currentMeta = $derived(PHASES.find((p) => p.id === phase) ?? PHASES[0]);
 	const built = $derived(chunks.slice(0, placedCount));
 	const pool = $derived(POOL_ORDER.map((i) => chunks[i]).filter((c) => c.index >= placedCount));
 	const emptySlots = $derived(Math.max(0, chunks.length - placedCount));
-	const emptySlotIds = $derived([...Array(emptySlots).keys()]);
 
 	let timer: ReturnType<typeof setTimeout> | null = null;
-	let stageEl = $state<HTMLDivElement | undefined>(undefined);
 	let confettiFired = false;
 	/** Bumps on every jump/replay so in-flight timeouts cannot advance a stale phase. */
 	let beat = 0;
@@ -294,7 +296,7 @@
 	}
 
 	async function fireConfettiOnce() {
-		if (confettiFired || reducedMotion || typeof window === 'undefined') return;
+		if (confettiFired || reducedMotion) return;
 		confettiFired = true;
 		try {
 			const mod = await import('canvas-confetti');
@@ -321,30 +323,17 @@
 		return word.slice(idx + 1).replace(/[A-Za-z]/g, '·');
 	}
 
-	onMount(() => {
+	function observeStage(node: HTMLElement) {
 		(window as Window & { __sbReady?: boolean }).__sbReady = true;
 
-		const startPaused =
-			typeof window !== 'undefined' &&
-			new URLSearchParams(window.location.search).get('sb') === 'pause';
-
-		reducedMotion =
-			typeof window !== 'undefined' &&
-			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-		if (reducedMotion) {
+		if (reducedMotion || startPaused) {
 			studyCount = words.length;
 			return () => clearTimer();
 		}
 
-		if (startPaused) {
-			studyCount = words.length;
-			return () => clearTimer();
-		}
-
-		if (typeof IntersectionObserver === 'undefined' || !stageEl) {
+		if (typeof IntersectionObserver === 'undefined') {
 			play();
-			return;
+			return () => clearTimer();
 		}
 
 		const observer = new IntersectionObserver(
@@ -359,18 +348,18 @@
 			},
 			{ threshold: [0, 0.35, 0.6] }
 		);
-		observer.observe(stageEl);
+		observer.observe(node);
 
 		return () => {
 			observer.disconnect();
 			clearTimer();
 		};
-	});
+	}
 </script>
 
 <div class="mt-10 md:mt-14">
 	<div
-		bind:this={stageEl}
+		{@attach observeStage}
 		id="scripture-builder-showcase"
 		class="relative overflow-hidden rounded-4xl bg-surface-container-lowest p-5 shadow-floating md:p-8"
 		data-phase={phase}
@@ -468,7 +457,7 @@
 									{chunk.text}
 								</span>
 							{/each}
-							{#each emptySlotIds as slot (slot)}
+							{#each { length: emptySlots }}
 								<span
 									class="min-h-[2.6rem] min-w-[5.5rem] rounded-2xl bg-surface-container-highest/70"
 									aria-hidden="true"
