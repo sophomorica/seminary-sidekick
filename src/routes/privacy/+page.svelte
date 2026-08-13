@@ -60,11 +60,11 @@
 	>
 		<li>
 			<strong>Website:</strong> The marketing site is largely static. The one exception is an
-			optional <strong>teacher contact form</strong>: if you choose to submit your email address
-			there, we store it (via our form provider, Formspree) solely to follow up about Class
-			Play, classroom use, and related teacher updates. We never sell it, never share it, and
-			you can ask us to delete it at any time. Otherwise, the only way we receive information is
-			if you voluntarily email us at {CONTACT_EMAIL}.
+			optional <strong>teacher contact form</strong>: if you choose to submit your email
+			address there, we store it (via our form provider, Formspree) solely to follow up about
+			Class Play, classroom use, and related teacher updates. We never sell it, never share
+			it, and you can ask us to delete it at any time. Otherwise, the only way we receive
+			information is if you voluntarily email us at {CONTACT_EMAIL}.
 		</li>
 		<li>
 			<strong>Mobile apps:</strong> For the core single-player experience, all progress, notes,
