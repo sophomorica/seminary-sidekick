@@ -76,6 +76,7 @@
 		setup.config?.playMode === 'setOfN' &&
 			myFinishes.length >= (setup.config?.scriptureIds.length ?? 0)
 	);
+	const isSingleScripture = $derived((setup.config?.scriptureIds.length ?? 0) === 1);
 	const rankInRound = $derived.by(() => {
 		if (!currentFinish || setup.config?.playMode !== 'roundByRound') return null;
 		const round = allFinishes
@@ -157,7 +158,7 @@
 			<div class="flex items-center gap-2 text-primary">
 				<Users class="size-4" aria-hidden="true" />
 				<span class="text-label-md uppercase">
-					{setup.config.playMode === 'roundByRound'
+					{setup.config.playMode === 'roundByRound' || isSingleScripture
 						? `${finishedThisRound} finished`
 						: `Scripture ${scriptureIndex + 1} of ${setup.config.scriptureIds.length}`}
 				</span>
@@ -194,7 +195,7 @@
 					<h2 class="mt-5 font-serif text-headline-md">
 						{currentFinish.mistake_count === DNF_MISTAKE_COUNT
 							? 'Out of time'
-							: isSetDone
+							: isSetDone && !isSingleScripture
 								? 'Set complete!'
 								: 'You finished!'}
 					</h2>
