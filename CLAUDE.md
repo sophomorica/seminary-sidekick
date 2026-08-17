@@ -31,6 +31,7 @@ SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte + mdsvex, deployed 
 - No Tier-2/3 additions now (Supabase, Resend, Pagefind) — Tier 1 has no general backend, accounts, or database. **Explicit product exception:** Class Play web join uses Supabase anonymous auth, `join_room`, and Realtime under `/join`; this exception is limited to the Group Play participant flow.
 
 ## Repo-specific notes
+- Family layout is **`../app/` + `../webpage/` only**. Sibling folders named `app-pr*` / `webpage-pr*` are leftover git worktrees, not extra products. Playbook: `../../../hub/pipeline/WORKTREES.md`.
 - Scripture data is owned by the Flutter app (`../app/lib/data/scriptures_data.dart`). Never hand-edit `src/lib/data/doctrinalMastery.json`; import via `$lib/data/scriptures` helpers. Full rules in `docs/CONVENTIONS.md`.
 - Never generate real image/audio assets — `.txt` placeholders at the intended final path (see `docs/CONVENTIONS.md`).
 - Launch-day values (store URLs, site metadata, nav) live in `src/lib/config/*.ts` — every CTA reads from these.
