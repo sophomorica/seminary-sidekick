@@ -1,7 +1,7 @@
 ---
 title: 'Build it once. Then type it cold.'
 slug: 'build-it-then-type-it-cold'
-date: 2026-08-22
+date: '2026-08-22'
 excerpt: 'Scripture Builder is the pass that makes a verse stay.'
 tags: ['teacher-tip', 'doctrinal-mastery']
 author: 'Patrick'

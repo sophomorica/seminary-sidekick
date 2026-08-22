@@ -1,7 +1,7 @@
 ---
 title: 'Five minutes before the quiz'
 slug: 'class-play-five-minute-warmup'
-date: 2026-08-22
+date: '2026-08-22'
 excerpt: 'One Class Play Quick Quiz as a warmup. Students join with a code or QR.'
 tags: ['advice', 'class-play', 'teacher-tip']
 author: 'Patrick'

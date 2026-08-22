@@ -1,7 +1,7 @@
 ---
 title: '1.0.8 is live on iPhone and Android'
 slug: '1-0-8-ios-and-android'
-date: 2026-08-22
+date: '2026-08-22'
 excerpt: 'Group Scripture Builder host setup, volume facets, and a quieter Delete All.'
 tags: ['release']
 author: 'Patrick'
