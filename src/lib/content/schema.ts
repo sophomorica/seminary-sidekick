@@ -21,13 +21,16 @@ import { z } from 'zod';
 export const baseFrontmatterSchema = z.object({
 	title: z.string().min(1, 'title is required'),
 	slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be kebab-case'),
-	date: z.preprocess((value) => {
-		// mdsvex/YAML parses unquoted 2026-08-22 as a Date, not a string.
-		if (value instanceof Date && !Number.isNaN(value.getTime())) {
-			return value.toISOString().slice(0, 10);
-		}
-		return value;
-	}, z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'date must be YYYY-MM-DD')),
+	date: z.preprocess(
+		(value) => {
+			// mdsvex/YAML parses unquoted 2026-08-22 as a Date, not a string.
+			if (value instanceof Date && !Number.isNaN(value.getTime())) {
+				return value.toISOString().slice(0, 10);
+			}
+			return value;
+		},
+		z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'date must be YYYY-MM-DD')
+	),
 	excerpt: z.string().min(1, 'excerpt is required'),
 	tags: z.array(z.string()).default([]),
 	cover: z.string().optional(),
