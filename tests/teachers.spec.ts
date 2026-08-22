@@ -11,8 +11,9 @@ test.describe('/teachers', () => {
 		expect(response?.status()).toBe(200);
 
 		await expect(
-			page.getByRole('heading', { level: 1, name: /a library that lasts/i })
+			page.getByRole('heading', { level: 1, name: /teacher library/i })
 		).toBeVisible();
+		await expect(page.getByText(/facebook/i)).toHaveCount(0);
 
 		await expect(
 			page.getByRole('heading', { name: /advice \/ class play help/i })

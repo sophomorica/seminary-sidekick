@@ -479,16 +479,15 @@
 					id="coming-soon"
 					class="font-serif text-headline-lg tracking-tight md:text-display-sm"
 				>
-					The library is open. Lesson plans wait for a real one.
+					Advice, Class Play help, and mastery tips.
 				</h2>
 				<p class="mt-3 text-on-surface-variant">
+					They live in the
 					<a
 						href="/teachers"
 						class="font-semibold text-accent underline-offset-2 hover:underline"
-						>Advice, Class Play help, and doctrinal mastery tips</a
-					>
-					live in the teacher library now. Lesson plans and testimonials come when they are
-					real — we will not invent them. This is not a Facebook replacement.
+						>teacher library</a
+					>. Lesson plans and testimonials will live there when they are real.
 				</p>
 			</div>
 		</div>

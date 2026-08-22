@@ -67,8 +67,8 @@
 			<a href="/teachers" class="font-semibold text-accent underline-offset-2 hover:underline"
 				>The teacher library</a
 			>
-			is open — advice, Class Play help, and doctrinal mastery tips. Lesson plans and testimonials
-			come when they are real.
+			has advice, Class Play help, and mastery tips. Lesson plans and testimonials when they are
+			real.
 		</p>
 
 		<div class="mt-6 flex flex-wrap gap-3">

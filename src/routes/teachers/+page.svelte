@@ -41,12 +41,11 @@
 			id="teachers-library-headline"
 			class="font-serif text-display-lg tracking-tight md:text-hero-lg"
 		>
-			A library that lasts.
+			Teacher library
 		</h1>
 		<p class="mt-6 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-			This is the lasting place for advice, Class Play help, doctrinal mastery tips, tools,
-			and — later — lesson plans and testimonials. It is not a Facebook replacement. Useful
-			things said there should end up here.
+			This is where advice, Class Play help, and mastery tips live, and where lesson plans and
+			testimonials will live when they are real.
 		</p>
 	</div>
 </section>
