@@ -1,11 +1,10 @@
 <!--
-  WaitlistForm — Class Play teacher updates list.
+  WaitlistForm — teacher updates list (What’s new + Class Play).
 
-  Originally a pre-launch waitlist; the app is now live on iOS and
-  Class Play is in active testing, so the copy frames this as an
-  updates list for teachers who want to follow Class Play as it
-  matures. Field/action names keep the "waitlist" wording to avoid
-  churning the server helper and form-action contract.
+  Same Formspree form as before. Public copy covers What’s new posts
+  and Class Play — when we publish, not a drip. Field/action names
+  keep the "waitlist" wording to avoid churning the server helper
+  and form-action contract.
 
   Reused on the homepage <ClassPlay /> section and embedded in
   /for-teachers. Posts to a SvelteKit form action — `?/joinWaitlist`
@@ -39,7 +38,7 @@
 
 	let {
 		placement,
-		label = 'Teachers — get Class Play updates'
+		label = "Teachers — What's new and Class Play"
 	}: {
 		placement: Placement;
 		label?: string;
@@ -99,8 +98,7 @@
 			<div>
 				<p class="font-serif text-headline-sm">You're on the list.</p>
 				<p class="mt-1 text-body-md text-on-surface-variant">
-					We'll keep you posted as Class Play grows out of testing and new classroom
-					features land.
+					We'll write when we publish — What's new posts and Class Play. Not a drip.
 				</p>
 			</div>
 		</div>
@@ -126,7 +124,7 @@
 					type="submit"
 					variant="primary"
 					disabled={status === 'submitting'}
-					aria-label="Get Class Play updates by email"
+					aria-label="Get What's new and Class Play updates by email"
 				>
 					<Send aria-hidden="true" />
 					{status === 'submitting' ? 'Joining…' : 'Get updates'}
@@ -142,7 +140,7 @@
 				{#if status === 'error'}
 					{errorMessage}
 				{:else}
-					No spam. Occasional Class Play news, nothing else.
+					When we publish, not a drip. What's new and Class Play.
 				{/if}
 			</p>
 		</div>

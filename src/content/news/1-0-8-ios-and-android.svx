@@ -1,0 +1,14 @@
+---
+title: '1.0.8 is live on iPhone and Android'
+slug: '1-0-8-ios-and-android'
+date: 2026-08-22
+excerpt: 'Group Scripture Builder host setup, volume facets, and a quieter Delete All.'
+tags: ['release']
+author: 'Patrick'
+---
+
+1.0.8 is out on the [App Store](https://apps.apple.com/us/app/seminary-sidekick/id6780003239) and [Google Play](https://play.google.com/store/apps/details?id=com.seminarysidekick.app).
+
+Group Scripture Builder host setup is one scripture (no set-size / play-mode chips). The host picker facets by volume (OT / NT / BoM / D&C). Delete All / New conversation no longer lets an in-flight Sidekick chat reply rewrite wiped history.
+
+Get the app free to start.

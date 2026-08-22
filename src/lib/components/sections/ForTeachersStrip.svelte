@@ -3,8 +3,8 @@
 
   Compact homepage strip pitching Seminary Sidekick to teachers and parents.
   Three sentences max for the pitch. Trust signals as a clean horizontal row
-  (wraps on mobile). Live saved-class pointer + a light "coming soon" tease.
-  CTAs link to /for-teachers and /for-teachers#saved-class.
+  (wraps on mobile). Live saved-class pointer + a link to the teacher library.
+  CTAs link to /teachers, /for-teachers, and /for-teachers#saved-class.
 
   Visuals follow Hero.svelte + THEME.md exactly:
   - surface-container background for section rhythm
@@ -63,10 +63,19 @@
 				class="font-semibold text-accent underline-offset-2 hover:underline"
 				>Save your class</a
 			>
-			in the app today. Soon: a resource library and a place to swap lesson ideas.
+			in the app today.
+			<a href="/teachers" class="font-semibold text-accent underline-offset-2 hover:underline"
+				>The teacher library</a
+			>
+			is open — advice, Class Play help, and doctrinal mastery tips. Lesson plans and testimonials
+			come when they are real.
 		</p>
 
 		<div class="mt-6 flex flex-wrap gap-3">
+			<Button href="/teachers" variant="outlined">
+				Teacher library
+				<ArrowRight aria-hidden="true" />
+			</Button>
 			<Button href="/for-teachers" variant="outlined">
 				For teachers
 				<ArrowRight aria-hidden="true" />

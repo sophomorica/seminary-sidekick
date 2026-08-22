@@ -474,17 +474,21 @@
 				<Sparkles class="h-7 w-7 text-tertiary" stroke-width={1.5} />
 			</div>
 			<div class="flex-1">
-				<p class="eyebrow">Coming soon</p>
+				<p class="eyebrow">Teacher library</p>
 				<h2
 					id="coming-soon"
 					class="font-serif text-headline-lg tracking-tight md:text-display-sm"
 				>
-					A teacher resource library and a place to swap ideas.
+					The library is open. Lesson plans wait for a real one.
 				</h2>
 				<p class="mt-3 text-on-surface-variant">
-					Lesson outlines, object lessons, printable handouts, and a small community of
-					teachers sharing what worked this week. Want a say in what ships first? The
-					mailto below goes straight to me.
+					<a
+						href="/teachers"
+						class="font-semibold text-accent underline-offset-2 hover:underline"
+						>Advice, Class Play help, and doctrinal mastery tips</a
+					>
+					live in the teacher library now. Lesson plans and testimonials come when they are
+					real — we will not invent them. This is not a Facebook replacement.
 				</p>
 			</div>
 		</div>

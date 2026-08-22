@@ -23,6 +23,7 @@ export const MAIN_NAV: NavLink[] = [
 	{ label: 'Join a room', href: '/join' },
 	{ label: 'Premium', href: '/premium' },
 	{ label: 'For teachers', href: '/for-teachers' },
+	{ label: 'Library', href: '/teachers' },
 	{ label: 'News', href: '/news' }
 ];
 
@@ -48,7 +49,8 @@ export const FOOTER_NAV: FooterGroup[] = [
 		links: [
 			{ label: 'How it works', href: '/#how-it-works' },
 			{ label: 'Premium AI', href: '/premium' },
-			{ label: 'For teachers', href: '/for-teachers' }
+			{ label: 'For teachers', href: '/for-teachers' },
+			{ label: 'Teacher library', href: '/teachers' }
 		]
 	},
 	{

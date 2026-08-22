@@ -20,6 +20,7 @@ const PAGES_TO_AUDIT = [
 	'/quick-quiz',
 	'/scripture-match',
 	'/news',
+	'/teachers',
 	'/privacy',
 	'/terms',
 	'/contact'

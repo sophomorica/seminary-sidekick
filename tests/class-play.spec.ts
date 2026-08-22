@@ -31,13 +31,15 @@ test.describe('Class Play — homepage section', () => {
 		).toBeVisible();
 
 		// The waitlist form exposes its email field via aria-label and a
-		// "Join the waitlist" button.
-		const emailField = section.getByRole('textbox', { name: /class play/i }).first();
+		// "Get updates" button (What's new + Class Play).
+		const emailField = section
+			.getByRole('textbox', { name: /what's new and class play/i })
+			.first();
 		await expect(emailField).toBeVisible();
 		await expect(emailField).toHaveAttribute('type', 'email');
 
 		const submit = section.getByRole('button', {
-			name: /get class play updates/i
+			name: /get what's new and class play updates/i
 		});
 		await expect(submit).toBeVisible();
 	});
@@ -50,11 +52,13 @@ test.describe('Class Play — homepage section', () => {
 
 		const section = page.locator('#class-play');
 		await section
-			.getByRole('textbox', { name: /class play/i })
+			.getByRole('textbox', { name: /what's new and class play/i })
 			.first()
 			.fill('teacher@example.com');
 
-		await section.getByRole('button', { name: /get class play updates/i }).click();
+		await section
+			.getByRole('button', { name: /get what's new and class play updates/i })
+			.click();
 
 		// Success card is announced via role="status".
 		await expect(section.getByRole('status')).toContainText(/on the list/i);
@@ -64,10 +68,14 @@ test.describe('Class Play — homepage section', () => {
 		await page.goto('/');
 
 		const section = page.locator('#class-play');
-		const emailField = section.getByRole('textbox', { name: /class play/i }).first();
+		const emailField = section
+			.getByRole('textbox', { name: /what's new and class play/i })
+			.first();
 		await emailField.fill('not-an-email');
 
-		await section.getByRole('button', { name: /get class play updates/i }).click();
+		await section
+			.getByRole('button', { name: /get what's new and class play updates/i })
+			.click();
 
 		// The success state should NOT appear — the browser blocked submit.
 		await expect(section.getByRole('status')).toHaveCount(0);
@@ -88,9 +96,11 @@ test.describe('Class Play — /for-teachers', () => {
 		).toBeVisible();
 
 		// The dedicated page also gets its own waitlist form.
-		await expect(section.getByRole('textbox', { name: /class play/i }).first()).toBeVisible();
 		await expect(
-			section.getByRole('button', { name: /get class play updates/i })
+			section.getByRole('textbox', { name: /what's new and class play/i }).first()
+		).toBeVisible();
+		await expect(
+			section.getByRole('button', { name: /get what's new and class play updates/i })
 		).toBeVisible();
 	});
 });
