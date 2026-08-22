@@ -33,10 +33,9 @@ test.describe('/teachers', () => {
 			'href',
 			'/for-teachers#saved-class'
 		);
-		await expect(page.getByRole('link', { name: /how it works/i })).toHaveAttribute(
-			'href',
-			'/#how-it-works'
-		);
+		await expect(
+			page.getByRole('main').getByRole('link', { name: /how it works/i })
+		).toHaveAttribute('href', '/#how-it-works');
 	});
 
 	test('does not invent lesson plans or testimonials', async ({ page }) => {
