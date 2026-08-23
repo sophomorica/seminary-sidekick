@@ -25,6 +25,7 @@ const ROUTES = [
 	'/scripture-match',
 	'/premium',
 	'/for-teachers',
+	'/teachers',
 	'/news',
 	'/about',
 	'/privacy',

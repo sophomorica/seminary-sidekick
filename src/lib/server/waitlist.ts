@@ -1,16 +1,18 @@
 /**
- * Shared Class Play teacher-waitlist helper.
+ * Shared teacher-updates helper (What’s new + Class Play).
  *
  * Called from SvelteKit form actions on every page that hosts a
  * <WaitlistForm />. Centralised so the validation, the provider call,
  * and the log-only fallback all live in one place.
  *
- * Provider: Formspree (no-code, free tier). The endpoint URL is held in
- * `src/lib/config/site.ts` (`CLASS_PLAY_WAITLIST_ENDPOINT`). Until the
- * owner pastes a real Formspree form id, this module runs in "log-only"
- * mode — submissions are validated, written to the server console, and
- * reported back to the form as a success (so the UI keeps working even
- * before the endpoint is configured).
+ * Provider: Formspree (no-code, free tier) — same form as before.
+ * Public copy is wider than Class Play; the endpoint is unchanged.
+ * The JSON `source` field stays `class-play-waitlist` so existing
+ * Formspree filters keep working.
+ *
+ * The endpoint URL is held in `src/lib/config/site.ts`
+ * (`CLASS_PLAY_WAITLIST_ENDPOINT`). Until the owner pastes a real
+ * Formspree form id, this module runs in "log-only" mode.
  */
 
 import { CLASS_PLAY_WAITLIST_ENDPOINT } from '$lib/config/site';

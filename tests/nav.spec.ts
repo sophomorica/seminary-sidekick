@@ -56,6 +56,12 @@ test.describe('AppNav', () => {
 		await expect(page).toHaveURL('/for-teachers');
 	});
 
+	test('Library link goes to /teachers', async ({ page }) => {
+		await page.goto('/');
+		await page.locator('header').getByRole('link', { name: 'Library', exact: true }).click();
+		await expect(page).toHaveURL('/teachers');
+	});
+
 	test('News link goes to /news', async ({ page }) => {
 		await page.goto('/');
 		await page.locator('header').getByRole('link', { name: 'News', exact: true }).click();
