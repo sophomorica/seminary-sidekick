@@ -1,12 +1,17 @@
 /**
- * What’s new — three live posts so the homepage strip and /news are not empty.
+ * What’s new — live posts so the homepage strip and /news are not empty.
  *
  * Role-based selectors. Copy can tighten; slugs and titles are the contract.
+ * Homepage What’s new only surfaces the 3 newest; /news and RSS list every post.
  */
 
 import { test, expect } from '@playwright/test';
 
 const POSTS = [
+	{
+		slug: 'class-play-warmup-not-homework',
+		title: 'A warmup, not extra homework'
+	},
 	{
 		slug: 'class-play-five-minute-warmup',
 		title: 'Five minutes before the quiz'
@@ -22,7 +27,7 @@ const POSTS = [
 ] as const;
 
 test.describe("What's new", () => {
-	test('homepage lists the three live posts and not the empty stub', async ({ page }) => {
+	test('homepage lists the latest posts and not the empty stub', async ({ page }) => {
 		await page.goto('/');
 
 		const section = page.locator('#news-preview');
@@ -31,11 +36,10 @@ test.describe("What's new", () => {
 			0
 		);
 
-		for (const post of POSTS) {
-			const card = section.getByRole('link', { name: post.title });
-			await expect(card).toBeVisible();
-			await expect(card).toHaveAttribute('href', `/news/${post.slug}`);
-		}
+		const latest = POSTS[0];
+		const card = section.getByRole('link', { name: latest.title });
+		await expect(card).toBeVisible();
+		await expect(card).toHaveAttribute('href', `/news/${latest.slug}`);
 	});
 
 	test('/news lists every live post', async ({ page }) => {
@@ -59,7 +63,7 @@ test.describe("What's new", () => {
 		});
 	}
 
-	test('RSS includes the three live slugs', async ({ request }) => {
+	test('RSS includes the live slugs', async ({ request }) => {
 		const res = await request.get('/news/rss.xml');
 		expect(res.status()).toBe(200);
 		const body = await res.text();

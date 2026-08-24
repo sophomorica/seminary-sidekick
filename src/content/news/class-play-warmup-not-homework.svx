@@ -1,0 +1,18 @@
+---
+title: 'A warmup, not extra homework'
+slug: 'class-play-warmup-not-homework'
+date: '2026-08-24'
+excerpt: 'Class Play is a short seminary warmup. Students join with a code or QR. The rest of the app is still Study, Build, Prove, Master.'
+tags: ['advice', 'class-play', 'teacher-tip']
+author: 'Patrick'
+---
+
+Seminary Sidekick is a free-to-start app for mastering all 100 doctrinal mastery scriptures on iPhone and Android, on the [App Store](https://apps.apple.com/us/app/seminary-sidekick/id6780003239) and [Google Play](https://play.google.com/store/apps/details?id=com.seminarysidekick.app).
+
+In the first weeks of seminary, the useful move is a short Class Play warmup: students join with a four-letter code or a QR scan, then run Quick Quiz or a Scripture Builder race.
+
+The rest of the app is still Study, Build, Prove, Master. Open a verse, hear it, rebuild it, then type it cold. Class Play does not replace that path. It puts the same scriptures on one board for a few minutes at the start of class.
+
+Free to start. Premium is $4.99 a month or $34.99 a year. No ads. Students always join Class Play free.
+
+[https://seminarysidekick.com](https://seminarysidekick.com)
