@@ -114,9 +114,12 @@ test.describe('/teachers/printouts', () => {
 			'data-hint-line',
 			'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___'
 		);
-		await expect(hints).toContainText(
+		await expect(hints).toHaveAttribute(
+			'aria-label',
 			'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___'
 		);
+		await expect(hints).toContainText('A___');
+		await expect(hints).toContainText('j___');
 		await expect(page.getByText(/write the verse from memory/i)).toHaveCount(0);
 		await expect(page.getByText(/Adam fell that/)).toHaveCount(0);
 		await expect(page.getByText(/Adam fell that men might be/i)).toHaveCount(0);

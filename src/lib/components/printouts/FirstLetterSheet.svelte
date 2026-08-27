@@ -46,6 +46,7 @@
 	<p
 		class="font-serif text-[2rem] leading-[1.7] tracking-[0.14em] md:text-[2.35rem] print:text-[28pt]"
 		data-hint-line={hintLine}
+		aria-label={hintLine}
 	>
 		{#each hintWords as word, wordIndex (`${wordIndex}-${word.map((g) => g.text).join('')}`)}
 			{#if wordIndex > 0}<span> </span>{/if}<span class="inline-block whitespace-nowrap"
