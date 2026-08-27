@@ -13,10 +13,10 @@ test.describe('/teachers/printouts', () => {
 			page.getByRole('heading', { level: 1, name: /scripture builder printouts/i })
 		).toBeVisible();
 
-		const verse = page.getByLabel('Scripture');
+		const verse = page.locator('#printout-verse');
 		await expect(verse).toBeVisible();
 		await expect(verse).toHaveValue('2-nephi-2-25');
-		await expect(page.getByRole('option', { name: /2 Nephi 2:25/i })).toHaveCount(1);
+		await expect(verse.getByRole('option', { name: /2 Nephi 2:25/i })).toHaveCount(1);
 
 		await expect(page.getByText(/Adam fell that men might be/i).first()).toBeVisible();
 
@@ -42,33 +42,32 @@ test.describe('/teachers/printouts', () => {
 
 		await expect(page.getByRole('heading', { name: /2 Nephi 2:25/i })).toBeVisible();
 		await expect(page.getByText(/cut-out tiles/i)).toBeVisible();
-		await expect(page.getByText('Adam fell that')).toBeVisible();
-		await expect(page.getByText('men might be;')).toBeVisible();
-		await expect(page.getByText('and men are,')).toBeVisible();
-		await expect(page.getByText('that they might')).toBeVisible();
-		await expect(page.getByText('have joy.')).toBeVisible();
 
 		const tiles = page
 			.getByRole('list', { name: /beginner phrase tiles/i })
 			.getByRole('listitem');
 		await expect(tiles).toHaveCount(5);
+		await expect(tiles.nth(0)).toHaveText('Adam fell that');
+		await expect(tiles.nth(1)).toHaveText('men might be;');
+		await expect(tiles.nth(2)).toHaveText('and men are,');
+		await expect(tiles.nth(3)).toHaveText('that they might');
+		await expect(tiles.nth(4)).toHaveText('have joy.');
 	});
 
 	test('intermediate sheet uses app 2-word chunks', async ({ page }) => {
 		await page.goto('/teachers/printouts/2-nephi-2-25/intermediate');
 
-		await expect(page.getByText('Adam fell')).toBeVisible();
-		await expect(page.getByText('that men')).toBeVisible();
-		await expect(page.getByText('might be;')).toBeVisible();
-		await expect(page.getByText('and men')).toBeVisible();
-		await expect(page.getByText('are, that')).toBeVisible();
-		await expect(page.getByText('they might')).toBeVisible();
-		await expect(page.getByText('have joy.')).toBeVisible();
-
 		const tiles = page
 			.getByRole('list', { name: /intermediate phrase tiles/i })
 			.getByRole('listitem');
 		await expect(tiles).toHaveCount(7);
+		await expect(tiles.nth(0)).toHaveText('Adam fell');
+		await expect(tiles.nth(1)).toHaveText('that men');
+		await expect(tiles.nth(2)).toHaveText('might be;');
+		await expect(tiles.nth(3)).toHaveText('and men');
+		await expect(tiles.nth(4)).toHaveText('are, that');
+		await expect(tiles.nth(5)).toHaveText('they might');
+		await expect(tiles.nth(6)).toHaveText('have joy.');
 	});
 
 	test('advanced sheet is a write-it-down page, not the same cutouts', async ({ page }) => {
@@ -77,7 +76,7 @@ test.describe('/teachers/printouts', () => {
 		await expect(page.getByRole('heading', { name: /2 Nephi 2:25/i })).toBeVisible();
 		await expect(page.getByText(/write the verse from memory/i)).toBeVisible();
 		await expect(page.getByText(/Adam fell that/)).toHaveCount(0);
-		await expect(page.getByRole('link', { name: /print \/ save as pdf/i })).toBeVisible();
+		await expect(page.getByRole('button', { name: /print \/ save as pdf/i })).toBeVisible();
 	});
 
 	test('PDFs are downloadable', async ({ request }) => {

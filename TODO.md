@@ -639,17 +639,19 @@ After all Phase B tasks complete.
 ---
 
 ### TASK-PRINT-001: Scripture Builder teacher printouts (proof slice)
-- **status:** in_progress
+- **status:** done
 - **claimed_by:** cursor-cloud-33ca
 - **started:** 2026-08-27T13:10:00Z
+- **completed:** 2026-08-27T13:16:00Z
 - **depends_on:** none
 - **files_to_touch:** `src/lib/scripture-builder/`, `src/lib/components/printouts/`, `src/routes/teachers/printouts/`, `src/routes/teachers/+page.svelte`, `src/routes/+layout.svelte`, `src/app.css`, `src/routes/sitemap.xml/+server.ts`, `static/printouts/`, `tests/printouts.spec.ts`
 - **what:** Public `/teachers/printouts` page. Proof verse 2 Nephi 2:25, all three levels, US Letter. Beginner/Intermediate = app chunk tiles. Advanced = write-it-down sheet. Quiet Tools link from `/teachers`.
 - **acceptance:**
-  - [ ] Teacher can pick 2 Nephi 2:25 and print/download three US-letter printouts
-  - [ ] Chunking matches Flutter `adaptiveChunkSize` / consecutive-word split
-  - [ ] Advanced is not the same cutouts
-  - [ ] PR open, not merged
+  - [x] Teacher can pick 2 Nephi 2:25 and print/download three US-letter printouts
+  - [x] Chunking matches Flutter `adaptiveChunkSize` / consecutive-word split
+  - [x] Advanced is not the same cutouts
+  - [x] PR open, not merged
+- **completion notes:** PR https://github.com/sophomorica/seminary-sidekick/pull/11. Path `/teachers/printouts`. PDFs at `/printouts/2-nephi-2-25-{beginner,intermediate,advanced}.pdf`.
 
 ---
 
