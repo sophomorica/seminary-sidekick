@@ -22,7 +22,7 @@
 
 	const pageTitle = `Scripture Builder printouts — ${SITE_NAME}`;
 	const pageDescription =
-		'Print US Letter Scripture Builder tiles and write-it-down sheets for seminary class. Proof verse: 2 Nephi 2:25.';
+		'Print US Letter Scripture Builder tiles and first-letter hint sheets for seminary class. Proof verse: 2 Nephi 2:25.';
 	const canonical = `${SITE_URL}/teachers/printouts`;
 
 	let selectedSlug = $state(PRINTOUT_VERSES[0].slug);
@@ -66,9 +66,9 @@
 			Scripture Builder printouts
 		</h1>
 		<p class="mt-6 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-			Print large phrase tiles for the board, or a write-it-down sheet. Same Beginner and
-			Intermediate chunks as the app. This first page is 2 Nephi 2:25 — more verses come after
-			teachers can print this one.
+			Print large mixed phrase tiles for the board, or first-letter hints for Advanced. Same
+			Beginner and Intermediate chunks as the app. This first page is 2 Nephi 2:25 — more
+			verses come after teachers can print this one.
 		</p>
 	</div>
 </section>

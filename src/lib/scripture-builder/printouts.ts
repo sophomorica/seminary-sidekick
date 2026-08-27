@@ -107,7 +107,7 @@ export const LEVEL_COPY: Record<PrintoutLevel, { label: string; blurb: string; a
 	},
 	advanced: {
 		label: 'Advanced',
-		blurb: 'Write-it-down sheet — large reference and generous blank lines. Not cutouts.',
-		action: 'Print sheet'
+		blurb: 'First-letter hints for each word — same as Advanced in the app. Not cutouts.',
+		action: 'Print hints'
 	}
 };

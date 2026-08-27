@@ -645,13 +645,13 @@ After all Phase B tasks complete.
 - **completed:** 2026-08-27T13:16:00Z
 - **depends_on:** none
 - **files_to_touch:** `src/lib/scripture-builder/`, `src/lib/components/printouts/`, `src/routes/teachers/printouts/`, `src/routes/teachers/+page.svelte`, `src/routes/+layout.svelte`, `src/app.css`, `src/routes/sitemap.xml/+server.ts`, `static/printouts/`, `tests/printouts.spec.ts`
-- **what:** Public `/teachers/printouts` page. Proof verse 2 Nephi 2:25, all three levels, US Letter. Beginner/Intermediate = app chunk tiles. Advanced = write-it-down sheet. Quiet Tools link from `/teachers`.
+- **what:** Public `/teachers/printouts` page. Proof verse 2 Nephi 2:25, all three levels, US Letter. Beginner/Intermediate = unnumbered mixed app chunk tiles. Advanced = first-letter hints (same as the app), not Master write-it-down. Quiet Tools link from `/teachers`.
 - **acceptance:**
   - [x] Teacher can pick 2 Nephi 2:25 and print/download three US-letter printouts
   - [x] Chunking matches Flutter `adaptiveChunkSize` / consecutive-word split
-  - [x] Advanced is not the same cutouts
+  - [x] Advanced is first-letter hints, not cutouts and not a write-it-down answer key
   - [x] PR open, not merged
-- **completion notes:** PR https://github.com/sophomorica/seminary-sidekick/pull/11. Path `/teachers/printouts`. PDFs at `/printouts/2-nephi-2-25-{beginner,intermediate,advanced}.pdf`.
+- **completion notes:** PR https://github.com/sophomorica/seminary-sidekick/pull/11. Path `/teachers/printouts`. PDFs at `/printouts/2-nephi-2-25-{beginner,intermediate,advanced}.pdf`. Patrick lock 2026-08-27: Advanced = first letters; student sheet has no full verse.
 
 ---
 

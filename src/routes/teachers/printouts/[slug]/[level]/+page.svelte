@@ -4,8 +4,8 @@
 -->
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import FirstLetterSheet from '$lib/components/printouts/FirstLetterSheet.svelte';
 	import PhraseTileSheet from '$lib/components/printouts/PhraseTileSheet.svelte';
-	import WriteItDownSheet from '$lib/components/printouts/WriteItDownSheet.svelte';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
 	import {
 		LEVEL_COPY,
@@ -68,7 +68,7 @@
 
 <div class="bg-surface px-4 py-8 md:px-8 print:bg-white print:px-0 print:py-0">
 	{#if data.level === 'advanced'}
-		<WriteItDownSheet scripture={data.scripture} />
+		<FirstLetterSheet scripture={data.scripture} />
 	{:else}
 		<PhraseTileSheet scripture={data.scripture} difficulty={data.level} chunks={data.chunks} />
 	{/if}

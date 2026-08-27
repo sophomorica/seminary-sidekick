@@ -104,12 +104,23 @@ test.describe('/teachers/printouts', () => {
 		await expect(page.getByText(/Adam fell that men might be/i)).toHaveCount(0);
 	});
 
-	test('advanced sheet is a write-it-down page, not the same cutouts', async ({ page }) => {
+	test('advanced sheet is first-letter hints, not master or cutouts', async ({ page }) => {
 		await page.goto('/teachers/printouts/2-nephi-2-25/advanced');
 
 		await expect(page.getByRole('heading', { name: /2 Nephi 2:25/i })).toBeVisible();
-		await expect(page.getByText(/write the verse from memory/i)).toBeVisible();
+		await expect(page.getByText(/first-letter hints/i).first()).toBeVisible();
+		const hints = page.locator('[data-hint-line]');
+		await expect(hints).toHaveAttribute(
+			'data-hint-line',
+			'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___'
+		);
+		await expect(hints).toContainText(
+			'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___'
+		);
+		await expect(page.getByText(/write the verse from memory/i)).toHaveCount(0);
 		await expect(page.getByText(/Adam fell that/)).toHaveCount(0);
+		await expect(page.getByText(/Adam fell that men might be/i)).toHaveCount(0);
+		await expect(page.getByRole('list', { name: /phrase tiles/i })).toHaveCount(0);
 		await expect(page.getByRole('button', { name: /print \/ save as pdf/i })).toBeVisible();
 	});
 
