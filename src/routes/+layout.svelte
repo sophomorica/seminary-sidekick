@@ -6,11 +6,13 @@
 	import SkipLink from '$lib/components/layout/SkipLink.svelte';
 	import AppNav from '$lib/components/layout/AppNav.svelte';
 	import AppFooter from '$lib/components/layout/AppFooter.svelte';
+	import { isPrintSheetPath } from '$lib/scripture-builder/printouts';
 
 	let { children } = $props();
 	const isJoinRoute = $derived(
 		page.url.pathname === '/join' || page.url.pathname.startsWith('/join/')
 	);
+	const hideChrome = $derived(isJoinRoute || isPrintSheetPath(page.url.pathname));
 
 	/**
 	 * Brand easing — mirrors `--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1)`.
@@ -53,7 +55,7 @@
 </svelte:head>
 
 <SkipLink />
-{#if !isJoinRoute}
+{#if !hideChrome}
 	<AppNav />
 {/if}
 
@@ -69,6 +71,6 @@
 	{/if}
 </main>
 
-{#if !isJoinRoute}
+{#if !hideChrome}
 	<AppFooter />
 {/if}

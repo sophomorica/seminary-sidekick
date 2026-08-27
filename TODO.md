@@ -638,6 +638,21 @@ After all Phase B tasks complete.
 
 ---
 
+### TASK-PRINT-001: Scripture Builder teacher printouts (proof slice)
+- **status:** in_progress
+- **claimed_by:** cursor-cloud-33ca
+- **started:** 2026-08-27T13:10:00Z
+- **depends_on:** none
+- **files_to_touch:** `src/lib/scripture-builder/`, `src/lib/components/printouts/`, `src/routes/teachers/printouts/`, `src/routes/teachers/+page.svelte`, `src/routes/+layout.svelte`, `src/app.css`, `src/routes/sitemap.xml/+server.ts`, `static/printouts/`, `tests/printouts.spec.ts`
+- **what:** Public `/teachers/printouts` page. Proof verse 2 Nephi 2:25, all three levels, US Letter. Beginner/Intermediate = app chunk tiles. Advanced = write-it-down sheet. Quiet Tools link from `/teachers`.
+- **acceptance:**
+  - [ ] Teacher can pick 2 Nephi 2:25 and print/download three US-letter printouts
+  - [ ] Chunking matches Flutter `adaptiveChunkSize` / consecutive-word split
+  - [ ] Advanced is not the same cutouts
+  - [ ] PR open, not merged
+
+---
+
 ## Future tiers (placeholder backlog)
 
 Not for Tier 1. Listed so we know where they slot in.
