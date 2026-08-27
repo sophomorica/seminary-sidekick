@@ -1,8 +1,9 @@
 /**
  * Advanced typing display — first-letter-of-word hints.
  *
- * Must match Flutter TypedDisplayRules and the Group Play board
- * (`SbRaceTypingBoard.svelte`): first letter/digit of each word is shown;
+ * Must match Flutter TypedDisplayRules
+ * (`lib/screens/games/scripture_builder/typed_display_rules.dart`) and
+ * the Group Play board: first letter/digit of each word is shown;
  * other letters and punctuation become `_`; spaces stay spaces.
  * Punctuation is never a hint (it is auto-fill in the app).
  */
@@ -81,4 +82,17 @@ export function advancedHintWords(target: string): HintGlyph[][] {
 	}
 	if (current.length > 0) words.push(current);
 	return words;
+}
+
+/**
+ * Two-line wrap for a print passage. Midpoint split so 2 Nephi 2:25
+ * matches the proof Patrick signed off:
+ *   A___ f___ t___ m__ m____ b__ a__
+ *   m__ a___ t___ t___ m____ h___ j___
+ */
+export function advancedHintLines(target: string): string[] {
+	const words = advancedHintText(target).split(' ').filter((word) => word.length > 0);
+	if (words.length <= 1) return [words.join(' ') || ''];
+	const mid = Math.ceil(words.length / 2);
+	return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
 }
