@@ -47,11 +47,27 @@ test.describe('/teachers/printouts', () => {
 			.getByRole('list', { name: /beginner phrase tiles/i })
 			.getByRole('listitem');
 		await expect(tiles).toHaveCount(5);
-		await expect(tiles.nth(0)).toHaveText('Adam fell that');
-		await expect(tiles.nth(1)).toHaveText('men might be;');
-		await expect(tiles.nth(2)).toHaveText('and men are,');
-		await expect(tiles.nth(3)).toHaveText('that they might');
-		await expect(tiles.nth(4)).toHaveText('have joy.');
+		const phrases = (await tiles.allTextContents()).map((text) => text.trim());
+		expect([...phrases].sort()).toEqual(
+			[
+				'Adam fell that',
+				'and men are,',
+				'have joy.',
+				'men might be;',
+				'that they might'
+			].sort()
+		);
+		expect(phrases).not.toEqual([
+			'Adam fell that',
+			'men might be;',
+			'and men are,',
+			'that they might',
+			'have joy.'
+		]);
+		for (const phrase of phrases) {
+			expect(phrase, 'tiles must not be numbered').not.toMatch(/^\d/);
+		}
+		await expect(page.getByText(/Adam fell that men might be/i)).toHaveCount(0);
 	});
 
 	test('intermediate sheet uses app 2-word chunks', async ({ page }) => {
@@ -61,13 +77,31 @@ test.describe('/teachers/printouts', () => {
 			.getByRole('list', { name: /intermediate phrase tiles/i })
 			.getByRole('listitem');
 		await expect(tiles).toHaveCount(7);
-		await expect(tiles.nth(0)).toHaveText('Adam fell');
-		await expect(tiles.nth(1)).toHaveText('that men');
-		await expect(tiles.nth(2)).toHaveText('might be;');
-		await expect(tiles.nth(3)).toHaveText('and men');
-		await expect(tiles.nth(4)).toHaveText('are, that');
-		await expect(tiles.nth(5)).toHaveText('they might');
-		await expect(tiles.nth(6)).toHaveText('have joy.');
+		const phrases = (await tiles.allTextContents()).map((text) => text.trim());
+		expect([...phrases].sort()).toEqual(
+			[
+				'Adam fell',
+				'and men',
+				'are, that',
+				'have joy.',
+				'might be;',
+				'that men',
+				'they might'
+			].sort()
+		);
+		expect(phrases).not.toEqual([
+			'Adam fell',
+			'that men',
+			'might be;',
+			'and men',
+			'are, that',
+			'they might',
+			'have joy.'
+		]);
+		for (const phrase of phrases) {
+			expect(phrase, 'tiles must not be numbered').not.toMatch(/^\d/);
+		}
+		await expect(page.getByText(/Adam fell that men might be/i)).toHaveCount(0);
 	});
 
 	test('advanced sheet is a write-it-down page, not the same cutouts', async ({ page }) => {

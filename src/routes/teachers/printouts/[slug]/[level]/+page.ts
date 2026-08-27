@@ -5,7 +5,7 @@ import {
 	PRINTOUT_VERSES,
 	isPrintoutLevel,
 	loadPrintoutScripture,
-	tilesFor
+	scrambledTilesFor
 } from '$lib/scripture-builder/printouts';
 
 export const prerender = true;
@@ -26,7 +26,7 @@ export const load: PageLoad = ({ params }) => {
 		throw error(404, 'That scripture is not in this printout slice yet');
 	}
 
-	const chunks = params.level === 'advanced' ? [] : tilesFor(scripture, params.level);
+	const chunks = params.level === 'advanced' ? [] : scrambledTilesFor(scripture, params.level);
 
 	return {
 		slug: params.slug,

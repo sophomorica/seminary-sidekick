@@ -48,8 +48,8 @@
 	</header>
 
 	<p class="mb-4 text-body-md text-on-surface-variant">
-		Cut on the dashed lines. Put the tiles on a board so the class can see them from across the
-		room. Same phrase chunks as {copy.label} Scripture Builder in the app.
+		Cut on the dashed lines. Mix the pieces on a board — they are not in order. Same phrase
+		chunks as {copy.label} Scripture Builder in the app.
 	</p>
 
 	<ul
@@ -58,7 +58,7 @@
 			: 'flex flex-col gap-3'}
 		aria-label={`${copy.label} phrase tiles`}
 	>
-		{#each chunks as phrase, index (index)}
+		{#each chunks as phrase, tileKey (`${tileKey}-${phrase}`)}
 			<li
 				class="flex min-h-[1.45in] items-center rounded-[1.25rem] border-2 border-dashed border-outline bg-surface-container-low px-5 py-4 print:min-h-[1.5in]"
 			>
@@ -71,8 +71,7 @@
 		{/each}
 	</ul>
 
-	<footer class="mt-4 flex flex-wrap justify-between gap-2 text-label-sm text-on-surface-variant">
-		<p>{scripture.fullText}</p>
+	<footer class="mt-4 text-label-sm text-on-surface-variant">
 		<p>seminarysidekick.com</p>
 	</footer>
 </article>
