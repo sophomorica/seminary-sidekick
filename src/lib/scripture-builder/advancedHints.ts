@@ -91,7 +91,9 @@ export function advancedHintWords(target: string): HintGlyph[][] {
  *   m__ a___ t___ t___ m____ h___ j___
  */
 export function advancedHintLines(target: string): string[] {
-	const words = advancedHintText(target).split(' ').filter((word) => word.length > 0);
+	const words = advancedHintText(target)
+		.split(' ')
+		.filter((word) => word.length > 0);
 	if (words.length <= 1) return [words.join(' ') || ''];
 	const mid = Math.ceil(words.length / 2);
 	return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];

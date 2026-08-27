@@ -107,8 +107,7 @@ test.describe('/teachers/printouts', () => {
 	test('advanced sheet is first-letter hints, not master or cutouts', async ({ page }) => {
 		await page.goto('/teachers/printouts/2-nephi-2-25/advanced');
 
-		const expectedHints =
-			'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___';
+		const expectedHints = 'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___';
 
 		await expect(page.getByRole('heading', { name: /2 Nephi 2:25/i })).toBeVisible();
 		await expect(
