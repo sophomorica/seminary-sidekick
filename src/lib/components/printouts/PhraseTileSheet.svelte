@@ -1,6 +1,7 @@
 <!--
   Classroom cut-out tiles for Beginner / Intermediate Scripture Builder.
-  Several large tiles per US Letter page — not one phrase per page.
+  Two-column grid of smaller dashed tiles so longer verses fit US Letter.
+  Still several tiles per page — not one phrase per page. Unnumbered. Mixed.
 -->
 <script lang="ts">
 	import type { Scripture } from '$lib/data/types';
@@ -17,13 +18,12 @@
 		chunks: string[];
 	} = $props();
 
-	const twoCol = $derived(chunks.length > 5);
 	const copy = $derived(LEVEL_COPY[difficulty]);
 </script>
 
 <article class="printout-sheet mx-auto max-w-[8.5in] text-on-surface">
 	<header
-		class="mb-4 flex flex-wrap items-end justify-between gap-3 border-b-[3px] border-primary pb-3"
+		class="mb-3 flex flex-wrap items-end justify-between gap-3 border-b-[3px] border-primary pb-2"
 	>
 		<div>
 			<p
@@ -47,23 +47,22 @@
 		</div>
 	</header>
 
-	<p class="mb-4 text-body-md text-on-surface-variant">
+	<p class="mb-3 text-body-sm text-on-surface-variant">
 		Cut on the dashed lines. Mix the pieces on a board — they are not in order. Same phrase
 		chunks as {copy.label} Scripture Builder in the app.
 	</p>
 
 	<ul
-		class={twoCol
-			? 'grid grid-cols-1 gap-3 sm:grid-cols-2 print:grid-cols-2'
-			: 'flex flex-col gap-3'}
+		class="grid grid-cols-2 gap-2 print:grid-cols-2"
 		aria-label={`${copy.label} phrase tiles`}
+		data-tile-grid="2"
 	>
 		{#each chunks as phrase, tileKey (`${tileKey}-${phrase}`)}
 			<li
-				class="flex min-h-[1.45in] items-center rounded-[1.25rem] border-2 border-dashed border-outline bg-surface-container-low px-5 py-4 print:min-h-[1.5in]"
+				class="flex min-h-[0.62in] items-center rounded-2xl border-2 border-dashed border-outline bg-surface-container-low px-3 py-2 print:min-h-[0.58in]"
 			>
 				<p
-					class="font-serif text-[1.85rem] leading-tight text-on-surface italic md:text-[2.15rem] print:text-[32pt]"
+					class="font-serif text-[1.15rem] leading-snug text-on-surface italic md:text-[1.25rem] print:text-[16pt]"
 				>
 					{phrase}
 				</p>
@@ -71,7 +70,7 @@
 		{/each}
 	</ul>
 
-	<footer class="mt-4 text-label-sm text-on-surface-variant">
+	<footer class="mt-3 text-label-sm text-on-surface-variant">
 		<p>seminarysidekick.com</p>
 	</footer>
 </article>

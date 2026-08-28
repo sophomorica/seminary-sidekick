@@ -43,9 +43,9 @@ test.describe('/teachers/printouts', () => {
 		await expect(page.getByRole('heading', { name: /2 Nephi 2:25/i })).toBeVisible();
 		await expect(page.getByText(/cut-out tiles/i)).toBeVisible();
 
-		const tiles = page
-			.getByRole('list', { name: /beginner phrase tiles/i })
-			.getByRole('listitem');
+		const tileList = page.getByRole('list', { name: /beginner phrase tiles/i });
+		await expect(tileList).toHaveAttribute('data-tile-grid', '2');
+		const tiles = tileList.getByRole('listitem');
 		await expect(tiles).toHaveCount(5);
 		const phrases = (await tiles.allTextContents()).map((text) => text.trim());
 		expect([...phrases].sort()).toEqual(
@@ -73,9 +73,9 @@ test.describe('/teachers/printouts', () => {
 	test('intermediate sheet uses app 2-word chunks', async ({ page }) => {
 		await page.goto('/teachers/printouts/2-nephi-2-25/intermediate');
 
-		const tiles = page
-			.getByRole('list', { name: /intermediate phrase tiles/i })
-			.getByRole('listitem');
+		const tileList = page.getByRole('list', { name: /intermediate phrase tiles/i });
+		await expect(tileList).toHaveAttribute('data-tile-grid', '2');
+		const tiles = tileList.getByRole('listitem');
 		await expect(tiles).toHaveCount(7);
 		const phrases = (await tiles.allTextContents()).map((text) => text.trim());
 		expect([...phrases].sort()).toEqual(
