@@ -19,8 +19,7 @@
 		printoutHasStaticPdf,
 		printoutPdfPath,
 		printoutSheetPath,
-		printoutVersesByBook,
-		type PrintoutLevel
+		printoutVersesByBook
 	} from '$lib/scripture-builder/printouts';
 	import { Printer, Download } from 'lucide-svelte';
 
@@ -38,12 +37,9 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
-	function sheetHref(level: PrintoutLevel): string {
-		return printoutSheetPath(selectedSlug, level);
-	}
-
-	function pdfHref(level: PrintoutLevel): string {
-		return printoutPdfPath(selectedSlug, level);
+	function selectVerse(event: Event) {
+		const next = (event.currentTarget as HTMLSelectElement).value;
+		if (next) selectedSlug = next;
 	}
 </script>
 
@@ -87,7 +83,8 @@
 					id="printout-verse"
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
 					data-verse-count={PRINTOUT_VERSE_COUNT}
-					bind:value={selectedSlug}
+					value={selectedSlug}
+					onchange={selectVerse}
 				>
 					{#each bookGroups as group (group.book)}
 						<optgroup label={group.label}>
@@ -119,12 +116,16 @@
 						<h3 class="font-serif text-headline-md">{copy.label}</h3>
 						<p class="mt-3 text-body-md text-on-surface-variant">{copy.blurb}</p>
 						<div class="mt-6 flex flex-wrap gap-3">
-							<Button href={sheetHref(level)} variant="primary">
+							<Button href={printoutSheetPath(selectedSlug, level)} variant="primary">
 								<Printer aria-hidden="true" />
 								{copy.action}
 							</Button>
 							{#if hasReadyPdf}
-								<Button href={pdfHref(level)} variant="outlined" download>
+								<Button
+									href={printoutPdfPath(selectedSlug, level)}
+									variant="outlined"
+									download
+								>
 									<Download aria-hidden="true" />
 									Download PDF
 								</Button>

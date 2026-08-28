@@ -39,8 +39,7 @@ test.describe('/teachers/printouts', () => {
 		await expect(page.getByRole('heading', { name: /^Intermediate$/i })).toBeVisible();
 		await expect(page.getByRole('heading', { name: /^Advanced$/i })).toBeVisible();
 
-		const beginnerPrint = page.getByRole('link', { name: /print tiles/i }).first();
-		await expect(beginnerPrint).toHaveAttribute(
+		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${DEFAULT_SLUG}/beginner`
 		);
@@ -51,7 +50,8 @@ test.describe('/teachers/printouts', () => {
 		);
 
 		await verse.selectOption(LONG_SLUG);
-		await expect(beginnerPrint).toHaveAttribute(
+		await expect(verse).toHaveValue(LONG_SLUG);
+		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${LONG_SLUG}/beginner`
 		);
@@ -163,9 +163,11 @@ test.describe('/teachers/printouts', () => {
 		await expect(tiles).toHaveCount(38);
 		const phrases = (await tiles.allTextContents()).map((text) => text.trim());
 		expect(phrases[0]).not.toBe('Thou shalt have no other gods before me.');
+		const wordCounts = phrases.map((phrase) => phrase.split(/\s+/).length);
+		expect(Math.max(...wordCounts)).toBe(8);
+		expect(wordCounts.filter((count) => count === 8).length).toBeGreaterThan(30);
 		for (const phrase of phrases) {
 			expect(phrase, 'tiles must not be numbered').not.toMatch(/^\d/);
-			expect(phrase.split(/\s+/).length).toBeGreaterThan(1);
 		}
 		await expect(
 			page.getByText(/Thou shalt have no other gods before me\. Thou shalt not make/i)
