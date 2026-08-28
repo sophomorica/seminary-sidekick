@@ -60,8 +60,9 @@ test.describe('/teachers/printouts', () => {
 
 		const search = page.getByRole('searchbox', { name: /find a scripture/i });
 		await search.fill('joy');
-		const joy = page.getByRole('button', { name: /2 Nephi 2:25/i });
-		await expect(joy).toBeVisible();
+		await expect(page.getByText(/5 of 100 verses/)).toBeVisible();
+		const joy = page.locator(`[data-verse-slug="${JOY_SLUG}"]`);
+		await expect(joy).toHaveCount(1);
 		await joy.click();
 
 		await expect(finder).toHaveAttribute('data-selected-slug', JOY_SLUG);
@@ -81,8 +82,9 @@ test.describe('/teachers/printouts', () => {
 		);
 
 		await search.fill('exodus 20');
-		const long = page.getByRole('button', { name: /Exodus 20:3/i });
-		await expect(long).toBeVisible();
+		await expect(page.getByText(/1 of 100 verses/)).toBeVisible();
+		const long = page.locator(`[data-verse-slug="${LONG_SLUG}"]`);
+		await expect(long).toHaveCount(1);
 		await long.click();
 		await expect(finder).toHaveAttribute('data-selected-slug', LONG_SLUG);
 		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(

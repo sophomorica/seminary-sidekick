@@ -17,11 +17,13 @@
 	let {
 		selectedSlug,
 		thisWeek,
-		chooseVerse
+		chooseVerse,
+		afterPin
 	}: {
 		selectedSlug: string;
 		thisWeek: ThisWeekPin;
 		chooseVerse: (slug: string) => void;
+		afterPin?: import('svelte').Snippet;
 	} = $props();
 
 	let query = $state('');
@@ -52,7 +54,7 @@
 
 	function rowClass(active: boolean): string {
 		return [
-			'w-full cursor-pointer rounded-[1.25rem] px-4 py-3 text-left transition-colors duration-150 ease-out-soft',
+			'w-full scroll-mt-28 cursor-pointer rounded-[1.25rem] px-4 py-3 text-left transition-colors duration-150 ease-out-soft',
 			'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
 			'focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
 			active
@@ -101,6 +103,10 @@
 			{/each}
 		</ul>
 	</div>
+
+	{#if afterPin}
+		{@render afterPin()}
+	{/if}
 
 	<div>
 		<Label for="printout-search">Find a scripture</Label>

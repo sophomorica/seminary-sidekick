@@ -7,7 +7,6 @@
 <script lang="ts">
 	import VerseFinder from '$lib/components/printouts/VerseFinder.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import * as Card from '$lib/components/ui/card';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
 	import { TOTAL_SCRIPTURES } from '$lib/data/scriptures';
 	import {
@@ -79,43 +78,49 @@
 				This week is pinned. Search by reference, name, or a keyword.
 			</p>
 			<div class="mt-5">
-				<VerseFinder {selectedSlug} {thisWeek} {chooseVerse} />
-			</div>
-			{#if scripture}
-				<blockquote class="scripture mt-6 text-left">
-					“{scripture.fullText}”
-					<footer>{scripture.reference} — {scripture.name}</footer>
-				</blockquote>
-			{/if}
-		</div>
+				<VerseFinder {selectedSlug} {thisWeek} {chooseVerse}>
+					{#snippet afterPin()}
+						{#if scripture}
+							<blockquote class="scripture mt-6 text-left">
+								“{scripture.fullText}”
+								<footer>{scripture.reference} — {scripture.name}</footer>
+							</blockquote>
+						{/if}
 
-		<ul class="space-y-6" aria-label="Printout levels">
-			{#each levels as level (level)}
-				{@const copy = LEVEL_COPY[level]}
-				<li>
-					<Card.Root>
-						<h3 class="font-serif text-headline-md">{copy.label}</h3>
-						<p class="mt-3 text-body-md text-on-surface-variant">{copy.blurb}</p>
-						<div class="mt-6 flex flex-wrap gap-3">
-							<Button href={printoutSheetPath(selectedSlug, level)} variant="primary">
-								<Printer aria-hidden="true" />
-								{copy.action}
-							</Button>
-							{#if hasReadyPdf}
-								<Button
-									href={printoutPdfPath(selectedSlug, level)}
-									variant="outlined"
-									download
-								>
-									<Download aria-hidden="true" />
-									Download PDF
-								</Button>
-							{/if}
-						</div>
-					</Card.Root>
-				</li>
-			{/each}
-		</ul>
+						<ul class="mt-8 space-y-6" aria-label="Printout levels">
+							{#each levels as level (level)}
+								{@const copy = LEVEL_COPY[level]}
+								<li class="rounded-[2rem] bg-surface-container-low p-6">
+									<h3 class="font-serif text-headline-md">{copy.label}</h3>
+									<p class="mt-3 text-body-md text-on-surface-variant">
+										{copy.blurb}
+									</p>
+									<div class="mt-6 flex flex-wrap gap-3">
+										<Button
+											href={printoutSheetPath(selectedSlug, level)}
+											variant="primary"
+										>
+											<Printer aria-hidden="true" />
+											{copy.action}
+										</Button>
+										{#if hasReadyPdf}
+											<Button
+												href={printoutPdfPath(selectedSlug, level)}
+												variant="outlined"
+												download
+											>
+												<Download aria-hidden="true" />
+												Download PDF
+											</Button>
+										{/if}
+									</div>
+								</li>
+							{/each}
+						</ul>
+					{/snippet}
+				</VerseFinder>
+			</div>
+		</div>
 
 		<p class="text-body-sm text-on-surface-variant">
 			Open a sheet, then use your browser’s Print dialog (Destination: Save as PDF, paper size
