@@ -15,11 +15,13 @@
 	} from '$lib/scripture-builder/verseFinder';
 
 	let {
-		selectedSlug = $bindable(),
-		thisWeek
+		selectedSlug,
+		thisWeek,
+		onChoose
 	}: {
 		selectedSlug: string;
 		thisWeek: ThisWeekPin;
+		onChoose: (slug: string) => void;
 	} = $props();
 
 	let query = $state('');
@@ -34,7 +36,7 @@
 	);
 
 	function choose(slug: string) {
-		selectedSlug = slug;
+		onChoose(slug);
 	}
 
 	function facetClass(active: boolean): string {
@@ -50,7 +52,7 @@
 
 	function rowClass(active: boolean): string {
 		return [
-			'w-full rounded-[1.25rem] px-4 py-3 text-left transition-colors duration-150 ease-out-soft',
+			'w-full cursor-pointer rounded-[1.25rem] px-4 py-3 text-left transition-colors duration-150 ease-out-soft',
 			'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
 			'focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
 			active

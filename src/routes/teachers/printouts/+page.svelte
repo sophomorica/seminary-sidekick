@@ -75,7 +75,13 @@
 				This week is pinned. Search by reference, name, or a keyword.
 			</p>
 			<div class="mt-5">
-				<VerseFinder bind:selectedSlug {thisWeek} />
+				<VerseFinder
+					{selectedSlug}
+					{thisWeek}
+					onChoose={(slug) => {
+						selectedSlug = slug;
+					}}
+				/>
 			</div>
 			{#if scripture}
 				<blockquote class="scripture mt-6 text-left">
