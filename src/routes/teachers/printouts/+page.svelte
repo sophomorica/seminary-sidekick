@@ -92,7 +92,6 @@
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
 					data-verse-count={PRINTOUT_VERSE_COUNT}
 					data-selected-slug={selectedSlug}
-					value={selectedSlug}
 					{@attach attachVerseSelect}
 				>
 					{#each bookGroups as group (group.book)}
@@ -100,7 +99,9 @@
 							{#each group.verses as verse (verse.slug)}
 								{@const option = getScripture(verse.scriptureId)}
 								{#if option}
-									<option value={verse.slug}
+									<option
+										value={verse.slug}
+										selected={verse.slug === DEFAULT_PRINTOUT_SLUG}
 										>{option.reference} — {option.name}</option
 									>
 								{/if}
