@@ -47,19 +47,20 @@ test.describe('AppNav', () => {
 		await expect(page).toHaveURL('/premium');
 	});
 
-	test('For teachers link goes to /for-teachers', async ({ page }) => {
+	test('For teachers link goes to /teachers', async ({ page }) => {
 		await page.goto('/');
 		await page
 			.locator('header')
 			.getByRole('link', { name: 'For teachers', exact: true })
 			.click();
-		await expect(page).toHaveURL('/for-teachers');
+		await expect(page).toHaveURL('/teachers');
 	});
 
-	test('Library link goes to /teachers', async ({ page }) => {
+	test('header does not include a Library item', async ({ page }) => {
 		await page.goto('/');
-		await page.locator('header').getByRole('link', { name: 'Library', exact: true }).click();
-		await expect(page).toHaveURL('/teachers');
+		await expect(
+			page.locator('header').getByRole('link', { name: 'Library', exact: true })
+		).toHaveCount(0);
 	});
 
 	test('News link goes to /news', async ({ page }) => {
@@ -105,6 +106,21 @@ test.describe('AppFooter', () => {
 			const res = await request.get(route);
 			expect.soft(res.status(), `footer link ${href} -> ${route}`).toBe(200);
 		}
+	});
+
+	test('Discover For teachers goes to /teachers; Class Play keeps the pitch', async ({
+		page
+	}) => {
+		await page.goto('/');
+		const footer = page.locator('footer');
+		await expect(footer.getByRole('link', { name: 'For teachers', exact: true })).toHaveAttribute(
+			'href',
+			'/teachers'
+		);
+		await expect(footer.getByRole('link', { name: 'Class Play', exact: true })).toHaveAttribute(
+			'href',
+			'/for-teachers'
+		);
 	});
 
 	test('contact mailto link uses CONTACT_EMAIL from config', async ({ page }) => {
