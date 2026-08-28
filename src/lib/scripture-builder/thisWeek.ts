@@ -25,10 +25,17 @@
  * pin Moses 1:39, the first OT-bank verse of the opening unit, labeled
  * “This week’s unit”.
  *
+ * Calendar days use America/Denver (released-time Mountain) so Vercel UTC
+ * and a Mountain teacher agree on which Monday this is. Call this from
+ * `load()`, not again in the page, so SSR HTML and hydration match.
+ *
  * Only slugs that resolve in `$lib/data/scriptures` are returned.
  */
 
 import { getPrintoutVerse, loadPrintoutScripture } from './printouts';
+
+/** Released-time seminary calendar. Not the server’s local zone. */
+export const SEMINARY_TIME_ZONE = 'America/Denver';
 
 export type ThisWeekKind = 'doctrinal-mastery' | 'unit';
 
@@ -63,18 +70,31 @@ const CFM_OT_2026_DM_WEEKS: readonly CfmWeek[] = [
 /** Mondays treated as seminary orientation / first week (no DM assignment). */
 const SEMINARY_ORIENTATION_MONDAYS = new Set(['2026-08-17', '2026-08-24']);
 
+function denverParts(date: Date): { year: number; month: number; day: number } {
+	const parts = new Intl.DateTimeFormat('en-US', {
+		timeZone: SEMINARY_TIME_ZONE,
+		year: 'numeric',
+		month: 'numeric',
+		day: 'numeric'
+	}).formatToParts(date);
+	const num = (type: Intl.DateTimeFormatPartTypes) =>
+		Number(parts.find((part) => part.type === type)?.value);
+	return { year: num('year'), month: num('month'), day: num('day') };
+}
+
 function mondayOf(date: Date): Date {
-	const local = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-	const weekday = local.getDay();
+	const { year, month, day } = denverParts(date);
+	const utc = new Date(Date.UTC(year, month - 1, day));
+	const weekday = utc.getUTCDay();
 	const offset = weekday === 0 ? -6 : 1 - weekday;
-	local.setDate(local.getDate() + offset);
-	return local;
+	utc.setUTCDate(utc.getUTCDate() + offset);
+	return utc;
 }
 
 function isoDate(date: Date): string {
-	const year = date.getFullYear();
-	const month = String(date.getMonth() + 1).padStart(2, '0');
-	const day = String(date.getDate()).padStart(2, '0');
+	const year = date.getUTCFullYear();
+	const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+	const day = String(date.getUTCDate()).padStart(2, '0');
 	return `${year}-${month}-${day}`;
 }
 

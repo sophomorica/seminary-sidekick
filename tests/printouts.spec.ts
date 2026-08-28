@@ -35,9 +35,12 @@ test.describe('/teachers/printouts', () => {
 
 		const thisWeek = page.locator('[data-this-week]');
 		await expect(thisWeek).toBeVisible();
-		await expect(thisWeek).toHaveAttribute('data-this-week', /^(unit|doctrinal-mastery)$/);
+		const thisWeekKind = await thisWeek.getAttribute('data-this-week');
+		expect(thisWeekKind).toMatch(/^(unit|doctrinal-mastery)$/);
 		await expect(page.getByText(/this week/i).first()).toBeVisible();
-		await expect(page.getByText(/this week.?s unit/i)).toBeVisible();
+		if (thisWeekKind === 'unit') {
+			await expect(page.getByText(/this week.?s unit/i)).toBeVisible();
+		}
 		const thisWeekSlug = await page
 			.locator('[data-this-week-slug]')
 			.first()
@@ -57,6 +60,17 @@ test.describe('/teachers/printouts', () => {
 			'href',
 			`/teachers/printouts/${thisWeekSlug}/advanced`
 		);
+
+		const bookGroup = page.getByRole('radiogroup', { name: /^book$/i });
+		const allBooks = bookGroup.getByRole('radio', { name: /^all$/i });
+		await allBooks.focus();
+		await expect(allBooks).toHaveAttribute('aria-checked', 'true');
+		await page.keyboard.press('ArrowRight');
+		const ot = bookGroup.getByRole('radio', { name: /^ot$/i });
+		await expect(ot).toHaveAttribute('aria-checked', 'true');
+		await expect(ot).toBeFocused();
+		await page.keyboard.press('Home');
+		await expect(allBooks).toHaveAttribute('aria-checked', 'true');
 
 		const search = page.getByRole('searchbox', { name: /find a scripture/i });
 		await search.fill('joy');

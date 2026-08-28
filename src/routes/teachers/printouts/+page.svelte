@@ -19,15 +19,17 @@
 		printoutPdfPath,
 		printoutSheetPath
 	} from '$lib/scripture-builder/printouts';
-	import { defaultPrintoutSlug, thisWeekPin } from '$lib/scripture-builder/thisWeek';
 	import { Download, Printer } from 'lucide-svelte';
+
+	let { data } = $props();
 
 	const pageTitle = `Scripture Builder printouts — ${SITE_NAME}`;
 	const pageDescription = `Print US Letter Scripture Builder tiles and first-letter hint sheets for all ${PRINTOUT_VERSE_COUNT} doctrinal-mastery verses.`;
 	const canonical = `${SITE_URL}/teachers/printouts`;
 
-	const thisWeek = thisWeekPin();
-	let selectedSlug = $state(defaultPrintoutSlug());
+	const thisWeek = $derived(data.thisWeek);
+	let chosenSlug = $state<string | null>(null);
+	const selectedSlug = $derived(chosenSlug ?? data.defaultSlug);
 
 	const scripture = $derived(
 		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
@@ -36,7 +38,7 @@
 	const levels = PRINTOUT_LEVELS;
 
 	function chooseVerse(slug: string) {
-		selectedSlug = slug;
+		chosenSlug = slug;
 	}
 </script>
 

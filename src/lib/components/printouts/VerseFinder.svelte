@@ -29,6 +29,7 @@
 	let query = $state('');
 	let book = $state<FinderBook>('all');
 
+	const facets: FinderBook[] = ['all', ...BOOK_ORDER];
 	const hits = $derived(findPrintoutVerses(query, book));
 	const thisWeekHits = $derived(
 		thisWeek.slugs.flatMap((slug): FinderHit[] => {
@@ -39,6 +40,42 @@
 
 	function choose(slug: string) {
 		chooseVerse(slug);
+	}
+
+	function facetLabel(facet: FinderBook): string {
+		return facet === 'all' ? 'All' : BOOK_META[facet].short;
+	}
+
+	function facetKeydown(event: KeyboardEvent) {
+		if (
+			event.key !== 'ArrowRight' &&
+			event.key !== 'ArrowDown' &&
+			event.key !== 'ArrowLeft' &&
+			event.key !== 'ArrowUp' &&
+			event.key !== 'Home' &&
+			event.key !== 'End'
+		) {
+			return;
+		}
+		event.preventDefault();
+		const current = facets.indexOf(book);
+		let next = current;
+		if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+			next = (current + 1) % facets.length;
+		} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+			next = (current - 1 + facets.length) % facets.length;
+		} else if (event.key === 'Home') {
+			next = 0;
+		} else {
+			next = facets.length - 1;
+		}
+		const nextBook = facets[next];
+		if (!nextBook) return;
+		book = nextBook;
+		const group = event.currentTarget as HTMLElement;
+		queueMicrotask(() => {
+			group.querySelector<HTMLElement>('[role="radio"][aria-checked="true"]')?.focus();
+		});
 	}
 
 	function facetClass(active: boolean): string {
@@ -123,25 +160,22 @@
 
 	<fieldset>
 		<legend class="mb-2 text-label-lg text-on-surface">Book</legend>
-		<div class="flex flex-wrap gap-2" role="radiogroup" aria-label="Book">
-			<button
-				type="button"
-				class={facetClass(book === 'all')}
-				role="radio"
-				aria-checked={book === 'all'}
-				onclick={() => (book = 'all')}
-			>
-				All
-			</button>
-			{#each BOOK_ORDER as nextBook (nextBook)}
+		<div
+			class="flex flex-wrap gap-2"
+			role="radiogroup"
+			aria-label="Book"
+			onkeydown={facetKeydown}
+		>
+			{#each facets as facet (facet)}
 				<button
 					type="button"
-					class={facetClass(book === nextBook)}
+					class={facetClass(book === facet)}
 					role="radio"
-					aria-checked={book === nextBook}
-					onclick={() => (book = nextBook)}
+					aria-checked={book === facet}
+					tabindex={book === facet ? 0 : -1}
+					onclick={() => (book = facet)}
 				>
-					{BOOK_META[nextBook].short}
+					{facetLabel(facet)}
 				</button>
 			{/each}
 		</div>
