@@ -74,6 +74,12 @@
 			Beginner and Intermediate chunks as the app. All {TOTAL_SCRIPTURES} doctrinal-mastery verses
 			from the app.
 		</p>
+		<p class="mt-4 text-body-sm text-on-surface-variant">
+			From the
+			<a href="/teachers" class="font-semibold text-accent underline-offset-2 hover:underline"
+				>morning mixer</a
+			>.
+		</p>
 	</div>
 </section>
 

@@ -1,20 +1,34 @@
 <!--
-  /teachers — thin teacher-library index.
+  /teachers — morning mixer for seminary teachers.
 
-  Catalog only: advice, Class Play help, doctrinal mastery tips, tools,
-  and honest "coming" slots for lesson plans and testimonials.
-  No invented plans. No placeholder quotes. No user-generated swap.
+  Mix / Today / This week. Real grabbers a teacher can run tomorrow.
+  Scripture Builder printouts stay at /teachers/printouts.
+  No Facebook. No catalog dump. No fake testimonials. No Saved tab.
 -->
 <script lang="ts">
-	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
+	import GrabberCard from '$lib/components/teachers/GrabberCard.svelte';
+	import MixerTabs from '$lib/components/teachers/MixerTabs.svelte';
+	import MorningBeats from '$lib/components/teachers/MorningBeats.svelte';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
-	import { BookOpen, Bookmark, Lightbulb, Quote, Wrench } from 'lucide-svelte';
+	import {
+		GRABBERS,
+		MIXER_FRAMING,
+		SEMINARY_YEAR_LABEL,
+		THIS_WEEK,
+		TODAY,
+		grabberFor,
+		parseMixerView
+	} from '$lib/teachers/mixer';
+	import { page } from '$app/state';
 
 	let { data } = $props();
 
-	const pageTitle = `For seminary teachers — ${SITE_NAME}`;
+	const view = $derived(parseMixerView(page.url.searchParams.get('view')));
+	const todayGrabber = grabberFor(TODAY.grabberSlug);
+
+	const pageTitle = `Morning mixer for seminary teachers — ${SITE_NAME}`;
 	const pageDescription =
-		'Advice, Class Play help, doctrinal mastery tips, and tools for seminary teachers. Lesson plans and testimonials live here when they are real.';
+		'Four beats. One morning. Original first-week grabbers and printables a seminary teacher can run tomorrow — including Scripture Builder printouts.';
 	const canonical = `${SITE_URL}/teachers`;
 </script>
 
@@ -31,158 +45,114 @@
 	<meta name="twitter:description" content={pageDescription} />
 </svelte:head>
 
-<section
-	class="bg-surface pt-16 pb-12 md:pt-24 md:pb-16"
-	aria-labelledby="teachers-library-headline"
->
-	<div class="mx-auto max-w-3xl px-4 md:px-8">
-		<p class="eyebrow">For seminary teachers</p>
+<section class="bg-surface pt-16 pb-12 md:pt-24 md:pb-16" aria-labelledby="teachers-mixer-headline">
+	<div class="mx-auto max-w-6xl px-4 md:px-8">
+		<p class="eyebrow">{SEMINARY_YEAR_LABEL}</p>
 		<h1
-			id="teachers-library-headline"
+			id="teachers-mixer-headline"
 			class="font-serif text-display-lg tracking-tight md:text-hero-lg"
 		>
-			Teacher library
+			Morning mixer
 		</h1>
-		<p class="mt-6 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-			This is where advice, Class Play help, and mastery tips live, and where lesson plans and
-			testimonials will live when they are real.
+		<p class="mt-6 max-w-2xl text-lg leading-relaxed text-on-surface-variant md:text-xl">
+			{MIXER_FRAMING} Pick a Grabber. Run it or print it. Teach stays in your manual — this is not
+			a lesson-plan factory.
 		</p>
+		<div class="mt-8">
+			<MixerTabs {view} />
+		</div>
 	</div>
 </section>
 
-<section class="bg-surface-container-low py-16 md:py-24" aria-label="Teacher library catalog">
-	<div class="mx-auto max-w-3xl space-y-8 px-4 md:px-8">
-		<article class="card" aria-labelledby="catalog-advice">
-			<div class="flex items-start gap-4">
-				<span
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-fixed text-primary"
-					aria-hidden="true"
-				>
-					<Lightbulb class="h-6 w-6" stroke-width={1.5} />
-				</span>
-				<div class="min-w-0">
-					<h2 id="catalog-advice" class="font-serif text-headline-lg">
-						Advice / Class Play help
-					</h2>
-					{#if data.classPlayHelp}
-						<p class="mt-3 text-body-md text-on-surface-variant">
-							<a
-								href={`/news/${data.classPlayHelp.slug}`}
-								class="font-semibold text-accent underline-offset-2 hover:underline"
-							>
-								{data.classPlayHelp.title}
-							</a>
-							— {data.classPlayHelp.excerpt}
-						</p>
-					{:else}
-						<p class="mt-3 text-body-md text-on-surface-variant">
-							Nothing published yet.
-						</p>
-					{/if}
-				</div>
-			</div>
-		</article>
-
-		<article class="card" aria-labelledby="catalog-dm-tips">
-			<div class="flex items-start gap-4">
-				<span
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary-container text-secondary"
-					aria-hidden="true"
-				>
-					<BookOpen class="h-6 w-6" stroke-width={1.5} />
-				</span>
-				<div class="min-w-0">
-					<h2 id="catalog-dm-tips" class="font-serif text-headline-lg">
-						Doctrinal mastery teaching tips
-					</h2>
-					{#if data.doctrinalMasteryTip}
-						<p class="mt-3 text-body-md text-on-surface-variant">
-							<a
-								href={`/news/${data.doctrinalMasteryTip.slug}`}
-								class="font-semibold text-accent underline-offset-2 hover:underline"
-							>
-								{data.doctrinalMasteryTip.title}
-							</a>
-							— {data.doctrinalMasteryTip.excerpt}
-						</p>
-					{:else}
-						<p class="mt-3 text-body-md text-on-surface-variant">
-							Nothing published yet.
-						</p>
-					{/if}
-				</div>
-			</div>
-		</article>
-
-		<article class="card" aria-labelledby="catalog-tools">
-			<div class="flex items-start gap-4">
-				<span
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-tertiary-fixed text-tertiary"
-					aria-hidden="true"
-				>
-					<Wrench class="h-6 w-6" stroke-width={1.5} />
-				</span>
-				<div class="min-w-0 flex-1">
-					<h2 id="catalog-tools" class="font-serif text-headline-lg">Tools</h2>
-					<ul class="mt-3 space-y-2 text-body-md text-on-surface-variant">
-						<li>
-							<a
-								href="/for-teachers#saved-class"
-								class="inline-flex items-center gap-2 font-semibold text-accent underline-offset-2 hover:underline"
-							>
-								<Bookmark class="h-4 w-4 shrink-0" aria-hidden="true" />
-								How to save a class
-							</a>
-						</li>
-						<li>
-							<a
-								href="/#how-it-works"
-								class="font-semibold text-accent underline-offset-2 hover:underline"
-							>
-								How it works — study, build, prove, master
-							</a>
-						</li>
-						<li>
-							<a
-								href="/teachers/printouts"
-								class="font-semibold text-accent underline-offset-2 hover:underline"
-							>
-								Scripture Builder printouts
-							</a>
-						</li>
-					</ul>
-					<p class="mt-5 text-body-md text-on-surface-variant">Get the app.</p>
-					<div class="mt-3">
-						<StoreButtons variant="outlined" />
-					</div>
-				</div>
-			</div>
-		</article>
-
-		<article class="card" aria-labelledby="catalog-lesson-plans">
-			<h2 id="catalog-lesson-plans" class="font-serif text-headline-lg">Lesson plans</h2>
-			<p class="mt-3 text-body-md text-on-surface-variant">
-				Coming — we will not invent these. When a real plan exists, it lives here.
+{#if view === 'mix'}
+	<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="mix-headline">
+		<div class="mx-auto max-w-6xl px-4 md:px-8">
+			<h2 id="mix-headline" class="font-serif text-display-md tracking-tight">
+				Grabbers you can run
+			</h2>
+			<p class="mt-4 max-w-2xl text-lg text-on-surface-variant">
+				Original first-week and class-unity formats. Scripture Builder printouts are one
+				card, not a separate shop.
 			</p>
-		</article>
-
-		<article class="card" aria-labelledby="catalog-testimonials">
-			<div class="flex items-start gap-4">
-				<span
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface-container text-on-surface-variant"
-					aria-hidden="true"
+			<ul class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2" aria-label="Grabber cards">
+				{#each GRABBERS as grabber (grabber.slug)}
+					<li>
+						<GrabberCard {grabber} />
+					</li>
+				{/each}
+			</ul>
+			<p class="mt-10 text-body-sm text-on-surface-variant">
+				Quiet link:
+				<a
+					href="/teachers/printouts"
+					class="font-semibold text-accent underline-offset-2 hover:underline"
 				>
-					<Quote class="h-6 w-6" stroke-width={1.5} />
-				</span>
-				<div class="min-w-0">
-					<h2 id="catalog-testimonials" class="font-serif text-headline-lg">
-						Testimonials
-					</h2>
-					<p class="mt-3 text-body-md text-on-surface-variant">
-						Coming — no placeholder quotes.
-					</p>
-				</div>
+					Scripture Builder printouts
+				</a>
+				{#if data.classPlayHelp}
+					·
+					<a
+						href={`/news/${data.classPlayHelp.slug}`}
+						class="font-semibold text-accent underline-offset-2 hover:underline"
+					>
+						{data.classPlayHelp.title}
+					</a>
+				{/if}
+				{#if data.doctrinalMasteryTip}
+					·
+					<a
+						href={`/news/${data.doctrinalMasteryTip.slug}`}
+						class="font-semibold text-accent underline-offset-2 hover:underline"
+					>
+						{data.doctrinalMasteryTip.title}
+					</a>
+				{/if}
+			</p>
+		</div>
+	</section>
+{:else if view === 'today'}
+	<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="today-headline">
+		<div class="mx-auto max-w-6xl px-4 md:px-8">
+			<p class="eyebrow">{TODAY.when}</p>
+			<h2 id="today-headline" class="font-serif text-display-md tracking-tight">
+				{TODAY.label}
+			</h2>
+			<p class="mt-4 max-w-2xl text-lg text-on-surface-variant">{TODAY.intro}</p>
+			<div class="mt-12">
+				<MorningBeats
+					grabber={todayGrabber}
+					teach={TODAY.teach}
+					wrap={TODAY.wrap}
+					invite={TODAY.invite}
+				/>
 			</div>
-		</article>
-	</div>
-</section>
+		</div>
+	</section>
+{:else}
+	<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="week-headline">
+		<div class="mx-auto max-w-6xl px-4 md:px-8">
+			<h2 id="week-headline" class="font-serif text-display-md tracking-tight">
+				First week, {SEMINARY_YEAR_LABEL}
+			</h2>
+			<p class="mt-4 max-w-2xl text-lg text-on-surface-variant">
+				Five mornings. A real grabber each day. Teach is honest: not ready as a factory.
+			</p>
+			<ol class="mt-12 space-y-10" aria-label="This week">
+				{#each THIS_WEEK as day (day.day)}
+					{@const grabber = grabberFor(day.grabberSlug)}
+					<li>
+						<p class="eyebrow">{day.day} · {day.focus}</p>
+						<div class="mt-4">
+							<MorningBeats
+								{grabber}
+								teach={day.teach}
+								wrap={day.wrap}
+								invite={day.invite}
+							/>
+						</div>
+					</li>
+				{/each}
+			</ol>
+		</div>
+	</section>
+{/if}
