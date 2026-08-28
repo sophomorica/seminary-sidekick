@@ -6,7 +6,7 @@
 <script lang="ts">
 	import type { Scripture } from '$lib/data/types';
 	import type { TapDifficulty } from '$lib/scripture-builder/chunking';
-	import { LEVEL_COPY } from '$lib/scripture-builder/printouts';
+	import { LEVEL_COPY, tileSheetDensity } from '$lib/scripture-builder/printouts';
 
 	let {
 		scripture,
@@ -19,6 +19,7 @@
 	} = $props();
 
 	const copy = $derived(LEVEL_COPY[difficulty]);
+	const density = $derived(tileSheetDensity(chunks.length));
 </script>
 
 <article class="printout-sheet mx-auto max-w-[8.5in] text-on-surface">
@@ -52,20 +53,10 @@
 		chunks as {copy.label} Scripture Builder in the app.
 	</p>
 
-	<ul
-		class="grid grid-cols-2 gap-2 print:grid-cols-2"
-		aria-label={`${copy.label} phrase tiles`}
-		data-tile-grid="2"
-	>
+	<ul class={density.list} aria-label={`${copy.label} phrase tiles`} data-tile-grid="2">
 		{#each chunks as phrase, tileKey (`${tileKey}-${phrase}`)}
-			<li
-				class="flex min-h-[0.62in] items-center rounded-2xl border-2 border-dashed border-outline bg-surface-container-low px-3 py-2 print:min-h-[0.58in]"
-			>
-				<p
-					class="font-serif text-[1.15rem] leading-snug text-on-surface italic md:text-[1.25rem] print:text-[16pt]"
-				>
-					{phrase}
-				</p>
+			<li class={density.tile}>
+				<p class={density.text}>{phrase}</p>
 			</li>
 		{/each}
 	</ul>

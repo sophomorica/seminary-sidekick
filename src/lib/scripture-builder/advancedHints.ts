@@ -85,16 +85,25 @@ export function advancedHintWords(target: string): HintGlyph[][] {
 }
 
 /**
- * Two-line wrap for a print passage. Midpoint split so 2 Nephi 2:25
- * matches the proof Patrick signed off:
- *   A___ f___ t___ m__ m____ b__ a__
- *   m__ a___ t___ t___ m____ h___ j___
+ * Wrap first-letter hints for a print passage.
+ * Short verses (16 words or fewer) split at the midpoint so 2 Nephi 2:25
+ * stays the signed-off two-line proof. Longer verses wrap so they fit
+ * US Letter.
  */
 export function advancedHintLines(target: string): string[] {
 	const words = advancedHintText(target)
 		.split(' ')
 		.filter((word) => word.length > 0);
 	if (words.length <= 1) return [words.join(' ') || ''];
-	const mid = Math.ceil(words.length / 2);
-	return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
+	if (words.length <= 16) {
+		const mid = Math.ceil(words.length / 2);
+		return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
+	}
+	// Longer passages need more words per line so the sheet still fits US Letter.
+	const perLine = words.length > 160 ? 14 : words.length > 80 ? 12 : 10;
+	const lines: string[] = [];
+	for (let i = 0; i < words.length; i += perLine) {
+		lines.push(words.slice(i, i + perLine).join(' '));
+	}
+	return lines;
 }

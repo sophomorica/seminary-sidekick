@@ -9,6 +9,7 @@
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
 	import {
 		LEVEL_COPY,
+		printoutHasStaticPdf,
 		printoutPdfPath,
 		printoutSheetPath
 	} from '$lib/scripture-builder/printouts';
@@ -24,6 +25,7 @@
 		`US Letter ${copy.label} Scripture Builder printout for ${data.scripture.reference}.`
 	);
 	const canonical = $derived(`${SITE_URL}${printoutSheetPath(data.slug, data.level)}`);
+	const hasReadyPdf = $derived(printoutHasStaticPdf(data.slug));
 
 	function printSheet() {
 		window.print();
@@ -53,15 +55,17 @@
 				<Printer aria-hidden="true" />
 				Print / Save as PDF
 			</Button>
-			<Button
-				href={printoutPdfPath(data.slug, data.level)}
-				variant="outlined"
-				size="sm"
-				download
-			>
-				<Download aria-hidden="true" />
-				Download PDF
-			</Button>
+			{#if hasReadyPdf}
+				<Button
+					href={printoutPdfPath(data.slug, data.level)}
+					variant="outlined"
+					size="sm"
+					download
+				>
+					<Download aria-hidden="true" />
+					Download PDF
+				</Button>
+			{/if}
 		</div>
 	</div>
 </div>

@@ -1,12 +1,12 @@
 /**
- * Teacher printout catalog — proof slice, not the factory for all 100.
+ * Teacher printout catalog — every doctrinal-mastery verse in the app bank.
  *
- * Only verses listed here are printable. 2 Nephi 2:25 is the first
- * public slice because it is already featured on the site.
+ * Verses come from `$lib/data/scriptures` (the Flutter DM port). Do not
+ * invent wording. Do not pull Facebook/catalog copy.
  */
 
-import { getScripture } from '$lib/data/scriptures';
-import type { Scripture } from '$lib/data/types';
+import { ALL_SCRIPTURES, getScripture } from '$lib/data/scriptures';
+import { BOOK_META, BOOK_ORDER, type Scripture, type ScriptureBook } from '$lib/data/types';
 import { buildTargetChunks, type TapDifficulty } from './chunking';
 
 export const PRINTOUT_LEVELS = ['beginner', 'intermediate', 'advanced'] as const;
@@ -17,9 +17,43 @@ export type PrintoutVerse = {
 	scriptureId: string;
 };
 
-export const PRINTOUT_VERSES: readonly PrintoutVerse[] = [
-	{ slug: '2-nephi-2-25', scriptureId: '50' }
-];
+/** Patrick-signed-off proof verse — default picker selection. */
+export const DEFAULT_PRINTOUT_SLUG = '2-nephi-2-25';
+
+/** Longest DM passage in the app bank — US Letter fit proof. */
+export const LONG_PRINTOUT_SLUG = 'exodus-20-3-17';
+
+/** Slugs that have a ready file under `static/printouts/`. */
+const STATIC_PDF_SLUGS = new Set<string>([DEFAULT_PRINTOUT_SLUG]);
+
+export function scriptureSlug(reference: string): string {
+	return reference
+		.toLowerCase()
+		.replace(/&/g, 'and')
+		.replace(/[–—−]/g, '-')
+		.replace(/[:.]/g, '-')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '');
+}
+
+function buildPrintoutVerses(): PrintoutVerse[] {
+	const seen = new Set<string>();
+	const verses: PrintoutVerse[] = [];
+	for (const scripture of ALL_SCRIPTURES) {
+		let slug = scriptureSlug(scripture.reference);
+		if (seen.has(slug)) slug = `${slug}-${scripture.id}`;
+		seen.add(slug);
+		verses.push({ slug, scriptureId: scripture.id });
+	}
+	return verses;
+}
+
+export const PRINTOUT_VERSES: readonly PrintoutVerse[] = buildPrintoutVerses();
+export const PRINTOUT_VERSE_COUNT = PRINTOUT_VERSES.length;
+
+if (PRINTOUT_VERSE_COUNT !== ALL_SCRIPTURES.length) {
+	throw new Error('Printout catalog must include every doctrinal-mastery verse');
+}
 
 export function isPrintoutLevel(value: string): value is PrintoutLevel {
 	return (PRINTOUT_LEVELS as readonly string[]).includes(value);
@@ -35,6 +69,10 @@ export function loadPrintoutScripture(slug: string): Scripture | null {
 	return getScripture(entry.scriptureId);
 }
 
+export function printoutHasStaticPdf(slug: string): boolean {
+	return STATIC_PDF_SLUGS.has(slug);
+}
+
 export function printoutPdfPath(slug: string, level: PrintoutLevel): string {
 	return `/printouts/${slug}-${level}.pdf`;
 }
@@ -46,6 +84,57 @@ export function printoutSheetPath(slug: string, level: PrintoutLevel): string {
 /** True for the print-ready sheet routes (chrome hidden; US Letter). */
 export function isPrintSheetPath(pathname: string): boolean {
 	return /^\/teachers\/printouts\/[^/]+\/[^/]+\/?$/.test(pathname);
+}
+
+export type PrintoutBookGroup = {
+	book: ScriptureBook;
+	label: string;
+	verses: PrintoutVerse[];
+};
+
+export function printoutVersesByBook(): PrintoutBookGroup[] {
+	return BOOK_ORDER.map((book) => ({
+		book,
+		label: BOOK_META[book].label,
+		verses: PRINTOUT_VERSES.filter((verse) => getScripture(verse.scriptureId)?.book === book)
+	})).filter((group) => group.verses.length > 0);
+}
+
+/**
+ * Tile size so a long verse still fits US Letter in two columns.
+ * Short verses keep the compact size Patrick signed off.
+ */
+export function tileSheetDensity(tileCount: number): {
+	list: string;
+	tile: string;
+	text: string;
+} {
+	if (tileCount <= 10) {
+		return {
+			list: 'grid grid-cols-2 gap-2 print:grid-cols-2',
+			tile: 'flex min-h-[0.62in] items-center rounded-2xl border-2 border-dashed border-outline bg-surface-container-low px-3 py-2 print:min-h-[0.58in]',
+			text: 'font-serif text-[1.15rem] leading-snug text-on-surface italic md:text-[1.25rem] print:text-[16pt]'
+		};
+	}
+	if (tileCount <= 20) {
+		return {
+			list: 'grid grid-cols-2 gap-1.5 print:grid-cols-2',
+			tile: 'flex min-h-[0.48in] items-center rounded-2xl border-2 border-dashed border-outline bg-surface-container-low px-3 py-1.5 print:min-h-[0.44in]',
+			text: 'font-serif text-[1.05rem] leading-snug text-on-surface italic print:text-[13pt]'
+		};
+	}
+	if (tileCount <= 32) {
+		return {
+			list: 'grid grid-cols-2 gap-1 print:grid-cols-2',
+			tile: 'flex min-h-[0.38in] items-center rounded-xl border-2 border-dashed border-outline bg-surface-container-low px-2.5 py-1 print:min-h-[0.34in]',
+			text: 'font-serif text-[0.95rem] leading-snug text-on-surface italic print:text-[11pt]'
+		};
+	}
+	return {
+		list: 'grid grid-cols-2 gap-1 print:grid-cols-2',
+		tile: 'flex min-h-[0.30in] items-center rounded-xl border border-dashed border-outline bg-surface-container-low px-2 py-0.5 print:min-h-[0.28in]',
+		text: 'font-serif text-[0.85rem] leading-snug text-on-surface italic print:text-[10pt]'
+	};
 }
 
 /** Canonical app chunks in verse order — never print these as a numbered sequence. */
@@ -97,12 +186,12 @@ export function scrambleTiles(tiles: readonly string[], seed: string): string[] 
 export const LEVEL_COPY: Record<PrintoutLevel, { label: string; blurb: string; action: string }> = {
 	beginner: {
 		label: 'Beginner',
-		blurb: 'Large mixed cut-out phrase tiles. Same 3-word beginner chunks as the app.',
+		blurb: 'Compact 2-column mixed cut-out tiles. Same adaptive beginner chunks as the app.',
 		action: 'Print tiles'
 	},
 	intermediate: {
 		label: 'Intermediate',
-		blurb: 'Large mixed cut-out tiles. Same 2-word intermediate split as the app.',
+		blurb: 'Compact 2-column mixed cut-out tiles. Same adaptive intermediate split as the app.',
 		action: 'Print tiles'
 	},
 	advanced: {

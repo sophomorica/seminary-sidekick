@@ -13,6 +13,18 @@
 
 	const hintLine = $derived(advancedHintText(scripture.fullText));
 	const hintLines = $derived(advancedHintLines(scripture.fullText));
+	const hintClass = $derived(
+		hintLines.length <= 2
+			? 'text-center font-serif text-[1.85rem] leading-[1.9] tracking-[0.08em] text-on-secondary-container md:text-[2.2rem] print:text-[26pt]'
+			: hintLines.length <= 12
+				? 'text-center font-serif text-[1.15rem] leading-[1.7] tracking-[0.06em] text-on-secondary-container print:text-[13pt]'
+				: 'text-center font-serif text-[0.95rem] leading-[1.45] tracking-[0.04em] text-on-secondary-container print:text-[10pt]'
+	);
+	const boxClass = $derived(
+		hintLines.length <= 2
+			? 'rounded-[2rem] bg-secondary-container px-6 py-10 md:px-10 md:py-12'
+			: 'rounded-[2rem] bg-secondary-container px-4 py-5 md:px-6 md:py-6'
+	);
 </script>
 
 <article class="printout-sheet mx-auto max-w-[8.5in] text-on-surface">
@@ -46,13 +58,9 @@
 		Type it with first-letter hints. Same Advanced as the app. No answer key.
 	</p>
 
-	<div class="rounded-[2rem] bg-secondary-container px-6 py-10 md:px-10 md:py-12">
-		<p
-			class="text-center font-serif text-[1.85rem] leading-[1.9] tracking-[0.08em] text-on-secondary-container md:text-[2.2rem] print:text-[26pt]"
-			data-hint-line={hintLine}
-			aria-label={hintLine}
-		>
-			{#each hintLines as line (line)}
+	<div class={boxClass}>
+		<p class={hintClass} data-hint-line={hintLine} aria-label={hintLine}>
+			{#each hintLines as line, lineKey (`${lineKey}-${line}`)}
 				<span class="block">{line}</span>
 			{/each}
 		</p>

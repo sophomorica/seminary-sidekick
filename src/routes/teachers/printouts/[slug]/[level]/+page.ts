@@ -23,7 +23,7 @@ export const load: PageLoad = ({ params }) => {
 
 	const scripture = loadPrintoutScripture(params.slug);
 	if (!scripture) {
-		throw error(404, 'That scripture is not in this printout slice yet');
+		throw error(404, 'That scripture is not in the printout library');
 	}
 
 	const chunks = params.level === 'advanced' ? [] : scrambledTilesFor(scripture, params.level);

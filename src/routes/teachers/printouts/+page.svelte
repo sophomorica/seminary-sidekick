@@ -1,37 +1,41 @@
 <!--
   /teachers/printouts — Scripture Builder classroom printouts.
 
-  Proof slice: 2 Nephi 2:25, all three levels, US Letter.
-  Factory for the other 99 verses comes after this URL exists.
+  Full doctrinal-mastery library from `$lib/data/scriptures`.
+  Three US Letter levels per verse.
 -->
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
-	import { getScripture } from '$lib/data/scriptures';
+	import { getScripture, TOTAL_SCRIPTURES } from '$lib/data/scriptures';
 	import {
+		DEFAULT_PRINTOUT_SLUG,
 		LEVEL_COPY,
 		PRINTOUT_LEVELS,
-		PRINTOUT_VERSES,
+		PRINTOUT_VERSE_COUNT,
+		loadPrintoutScripture,
+		printoutHasStaticPdf,
 		printoutPdfPath,
 		printoutSheetPath,
+		printoutVersesByBook,
 		type PrintoutLevel
 	} from '$lib/scripture-builder/printouts';
 	import { Printer, Download } from 'lucide-svelte';
 
 	const pageTitle = `Scripture Builder printouts — ${SITE_NAME}`;
-	const pageDescription =
-		'Print US Letter Scripture Builder tiles and first-letter hint sheets for seminary class. Proof verse: 2 Nephi 2:25.';
+	const pageDescription = `Print US Letter Scripture Builder tiles and first-letter hint sheets for all ${PRINTOUT_VERSE_COUNT} doctrinal-mastery verses.`;
 	const canonical = `${SITE_URL}/teachers/printouts`;
 
-	let selectedSlug = $state(PRINTOUT_VERSES[0].slug);
+	const bookGroups = printoutVersesByBook();
 
-	const selectedEntry = $derived(
-		PRINTOUT_VERSES.find((verse) => verse.slug === selectedSlug) ?? PRINTOUT_VERSES[0]
+	let selectedSlug = $state(DEFAULT_PRINTOUT_SLUG);
+
+	const scripture = $derived(
+		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
 	);
-	const scripture = $derived(getScripture(selectedEntry.scriptureId));
-
+	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
 	function sheetHref(level: PrintoutLevel): string {
@@ -66,9 +70,9 @@
 			Scripture Builder printouts
 		</h1>
 		<p class="mt-6 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-			Print large mixed phrase tiles for the board, or first-letter hints for Advanced. Same
-			Beginner and Intermediate chunks as the app. This first page is 2 Nephi 2:25 — more
-			verses come after teachers can print this one.
+			Print compact mixed phrase tiles for the board, or first-letter hints for Advanced. Same
+			Beginner and Intermediate chunks as the app. All {TOTAL_SCRIPTURES} doctrinal-mastery verses
+			from the app.
 		</p>
 	</div>
 </section>
@@ -82,13 +86,20 @@
 				<select
 					id="printout-verse"
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+					data-verse-count={PRINTOUT_VERSE_COUNT}
 					bind:value={selectedSlug}
 				>
-					{#each PRINTOUT_VERSES as verse (verse.slug)}
-						{@const option = getScripture(verse.scriptureId)}
-						{#if option}
-							<option value={verse.slug}>{option.reference} — {option.name}</option>
-						{/if}
+					{#each bookGroups as group (group.book)}
+						<optgroup label={group.label}>
+							{#each group.verses as verse (verse.slug)}
+								{@const option = getScripture(verse.scriptureId)}
+								{#if option}
+									<option value={verse.slug}
+										>{option.reference} — {option.name}</option
+									>
+								{/if}
+							{/each}
+						</optgroup>
 					{/each}
 				</select>
 			</div>
@@ -112,10 +123,12 @@
 								<Printer aria-hidden="true" />
 								{copy.action}
 							</Button>
-							<Button href={pdfHref(level)} variant="outlined" download>
-								<Download aria-hidden="true" />
-								Download PDF
-							</Button>
+							{#if hasReadyPdf}
+								<Button href={pdfHref(level)} variant="outlined" download>
+									<Download aria-hidden="true" />
+									Download PDF
+								</Button>
+							{/if}
 						</div>
 					</Card.Root>
 				</li>
@@ -123,8 +136,8 @@
 		</ul>
 
 		<p class="text-body-sm text-on-surface-variant">
-			Print / Save as PDF: open a sheet, then use your browser’s Print dialog (Destination:
-			Save as PDF, paper size US Letter). Or download the ready PDF.
+			Open a sheet, then use your browser’s Print dialog (Destination: Save as PDF, paper size
+			US Letter). Ready PDFs are available for 2 Nephi 2:25.
 		</p>
 	</div>
 </section>
