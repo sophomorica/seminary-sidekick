@@ -83,7 +83,8 @@
 					id="printout-verse"
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
 					data-verse-count={PRINTOUT_VERSE_COUNT}
-					value={selectedSlug}
+					data-selected-slug={selectedSlug}
+					bind:value={selectedSlug}
 					onchange={selectVerse}
 				>
 					{#each bookGroups as group (group.book)}

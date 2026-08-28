@@ -49,7 +49,13 @@ test.describe('/teachers/printouts', () => {
 			`/printouts/${DEFAULT_SLUG}-beginner.pdf`
 		);
 
-		await verse.selectOption(LONG_SLUG);
+		await verse.evaluate((el, slug) => {
+			const select = el as HTMLSelectElement;
+			select.value = slug;
+			select.dispatchEvent(new Event('input', { bubbles: true }));
+			select.dispatchEvent(new Event('change', { bubbles: true }));
+		}, LONG_SLUG);
+		await expect(verse).toHaveAttribute('data-selected-slug', LONG_SLUG);
 		await expect(verse).toHaveValue(LONG_SLUG);
 		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
