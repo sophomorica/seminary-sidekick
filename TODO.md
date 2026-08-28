@@ -638,6 +638,24 @@ After all Phase B tasks complete.
 
 ---
 
+### TASK-PRINT-001: Scripture Builder teacher printouts (full DM library)
+- **status:** done
+- **claimed_by:** cursor-cloud-33ca
+- **started:** 2026-08-27T13:10:00Z
+- **completed:** 2026-08-28T01:50:00Z
+- **depends_on:** none
+- **files_to_touch:** `src/lib/scripture-builder/`, `src/lib/components/printouts/`, `src/routes/teachers/printouts/`, `src/routes/teachers/+page.svelte`, `src/routes/+layout.svelte`, `src/app.css`, `src/routes/sitemap.xml/+server.ts`, `static/printouts/`, `tests/printouts.spec.ts`
+- **what:** Public `/teachers/printouts` page. Full doctrinal-mastery library from `$lib/data/scriptures` (same 100 as the app). Three US Letter levels per verse. Beginner/Intermediate = unnumbered mixed compact 2-column app chunk tiles. Advanced = first-letter hints (same as the app), not Master write-it-down. Quiet Tools link from `/teachers`.
+- **acceptance:**
+  - [x] Teacher can pick any app DM verse and print all three levels
+  - [x] Chunking matches Flutter `adaptiveChunkSize` / consecutive-word split
+  - [x] Advanced is first-letter hints, not cutouts and not a write-it-down answer key
+  - [x] Tests cover library count + a long verse + Advanced glyph contract
+  - [x] PR open, not merged
+- **completion notes:** PR https://github.com/sophomorica/seminary-sidekick/pull/11 (leave draft/open). Path `/teachers/printouts`. Print-sheet factory is every DM verse × three levels. Static PDFs remain proof-only at `/printouts/2-nephi-2-25-{beginner,intermediate,advanced}.pdf`. Patrick lock 2026-08-27: Advanced = first letters; student sheet has no full verse. Factory lock 2026-08-28: full library on this PR before merge.
+
+---
+
 ## Future tiers (placeholder backlog)
 
 Not for Tier 1. Listed so we know where they slot in.

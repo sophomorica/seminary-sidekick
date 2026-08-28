@@ -21,6 +21,7 @@ const PAGES_TO_AUDIT = [
 	'/scripture-match',
 	'/news',
 	'/teachers',
+	'/teachers/printouts',
 	'/privacy',
 	'/terms',
 	'/contact'

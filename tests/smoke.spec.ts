@@ -26,6 +26,7 @@ const ROUTES = [
 	'/premium',
 	'/for-teachers',
 	'/teachers',
+	'/teachers/printouts',
 	'/news',
 	'/about',
 	'/privacy',

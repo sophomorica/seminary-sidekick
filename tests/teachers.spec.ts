@@ -37,6 +37,9 @@ test.describe('/teachers', () => {
 		await expect(
 			page.getByRole('main').getByRole('link', { name: /how it works/i })
 		).toHaveAttribute('href', '/#how-it-works');
+		await expect(
+			page.getByRole('main').getByRole('link', { name: /scripture builder printouts/i })
+		).toHaveAttribute('href', '/teachers/printouts');
 	});
 
 	test('does not invent lesson plans or testimonials', async ({ page }) => {

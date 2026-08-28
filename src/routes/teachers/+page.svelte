@@ -142,6 +142,14 @@
 								How it works — study, build, prove, master
 							</a>
 						</li>
+						<li>
+							<a
+								href="/teachers/printouts"
+								class="font-semibold text-accent underline-offset-2 hover:underline"
+							>
+								Scripture Builder printouts
+							</a>
+						</li>
 					</ul>
 					<p class="mt-5 text-body-md text-on-surface-variant">Get the app.</p>
 					<div class="mt-3">
