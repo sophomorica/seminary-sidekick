@@ -2,14 +2,14 @@
   /teachers/printouts — Scripture Builder classroom printouts.
 
   Full doctrinal-mastery library from `$lib/data/scriptures`.
-  Three US Letter levels per verse.
+  Finder + this-week pin. Three US Letter levels per verse.
 -->
 <script lang="ts">
+	import VerseFinder from '$lib/components/printouts/VerseFinder.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
-	import { Label } from '$lib/components/ui/label';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
-	import { getScripture, TOTAL_SCRIPTURES } from '$lib/data/scriptures';
+	import { TOTAL_SCRIPTURES } from '$lib/data/scriptures';
 	import {
 		DEFAULT_PRINTOUT_SLUG,
 		LEVEL_COPY,
@@ -18,37 +18,23 @@
 		loadPrintoutScripture,
 		printoutHasStaticPdf,
 		printoutPdfPath,
-		printoutSheetPath,
-		printoutVersesByBook
+		printoutSheetPath
 	} from '$lib/scripture-builder/printouts';
-	import { Printer, Download } from 'lucide-svelte';
+	import { defaultPrintoutSlug, thisWeekPin } from '$lib/scripture-builder/thisWeek';
+	import { Download, Printer } from 'lucide-svelte';
 
 	const pageTitle = `Scripture Builder printouts — ${SITE_NAME}`;
 	const pageDescription = `Print US Letter Scripture Builder tiles and first-letter hint sheets for all ${PRINTOUT_VERSE_COUNT} doctrinal-mastery verses.`;
 	const canonical = `${SITE_URL}/teachers/printouts`;
 
-	const bookGroups = printoutVersesByBook();
-
-	let selectedSlug = $state(DEFAULT_PRINTOUT_SLUG);
+	const thisWeek = thisWeekPin();
+	let selectedSlug = $state(defaultPrintoutSlug());
 
 	const scripture = $derived(
 		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
 	);
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
-
-	function attachVerseSelect(element: HTMLElement) {
-		const select = element as HTMLSelectElement;
-		const onChange = () => {
-			if (select.value) selectedSlug = select.value;
-		};
-		select.addEventListener('change', onChange);
-		select.addEventListener('input', onChange);
-		return () => {
-			select.removeEventListener('change', onChange);
-			select.removeEventListener('input', onChange);
-		};
-	}
 </script>
 
 <svelte:head>
@@ -85,30 +71,11 @@
 	<div class="mx-auto max-w-3xl space-y-8 px-4 md:px-8">
 		<div class="card">
 			<h2 id="printouts-picker" class="font-serif text-headline-lg">Choose a scripture</h2>
+			<p class="mt-3 text-body-md text-on-surface-variant">
+				This week is pinned. Search by reference, name, or a keyword.
+			</p>
 			<div class="mt-5">
-				<Label for="printout-verse">Scripture</Label>
-				<select
-					id="printout-verse"
-					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-					data-verse-count={PRINTOUT_VERSE_COUNT}
-					data-selected-slug={selectedSlug}
-					{@attach attachVerseSelect}
-				>
-					{#each bookGroups as group (group.book)}
-						<optgroup label={group.label}>
-							{#each group.verses as verse (verse.slug)}
-								{@const option = getScripture(verse.scriptureId)}
-								{#if option}
-									<option
-										value={verse.slug}
-										selected={verse.slug === DEFAULT_PRINTOUT_SLUG}
-										>{option.reference} — {option.name}</option
-									>
-								{/if}
-							{/each}
-						</optgroup>
-					{/each}
-				</select>
+				<VerseFinder bind:selectedSlug {thisWeek} />
 			</div>
 			{#if scripture}
 				<blockquote class="scripture mt-6 text-left">

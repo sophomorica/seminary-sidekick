@@ -8,6 +8,7 @@
 import { test, expect } from '@playwright/test';
 
 const DEFAULT_SLUG = '2-nephi-2-25';
+const JOY_SLUG = '2-nephi-2-25';
 const LONG_SLUG = 'exodus-20-3-17';
 const LIBRARY_COUNT = 100;
 
@@ -16,7 +17,7 @@ const NEPHI_ADVANCED = 'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m___
 const LONG_ADVANCED_PREFIX = 'T___ s____ h___ n_ o____ g___ b_____ m__';
 
 test.describe('/teachers/printouts', () => {
-	test('picker lists the full DM library and three levels', async ({ page }) => {
+	test('finder pins this week, searches, and updates print links', async ({ page }) => {
 		const response = await page.goto('/teachers/printouts');
 		expect(response?.status()).toBe(200);
 
@@ -25,15 +26,24 @@ test.describe('/teachers/printouts', () => {
 		).toBeVisible();
 		await expect(page.getByText(`All ${LIBRARY_COUNT} doctrinal-mastery`)).toBeVisible();
 
-		const verse = page.locator('#printout-verse');
-		await expect(verse).toBeVisible();
-		await expect(verse).toHaveAttribute('data-verse-count', String(LIBRARY_COUNT));
-		await expect(verse).toHaveValue(DEFAULT_SLUG);
-		await expect(verse.locator('option')).toHaveCount(LIBRARY_COUNT);
-		await expect(verse.getByRole('option', { name: /2 Nephi 2:25/i })).toHaveCount(1);
-		await expect(verse.getByRole('option', { name: /Exodus 20:3/i })).toHaveCount(1);
+		await expect(page.locator('select#printout-verse')).toHaveCount(0);
+		await expect(page.locator('#printout-finder option')).toHaveCount(0);
 
-		await expect(page.getByText(/Adam fell that men might be/i).first()).toBeVisible();
+		const finder = page.locator('#printout-finder');
+		await expect(finder).toBeVisible();
+		await expect(finder).toHaveAttribute('data-verse-count', String(LIBRARY_COUNT));
+
+		const thisWeek = page.locator('[data-this-week]');
+		await expect(thisWeek).toBeVisible();
+		await expect(thisWeek).toHaveAttribute('data-this-week', /^(unit|doctrinal-mastery)$/);
+		await expect(page.getByText(/this week/i).first()).toBeVisible();
+		await expect(page.getByText(/this week.?s unit/i)).toBeVisible();
+		const thisWeekSlug = await page
+			.locator('[data-this-week-slug]')
+			.first()
+			.getAttribute('data-this-week-slug');
+		expect(thisWeekSlug).toBeTruthy();
+		await expect(finder).toHaveAttribute('data-selected-slug', thisWeekSlug as string);
 
 		await expect(page.getByRole('heading', { name: /^Beginner$/i })).toBeVisible();
 		await expect(page.getByRole('heading', { name: /^Intermediate$/i })).toBeVisible();
@@ -41,17 +51,40 @@ test.describe('/teachers/printouts', () => {
 
 		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
-			`/teachers/printouts/${DEFAULT_SLUG}/beginner`
+			`/teachers/printouts/${thisWeekSlug}/beginner`
+		);
+		await expect(page.getByRole('link', { name: /print hints/i })).toHaveAttribute(
+			'href',
+			`/teachers/printouts/${thisWeekSlug}/advanced`
+		);
+
+		const search = page.getByLabel(/find a scripture/i);
+		await search.fill('joy');
+		const joy = page.locator(`[data-verse-slug="${JOY_SLUG}"]`);
+		await expect(joy).toBeVisible();
+		await joy.click();
+
+		await expect(finder).toHaveAttribute('data-selected-slug', JOY_SLUG);
+		await expect(page.getByText(/Adam fell that men might be/i).first()).toBeVisible();
+		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
+			'href',
+			`/teachers/printouts/${JOY_SLUG}/beginner`
+		);
+		await expect(page.getByRole('link', { name: /print hints/i })).toHaveAttribute(
+			'href',
+			`/teachers/printouts/${JOY_SLUG}/advanced`
 		);
 		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(3);
 		await expect(page.getByRole('link', { name: /download pdf/i }).first()).toHaveAttribute(
 			'href',
-			`/printouts/${DEFAULT_SLUG}-beginner.pdf`
+			`/printouts/${JOY_SLUG}-beginner.pdf`
 		);
 
-		await verse.selectOption(LONG_SLUG);
-		await expect(verse).toHaveAttribute('data-selected-slug', LONG_SLUG);
-		await expect(verse).toHaveValue(LONG_SLUG);
+		await search.fill('exodus 20');
+		const long = page.locator(`[data-verse-slug="${LONG_SLUG}"]`);
+		await expect(long).toBeVisible();
+		await long.click();
+		await expect(finder).toHaveAttribute('data-selected-slug', LONG_SLUG);
 		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${LONG_SLUG}/beginner`

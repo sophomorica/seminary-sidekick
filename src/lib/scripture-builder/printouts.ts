@@ -17,7 +17,7 @@ export type PrintoutVerse = {
 	scriptureId: string;
 };
 
-/** Patrick-signed-off proof verse — default picker selection. */
+/** Patrick-signed-off proof verse — static PDFs only. Page default is this week. */
 export const DEFAULT_PRINTOUT_SLUG = '2-nephi-2-25';
 
 /** Longest DM passage in the app bank — US Letter fit proof. */
