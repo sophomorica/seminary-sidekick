@@ -9,6 +9,10 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'one-verse-a-day-beats-cramming',
+		title: 'One verse a day beats cramming'
+	},
+	{
 		slug: 'class-play-warmup-not-homework',
 		title: 'A warmup, not extra homework'
 	},
