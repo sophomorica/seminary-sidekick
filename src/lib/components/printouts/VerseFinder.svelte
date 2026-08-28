@@ -17,11 +17,11 @@
 	let {
 		selectedSlug,
 		thisWeek,
-		onChoose
+		chooseVerse
 	}: {
 		selectedSlug: string;
 		thisWeek: ThisWeekPin;
-		onChoose: (slug: string) => void;
+		chooseVerse: (slug: string) => void;
 	} = $props();
 
 	let query = $state('');
@@ -36,7 +36,7 @@
 	);
 
 	function choose(slug: string) {
-		onChoose(slug);
+		chooseVerse(slug);
 	}
 
 	function facetClass(active: boolean): string {

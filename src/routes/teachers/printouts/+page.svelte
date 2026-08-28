@@ -35,6 +35,10 @@
 	);
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
+
+	function chooseVerse(slug: string) {
+		selectedSlug = slug;
+	}
 </script>
 
 <svelte:head>
@@ -75,13 +79,7 @@
 				This week is pinned. Search by reference, name, or a keyword.
 			</p>
 			<div class="mt-5">
-				<VerseFinder
-					{selectedSlug}
-					{thisWeek}
-					onChoose={(slug) => {
-						selectedSlug = slug;
-					}}
-				/>
+				<VerseFinder {selectedSlug} {thisWeek} {chooseVerse} />
 			</div>
 			{#if scripture}
 				<blockquote class="scripture mt-6 text-left">

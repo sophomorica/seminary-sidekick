@@ -58,9 +58,9 @@ test.describe('/teachers/printouts', () => {
 			`/teachers/printouts/${thisWeekSlug}/advanced`
 		);
 
-		const search = page.getByLabel(/find a scripture/i);
+		const search = page.getByRole('searchbox', { name: /find a scripture/i });
 		await search.fill('joy');
-		const joy = page.locator(`[data-verse-slug="${JOY_SLUG}"]`);
+		const joy = page.getByRole('button', { name: /2 Nephi 2:25/i });
 		await expect(joy).toBeVisible();
 		await joy.click();
 
@@ -81,7 +81,7 @@ test.describe('/teachers/printouts', () => {
 		);
 
 		await search.fill('exodus 20');
-		const long = page.locator(`[data-verse-slug="${LONG_SLUG}"]`);
+		const long = page.getByRole('button', { name: /Exodus 20:3/i });
 		await expect(long).toBeVisible();
 		await long.click();
 		await expect(finder).toHaveAttribute('data-selected-slug', LONG_SLUG);
