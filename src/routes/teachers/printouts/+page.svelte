@@ -37,10 +37,17 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
-	function selectVerse(event: Event) {
-		const select = (event.target as HTMLElement | null)?.closest('select');
-		const next = select?.value;
-		if (next) selectedSlug = next;
+	function attachVerseSelect(element: HTMLElement) {
+		const select = element as HTMLSelectElement;
+		const onChange = () => {
+			if (select.value) selectedSlug = select.value;
+		};
+		select.addEventListener('change', onChange);
+		select.addEventListener('input', onChange);
+		return () => {
+			select.removeEventListener('change', onChange);
+			select.removeEventListener('input', onChange);
+		};
 	}
 </script>
 
@@ -86,7 +93,7 @@
 					data-verse-count={PRINTOUT_VERSE_COUNT}
 					data-selected-slug={selectedSlug}
 					value={selectedSlug}
-					onchange={selectVerse}
+					{@attach attachVerseSelect}
 				>
 					{#each bookGroups as group (group.book)}
 						<optgroup label={group.label}>
