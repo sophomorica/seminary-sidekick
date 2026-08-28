@@ -3,27 +3,34 @@
   Search + book facets + a result list. Not a 100-item select.
 -->
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { BOOK_META, BOOK_ORDER } from '$lib/data/types';
-	import { PRINTOUT_VERSE_COUNT, loadPrintoutScripture } from '$lib/scripture-builder/printouts';
+	import {
+		DEFAULT_PRINTOUT_SLUG,
+		LEVEL_COPY,
+		PRINTOUT_LEVELS,
+		PRINTOUT_VERSE_COUNT,
+		loadPrintoutScripture,
+		printoutHasStaticPdf,
+		printoutPdfPath,
+		printoutSheetPath
+	} from '$lib/scripture-builder/printouts';
 	import type { ThisWeekPin } from '$lib/scripture-builder/thisWeek';
 	import {
 		findPrintoutVerses,
 		type FinderBook,
 		type FinderHit
 	} from '$lib/scripture-builder/verseFinder';
+	import { Download, Printer } from 'lucide-svelte';
 
 	let {
-		selectedSlug,
-		thisWeek,
-		chooseVerse,
-		afterPin
+		selectedSlug = $bindable(''),
+		thisWeek
 	}: {
 		selectedSlug: string;
 		thisWeek: ThisWeekPin;
-		chooseVerse: (slug: string) => void;
-		afterPin?: import('svelte').Snippet;
 	} = $props();
 
 	let query = $state('');
@@ -38,8 +45,14 @@
 		})
 	);
 
+	const activeSlug = $derived(selectedSlug || thisWeek.slugs[0] || DEFAULT_PRINTOUT_SLUG);
+	const scripture = $derived(
+		loadPrintoutScripture(activeSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
+	);
+	const hasReadyPdf = $derived(printoutHasStaticPdf(activeSlug));
+
 	function choose(slug: string) {
-		chooseVerse(slug);
+		selectedSlug = slug;
 	}
 
 	function facetLabel(facet: FinderBook): string {
@@ -59,7 +72,7 @@
 		}
 		event.preventDefault();
 		const current = facets.indexOf(book);
-		let next = current;
+		let next: number;
 		if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
 			next = (current + 1) % facets.length;
 		} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
@@ -104,7 +117,7 @@
 <div
 	id="printout-finder"
 	data-verse-count={PRINTOUT_VERSE_COUNT}
-	data-selected-slug={selectedSlug}
+	data-selected-slug={activeSlug}
 	class="space-y-6"
 >
 	<div
@@ -124,8 +137,8 @@
 				<li>
 					<button
 						type="button"
-						class={rowClass(selectedSlug === hit.slug)}
-						aria-pressed={selectedSlug === hit.slug}
+						class={rowClass(activeSlug === hit.slug)}
+						aria-pressed={activeSlug === hit.slug}
 						data-this-week-slug={hit.slug}
 						onclick={() => choose(hit.slug)}
 					>
@@ -141,9 +154,42 @@
 		</ul>
 	</div>
 
-	{#if afterPin}
-		{@render afterPin()}
+	{#if scripture}
+		<blockquote class="scripture mt-6 text-left">
+			“{scripture.fullText}”
+			<footer>{scripture.reference} — {scripture.name}</footer>
+		</blockquote>
 	{/if}
+
+	{#key activeSlug}
+		<ul class="mt-8 space-y-6" aria-label="Printout levels">
+			{#each PRINTOUT_LEVELS as level (level)}
+				{@const copy = LEVEL_COPY[level]}
+				<li class="rounded-[2rem] bg-surface-container-low p-6">
+					<h3 class="font-serif text-headline-md">{copy.label}</h3>
+					<p class="mt-3 text-body-md text-on-surface-variant">
+						{copy.blurb}
+					</p>
+					<div class="mt-6 flex flex-wrap gap-3">
+						<Button href={printoutSheetPath(activeSlug, level)} variant="primary">
+							<Printer aria-hidden="true" />
+							{copy.action}
+						</Button>
+						{#if hasReadyPdf}
+							<Button
+								href={printoutPdfPath(activeSlug, level)}
+								variant="outlined"
+								download
+							>
+								<Download aria-hidden="true" />
+								Download PDF
+							</Button>
+						{/if}
+					</div>
+				</li>
+			{/each}
+		</ul>
+	{/key}
 
 	<div>
 		<Label for="printout-search">Find a scripture</Label>
@@ -164,6 +210,7 @@
 			class="flex flex-wrap gap-2"
 			role="radiogroup"
 			aria-label="Book"
+			tabindex="-1"
 			onkeydown={facetKeydown}
 		>
 			{#each facets as facet (facet)}
@@ -196,8 +243,8 @@
 					<li>
 						<button
 							type="button"
-							class={rowClass(selectedSlug === hit.slug)}
-							aria-pressed={selectedSlug === hit.slug}
+							class={rowClass(activeSlug === hit.slug)}
+							aria-pressed={activeSlug === hit.slug}
 							data-verse-slug={hit.slug}
 							onclick={() => choose(hit.slug)}
 						>

@@ -10,6 +10,7 @@ import { test, expect } from '@playwright/test';
 const DEFAULT_SLUG = '2-nephi-2-25';
 const JOY_SLUG = '2-nephi-2-25';
 const LONG_SLUG = 'exodus-20-3-17';
+const THIS_WEEK_SLUG = 'psalm-24-3-4';
 const LIBRARY_COUNT = 100;
 
 const NEPHI_ADVANCED = 'A___ f___ t___ m__ m____ b__ a__ m__ a___ t___ t___ m____ h___ j___';
@@ -35,18 +36,17 @@ test.describe('/teachers/printouts', () => {
 
 		const thisWeek = page.locator('[data-this-week]');
 		await expect(thisWeek).toBeVisible();
-		const thisWeekKind = await thisWeek.getAttribute('data-this-week');
-		expect(thisWeekKind).toMatch(/^(unit|doctrinal-mastery)$/);
+		await expect(thisWeek).toHaveAttribute('data-this-week', 'proximal');
 		await expect(page.getByText(/this week/i).first()).toBeVisible();
-		if (thisWeekKind === 'unit') {
-			await expect(page.getByText(/this week.?s unit/i)).toBeVisible();
-		}
+		await expect(page.getByText(/does not include Psalm 24/i)).toBeVisible();
+		await expect(page.getByText(/nearest doctrinal-mastery Psalm/i)).toBeVisible();
 		const thisWeekSlug = await page
 			.locator('[data-this-week-slug]')
 			.first()
 			.getAttribute('data-this-week-slug');
-		expect(thisWeekSlug).toBeTruthy();
-		await expect(finder).toHaveAttribute('data-selected-slug', thisWeekSlug as string);
+		expect(thisWeekSlug).toBe(THIS_WEEK_SLUG);
+		await expect(finder).toHaveAttribute('data-selected-slug', THIS_WEEK_SLUG);
+		await expect(finder).not.toHaveAttribute('data-selected-slug', 'moses-1-39');
 
 		await expect(page.getByRole('heading', { name: /^Beginner$/i })).toBeVisible();
 		await expect(page.getByRole('heading', { name: /^Intermediate$/i })).toBeVisible();

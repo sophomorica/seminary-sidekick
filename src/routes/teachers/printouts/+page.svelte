@@ -6,20 +6,9 @@
 -->
 <script lang="ts">
 	import VerseFinder from '$lib/components/printouts/VerseFinder.svelte';
-	import { Button } from '$lib/components/ui/button';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
 	import { TOTAL_SCRIPTURES } from '$lib/data/scriptures';
-	import {
-		DEFAULT_PRINTOUT_SLUG,
-		LEVEL_COPY,
-		PRINTOUT_LEVELS,
-		PRINTOUT_VERSE_COUNT,
-		loadPrintoutScripture,
-		printoutHasStaticPdf,
-		printoutPdfPath,
-		printoutSheetPath
-	} from '$lib/scripture-builder/printouts';
-	import { Download, Printer } from 'lucide-svelte';
+	import { PRINTOUT_VERSE_COUNT } from '$lib/scripture-builder/printouts';
 
 	let { data } = $props();
 
@@ -28,18 +17,7 @@
 	const canonical = `${SITE_URL}/teachers/printouts`;
 
 	const thisWeek = $derived(data.thisWeek);
-	let chosenSlug = $state<string | null>(null);
-	const selectedSlug = $derived(chosenSlug ?? data.defaultSlug);
-
-	const scripture = $derived(
-		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
-	);
-	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
-	const levels = PRINTOUT_LEVELS;
-
-	function chooseVerse(slug: string) {
-		chosenSlug = slug;
-	}
+	let selectedSlug = $state('');
 </script>
 
 <svelte:head>
@@ -80,47 +58,7 @@
 				This week is pinned. Search by reference, name, or a keyword.
 			</p>
 			<div class="mt-5">
-				<VerseFinder {selectedSlug} {thisWeek} {chooseVerse}>
-					{#snippet afterPin()}
-						{#if scripture}
-							<blockquote class="scripture mt-6 text-left">
-								“{scripture.fullText}”
-								<footer>{scripture.reference} — {scripture.name}</footer>
-							</blockquote>
-						{/if}
-
-						<ul class="mt-8 space-y-6" aria-label="Printout levels">
-							{#each levels as level (level)}
-								{@const copy = LEVEL_COPY[level]}
-								<li class="rounded-[2rem] bg-surface-container-low p-6">
-									<h3 class="font-serif text-headline-md">{copy.label}</h3>
-									<p class="mt-3 text-body-md text-on-surface-variant">
-										{copy.blurb}
-									</p>
-									<div class="mt-6 flex flex-wrap gap-3">
-										<Button
-											href={printoutSheetPath(selectedSlug, level)}
-											variant="primary"
-										>
-											<Printer aria-hidden="true" />
-											{copy.action}
-										</Button>
-										{#if hasReadyPdf}
-											<Button
-												href={printoutPdfPath(selectedSlug, level)}
-												variant="outlined"
-												download
-											>
-												<Download aria-hidden="true" />
-												Download PDF
-											</Button>
-										{/if}
-									</div>
-								</li>
-							{/each}
-						</ul>
-					{/snippet}
-				</VerseFinder>
+				<VerseFinder bind:selectedSlug {thisWeek} />
 			</div>
 		</div>
 
