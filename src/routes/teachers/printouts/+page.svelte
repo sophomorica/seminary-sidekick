@@ -38,7 +38,8 @@
 	const levels = PRINTOUT_LEVELS;
 
 	function selectVerse(event: Event) {
-		const next = (event.currentTarget as HTMLSelectElement).value;
+		const select = (event.target as HTMLElement | null)?.closest('select');
+		const next = select?.value;
 		if (next) selectedSlug = next;
 	}
 </script>
@@ -84,7 +85,7 @@
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
 					data-verse-count={PRINTOUT_VERSE_COUNT}
 					data-selected-slug={selectedSlug}
-					bind:value={selectedSlug}
+					value={selectedSlug}
 					onchange={selectVerse}
 				>
 					{#each bookGroups as group (group.book)}
