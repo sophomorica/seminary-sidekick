@@ -47,13 +47,13 @@ test.describe('AppNav', () => {
 		await expect(page).toHaveURL('/premium');
 	});
 
-	test('For teachers link goes to /teachers', async ({ page }) => {
+	test('For teachers link goes to /teachers/printouts', async ({ page }) => {
 		await page.goto('/');
 		await page
 			.locator('header')
 			.getByRole('link', { name: 'For teachers', exact: true })
 			.click();
-		await expect(page).toHaveURL('/teachers');
+		await expect(page).toHaveURL('/teachers/printouts');
 	});
 
 	test('header does not include a Library item', async ({ page }) => {
@@ -108,15 +108,14 @@ test.describe('AppFooter', () => {
 		}
 	});
 
-	test('Discover For teachers goes to /teachers; Class Play keeps the pitch', async ({
+	test('Discover For teachers goes to printouts; Class Play keeps the pitch', async ({
 		page
 	}) => {
 		await page.goto('/');
 		const footer = page.locator('footer');
-		await expect(footer.getByRole('link', { name: 'For teachers', exact: true })).toHaveAttribute(
-			'href',
-			'/teachers'
-		);
+		await expect(
+			footer.getByRole('link', { name: 'For teachers', exact: true })
+		).toHaveAttribute('href', '/teachers/printouts');
 		await expect(footer.getByRole('link', { name: 'Class Play', exact: true })).toHaveAttribute(
 			'href',
 			'/for-teachers'
