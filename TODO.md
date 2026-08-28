@@ -654,6 +654,20 @@ After all Phase B tasks complete.
   - [x] PR open, not merged
 - **completion notes:** PR https://github.com/sophomorica/seminary-sidekick/pull/11 (leave draft/open). Path `/teachers/printouts`. Print-sheet factory is every DM verse × three levels. Static PDFs remain proof-only at `/printouts/2-nephi-2-25-{beginner,intermediate,advanced}.pdf`. Patrick lock 2026-08-27: Advanced = first letters; student sheet has no full verse. Factory lock 2026-08-28: full library on this PR before merge.
 
+### TASK-PRINT-002: Replace printouts 100-verse select with finder + this week
+- **status:** in_progress
+- **claimed_by:** cursor-cloud-85c9
+- **started:** 2026-08-28T02:53:00Z
+- **depends_on:** TASK-PRINT-001
+- **files_to_touch:** `src/lib/scripture-builder/thisWeek.ts`, `src/lib/scripture-builder/verseFinder.ts`, `src/lib/components/printouts/VerseFinder.svelte`, `src/routes/teachers/printouts/+page.svelte`, `src/routes/teachers/printouts/+page.ts`, `tests/printouts.spec.ts`, `tests/README.md`
+- **what:** Kill the 100-item `<select>` on `/teachers/printouts`. Finder searches reference / name / keywords and facets by book; results are a list. Pin this week’s seminary / CFM OT 2026–27 verse(s) at the top and default Print to that verse. Honest map only — verses already in `$lib/data/scriptures`. Do not merge the mixer PR. Do not copy Facebook/catalog. Do not restyle the whole site.
+- **acceptance:**
+  - [ ] No 100-item select
+  - [ ] Search “joy” finds 2 Nephi 2:25; choosing a verse updates Print tiles / Print hints
+  - [ ] This week is pinned; opening week with no DM assignment uses “This week’s unit”
+  - [ ] `printouts.spec.ts` updated — no giant select assertions
+  - [ ] PR open, not merged
+
 ---
 
 ## Future tiers (placeholder backlog)
