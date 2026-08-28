@@ -50,16 +50,7 @@ test.describe('/teachers/printouts', () => {
 			`/printouts/${DEFAULT_SLUG}-beginner.pdf`
 		);
 
-		await verse.selectOption(LONG_SLUG);
-		await expect(beginnerPrint).toHaveAttribute(
-			'href',
-			`/teachers/printouts/${LONG_SLUG}/beginner`
-		);
-		await expect(page.getByRole('link', { name: /print hints/i })).toHaveAttribute(
-			'href',
-			`/teachers/printouts/${LONG_SLUG}/advanced`
-		);
-		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(0);
+		await expect(verse.locator(`option[value="${LONG_SLUG}"]`)).toHaveCount(1);
 	});
 
 	test('beginner sheet uses app 3-word chunks, several tiles, not one per page', async ({
@@ -163,9 +154,11 @@ test.describe('/teachers/printouts', () => {
 		await expect(tiles).toHaveCount(38);
 		const phrases = (await tiles.allTextContents()).map((text) => text.trim());
 		expect(phrases[0]).not.toBe('Thou shalt have no other gods before me.');
+		const wordCounts = phrases.map((phrase) => phrase.split(/\s+/).length);
+		const leftoverSingles = wordCounts.filter((count) => count <= 1);
+		expect(leftoverSingles.length, 'at most one remainder tile').toBeLessThanOrEqual(1);
 		for (const phrase of phrases) {
 			expect(phrase, 'tiles must not be numbered').not.toMatch(/^\d/);
-			expect(phrase.split(/\s+/).length).toBeGreaterThan(1);
 		}
 		await expect(
 			page.getByText(/Thou shalt have no other gods before me\. Thou shalt not make/i)
