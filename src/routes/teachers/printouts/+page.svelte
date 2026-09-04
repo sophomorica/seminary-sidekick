@@ -44,12 +44,14 @@
 
 	function attachVerseSelect(element: HTMLElement) {
 		const select = element as HTMLSelectElement;
+		select.dataset.pickerReady = 'true';
 		const onChange = () => {
 			if (select.value) selectedSlug = select.value;
 		};
 		select.addEventListener('change', onChange);
 		select.addEventListener('input', onChange);
 		return () => {
+			delete select.dataset.pickerReady;
 			select.removeEventListener('change', onChange);
 			select.removeEventListener('input', onChange);
 		};

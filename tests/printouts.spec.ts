@@ -27,6 +27,7 @@ test.describe('/teachers/printouts', () => {
 
 		const verse = page.locator('#printout-verse');
 		await expect(verse).toBeVisible();
+		await expect(verse).toHaveAttribute('data-picker-ready', 'true');
 		await expect(verse).toHaveAttribute('data-verse-count', String(LIBRARY_COUNT));
 		await expect(verse).toHaveValue(DEFAULT_SLUG);
 		await expect(verse.locator('option')).toHaveCount(LIBRARY_COUNT);
@@ -66,6 +67,7 @@ test.describe('/teachers/printouts', () => {
 	test('picker keeps the selected verse after a sheet and All printouts', async ({ page }) => {
 		await page.goto('/teachers/printouts');
 		const verse = page.locator('#printout-verse');
+		await expect(verse).toHaveAttribute('data-picker-ready', 'true');
 		await verse.selectOption(LONG_SLUG);
 		await expect(verse).toHaveValue(LONG_SLUG);
 
