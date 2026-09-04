@@ -35,7 +35,11 @@
 
 	const bookGroups = printoutVersesByBook();
 
-	let selectedSlug = $state(printoutSlugFromSearch(page.url.searchParams));
+	// Keep the <select> uncontrolled. A bound/controlled value reset the
+	// teacher's choice (see 28c8e2b). Persist via ?verse= + snapshot instead.
+	const initialSlug = printoutSlugFromSearch(page.url.searchParams);
+	let selectedSlug = $state(initialSlug);
+	let verseSelect: HTMLSelectElement | undefined;
 
 	const scripture = $derived(
 		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
@@ -43,19 +47,40 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
+	function applySlug(slug: string) {
+		selectedSlug = resolvePrintoutSlug(slug);
+		if (verseSelect) verseSelect.value = selectedSlug;
+	}
+
 	function persistSelectedSlug(slug: string) {
-		const href = printoutLibraryPath(resolvePrintoutSlug(slug));
+		const href = printoutLibraryPath(slug);
 		const current = `${page.url.pathname}${page.url.search}`;
 		if (current !== href) {
 			replaceState(href, page.state);
 		}
 	}
 
+	function attachVerseSelect(element: HTMLElement) {
+		const select = element as HTMLSelectElement;
+		verseSelect = select;
+		select.value = selectedSlug;
+		const onChange = () => {
+			if (!select.value) return;
+			applySlug(select.value);
+			persistSelectedSlug(selectedSlug);
+		};
+		select.addEventListener('change', onChange);
+		select.addEventListener('input', onChange);
+		return () => {
+			select.removeEventListener('change', onChange);
+			select.removeEventListener('input', onChange);
+			if (verseSelect === select) verseSelect = undefined;
+		};
+	}
+
 	export const snapshot: Snapshot<string> = {
 		capture: () => selectedSlug,
-		restore: (value) => {
-			selectedSlug = resolvePrintoutSlug(value);
-		}
+		restore: (value) => applySlug(value)
 	};
 </script>
 
@@ -100,15 +125,14 @@
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
 					data-verse-count={PRINTOUT_VERSE_COUNT}
 					data-selected-slug={selectedSlug}
-					bind:value={selectedSlug}
-					onchange={() => persistSelectedSlug(selectedSlug)}
+					{@attach attachVerseSelect}
 				>
 					{#each bookGroups as group (group.book)}
 						<optgroup label={group.label}>
 							{#each group.verses as verse (verse.slug)}
 								{@const option = getScripture(verse.scriptureId)}
 								{#if option}
-									<option value={verse.slug}
+									<option value={verse.slug} selected={verse.slug === initialSlug}
 										>{option.reference} — {option.name}</option
 									>
 								{/if}
