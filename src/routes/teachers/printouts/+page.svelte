@@ -5,7 +5,6 @@
   Three US Letter levels per verse.
 -->
 <script lang="ts">
-	import { replaceState } from '$app/navigation';
 	import { page } from '$app/state';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
@@ -19,15 +18,12 @@
 		PRINTOUT_VERSE_COUNT,
 		loadPrintoutScripture,
 		printoutHasStaticPdf,
-		printoutLibraryPath,
 		printoutPdfPath,
 		printoutSheetPath,
 		printoutSlugFromSearch,
-		printoutVersesByBook,
-		resolvePrintoutSlug
+		printoutVersesByBook
 	} from '$lib/scripture-builder/printouts';
 	import { Printer, Download } from 'lucide-svelte';
-	import type { Snapshot } from './$types';
 
 	const pageTitle = `Scripture Builder printouts — ${SITE_NAME}`;
 	const pageDescription = `Print US Letter Scripture Builder tiles and first-letter hint sheets for all ${PRINTOUT_VERSE_COUNT} doctrinal-mastery verses.`;
@@ -35,11 +31,10 @@
 
 	const bookGroups = printoutVersesByBook();
 
-	// Keep the <select> uncontrolled. A bound/controlled value reset the
-	// teacher's choice (see 28c8e2b). Persist via ?verse= + snapshot instead.
+	// Uncontrolled select (28c8e2b): a bound value reset the teacher's choice.
+	// Native change/input updates print links. Returning from a sheet uses ?verse=.
 	const initialSlug = printoutSlugFromSearch(page.url.searchParams);
 	let selectedSlug = $state(initialSlug);
-	let verseSelect: HTMLSelectElement | undefined;
 
 	const scripture = $derived(
 		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
@@ -47,41 +42,18 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
-	function applySlug(slug: string) {
-		selectedSlug = resolvePrintoutSlug(slug);
-		if (verseSelect) verseSelect.value = selectedSlug;
-	}
-
-	function persistSelectedSlug(slug: string) {
-		const href = printoutLibraryPath(slug);
-		const current = `${page.url.pathname}${page.url.search}`;
-		if (current !== href) {
-			replaceState(href, page.state);
-		}
-	}
-
 	function attachVerseSelect(element: HTMLElement) {
 		const select = element as HTMLSelectElement;
-		verseSelect = select;
-		select.value = selectedSlug;
 		const onChange = () => {
-			if (!select.value) return;
-			applySlug(select.value);
-			persistSelectedSlug(selectedSlug);
+			if (select.value) selectedSlug = select.value;
 		};
 		select.addEventListener('change', onChange);
 		select.addEventListener('input', onChange);
 		return () => {
 			select.removeEventListener('change', onChange);
 			select.removeEventListener('input', onChange);
-			if (verseSelect === select) verseSelect = undefined;
 		};
 	}
-
-	export const snapshot: Snapshot<string> = {
-		capture: () => selectedSlug,
-		restore: (value) => applySlug(value)
-	};
 </script>
 
 <svelte:head>
