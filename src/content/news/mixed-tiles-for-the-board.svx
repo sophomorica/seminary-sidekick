@@ -2,17 +2,17 @@
 title: 'Mixed tiles for the board'
 slug: 'mixed-tiles-for-the-board'
 date: '2026-09-01'
-excerpt: 'Print Scripture Builder cutouts the way the app chunks them. Tiles stay unnumbered so the order is not on the paper.'
+excerpt: 'Scripture Builder printouts are live. All 100 doctrinal mastery verses from the app, three levels.'
 tags: ['doctrinal-mastery', 'teacher-tip']
 author: 'Patrick'
 ---
 
 Scripture Builder printouts are live. All 100 doctrinal mastery verses from the app, three levels.
 
-Beginner and Intermediate are compact mixed cut-out tiles. Same chunks as the app. Unnumbered, so the sequence is not sitting on the paper.
+Beginner and Intermediate are compact mixed cut-out tiles. Same chunks as the app.
 
-Advanced is first-letter hints, matching Advanced in the app. Not cutouts, and not the full verse.
+Advanced matches Advanced in the app: first-letter hints for each word, so students rebuild the verse without seeing the full text or cutouts.
 
-Open a verse, then use the browser Print dialog (Save as PDF, US Letter). Ready PDFs are there for 2 Nephi 2:25.
+Pick a verse, then use the browser Print dialog (Save as PDF, US Letter).
 
 [https://seminarysidekick.com/teachers/printouts](/teachers/printouts)

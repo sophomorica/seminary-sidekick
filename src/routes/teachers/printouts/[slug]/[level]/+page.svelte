@@ -10,6 +10,7 @@
 	import {
 		LEVEL_COPY,
 		printoutHasStaticPdf,
+		printoutLibraryPath,
 		printoutPdfPath,
 		printoutSheetPath
 	} from '$lib/scripture-builder/printouts';
@@ -46,7 +47,7 @@
 	class="print-toolbar print:hidden border-b border-outline-variant/40 bg-surface-container-lowest px-4 py-4 md:px-8"
 >
 	<div class="mx-auto flex max-w-[8.5in] flex-wrap items-center justify-between gap-3">
-		<Button href="/teachers/printouts" variant="ghost" size="sm">
+		<Button href={printoutLibraryPath(data.slug)} variant="ghost" size="sm">
 			<ArrowLeft aria-hidden="true" />
 			All printouts
 		</Button>

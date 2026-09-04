@@ -81,6 +81,23 @@ export function printoutSheetPath(slug: string, level: PrintoutLevel): string {
 	return `/teachers/printouts/${slug}/${level}`;
 }
 
+/** Query key for the library picker — keeps the chosen verse across sheet trips. */
+export const PRINTOUT_VERSE_PARAM = 'verse';
+
+export function resolvePrintoutSlug(slug: string | null | undefined): string {
+	if (slug && getPrintoutVerse(slug)) return slug;
+	return DEFAULT_PRINTOUT_SLUG;
+}
+
+export function printoutSlugFromSearch(searchParams: URLSearchParams): string {
+	return resolvePrintoutSlug(searchParams.get(PRINTOUT_VERSE_PARAM));
+}
+
+/** Library picker URL. Always include the verse so returning from a sheet cannot snap to 2 Nephi. */
+export function printoutLibraryPath(slug: string): string {
+	return `/teachers/printouts?${PRINTOUT_VERSE_PARAM}=${resolvePrintoutSlug(slug)}`;
+}
+
 /** True for the print-ready sheet routes (chrome hidden; US Letter). */
 export function isPrintSheetPath(pathname: string): boolean {
 	return /^\/teachers\/printouts\/[^/]+\/[^/]+\/?$/.test(pathname);

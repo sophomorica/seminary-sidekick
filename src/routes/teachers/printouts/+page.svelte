@@ -5,6 +5,8 @@
   Three US Letter levels per verse.
 -->
 <script lang="ts">
+	import { replaceState } from '$app/navigation';
+	import { page } from '$app/state';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
@@ -17,11 +19,15 @@
 		PRINTOUT_VERSE_COUNT,
 		loadPrintoutScripture,
 		printoutHasStaticPdf,
+		printoutLibraryPath,
 		printoutPdfPath,
 		printoutSheetPath,
-		printoutVersesByBook
+		printoutSlugFromSearch,
+		printoutVersesByBook,
+		resolvePrintoutSlug
 	} from '$lib/scripture-builder/printouts';
 	import { Printer, Download } from 'lucide-svelte';
+	import type { Snapshot } from './$types';
 
 	const pageTitle = `Scripture Builder printouts — ${SITE_NAME}`;
 	const pageDescription = `Print US Letter Scripture Builder tiles and first-letter hint sheets for all ${PRINTOUT_VERSE_COUNT} doctrinal-mastery verses.`;
@@ -29,7 +35,7 @@
 
 	const bookGroups = printoutVersesByBook();
 
-	let selectedSlug = $state(DEFAULT_PRINTOUT_SLUG);
+	let selectedSlug = $state(printoutSlugFromSearch(page.url.searchParams));
 
 	const scripture = $derived(
 		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
@@ -37,18 +43,20 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
-	function attachVerseSelect(element: HTMLElement) {
-		const select = element as HTMLSelectElement;
-		const onChange = () => {
-			if (select.value) selectedSlug = select.value;
-		};
-		select.addEventListener('change', onChange);
-		select.addEventListener('input', onChange);
-		return () => {
-			select.removeEventListener('change', onChange);
-			select.removeEventListener('input', onChange);
-		};
+	function persistSelectedSlug(slug: string) {
+		const href = printoutLibraryPath(resolvePrintoutSlug(slug));
+		const current = `${page.url.pathname}${page.url.search}`;
+		if (current !== href) {
+			replaceState(href, page.state);
+		}
 	}
+
+	export const snapshot: Snapshot<string> = {
+		capture: () => selectedSlug,
+		restore: (value) => {
+			selectedSlug = resolvePrintoutSlug(value);
+		}
+	};
 </script>
 
 <svelte:head>
@@ -92,16 +100,15 @@
 					class="mt-2 h-12 w-full rounded-full border border-outline-variant/40 bg-surface-container-lowest px-5 text-body-md text-on-surface focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
 					data-verse-count={PRINTOUT_VERSE_COUNT}
 					data-selected-slug={selectedSlug}
-					{@attach attachVerseSelect}
+					bind:value={selectedSlug}
+					onchange={() => persistSelectedSlug(selectedSlug)}
 				>
 					{#each bookGroups as group (group.book)}
 						<optgroup label={group.label}>
 							{#each group.verses as verse (verse.slug)}
 								{@const option = getScripture(verse.scriptureId)}
 								{#if option}
-									<option
-										value={verse.slug}
-										selected={verse.slug === DEFAULT_PRINTOUT_SLUG}
+									<option value={verse.slug}
 										>{option.reference} — {option.name}</option
 									>
 								{/if}
