@@ -5,6 +5,9 @@
   Three US Letter levels per verse.
 -->
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
@@ -19,6 +22,8 @@
 		printoutHasStaticPdf,
 		printoutPdfPath,
 		printoutSheetPath,
+		PRINTOUT_VERSE_PARAM,
+		printoutSlugFromSearch,
 		printoutVersesByBook
 	} from '$lib/scripture-builder/printouts';
 	import { Printer, Download } from 'lucide-svelte';
@@ -29,6 +34,8 @@
 
 	const bookGroups = printoutVersesByBook();
 
+	// Uncontrolled select (28c8e2b): a bound value reset the teacher's choice.
+	// Prerender forbids url.searchParams — start on the signed-off default, apply ?verse= in the browser.
 	let selectedSlug = $state(DEFAULT_PRINTOUT_SLUG);
 
 	const scripture = $derived(
@@ -37,14 +44,30 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
 
+	function applySlugFromUrl() {
+		if (!browser) return;
+		try {
+			if (!page.url.searchParams.get(PRINTOUT_VERSE_PARAM)) return;
+			selectedSlug = printoutSlugFromSearch(page.url.searchParams);
+		} catch {
+			return;
+		}
+		const select = document.getElementById('printout-verse');
+		if (select instanceof HTMLSelectElement) select.value = selectedSlug;
+	}
+
+	afterNavigate(applySlugFromUrl);
+
 	function attachVerseSelect(element: HTMLElement) {
 		const select = element as HTMLSelectElement;
+		select.dataset.pickerReady = 'true';
 		const onChange = () => {
 			if (select.value) selectedSlug = select.value;
 		};
 		select.addEventListener('change', onChange);
 		select.addEventListener('input', onChange);
 		return () => {
+			delete select.dataset.pickerReady;
 			select.removeEventListener('change', onChange);
 			select.removeEventListener('input', onChange);
 		};

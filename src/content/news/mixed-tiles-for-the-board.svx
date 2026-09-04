@@ -1,0 +1,18 @@
+---
+title: 'Mixed tiles for the board'
+slug: 'mixed-tiles-for-the-board'
+date: '2026-09-01'
+excerpt: 'Scripture Builder printouts are live. All 100 doctrinal mastery verses from the app, three levels.'
+tags: ['doctrinal-mastery', 'teacher-tip']
+author: 'Patrick'
+---
+
+Scripture Builder printouts are live. All 100 doctrinal mastery verses from the app, three levels.
+
+Beginner and Intermediate are compact mixed cut-out tiles. Same chunks as the app.
+
+Advanced matches Advanced in the app: first-letter hints for each word, so students rebuild the verse without seeing the full text or cutouts.
+
+Pick a verse, then use the browser Print dialog (Save as PDF, US Letter).
+
+[https://seminarysidekick.com/teachers/printouts](/teachers/printouts)

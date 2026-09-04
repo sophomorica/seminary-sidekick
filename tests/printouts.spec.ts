@@ -27,6 +27,7 @@ test.describe('/teachers/printouts', () => {
 
 		const verse = page.locator('#printout-verse');
 		await expect(verse).toBeVisible();
+		await expect(verse).toHaveAttribute('data-picker-ready', 'true');
 		await expect(verse).toHaveAttribute('data-verse-count', String(LIBRARY_COUNT));
 		await expect(verse).toHaveValue(DEFAULT_SLUG);
 		await expect(verse.locator('option')).toHaveCount(LIBRARY_COUNT);
@@ -61,6 +62,36 @@ test.describe('/teachers/printouts', () => {
 			`/teachers/printouts/${LONG_SLUG}/advanced`
 		);
 		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(0);
+	});
+
+	test('picker keeps the selected verse after a sheet and All printouts', async ({ page }) => {
+		await page.goto('/teachers/printouts');
+		const verse = page.locator('#printout-verse');
+		await expect(verse).toHaveAttribute('data-picker-ready', 'true');
+		await verse.selectOption(LONG_SLUG);
+		await expect(verse).toHaveValue(LONG_SLUG);
+
+		await page
+			.getByRole('link', { name: /print tiles/i })
+			.first()
+			.click();
+		await expect(page.getByRole('heading', { name: /Exodus 20:3/i })).toBeVisible();
+		await expect(page.getByRole('link', { name: /all printouts/i })).toHaveAttribute(
+			'href',
+			`/teachers/printouts?verse=${LONG_SLUG}`
+		);
+
+		await page.getByRole('link', { name: /all printouts/i }).click();
+		const returned = page.locator('#printout-verse');
+		await expect(returned).toHaveValue(LONG_SLUG);
+		await expect(returned).toHaveAttribute('data-selected-slug', LONG_SLUG);
+		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
+			'href',
+			`/teachers/printouts/${LONG_SLUG}/beginner`
+		);
+		await expect(
+			page.getByText(/Thou shalt have no other gods before me/i).first()
+		).toBeVisible();
 	});
 
 	test('beginner sheet uses app 3-word chunks, several tiles, not one per page', async ({
