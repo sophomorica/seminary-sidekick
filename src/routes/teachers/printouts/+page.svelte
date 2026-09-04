@@ -5,6 +5,8 @@
   Three US Letter levels per verse.
 -->
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
@@ -20,6 +22,7 @@
 		printoutHasStaticPdf,
 		printoutPdfPath,
 		printoutSheetPath,
+		PRINTOUT_VERSE_PARAM,
 		printoutSlugFromSearch,
 		printoutVersesByBook
 	} from '$lib/scripture-builder/printouts';
@@ -32,15 +35,28 @@
 	const bookGroups = printoutVersesByBook();
 
 	// Uncontrolled select (28c8e2b): a bound value reset the teacher's choice.
-	// Native change/input updates print links. Returning from a sheet uses ?verse=.
-	const initialSlug = printoutSlugFromSearch(page.url.searchParams);
-	let selectedSlug = $state(initialSlug);
+	// Prerender forbids url.searchParams — start on the signed-off default, apply ?verse= in the browser.
+	let selectedSlug = $state(DEFAULT_PRINTOUT_SLUG);
 
 	const scripture = $derived(
 		loadPrintoutScripture(selectedSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
 	);
 	const hasReadyPdf = $derived(printoutHasStaticPdf(selectedSlug));
 	const levels = PRINTOUT_LEVELS;
+
+	function applySlugFromUrl() {
+		if (!browser) return;
+		try {
+			if (!page.url.searchParams.get(PRINTOUT_VERSE_PARAM)) return;
+			selectedSlug = printoutSlugFromSearch(page.url.searchParams);
+		} catch {
+			return;
+		}
+		const select = document.getElementById('printout-verse');
+		if (select instanceof HTMLSelectElement) select.value = selectedSlug;
+	}
+
+	afterNavigate(applySlugFromUrl);
 
 	function attachVerseSelect(element: HTMLElement) {
 		const select = element as HTMLSelectElement;
@@ -106,7 +122,9 @@
 							{#each group.verses as verse (verse.slug)}
 								{@const option = getScripture(verse.scriptureId)}
 								{#if option}
-									<option value={verse.slug} selected={verse.slug === initialSlug}
+									<option
+										value={verse.slug}
+										selected={verse.slug === DEFAULT_PRINTOUT_SLUG}
 										>{option.reference} — {option.name}</option
 									>
 								{/if}
