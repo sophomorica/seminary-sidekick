@@ -79,6 +79,17 @@ test.describe("What's new", () => {
 		});
 	}
 
+	test('printouts post uses a Button CTA, not a raw URL', async ({ page }) => {
+		await page.goto('/news/i-used-to-cut-these-by-hand');
+
+		const cta = page.getByRole('link', { name: 'Open Scripture Builder printouts' });
+		await expect(cta).toBeVisible();
+		await expect(cta).toHaveAttribute('href', '/teachers/printouts');
+		await expect(
+			page.getByRole('link', { name: /seminarysidekick\.com\/teachers\/printouts/ })
+		).toHaveCount(0);
+	});
+
 	test('RSS includes the live slugs', async ({ request }) => {
 		const res = await request.get('/news/rss.xml');
 		expect(res.status()).toBe(200);
