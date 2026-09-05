@@ -205,7 +205,9 @@
 					{pinHits.map((hit) => hit.scripture.reference).join(' · ') || pinLabel}
 				</h3>
 				{#if pinDetail}
-					<p class="mt-1 line-clamp-2 text-body-sm text-on-surface-variant">{pinDetail}</p>
+					<p class="mt-1 line-clamp-2 text-body-sm text-on-surface-variant">
+						{pinDetail}
+					</p>
 				{/if}
 				<ul class="mt-2 space-y-2" aria-label={pinLabel}>
 					{#each pinHits as hit (hit.slug)}
@@ -268,7 +270,9 @@
 		</p>
 		<TooltipProvider delayDuration={200}>
 			{#if hits.length === 0}
-				<p class="mt-3 text-body-md text-on-surface-variant">No verses match that search.</p>
+				<p class="mt-3 text-body-md text-on-surface-variant">
+					No verses match that search.
+				</p>
 			{:else}
 				<ul
 					class="mt-3 grid max-h-64 grid-cols-2 gap-2 overflow-y-auto pr-1 md:grid-cols-3"
@@ -303,7 +307,9 @@
 									class="max-w-sm flex-col items-start text-left"
 								>
 									<span class="font-serif text-xs">{hit.scripture.name}</span>
-									<span class="text-xs leading-relaxed">{hit.scripture.keyPhrase}</span>
+									<span class="text-xs leading-relaxed"
+										>{hit.scripture.keyPhrase}</span
+									>
 								</TooltipContent>
 							</Tooltip>
 						</li>
