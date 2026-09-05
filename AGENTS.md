@@ -7,6 +7,7 @@ Standing brain for Grok Bot, Grok Build, Cursor, and GitHub. Start here. Then re
 This clone is the instruction set. Hub is not here. Do not open `../../hub/standards/`.
 
 Definition of done (all must be true):
+
 1. This repo’s analyze or lint command exits 0.
 2. This repo’s test command exits 0. New behavior has a test.
 3. Build or typecheck succeeds when the repo has one.
