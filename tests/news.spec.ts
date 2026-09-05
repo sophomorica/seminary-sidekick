@@ -9,6 +9,10 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'i-used-to-cut-these-by-hand',
+		title: 'I used to cut these by hand'
+	},
+	{
 		slug: 'dont-stop-at-the-tiles',
 		title: 'Don’t stop at the tiles'
 	},
