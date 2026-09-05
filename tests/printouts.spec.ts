@@ -46,29 +46,16 @@ test.describe('/teachers/printouts', () => {
 		expect(pinSlug).toBeTruthy();
 		await expect(finder).toHaveAttribute('data-selected-slug', pinSlug as string);
 
-		await expect(page.getByRole('heading', { name: /^Beginner$/i })).toBeVisible();
-		await expect(page.getByRole('heading', { name: /^Intermediate$/i })).toBeVisible();
-		await expect(page.getByRole('heading', { name: /^Advanced$/i })).toBeVisible();
+		await expect(page.getByRole('button', { name: /^beginner$/i })).toBeVisible();
+		await expect(page.getByRole('button', { name: /^intermediate$/i })).toBeVisible();
+		await expect(page.getByRole('button', { name: /^advanced$/i })).toBeVisible();
 
+		const preview = page.locator('[data-printout-preview]');
+		await expect(preview).toHaveAttribute('data-preview-level', 'beginner');
 		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${pinSlug}/beginner`
 		);
-		await expect(page.getByRole('link', { name: /print hints/i }).first()).toHaveAttribute(
-			'href',
-			`/teachers/printouts/${pinSlug}/advanced`
-		);
-
-		const bookGroup = page.getByRole('radiogroup', { name: /^book$/i });
-		const allBooks = bookGroup.getByRole('radio', { name: /^all$/i });
-		await allBooks.focus();
-		await expect(allBooks).toHaveAttribute('aria-checked', 'true');
-		await page.keyboard.press('ArrowRight');
-		const ot = bookGroup.getByRole('radio', { name: /^ot$/i });
-		await expect(ot).toHaveAttribute('aria-checked', 'true');
-		await expect(ot).toBeFocused();
-		await page.keyboard.press('Home');
-		await expect(allBooks).toHaveAttribute('aria-checked', 'true');
 
 		const search = page.getByRole('searchbox', { name: /find a scripture/i });
 		await search.fill('joy');
@@ -79,18 +66,26 @@ test.describe('/teachers/printouts', () => {
 
 		await expect(finder).toHaveAttribute('data-selected-slug', JOY_SLUG);
 		await expect(page.getByText(/Adam fell that men might be/i).first()).toBeVisible();
+		await expect(preview).toHaveAttribute('data-preview-level', 'beginner');
 		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${JOY_SLUG}/beginner`
 		);
+		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(1);
+		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveAttribute(
+			'href',
+			`/printouts/${JOY_SLUG}-beginner.pdf`
+		);
+
+		await page.getByRole('button', { name: /^advanced$/i }).click();
+		await expect(preview).toHaveAttribute('data-preview-level', 'advanced');
 		await expect(page.getByRole('link', { name: /print hints/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${JOY_SLUG}/advanced`
 		);
-		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(3);
-		await expect(page.getByRole('link', { name: /download pdf/i }).first()).toHaveAttribute(
+		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveAttribute(
 			'href',
-			`/printouts/${JOY_SLUG}-beginner.pdf`
+			`/printouts/${JOY_SLUG}-advanced.pdf`
 		);
 
 		await search.fill('exodus 20');
@@ -99,15 +94,19 @@ test.describe('/teachers/printouts', () => {
 		await expect(long).toHaveCount(1);
 		await long.click();
 		await expect(finder).toHaveAttribute('data-selected-slug', LONG_SLUG);
-		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
-			'href',
-			`/teachers/printouts/${LONG_SLUG}/beginner`
-		);
+		await expect(preview).toHaveAttribute('data-preview-level', 'advanced');
 		await expect(page.getByRole('link', { name: /print hints/i }).first()).toHaveAttribute(
 			'href',
 			`/teachers/printouts/${LONG_SLUG}/advanced`
 		);
 		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(0);
+
+		await page.getByRole('button', { name: /^beginner$/i }).click();
+		await expect(preview).toHaveAttribute('data-preview-level', 'beginner');
+		await expect(page.getByRole('link', { name: /print tiles/i }).first()).toHaveAttribute(
+			'href',
+			`/teachers/printouts/${LONG_SLUG}/beginner`
+		);
 	});
 
 	test('finder keeps the selected verse after a sheet and All printouts', async ({ page }) => {
