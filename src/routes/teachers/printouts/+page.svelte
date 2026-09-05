@@ -33,31 +33,30 @@
 	<meta name="twitter:description" content={pageDescription} />
 </svelte:head>
 
-<section class="bg-surface pt-16 pb-12 md:pt-24 md:pb-16" aria-labelledby="printouts-headline">
+<section class="bg-surface pt-8 pb-6 md:pt-12 md:pb-8" aria-labelledby="printouts-headline">
 	<div class="mx-auto max-w-3xl px-4 md:px-8">
 		<p class="eyebrow">For seminary teachers</p>
 		<h1
 			id="printouts-headline"
-			class="font-serif text-display-lg tracking-tight md:text-hero-lg"
+			class="font-serif text-display-md tracking-tight md:text-display-lg"
 		>
 			Scripture Builder printouts
 		</h1>
-		<p class="mt-6 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-			Print compact mixed phrase tiles for the board, or first-letter hints for Advanced. Same
-			Beginner and Intermediate chunks as the app. All {TOTAL_SCRIPTURES} doctrinal-mastery verses
-			from the app.
+		<p class="mt-3 text-body-md text-on-surface-variant md:text-lg">
+			Print tiles or first-letter hints. Same chunks as the app. All
+			{TOTAL_SCRIPTURES} doctrinal-mastery verses.
 		</p>
 	</div>
 </section>
 
-<section class="bg-surface-container-low py-16 md:py-24" aria-labelledby="printouts-picker">
+<section class="bg-surface-container-low py-8 md:py-12" aria-labelledby="printouts-picker">
 	<div class="mx-auto max-w-3xl space-y-8 px-4 md:px-8">
 		<div class="card">
-			<h2 id="printouts-picker" class="font-serif text-headline-lg">Choose a scripture</h2>
-			<p class="mt-3 text-body-md text-on-surface-variant">
-				This week is pinned. Search by reference, name, or a keyword.
+			<h2 id="printouts-picker" class="font-serif text-headline-md">Choose a scripture</h2>
+			<p class="mt-2 text-body-sm text-on-surface-variant">
+				Search or pick a book, then print Beginner, Intermediate, or Advanced.
 			</p>
-			<div class="mt-5">
+			<div class="mt-4">
 				<VerseFinder bind:selectedSlug {thisWeek} />
 			</div>
 		</div>
