@@ -7,9 +7,15 @@ tags: ['doctrinal-mastery', 'teacher-tip', 'announcement']
 author: 'Patrick'
 ---
 
+<script lang="ts">
+	import { Button } from '$lib/components/ui/button';
+</script>
+
 I'm really excited. I've been working hard on an analog version of Scripture Builder for doctrinal mastery — and right now you can find it here:
 
-[https://seminarysidekick.com/teachers/printouts](/teachers/printouts)
+<p class="not-prose my-6">
+	<Button href="/teachers/printouts">Open Scripture Builder printouts</Button>
+</p>
 
 What I used to do with my class is manually type these out, format them so I could cut them out, then cut them all into piles for different groups. Each group got their own pile of words. I'd have them assemble the verse as fast as they could — and see who did it the fastest, and obviously the most correct.
 
