@@ -5,10 +5,17 @@
   Finder + this-week pin. Three US Letter levels per verse.
 -->
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 	import VerseFinder from '$lib/components/printouts/VerseFinder.svelte';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
 	import { TOTAL_SCRIPTURES } from '$lib/data/scriptures';
-	import { PRINTOUT_VERSE_COUNT } from '$lib/scripture-builder/printouts';
+	import {
+		PRINTOUT_VERSE_COUNT,
+		PRINTOUT_VERSE_PARAM,
+		printoutSlugFromSearch
+	} from '$lib/scripture-builder/printouts';
 
 	let { data } = $props();
 
@@ -18,6 +25,18 @@
 
 	const thisWeek = $derived(data.thisWeek);
 	let selectedSlug = $state('');
+
+	function applySlugFromUrl() {
+		if (!browser) return;
+		try {
+			if (!page.url.searchParams.get(PRINTOUT_VERSE_PARAM)) return;
+			selectedSlug = printoutSlugFromSearch(page.url.searchParams);
+		} catch {
+			return;
+		}
+	}
+
+	afterNavigate(applySlugFromUrl);
 </script>
 
 <svelte:head>
