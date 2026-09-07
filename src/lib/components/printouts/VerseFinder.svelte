@@ -3,6 +3,7 @@
   Search + book facets + a result list. Not a 100-item select.
 -->
 <script lang="ts">
+	import PrintoutPreview from '$lib/components/printouts/PrintoutPreview.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
@@ -19,9 +20,8 @@
 		PRINTOUT_LEVELS,
 		PRINTOUT_VERSE_COUNT,
 		loadPrintoutScripture,
-		printoutHasStaticPdf,
-		printoutPdfPath,
-		printoutSheetPath
+		scrambledTilesFor,
+		type PrintoutLevel
 	} from '$lib/scripture-builder/printouts';
 	import type { ThisWeekPin } from '$lib/scripture-builder/thisWeek';
 	import {
@@ -29,7 +29,7 @@
 		type FinderBook,
 		type FinderHit
 	} from '$lib/scripture-builder/verseFinder';
-	import { Download, Printer } from 'lucide-svelte';
+	import { Printer } from 'lucide-svelte';
 
 	let {
 		selectedSlug = $bindable(''),
@@ -42,6 +42,7 @@
 	let query = $state('');
 	let book = $state<FinderBook>('all');
 	let pickedSlug = $state('');
+	let previewLevel = $state<PrintoutLevel>('beginner');
 
 	const facets: FinderBook[] = ['all', ...BOOK_ORDER];
 	const hits = $derived(findPrintoutVerses(query, book));
@@ -58,7 +59,9 @@
 	const scripture = $derived(
 		loadPrintoutScripture(activeSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
 	);
-	const hasReadyPdf = $derived(printoutHasStaticPdf(activeSlug));
+	const previewChunks = $derived(
+		scripture && previewLevel !== 'advanced' ? scrambledTilesFor(scripture, previewLevel) : []
+	);
 	const userPicked = $derived(Boolean(pickedSlug || selectedSlug));
 	const cfmPin = $derived(
 		!userPicked && (thisWeek.kind === 'doctrinal-mastery' || thisWeek.kind === 'proximal')
@@ -93,6 +96,7 @@
 			return;
 		}
 		event.preventDefault();
+		event.stopPropagation();
 		const current = facets.indexOf(book);
 		let next: number;
 		if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
@@ -107,7 +111,9 @@
 		const nextBook = facets[next];
 		if (!nextBook) return;
 		book = nextBook;
-		const group = event.currentTarget as HTMLElement;
+		const group =
+			(event.currentTarget as HTMLElement).closest('[role="radiogroup"]') ??
+			(event.currentTarget as HTMLElement);
 		queueMicrotask(() => {
 			group.querySelector<HTMLElement>('[role="radio"][aria-checked="true"]')?.focus();
 		});
@@ -184,6 +190,7 @@
 					aria-checked={book === facet}
 					tabindex={book === facet ? 0 : -1}
 					onclick={() => (book = facet)}
+					onkeydown={facetKeydown}
 				>
 					{facetLabel(facet)}
 				</button>
@@ -196,7 +203,7 @@
 		class="rounded-[1.5rem] bg-primary-fixed px-4 py-3"
 		aria-labelledby="this-week-heading"
 	>
-		<div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+		<div class="flex flex-col gap-3">
 			<div class="min-w-0">
 				<p class="text-xs font-semibold tracking-[1.5px] text-primary uppercase">
 					{pinLabel}
@@ -231,7 +238,7 @@
 				</ul>
 			</div>
 			<TooltipProvider delayDuration={200}>
-				<nav class="flex shrink-0 flex-wrap gap-2" aria-label="Print this scripture">
+				<nav class="flex flex-wrap gap-2" aria-label="Printout level">
 					{#each PRINTOUT_LEVELS as level (level)}
 						{@const copy = LEVEL_COPY[level]}
 						<Tooltip>
@@ -239,13 +246,17 @@
 								{#snippet child({ props })}
 									<Button
 										{...props}
-										href={printoutSheetPath(activeSlug, level)}
-										variant="outlined"
+										type="button"
+										variant={previewLevel === level ? 'primary' : 'outlined'}
 										size="sm"
 										class="min-h-11"
 										title={copy.blurb}
-										aria-label="{copy.action} — {copy.label}"
+										aria-pressed={previewLevel === level}
+										aria-label={copy.label}
+										onpointerdown={() => (previewLevel = level)}
+										onclick={() => (previewLevel = level)}
 									>
+										<Printer aria-hidden="true" />
 										{copy.label}
 									</Button>
 								{/snippet}
@@ -344,46 +355,12 @@
 		</TooltipProvider>
 	</div>
 
-	{#key activeSlug}
-		<ul class="space-y-3" aria-label="Printout levels">
-			{#each PRINTOUT_LEVELS as level (level)}
-				{@const copy = LEVEL_COPY[level]}
-				<li
-					class="group relative flex flex-wrap items-center justify-between gap-3 rounded-[2rem] bg-surface-container-low px-5 py-3"
-				>
-					<h3
-						class="font-serif text-headline-sm text-on-surface underline decoration-dotted decoration-outline-variant underline-offset-4"
-						title={copy.blurb}
-						aria-describedby="printout-level-{level}-blurb"
-					>
-						{copy.label}
-					</h3>
-					<p id="printout-level-{level}-blurb" class="sr-only">{copy.blurb}</p>
-					<p
-						aria-hidden="true"
-						class="pointer-events-none absolute bottom-full left-5 right-5 z-10 mb-2 hidden rounded-[1.25rem] bg-on-surface px-3 py-2 text-body-sm text-surface shadow-editorial group-hover:block group-focus-within:block sm:right-auto sm:max-w-xs"
-					>
-						{copy.blurb}
-					</p>
-					<div class="flex shrink-0 flex-wrap items-center gap-2">
-						<Button href={printoutSheetPath(activeSlug, level)} variant="primary">
-							<Printer aria-hidden="true" />
-							{copy.action}
-						</Button>
-						{#if hasReadyPdf}
-							<Button
-								href={printoutPdfPath(activeSlug, level)}
-								variant="outlined"
-								size="icon"
-								download
-								aria-label="Download PDF"
-							>
-								<Download aria-hidden="true" />
-							</Button>
-						{/if}
-					</div>
-				</li>
-			{/each}
-		</ul>
-	{/key}
+	{#if scripture}
+		<PrintoutPreview
+			slug={activeSlug}
+			level={previewLevel}
+			{scripture}
+			chunks={previewChunks}
+		/>
+	{/if}
 </div>
