@@ -71,8 +71,8 @@ test.describe('/teachers/printouts', () => {
 			'href',
 			`/teachers/printouts/${JOY_SLUG}/beginner`
 		);
-		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(1);
-		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveAttribute(
+		await expect(page.getByRole('link', { name: /save pdf/i })).toHaveCount(1);
+		await expect(page.getByRole('link', { name: /save pdf/i })).toHaveAttribute(
 			'href',
 			`/printouts/${JOY_SLUG}-beginner.pdf`
 		);
@@ -83,7 +83,7 @@ test.describe('/teachers/printouts', () => {
 			'href',
 			`/teachers/printouts/${JOY_SLUG}/advanced`
 		);
-		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveAttribute(
+		await expect(page.getByRole('link', { name: /save pdf/i })).toHaveAttribute(
 			'href',
 			`/printouts/${JOY_SLUG}-advanced.pdf`
 		);
@@ -99,7 +99,7 @@ test.describe('/teachers/printouts', () => {
 			'href',
 			`/teachers/printouts/${LONG_SLUG}/advanced`
 		);
-		await expect(page.getByRole('link', { name: /download pdf/i })).toHaveCount(0);
+		await expect(page.getByRole('link', { name: /save pdf/i })).toHaveCount(0);
 
 		await page.getByRole('button', { name: /^beginner$/i }).click();
 		await expect(preview).toHaveAttribute('data-preview-level', 'beginner');

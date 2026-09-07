@@ -54,12 +54,7 @@
 				{copy.action}
 			</Button>
 			{#if hasPdf}
-				<Button
-					href={printoutPdfPath(slug, level)}
-					variant="outlined"
-					download
-					aria-label="Download PDF"
-				>
+				<Button href={printoutPdfPath(slug, level)} variant="outlined" download>
 					<Download aria-hidden="true" />
 					Save PDF
 				</Button>
