@@ -9,6 +9,14 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'digital-convenient-analog-helps-you-map',
+		title: 'Digital is convenient. Analog helps you map.'
+	},
+	{
+		slug: 'i-used-to-cut-these-by-hand',
+		title: 'I used to cut these by hand'
+	},
+	{
 		slug: 'dont-stop-at-the-tiles',
 		title: 'Don’t stop at the tiles'
 	},
@@ -74,6 +82,25 @@ test.describe("What's new", () => {
 			await expect(page.getByRole('link', { name: /back to news/i }).first()).toBeVisible();
 		});
 	}
+
+	test('analog-mapping post links printouts as one markdown bridge', async ({ page }) => {
+		await page.goto('/news/digital-convenient-analog-helps-you-map');
+
+		const bridge = page.getByRole('link', { name: 'Scripture Builder printouts' });
+		await expect(bridge).toBeVisible();
+		await expect(bridge).toHaveAttribute('href', '/teachers/printouts');
+	});
+
+	test('printouts post uses a Button CTA, not a raw URL', async ({ page }) => {
+		await page.goto('/news/i-used-to-cut-these-by-hand');
+
+		const cta = page.getByRole('link', { name: 'Open Scripture Builder printouts' });
+		await expect(cta).toBeVisible();
+		await expect(cta).toHaveAttribute('href', '/teachers/printouts');
+		await expect(
+			page.getByRole('link', { name: /seminarysidekick\.com\/teachers\/printouts/ })
+		).toHaveCount(0);
+	});
 
 	test('RSS includes the live slugs', async ({ request }) => {
 		const res = await request.get('/news/rss.xml');
