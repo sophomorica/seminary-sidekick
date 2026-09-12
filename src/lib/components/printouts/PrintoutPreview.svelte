@@ -4,6 +4,7 @@
   not another full US Letter sheet sitting on the library page.
 -->
 <script lang="ts">
+	import { track } from '$lib/analytics/plausible';
 	import { Button } from '$lib/components/ui/button';
 	import type { Scripture } from '$lib/data/types';
 	import { advancedHintLines } from '$lib/scripture-builder/advancedHints';
@@ -36,6 +37,10 @@
 	const hintLines = $derived(advancedHintLines(scripture.fullText));
 	const visibleHints = $derived(hintLines.slice(0, 4));
 	const hiddenHints = $derived(Math.max(0, hintLines.length - visibleHints.length));
+
+	function trackPrintoutPrint() {
+		track('printout_print');
+	}
 </script>
 
 <section
@@ -49,12 +54,21 @@
 			{copy.label} preview
 		</h3>
 		<div class="flex flex-wrap items-center gap-2">
-			<Button href={printoutSheetPath(slug, level)} variant="primary">
+			<Button
+				href={printoutSheetPath(slug, level)}
+				variant="primary"
+				onclick={trackPrintoutPrint}
+			>
 				<Printer aria-hidden="true" />
 				{copy.action}
 			</Button>
 			{#if hasPdf}
-				<Button href={printoutPdfPath(slug, level)} variant="outlined" download>
+				<Button
+					href={printoutPdfPath(slug, level)}
+					variant="outlined"
+					download
+					onclick={trackPrintoutPrint}
+				>
 					<Download aria-hidden="true" />
 					Save PDF
 				</Button>
@@ -64,6 +78,7 @@
 
 	<a
 		href={printoutSheetPath(slug, level)}
+		onclick={trackPrintoutPrint}
 		class="block rounded-[2rem] bg-surface-container-lowest p-4 shadow-editorial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
 		aria-label="{copy.action} — {copy.label} sheet for {scripture.reference}"
 	>
