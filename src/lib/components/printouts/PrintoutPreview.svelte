@@ -54,7 +54,11 @@
 			{copy.label} preview
 		</h3>
 		<div class="flex flex-wrap items-center gap-2">
-			<Button href={printoutSheetPath(slug, level)} variant="primary" onclick={trackPrintoutPrint}>
+			<Button
+				href={printoutSheetPath(slug, level)}
+				variant="primary"
+				onclick={trackPrintoutPrint}
+			>
 				<Printer aria-hidden="true" />
 				{copy.action}
 			</Button>
