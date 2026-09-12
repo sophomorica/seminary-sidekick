@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
+	import { track } from '$lib/analytics/plausible';
 	import Logo from '$lib/components/brand/Logo.svelte';
 	import GroupPlayPhaseRouter from './GroupPlayPhaseRouter.svelte';
 	import JoinForm from './JoinForm.svelte';
@@ -159,6 +160,7 @@
 			}
 			const result = await joinRoom(code, nickname);
 			enterRoom(result);
+			track('class_play_join');
 		} catch (cause) {
 			if (cause instanceof GroupPlayError) {
 				error =
@@ -184,6 +186,7 @@
 				claimCode: claimCode || undefined
 			});
 			enterRoom(result);
+			track('class_play_join');
 		} catch (cause) {
 			error =
 				cause instanceof GroupPlayError

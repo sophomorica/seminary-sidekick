@@ -153,7 +153,9 @@
 	</ul>
 	<p class="mb-6 font-serif text-[1.125rem] leading-[1.75] text-on-surface">
 		It provides only aggregated, anonymous statistics (for example, "120 visits to the home page
-		this month"). This helps us understand what content is helpful so we can improve the site.
+		this month"), plus a few anonymous custom events such as store-button clicks, printout
+		actions, and Class Play joins. This helps us understand what content is helpful so we can
+		improve the site. These events carry no cookies and no personal identifiers.
 		You can learn more in <a
 			href="https://plausible.io/privacy"
 			target="_blank"
