@@ -9,6 +9,10 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'flashcards-for-key-phrases',
+		title: 'Flashcards for doctrinal mastery key phrases'
+	},
+	{
 		slug: 'digital-convenient-analog-helps-you-map',
 		title: 'Digital is convenient. Analog helps you map.'
 	},
