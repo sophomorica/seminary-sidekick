@@ -9,6 +9,10 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'class-play-steadier-on-iphone-1-0-11',
+		title: 'Class Play is steadier on iPhone in 1.0.11'
+	},
+	{
 		slug: 'two-quiet-minutes-of-flips',
 		title: 'Two quiet minutes of flips'
 	},
@@ -90,6 +94,15 @@ test.describe("What's new", () => {
 			await expect(page.getByRole('link', { name: /back to news/i }).first()).toBeVisible();
 		});
 	}
+
+	test('1.0.11 post names App Store 1.0.11 and Android 1.0.10', async ({ page }) => {
+		await page.goto('/news/class-play-steadier-on-iphone-1-0-11');
+
+		await expect(page.getByText('1.0.11 is live on the App Store')).toBeVisible();
+		await expect(page.getByText(/Android is still on 1\.0\.10/)).toBeVisible();
+		await expect(page.getByText(/Coming to Android/i)).toHaveCount(0);
+		await expect(page.getByText(/Play with Friends/i)).toHaveCount(0);
+	});
 
 	test('analog-mapping post links printouts as one markdown bridge', async ({ page }) => {
 		await page.goto('/news/digital-convenient-analog-helps-you-map');
