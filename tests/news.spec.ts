@@ -99,7 +99,9 @@ test.describe("What's new", () => {
 		await page.goto('/news/class-play-steadier-on-iphone-1-0-11');
 
 		await expect(page.getByText('1.0.11 is live on the App Store')).toBeVisible();
-		await expect(page.getByText(/Android is still on 1\.0\.10/)).toBeVisible();
+		await expect(
+			page.getByText(/Android is still on 1\.0\.10 until Play catches up/)
+		).toBeVisible();
 		await expect(page.getByText(/Coming to Android/i)).toHaveCount(0);
 		await expect(page.getByText(/Play with Friends/i)).toHaveCount(0);
 	});
