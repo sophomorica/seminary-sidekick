@@ -1,15 +1,32 @@
 # Seminary Sidekick Site — Narrow Road Studios
 
+<!-- nr-agent-contract:1 -->
+## Agent contract (all models)
+
+Start here. Do not search the disk for “how we work.”
+This file is the instruction set on GitHub and on disk.
+
+Definition of done (all must be true):
+1. This repo’s analyze or lint command exits 0.
+2. This repo’s test command exits 0. New behavior has a test.
+3. Build or typecheck succeeds when the repo has one.
+4. No orphans (unreachable screens, unused new files).
+5. No secrets in git.
+6. If `.claude/stop-gate.sh` exists, you ran it and it exited 0. If it does not exist, do not write that a Stop hook ran.
+
+Workers escalate architecture instead of inventing it.
+Hub `standards/` and poteto-mode skills apply only when this session already loaded them. A clone of this repo alone does not have hub.
+
 Context is loaded by role — read only what your role lists. Don't preload other standards; the validator enforces them.
 
 - **Workers:** this file + your task spec. Definition of done is below; everything else comes from the spec.
-- **Validator / design-reviewer:** your agent file tells you which standards to read (`../../hub/standards/`).
-- **Main / planning sessions only:** also follow `../../hub/standards/OPERATING_MANUAL.md` — especially §4 (re-derive, never vibes), §5 (VERIFIED/INFERRED/ASSUMED labels), and the pre-send self-test.
+- **Validator / design-reviewer:** hub standards apply only when this session already loaded hub. Do not open `../../hub/standards/` from this clone.
+- **Main / planning sessions only:** also follow hub `standards/OPERATING_MANUAL.md` if this session already loaded hub. A clone of this repo alone does not have hub.
 
 Design identity for THIS product lives in `THEME.md` (this repo). Universal floors are shared; the vibe is this product's own.
 
 ## Non-negotiables
-- Definition of done = `../../hub/standards/CODE_STANDARDS.md` §Definition of done. The Stop hook enforces the deterministic parts; do not try to bypass it.
+- Definition of done is in the Agent contract above. This repo has no Stop hook. Do not write that one ran.
 - Work is not complete until `/review` (validator subagent) returns PASS.
 - Workers make no architectural decisions — escalate instead of improvising.
 - No orphaned components: everything merged must be reachable and imported.
@@ -31,7 +48,7 @@ SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte + mdsvex, deployed 
 - No Tier-2/3 additions now (Supabase, Resend, Pagefind) — Tier 1 has no general backend, accounts, or database. **Explicit product exception:** Class Play web join uses Supabase anonymous auth, `join_room`, and Realtime under `/join`; this exception is limited to the Group Play participant flow.
 
 ## Repo-specific notes
-- Family layout is **`../app/` + `../webpage/` only**. Sibling folders named `app-pr*` / `webpage-pr*` are leftover git worktrees, not extra products. Playbook: `../../../hub/pipeline/WORKTREES.md`.
+- Family layout is **`../app/` + `../webpage/` only**. Sibling folders named `app-pr*` / `webpage-pr*` are leftover git worktrees, not extra products. Do not treat them as products.
 - Scripture data is owned by the Flutter app (`../app/lib/data/scriptures_data.dart`). Never hand-edit `src/lib/data/doctrinalMastery.json`; import via `$lib/data/scriptures` helpers. Full rules in `docs/CONVENTIONS.md`.
 - Never generate real image/audio assets — `.txt` placeholders at the intended final path (see `docs/CONVENTIONS.md`).
 - Launch-day values (store URLs, site metadata, nav) live in `src/lib/config/*.ts` — every CTA reads from these.

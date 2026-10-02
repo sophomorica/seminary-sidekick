@@ -3,6 +3,7 @@
   on this path. @page letter lives in app.css (utilities cannot set page size).
 -->
 <script lang="ts">
+	import { track } from '$lib/analytics/plausible';
 	import { Button } from '$lib/components/ui/button';
 	import FirstLetterSheet from '$lib/components/printouts/FirstLetterSheet.svelte';
 	import PhraseTileSheet from '$lib/components/printouts/PhraseTileSheet.svelte';
@@ -10,6 +11,7 @@
 	import {
 		LEVEL_COPY,
 		printoutHasStaticPdf,
+		printoutLibraryPath,
 		printoutPdfPath,
 		printoutSheetPath
 	} from '$lib/scripture-builder/printouts';
@@ -28,6 +30,7 @@
 	const hasReadyPdf = $derived(printoutHasStaticPdf(data.slug));
 
 	function printSheet() {
+		track('printout_print');
 		window.print();
 	}
 </script>
@@ -46,7 +49,7 @@
 	class="print-toolbar print:hidden border-b border-outline-variant/40 bg-surface-container-lowest px-4 py-4 md:px-8"
 >
 	<div class="mx-auto flex max-w-[8.5in] flex-wrap items-center justify-between gap-3">
-		<Button href="/teachers/printouts" variant="ghost" size="sm">
+		<Button href={printoutLibraryPath(data.slug)} variant="ghost" size="sm">
 			<ArrowLeft aria-hidden="true" />
 			All printouts
 		</Button>
@@ -61,6 +64,7 @@
 					variant="outlined"
 					size="sm"
 					download
+					onclick={() => track('printout_print')}
 				>
 					<Download aria-hidden="true" />
 					Download PDF

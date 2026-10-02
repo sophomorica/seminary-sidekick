@@ -1,0 +1,20 @@
+---
+title: 'Class Play is steadier on iPhone in 1.0.11'
+slug: 'class-play-steadier-on-iphone-1-0-11'
+date: '2026-09-21'
+excerpt: 'Class Play is steadier on iPhone in Seminary Sidekick 1.0.11 — host double-Start no longer resets the quiz. Android is still on 1.0.10.'
+tags: ['release', 'class-play']
+author: 'Patrick'
+---
+
+Class Play is steadier on iPhone in Seminary Sidekick 1.0.11.
+
+If the host taps Start twice, the quiz no longer resets. Canceling a purchase no longer crashes the app. Delete All keeps Eternal progress when a wipe only partly succeeds.
+
+Class Play is still a short seminary warmup: students join with a four-letter code or QR, then Quick Quiz or a Scripture Builder race. The rest of the path is Study, Build, Prove, Master. Flashcards stay free practice in Practice — recognition, not mastery-gating.
+
+1.0.11 is live on the App Store. Android is still on 1.0.10 until Play catches up — same free tools there today, including Flashcards and Class Play.
+
+Free to start. Premium is $4.99 a month or $34.99 a year. No ads.
+
+[Get the app](https://seminarysidekick.com) · [App Store](https://apps.apple.com/us/app/seminary-sidekick/id6780003239) · [Google Play](https://play.google.com/store/apps/details?id=com.seminarysidekick.app)

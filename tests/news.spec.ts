@@ -9,6 +9,38 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'class-play-steadier-on-iphone-1-0-11',
+		title: 'Class Play is steadier on iPhone in 1.0.11'
+	},
+	{
+		slug: 'two-quiet-minutes-of-flips',
+		title: 'Two quiet minutes of flips'
+	},
+	{
+		slug: 'flashcards-for-key-phrases',
+		title: 'Flashcards for doctrinal mastery key phrases'
+	},
+	{
+		slug: 'digital-convenient-analog-helps-you-map',
+		title: 'Digital is convenient. Analog helps you map.'
+	},
+	{
+		slug: 'i-used-to-cut-these-by-hand',
+		title: 'I used to cut these by hand'
+	},
+	{
+		slug: 'dont-stop-at-the-tiles',
+		title: 'Don’t stop at the tiles'
+	},
+	{
+		slug: 'mixed-tiles-for-the-board',
+		title: 'Mixed tiles for the board'
+	},
+	{
+		slug: 'one-verse-a-day-beats-cramming',
+		title: 'One verse a day beats cramming'
+	},
+	{
 		slug: 'class-play-warmup-not-homework',
 		title: 'A warmup, not extra homework'
 	},
@@ -62,6 +94,36 @@ test.describe("What's new", () => {
 			await expect(page.getByRole('link', { name: /back to news/i }).first()).toBeVisible();
 		});
 	}
+
+	test('1.0.11 post names App Store 1.0.11 and Android 1.0.10', async ({ page }) => {
+		await page.goto('/news/class-play-steadier-on-iphone-1-0-11');
+
+		await expect(page.getByText('1.0.11 is live on the App Store')).toBeVisible();
+		await expect(
+			page.getByText(/Android is still on 1\.0\.10 until Play catches up/)
+		).toBeVisible();
+		await expect(page.getByText(/Coming to Android/i)).toHaveCount(0);
+		await expect(page.getByText(/Play with Friends/i)).toHaveCount(0);
+	});
+
+	test('analog-mapping post links printouts as one markdown bridge', async ({ page }) => {
+		await page.goto('/news/digital-convenient-analog-helps-you-map');
+
+		const bridge = page.getByRole('link', { name: 'Scripture Builder printouts' });
+		await expect(bridge).toBeVisible();
+		await expect(bridge).toHaveAttribute('href', '/teachers/printouts');
+	});
+
+	test('printouts post uses a Button CTA, not a raw URL', async ({ page }) => {
+		await page.goto('/news/i-used-to-cut-these-by-hand');
+
+		const cta = page.getByRole('link', { name: 'Open Scripture Builder printouts' });
+		await expect(cta).toBeVisible();
+		await expect(cta).toHaveAttribute('href', '/teachers/printouts');
+		await expect(
+			page.getByRole('link', { name: /seminarysidekick\.com\/teachers\/printouts/ })
+		).toHaveCount(0);
+	});
 
 	test('RSS includes the live slugs', async ({ request }) => {
 		const res = await request.get('/news/rss.xml');

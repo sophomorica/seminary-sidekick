@@ -17,7 +17,7 @@ export type PrintoutVerse = {
 	scriptureId: string;
 };
 
-/** Patrick-signed-off proof verse — default picker selection. */
+/** Patrick-signed-off proof verse — static PDFs only. Page default is this week. */
 export const DEFAULT_PRINTOUT_SLUG = '2-nephi-2-25';
 
 /** Longest DM passage in the app bank — US Letter fit proof. */
@@ -79,6 +79,23 @@ export function printoutPdfPath(slug: string, level: PrintoutLevel): string {
 
 export function printoutSheetPath(slug: string, level: PrintoutLevel): string {
 	return `/teachers/printouts/${slug}/${level}`;
+}
+
+/** Query key for the library picker — keeps the chosen verse across sheet trips. */
+export const PRINTOUT_VERSE_PARAM = 'verse';
+
+export function resolvePrintoutSlug(slug: string | null | undefined): string {
+	if (slug && getPrintoutVerse(slug)) return slug;
+	return DEFAULT_PRINTOUT_SLUG;
+}
+
+export function printoutSlugFromSearch(searchParams: URLSearchParams): string {
+	return resolvePrintoutSlug(searchParams.get(PRINTOUT_VERSE_PARAM));
+}
+
+/** Library picker URL. Always include the verse so returning from a sheet cannot snap to 2 Nephi. */
+export function printoutLibraryPath(slug: string): string {
+	return `/teachers/printouts?${PRINTOUT_VERSE_PARAM}=${resolvePrintoutSlug(slug)}`;
 }
 
 /** True for the print-ready sheet routes (chrome hidden; US Letter). */
