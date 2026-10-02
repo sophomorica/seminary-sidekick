@@ -81,6 +81,25 @@ test.describe('/teachers mixer', () => {
 		);
 		await expect(page.getByText(/teach is not ready as a factory/i).first()).toBeVisible();
 	});
+
+	test('shared view links render that tab before any JS runs', async ({ browser }) => {
+		const context = await browser.newContext({ javaScriptEnabled: false });
+		const page = await context.newPage();
+
+		await page.goto('/teachers?view=today');
+		await expect(page.getByRole('heading', { name: /first morning/i })).toBeVisible();
+		await expect(page.getByRole('heading', { name: /grabbers you can run/i })).toHaveCount(0);
+		await expect(page.getByRole('link', { name: 'Today', exact: true })).toHaveAttribute(
+			'aria-current',
+			'page'
+		);
+
+		await page.goto('/teachers?view=week');
+		await expect(page.getByRole('heading', { name: /first week/i })).toBeVisible();
+		await expect(page.getByRole('heading', { name: /grabbers you can run/i })).toHaveCount(0);
+
+		await context.close();
+	});
 });
 
 test.describe('Grabber routes', () => {

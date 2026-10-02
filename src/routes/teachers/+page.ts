@@ -1,7 +1,8 @@
 import { loadPost } from '$lib/content/loadPosts';
 import type { PageLoad } from './$types';
 
-export const prerender = true;
+/** Request-time so a shared `?view=today` or `?view=week` link renders that tab, not Mix. */
+export const prerender = false;
 
 function catalogLink(slug: string) {
 	const post = loadPost(slug);
