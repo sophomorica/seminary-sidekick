@@ -7,12 +7,15 @@
 	import AppNav from '$lib/components/layout/AppNav.svelte';
 	import AppFooter from '$lib/components/layout/AppFooter.svelte';
 	import { isPrintSheetPath } from '$lib/scripture-builder/printouts';
+	import { isGrabberPrintPath } from '$lib/teachers/mixer';
 
 	let { children } = $props();
 	const isJoinRoute = $derived(
 		page.url.pathname === '/join' || page.url.pathname.startsWith('/join/')
 	);
-	const hideChrome = $derived(isJoinRoute || isPrintSheetPath(page.url.pathname));
+	const hideChrome = $derived(
+		isJoinRoute || isPrintSheetPath(page.url.pathname) || isGrabberPrintPath(page.url.pathname)
+	);
 
 	/**
 	 * Brand easing — mirrors `--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1)`.

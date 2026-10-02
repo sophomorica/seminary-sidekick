@@ -22,6 +22,7 @@ const PAGES_TO_AUDIT = [
 	'/news',
 	'/teachers',
 	'/teachers/printouts',
+	'/teachers/grabbers/name-tents',
 	'/privacy',
 	'/terms',
 	'/contact'

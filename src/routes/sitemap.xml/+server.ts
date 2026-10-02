@@ -38,6 +38,36 @@ const STATIC_ROUTES: ReadonlyArray<Omit<SitemapEntry, 'loc'> & { path: string }>
 	{ path: '/for-teachers', changefreq: 'monthly', priority: '0.8', lastmod: BUILD_DATE },
 	{ path: '/teachers', changefreq: 'weekly', priority: '0.8', lastmod: BUILD_DATE },
 	{ path: '/teachers/printouts', changefreq: 'weekly', priority: '0.7', lastmod: BUILD_DATE },
+	{
+		path: '/teachers/grabbers/name-tents',
+		changefreq: 'monthly',
+		priority: '0.6',
+		lastmod: BUILD_DATE
+	},
+	{
+		path: '/teachers/grabbers/corner-compass',
+		changefreq: 'monthly',
+		priority: '0.6',
+		lastmod: BUILD_DATE
+	},
+	{
+		path: '/teachers/grabbers/partner-echo',
+		changefreq: 'monthly',
+		priority: '0.6',
+		lastmod: BUILD_DATE
+	},
+	{
+		path: '/teachers/grabbers/welcome-seat',
+		changefreq: 'monthly',
+		priority: '0.6',
+		lastmod: BUILD_DATE
+	},
+	{
+		path: '/teachers/grabbers/four-beats-pass',
+		changefreq: 'monthly',
+		priority: '0.6',
+		lastmod: BUILD_DATE
+	},
 	{ path: '/news', changefreq: 'weekly', priority: '0.7', lastmod: BUILD_DATE },
 	{ path: '/about', changefreq: 'yearly', priority: '0.5', lastmod: BUILD_DATE },
 	{ path: '/privacy', changefreq: 'yearly', priority: '0.3', lastmod: BUILD_DATE },

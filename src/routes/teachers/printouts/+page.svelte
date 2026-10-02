@@ -65,6 +65,12 @@
 			Print tiles or first-letter hints. Same chunks as the app. All
 			{TOTAL_SCRIPTURES} doctrinal-mastery verses.
 		</p>
+		<p class="mt-4 text-body-sm text-on-surface-variant">
+			From the
+			<a href="/teachers" class="font-semibold text-accent underline-offset-2 hover:underline"
+				>morning mixer</a
+			>.
+		</p>
 	</div>
 </section>
 

@@ -638,6 +638,21 @@ After all Phase B tasks complete.
 
 ---
 
+### TASK-MIX-001: Teacher home mixer (first-week grabbers)
+- **status:** done
+- **claimed_by:** cursor-cloud-d93d
+- **started:** 2026-08-28T01:55:00Z
+- **completed:** 2026-08-28T02:20:00Z
+- **depends_on:** TASK-PRINT-001
+- **files_to_touch:** `src/lib/teachers/`, `src/lib/components/teachers/`, `src/routes/teachers/+page.svelte`, `src/routes/teachers/+page.ts`, `src/routes/teachers/grabbers/`, `src/routes/+layout.svelte`, `src/routes/sitemap.xml/+server.ts`, `tests/teachers.spec.ts`, `tests/smoke.spec.ts`, `tests/a11y.spec.ts`
+- **what:** Replace the `/teachers` coming-soon catalog with a morning mixer (Mix / Today / This week). Real original Grabber cards a teacher can run or print, including Scripture Builder printouts as one card. Honest first-week OT 2026–27 beats. No Saved tab. No fake testimonials. No catalog dump.
+- **acceptance:**
+  - [x] `/teachers` is a usable mixer, not a coming-soon shell
+  - [x] Printouts stay at `/teachers/printouts` with a quiet mixer link
+  - [x] New grabber routes return 200 and include how-to + print/play path
+  - [x] Tests updated; PR open, not merged
+- **completion notes:** `/teachers` is Mix / Today / This week. Six grabber cards (printouts + five original first-week formats). Teach beats say the factory is not ready. Saved skipped (no accounts).
+
 ### TASK-PRINT-001: Scripture Builder teacher printouts (full DM library)
 - **status:** done
 - **claimed_by:** cursor-cloud-33ca
