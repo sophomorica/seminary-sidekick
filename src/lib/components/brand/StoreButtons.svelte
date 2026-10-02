@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '$lib/analytics/plausible';
 	import { IOS_URL, ANDROID_URL, IOS_AVAILABLE, ANDROID_AVAILABLE } from '$lib/config/store';
 	import { Button } from '$lib/components/ui/button';
 	import { cn } from '$lib/utils';
@@ -28,7 +29,12 @@
 -->
 <div class={cn('flex flex-wrap items-center gap-3', className)}>
 	{#if IOS_AVAILABLE}
-		<Button href={IOS_URL} {variant} {size}>
+		<Button
+			href={IOS_URL}
+			{variant}
+			{size}
+			onclick={() => track('get_app_click', { store: 'ios' })}
+		>
 			<Apple aria-hidden="true" />
 			App Store
 		</Button>
@@ -42,7 +48,12 @@
 	{/if}
 
 	{#if ANDROID_AVAILABLE}
-		<Button href={ANDROID_URL} variant={variant === 'primary' ? 'outlined' : variant} {size}>
+		<Button
+			href={ANDROID_URL}
+			variant={variant === 'primary' ? 'outlined' : variant}
+			{size}
+			onclick={() => track('get_app_click', { store: 'android' })}
+		>
 			<Smartphone aria-hidden="true" />
 			Google Play
 		</Button>
