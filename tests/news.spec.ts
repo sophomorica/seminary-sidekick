@@ -21,6 +21,10 @@ const POSTS = [
 		title: 'Flashcards for doctrinal mastery key phrases'
 	},
 	{
+		slug: 'say-the-key-phrase-cold',
+		title: 'Say the key phrase cold.'
+	},
+	{
 		slug: 'digital-convenient-analog-helps-you-map',
 		title: 'Digital is convenient. Analog helps you map.'
 	},
