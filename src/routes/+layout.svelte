@@ -6,6 +6,8 @@
 	import SkipLink from '$lib/components/layout/SkipLink.svelte';
 	import AppNav from '$lib/components/layout/AppNav.svelte';
 	import AppFooter from '$lib/components/layout/AppFooter.svelte';
+	import PromoStrip from '$lib/promo/PromoStrip.svelte';
+	import { promoStripOnPath } from '$lib/promo/paths';
 	import { isPrintSheetPath } from '$lib/scripture-builder/printouts';
 	import { isGrabberPrintPath } from '$lib/teachers/mixer';
 
@@ -75,5 +77,8 @@
 </main>
 
 {#if !hideChrome}
+	{#if promoStripOnPath(page.url.pathname)}
+		<PromoStrip />
+	{/if}
 	<AppFooter />
 {/if}

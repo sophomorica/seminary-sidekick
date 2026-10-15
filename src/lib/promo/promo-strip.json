@@ -1,0 +1,33 @@
+{
+	"source": "sidekick",
+	"items": [
+		{
+			"id": "speed-read",
+			"body": "Read 70,000+ free classics one word at a time. Goji Speed Read, free on iPhone and iPad.",
+			"cta": "App Store",
+			"href": "https://www.narrowroadstudios.com/go/speed-read?utm_source={source}&utm_medium=promo-strip&utm_campaign=ecosystem-strip&utm_content=speed-read"
+		},
+		{
+			"id": "ofp",
+			"body": "One installment of a classic serial in your inbox each morning, free and ready to print.",
+			"cta": "Get tomorrow's page",
+			"href": "https://www.oldfashionedprints.com/?utm_source={source}&utm_medium=promo-strip&utm_campaign=ecosystem-strip&utm_content=ofp"
+		},
+		{
+			"id": "books",
+			"body": "Free interactive storybooks for kids.",
+			"cta": "Read The Wish",
+			"href": "https://narrowroadbooks.com/?utm_source={source}&utm_medium=promo-strip&utm_campaign=ecosystem-strip&utm_content=books"
+		},
+		{
+			"id": "youtube",
+			"body": "Classic stories, read aloud.",
+			"cta": "Watch on YouTube",
+			"href": "https://www.youtube.com/@narrowroadstudios"
+		}
+	],
+	"short": {
+		"text": "Free classic serial each morning → Old Fashioned Prints",
+		"href": "https://www.oldfashionedprints.com/?utm_source={source}&utm_medium=promo-strip&utm_campaign=ecosystem-strip&utm_content=ofp"
+	}
+}
