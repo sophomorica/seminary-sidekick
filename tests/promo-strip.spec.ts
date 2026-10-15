@@ -45,7 +45,7 @@ test('promo strip links carry sidekick UTMs, with Speed Read before OFP', async 
 
 	const aboveFooter = await page.evaluate(() => {
 		const band = document.querySelector('[data-promo-strip]');
-		const footer = document.querySelector('footer');
+		const footer = document.querySelector('footer[aria-label="Site footer"]');
 		if (!band || !footer) return false;
 		return Boolean(band.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING);
 	});
