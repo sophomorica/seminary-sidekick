@@ -4,9 +4,9 @@ import {
 	PRINTOUT_LEVELS,
 	PRINTOUT_VERSES,
 	isPrintoutLevel,
-	loadPrintoutScripture,
-	scrambledTilesFor
+	loadPrintoutScripture
 } from '$lib/scripture-builder/printouts';
+import { buildPrintoutSheet } from '$lib/scripture-builder/printoutSheet';
 
 export const prerender = true;
 
@@ -26,12 +26,8 @@ export const load: PageLoad = ({ params }) => {
 		throw error(404, 'That scripture is not in the printout library');
 	}
 
-	const chunks = params.level === 'advanced' ? [] : scrambledTilesFor(scripture, params.level);
-
 	return {
 		slug: params.slug,
-		level: params.level,
-		scripture,
-		chunks
+		sheet: buildPrintoutSheet(scripture, params.level)
 	};
 };

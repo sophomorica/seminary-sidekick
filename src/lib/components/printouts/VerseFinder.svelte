@@ -20,9 +20,9 @@
 		PRINTOUT_LEVELS,
 		PRINTOUT_VERSE_COUNT,
 		loadPrintoutScripture,
-		scrambledTilesFor,
 		type PrintoutLevel
 	} from '$lib/scripture-builder/printouts';
+	import { buildPrintoutSheet } from '$lib/scripture-builder/printoutSheet';
 	import type { ThisWeekPin } from '$lib/scripture-builder/thisWeek';
 	import {
 		findPrintoutVerses,
@@ -59,9 +59,7 @@
 	const scripture = $derived(
 		loadPrintoutScripture(activeSlug) ?? loadPrintoutScripture(DEFAULT_PRINTOUT_SLUG)
 	);
-	const previewChunks = $derived(
-		scripture && previewLevel !== 'advanced' ? scrambledTilesFor(scripture, previewLevel) : []
-	);
+	const previewSheet = $derived(scripture ? buildPrintoutSheet(scripture, previewLevel) : null);
 	const userPicked = $derived(Boolean(pickedSlug || selectedSlug));
 	const cfmPin = $derived(
 		!userPicked && (thisWeek.kind === 'doctrinal-mastery' || thisWeek.kind === 'proximal')
@@ -355,12 +353,7 @@
 		</TooltipProvider>
 	</div>
 
-	{#if scripture}
-		<PrintoutPreview
-			slug={activeSlug}
-			level={previewLevel}
-			{scripture}
-			chunks={previewChunks}
-		/>
+	{#if previewSheet}
+		<PrintoutPreview slug={activeSlug} sheet={previewSheet} />
 	{/if}
 </div>

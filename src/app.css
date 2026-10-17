@@ -576,7 +576,6 @@
 }
 
 /*
- * Scripture Builder teacher printouts.
  * @page cannot be expressed as a Tailwind utility. Named page applies
  * only to .printout-sheet so the rest of the site is unchanged.
  */
@@ -585,9 +584,25 @@
 	margin: 0.45in 0.5in 0.4in;
 }
 
+/*
+ * Scripture Builder sheets own the whole Letter page: zero margin so cut lines
+ * reach the paper edge and Chrome prints no URL/date headers. printoutSheet.ts
+ * keeps all ink EDGE_SAFE_IN inside each edge; its LETTER must match this size.
+ */
+@page scripture-sheet {
+	size: letter;
+	margin: 0;
+}
+
 @media print {
 	.printout-sheet {
 		page: printout-letter;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.scripture-sheet {
+		page: scripture-sheet;
 		-webkit-print-color-adjust: exact;
 		print-color-adjust: exact;
 	}

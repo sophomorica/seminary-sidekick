@@ -17,14 +17,8 @@ export type PrintoutVerse = {
 	scriptureId: string;
 };
 
-/** Patrick-signed-off proof verse — static PDFs only. Page default is this week. */
+/** Fallback verse when no valid pick resolves. Page default is this week. */
 export const DEFAULT_PRINTOUT_SLUG = '2-nephi-2-25';
-
-/** Longest DM passage in the app bank — US Letter fit proof. */
-export const LONG_PRINTOUT_SLUG = 'exodus-20-3-17';
-
-/** Slugs that have a ready file under `static/printouts/`. */
-const STATIC_PDF_SLUGS = new Set<string>([DEFAULT_PRINTOUT_SLUG]);
 
 export function scriptureSlug(reference: string): string {
 	return reference
@@ -69,14 +63,6 @@ export function loadPrintoutScripture(slug: string): Scripture | null {
 	return getScripture(entry.scriptureId);
 }
 
-export function printoutHasStaticPdf(slug: string): boolean {
-	return STATIC_PDF_SLUGS.has(slug);
-}
-
-export function printoutPdfPath(slug: string, level: PrintoutLevel): string {
-	return `/printouts/${slug}-${level}.pdf`;
-}
-
 export function printoutSheetPath(slug: string, level: PrintoutLevel): string {
 	return `/teachers/printouts/${slug}/${level}`;
 }
@@ -117,43 +103,6 @@ export function printoutVersesByBook(): PrintoutBookGroup[] {
 	})).filter((group) => group.verses.length > 0);
 }
 
-/**
- * Tile size so a long verse still fits US Letter in two columns.
- * Short verses keep the compact size Patrick signed off.
- */
-export function tileSheetDensity(tileCount: number): {
-	list: string;
-	tile: string;
-	text: string;
-} {
-	if (tileCount <= 10) {
-		return {
-			list: 'grid grid-cols-2 gap-2 print:grid-cols-2',
-			tile: 'flex min-h-[0.62in] items-center rounded-2xl border-2 border-dashed border-outline bg-surface-container-low px-3 py-2 print:min-h-[0.58in]',
-			text: 'font-serif text-[1.15rem] leading-snug text-on-surface italic md:text-[1.25rem] print:text-[16pt]'
-		};
-	}
-	if (tileCount <= 20) {
-		return {
-			list: 'grid grid-cols-2 gap-1.5 print:grid-cols-2',
-			tile: 'flex min-h-[0.48in] items-center rounded-2xl border-2 border-dashed border-outline bg-surface-container-low px-3 py-1.5 print:min-h-[0.44in]',
-			text: 'font-serif text-[1.05rem] leading-snug text-on-surface italic print:text-[13pt]'
-		};
-	}
-	if (tileCount <= 32) {
-		return {
-			list: 'grid grid-cols-2 gap-1 print:grid-cols-2',
-			tile: 'flex min-h-[0.38in] items-center rounded-xl border-2 border-dashed border-outline bg-surface-container-low px-2.5 py-1 print:min-h-[0.34in]',
-			text: 'font-serif text-[0.95rem] leading-snug text-on-surface italic print:text-[11pt]'
-		};
-	}
-	return {
-		list: 'grid grid-cols-2 gap-1 print:grid-cols-2',
-		tile: 'flex min-h-[0.30in] items-center rounded-xl border border-dashed border-outline bg-surface-container-low px-2 py-0.5 print:min-h-[0.28in]',
-		text: 'font-serif text-[0.85rem] leading-snug text-on-surface italic print:text-[10pt]'
-	};
-}
-
 /** Canonical app chunks in verse order — never print these as a numbered sequence. */
 export function tilesFor(scripture: Scripture, difficulty: TapDifficulty): string[] {
 	return buildTargetChunks(scripture.fullText, difficulty);
@@ -162,7 +111,7 @@ export function tilesFor(scripture: Scripture, difficulty: TapDifficulty): strin
 /**
  * Print/display order for cut-out tiles. Same phrases as the app, mixed so
  * the sheet does not give the verse order away. Deterministic per scripture
- * + level so the PDF and the print page match.
+ * and level.
  */
 export function scrambledTilesFor(scripture: Scripture, difficulty: TapDifficulty): string[] {
 	return scrambleTiles(tilesFor(scripture, difficulty), `${scripture.id}:${difficulty}`);
@@ -203,12 +152,12 @@ export function scrambleTiles(tiles: readonly string[], seed: string): string[] 
 export const LEVEL_COPY: Record<PrintoutLevel, { label: string; blurb: string; action: string }> = {
 	beginner: {
 		label: 'Beginner',
-		blurb: 'Compact 2-column mixed cut-out tiles. Same adaptive beginner chunks as the app.',
+		blurb: 'Two-column mixed cut-out tiles on shared cut lines. Same adaptive beginner chunks as the app.',
 		action: 'Print tiles'
 	},
 	intermediate: {
 		label: 'Intermediate',
-		blurb: 'Compact 2-column mixed cut-out tiles. Same adaptive intermediate split as the app.',
+		blurb: 'Two-column mixed cut-out tiles on shared cut lines. Same adaptive intermediate split as the app.',
 		action: 'Print tiles'
 	},
 	advanced: {
