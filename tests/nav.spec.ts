@@ -129,6 +129,30 @@ test.describe('AppFooter', () => {
 		const href = await mail.getAttribute('href');
 		expect(href).toMatch(/^mailto:.+@.+\..+/);
 	});
+
+	const STUDIO_CREDIT_NAME = 'Made by Narrow Road Studios';
+	const STUDIO_CREDIT_HREF = 'https://narrowroadstudios.com';
+
+	for (const route of ['/', '/teachers/printouts'] as const) {
+		test(`studio credit sits in the site footer on ${route}`, async ({ page }) => {
+			await page.goto(route);
+			const link = page
+				.getByRole('contentinfo')
+				.getByRole('link', { name: STUDIO_CREDIT_NAME, exact: true });
+			await expect(link).toBeVisible();
+			await expect(link).toHaveAttribute('href', STUDIO_CREDIT_HREF);
+		});
+	}
+
+	test('printout sheet has no studio credit on screen or in print', async ({ page }) => {
+		const response = await page.goto('/teachers/printouts/isaiah-58-6-7/beginner');
+		expect(response?.status()).toBe(200);
+		await expect(page.getByRole('heading', { name: /Isaiah 58:6/ })).toBeVisible();
+		await expect(page.getByRole('contentinfo', { includeHidden: true })).toHaveCount(0);
+		await expect(
+			page.getByRole('link', { name: STUDIO_CREDIT_NAME, exact: true, includeHidden: true })
+		).toHaveCount(0);
+	});
 });
 
 test.describe('Mobile menu', () => {

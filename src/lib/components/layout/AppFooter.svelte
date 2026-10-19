@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FOOTER_NAV } from '$lib/config/nav';
-	import { SITE_NAME, COPYRIGHT_YEAR, SOCIAL_LINKS } from '$lib/config/site';
+	import { SITE_NAME, COPYRIGHT_YEAR, SOCIAL_LINKS, STUDIO_CREDIT } from '$lib/config/site';
 	import Logo from '$lib/components/brand/Logo.svelte';
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
 	import { Twitter, Instagram, Facebook, Youtube } from 'lucide-svelte';
@@ -49,10 +49,22 @@
 		<div
 			class="flex flex-col items-start justify-between gap-4 border-t border-outline-variant/30 pt-8 md:flex-row md:items-center"
 		>
-			<p class="text-body-sm text-on-surface-variant">
-				© {COPYRIGHT_YEAR}
-				{SITE_NAME}. Built for seminary students everywhere.
-			</p>
+			<div class="flex flex-col gap-1">
+				<p class="text-body-sm text-on-surface-variant">
+					© {COPYRIGHT_YEAR}
+					{SITE_NAME}. Built for seminary students everywhere.
+				</p>
+				<p class="text-body-sm text-on-surface-variant">
+					<a
+						href={STUDIO_CREDIT.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="focus-ring rounded transition-colors hover:text-primary"
+					>
+						{STUDIO_CREDIT.label}
+					</a>
+				</p>
+			</div>
 			<div class="flex items-center gap-4">
 				{#if SOCIAL_LINKS.twitter}
 					<a
