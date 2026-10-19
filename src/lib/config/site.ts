@@ -42,6 +42,11 @@ export const SOCIAL_LINKS = {
 	youtube: undefined as string | undefined
 } as const;
 
+export const STUDIO_CREDIT = {
+	label: 'Made by Narrow Road Studios',
+	href: 'https://narrowroadstudios.com'
+} as const;
+
 /**
  * Year baked into the footer copyright. Update annually or compute at build time.
  */
