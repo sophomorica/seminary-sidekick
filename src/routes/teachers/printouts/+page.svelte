@@ -88,7 +88,7 @@
 
 		<p class="text-body-sm text-on-surface-variant">
 			Open a sheet, then use your browser’s Print dialog (Destination: Save as PDF, paper size
-			US Letter). Ready PDFs are available for 2 Nephi 2:25.
+			US Letter).
 		</p>
 	</div>
 </section>
