@@ -42,6 +42,11 @@ export const SOCIAL_LINKS = {
 	youtube: undefined as string | undefined
 } as const;
 
+export const SPEED_READ_LINK = {
+	label: 'Read every book, free forever.',
+	href: 'https://www.narrowroadstudios.com/go/speed-read'
+} as const;
+
 /**
  * Year baked into the footer copyright. Update annually or compute at build time.
  */
