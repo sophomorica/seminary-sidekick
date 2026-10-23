@@ -7,6 +7,13 @@ author: 'Patrick'
 draft: false
 ---
 
+<img
+	src="/images/news/news-10min-review-2026-10-27.jpg"
+	alt="A phone showing word tiles being arranged into a sentence, next to a closed book, a pencil and a checklist card."
+	class="mb-8 w-full rounded-4xl shadow-editorial"
+	loading="lazy"
+/>
+
 Most of us can recognize a verse long before we can say it. That's normal. Recognition comes first, recall comes later, and recall only comes with practice.
 
 Here's a routine that takes about 10 minutes a week:

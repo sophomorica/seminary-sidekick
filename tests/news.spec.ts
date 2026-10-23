@@ -140,6 +140,13 @@ test.describe("What's new", () => {
 
 		await expect(page.locator('p.eyebrow')).toHaveText('October 27, 2026');
 
+		const photo = page.locator('.post-body img');
+		await expect(photo).toHaveAttribute('src', '/images/news/news-10min-review-2026-10-27.jpg');
+		await expect(photo).toHaveAttribute(
+			'alt',
+			'A phone showing word tiles being arranged into a sentence, next to a closed book, a pencil and a checklist card.'
+		);
+
 		const guide = page.getByRole('link', { name: /Doctrinal mastery: a parent.s guide/ });
 		await expect(guide).toHaveAttribute('href', '/doctrinal-mastery');
 
