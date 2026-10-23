@@ -9,6 +9,10 @@ import { test, expect } from '@playwright/test';
 
 const POSTS = [
 	{
+		slug: 'a-10-minute-weekly-scripture-review-you-can-do-at-home',
+		title: 'A 10-minute weekly scripture review you can do at home'
+	},
+	{
 		slug: 'class-play-steadier-on-iphone-1-0-11',
 		title: 'Class Play is steadier on iPhone in 1.0.11'
 	},
@@ -127,6 +131,27 @@ test.describe("What's new", () => {
 		await expect(
 			page.getByRole('link', { name: /seminarysidekick\.com\/teachers\/printouts/ })
 		).toHaveCount(0);
+	});
+
+	test('10-minute review post is dated 27 October 2026 and links the parent guide', async ({
+		page
+	}) => {
+		await page.goto('/news/a-10-minute-weekly-scripture-review-you-can-do-at-home');
+
+		await expect(page.locator('p.eyebrow')).toHaveText('October 27, 2026');
+
+		const guide = page.getByRole('link', { name: /Doctrinal mastery: a parent.s guide/ });
+		await expect(guide).toHaveAttribute('href', '/doctrinal-mastery');
+
+		await expect(
+			page.getByText(/independent app and isn.t made or endorsed by any church/)
+		).toBeVisible();
+
+		await page.goto('/news');
+		const card = page.getByRole('link', {
+			name: 'A 10-minute weekly scripture review you can do at home'
+		});
+		await expect(card.locator('time')).toHaveAttribute('datetime', '2026-10-27');
 	});
 
 	test('RSS includes the live slugs', async ({ request }) => {
