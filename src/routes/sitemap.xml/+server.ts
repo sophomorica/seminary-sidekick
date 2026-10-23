@@ -36,6 +36,7 @@ const STATIC_ROUTES: ReadonlyArray<Omit<SitemapEntry, 'loc'> & { path: string }>
 	{ path: '/scripture-match', changefreq: 'monthly', priority: '0.9', lastmod: BUILD_DATE },
 	{ path: '/premium', changefreq: 'monthly', priority: '0.9', lastmod: BUILD_DATE },
 	{ path: '/for-teachers', changefreq: 'monthly', priority: '0.8', lastmod: BUILD_DATE },
+	{ path: '/doctrinal-mastery', changefreq: 'monthly', priority: '0.8', lastmod: BUILD_DATE },
 	{ path: '/teachers', changefreq: 'weekly', priority: '0.8', lastmod: BUILD_DATE },
 	{ path: '/teachers/printouts', changefreq: 'weekly', priority: '0.7', lastmod: BUILD_DATE },
 	{

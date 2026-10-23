@@ -25,6 +25,7 @@ const ROUTES = [
 	'/scripture-match',
 	'/premium',
 	'/for-teachers',
+	'/doctrinal-mastery',
 	'/teachers',
 	'/teachers/printouts',
 	'/teachers/grabbers/name-tents',
@@ -102,4 +103,18 @@ test('RSS feed serves valid XML', async ({ request }) => {
 	const body = await res.text();
 	expect(body).toMatch(/^<\?xml/);
 	expect(body).toContain('<rss');
+});
+
+test('sitemap lists every public route', async ({ request }) => {
+	const res = await request.get('/sitemap.xml');
+	expect(res.status()).toBe(200);
+	const body = await res.text();
+
+	for (const route of ROUTES) {
+		const loc =
+			route === '/'
+				? 'https://seminarysidekick.com/'
+				: `https://seminarysidekick.com${route}`;
+		expect(body, loc).toContain(`<loc>${loc}</loc>`);
+	}
 });
