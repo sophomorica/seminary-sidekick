@@ -43,6 +43,8 @@
 
 	import { SITE_NAME, TAGLINE } from '$lib/config/site';
 
+	let { data } = $props();
+
 	const pageTitle = `${SITE_NAME} — ${TAGLINE}`;
 	const pageDescription =
 		'A focused, reverent way to master all 100 doctrinal mastery scriptures. Built for seminary students, teachers, and parents.';
@@ -64,5 +66,5 @@
 <ScriptureMatchDemo />
 <ClassPlay />
 <ForTeachersStrip />
-<NewsPreview />
+<NewsPreview posts={data.newsPosts} />
 <FinalCTA />

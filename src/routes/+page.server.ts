@@ -7,9 +7,15 @@
  * `/for-teachers` (and any future page that hosts a <WaitlistForm />).
  */
 
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { fail } from '@sveltejs/kit';
 import { joinClassPlayWaitlist } from '$lib/server/waitlist';
+import { listPublishedPosts } from '$lib/server/posts';
+
+/** The 3 newest posts (.svx + live Supabase rows) for NewsPreview. */
+export const load: PageServerLoad = async () => {
+	return { newsPosts: (await listPublishedPosts()).slice(0, 3) };
+};
 
 export const actions: Actions = {
 	joinWaitlist: async ({ request }) => {

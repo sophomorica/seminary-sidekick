@@ -139,3 +139,101 @@ test.describe("What's new", () => {
 		}
 	});
 });
+
+/**
+ * Supabase-backed posts. The dev server reads from tests/mocks/supabase-posts.mjs,
+ * which returns every row regardless of status, so these prove the site's own
+ * filter hides drafts and anything scheduled or published in the future.
+ */
+const REMOTE_LIVE = { slug: 'posted-from-supabase', title: 'Posted from Supabase' };
+
+const REMOTE_HIDDEN = [
+	{ slug: 'supabase-draft-post', title: 'Supabase draft post' },
+	{ slug: 'supabase-scheduled-future-post', title: 'Supabase scheduled future post' },
+	{ slug: 'supabase-future-published-post', title: 'Supabase future published post' }
+] as const;
+
+test.describe('Supabase posts', () => {
+	test('a live row is listed alongside the .svx posts', async ({ page }) => {
+		await page.goto('/news');
+
+		const card = page.getByRole('link', { name: REMOTE_LIVE.title });
+		await expect(card).toBeVisible();
+		await expect(card).toHaveAttribute('href', `/news/${REMOTE_LIVE.slug}`);
+
+		// The .svx posts are still there.
+		await expect(page.getByRole('link', { name: POSTS[0].title })).toBeVisible();
+	});
+
+	test('the newest live row reaches the homepage strip', async ({ page }) => {
+		await page.goto('/');
+		const section = page.locator('#news-preview');
+		await expect(section.getByRole('link', { name: REMOTE_LIVE.title })).toBeVisible();
+	});
+
+	test('a live row renders its markdown body and hero image', async ({ page }) => {
+		const response = await page.goto(`/news/${REMOTE_LIVE.slug}`);
+		expect(response?.status()).toBe(200);
+
+		await expect(
+			page.getByRole('heading', { level: 1, name: REMOTE_LIVE.title })
+		).toBeVisible();
+		await expect(
+			page
+				.locator('.post-body')
+				.getByRole('heading', { level: 2, name: 'A heading from markdown' })
+		).toBeVisible();
+		await expect(
+			page.locator('.post-body').getByRole('link', { name: 'Scripture Builder printouts' })
+		).toHaveAttribute('href', '/teachers/printouts');
+
+		const hero = page.locator('.post-body img');
+		await expect(hero).toHaveAttribute('src', '/images/news/news-10min-review-2026-10-27.jpg');
+		await expect(hero).toHaveAttribute('alt', 'Mock hero image');
+	});
+
+	test('drafts and future posts are not shown anywhere', async ({ page, request }) => {
+		await page.goto('/news');
+		await expect(page.getByRole('link', { name: REMOTE_LIVE.title })).toBeVisible();
+		for (const post of REMOTE_HIDDEN) {
+			await expect(page.getByRole('link', { name: post.title })).toHaveCount(0);
+		}
+
+		await page.goto('/');
+		for (const post of REMOTE_HIDDEN) {
+			await expect(page.getByRole('link', { name: post.title })).toHaveCount(0);
+		}
+
+		const rss = await (await request.get('/news/rss.xml')).text();
+		const sitemap = await (await request.get('/sitemap.xml')).text();
+		for (const post of REMOTE_HIDDEN) {
+			expect(rss).not.toContain(post.slug);
+			expect(sitemap).not.toContain(post.slug);
+		}
+
+		for (const post of REMOTE_HIDDEN) {
+			const res = await page.goto(`/news/${post.slug}`);
+			expect(res?.status(), post.slug).toBe(404);
+		}
+	});
+
+	test('a .svx post wins over a row with the same slug', async ({ page }) => {
+		await page.goto('/news/two-quiet-minutes-of-flips');
+		await expect(
+			page.getByRole('heading', { level: 1, name: 'Two quiet minutes of flips' })
+		).toBeVisible();
+		await expect(page.getByText('Shadow title from Supabase')).toHaveCount(0);
+
+		await page.goto('/news');
+		await expect(page.getByRole('link', { name: 'Shadow title from Supabase' })).toHaveCount(0);
+	});
+
+	test('RSS and sitemap include the live row', async ({ request }) => {
+		const rss = await (await request.get('/news/rss.xml')).text();
+		expect(rss).toContain(`/news/${REMOTE_LIVE.slug}`);
+		expect(rss).toContain(REMOTE_LIVE.title);
+
+		const sitemap = await (await request.get('/sitemap.xml')).text();
+		expect(sitemap).toContain(`/news/${REMOTE_LIVE.slug}</loc>`);
+	});
+});

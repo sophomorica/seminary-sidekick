@@ -1,22 +1,20 @@
 import { error } from '@sveltejs/kit';
-import { loadPost, listSlugs } from '$lib/content/loadPosts';
-import type { PageLoad, EntryGenerator } from './$types';
-
-export const prerender = true;
+import { loadPost } from '$lib/content/loadPosts';
+import type { PageLoad } from './$types';
 
 /**
- * Prerender entry discovery — SvelteKit calls this at build time to
- * find every concrete slug to prerender. Without this, /news/[slug]
- * would be a dynamic route and `prerender = true` would fail.
+ * Universal load: .svx posts carry a Svelte component, which can't be
+ * serialized out of +page.server.ts, so the component is resolved here.
+ * Supabase posts arrive from the server load as rendered HTML.
  */
-export const entries: EntryGenerator = () => {
-	return listSlugs().map((slug) => ({ slug }));
-};
+export const load: PageLoad = ({ params, data }) => {
+	const local = loadPost(params.slug);
+	if (local) return { post: local, component: local.component, html: null, coverAlt: '' };
 
-export const load: PageLoad = ({ params }) => {
-	const post = loadPost(params.slug);
-	if (!post) {
-		throw error(404, `No post found at /news/${params.slug}`);
+	if (data.remote) {
+		const { html, coverAlt, ...post } = data.remote;
+		return { post, component: null, html, coverAlt };
 	}
-	return { post };
+
+	throw error(404, `No post found at /news/${params.slug}`);
 };
