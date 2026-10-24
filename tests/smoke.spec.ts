@@ -39,6 +39,9 @@ const ROUTES = [
 	'/contact'
 ] as const;
 
+/** A post served by the mock Supabase (tests/mocks/supabase-posts.mjs). */
+const SUPABASE_POST_ROUTES = ['/news/posted-from-supabase'] as const;
+
 /**
  * Capture page-level errors so a route that "loads" but throws in JS
  * (a common Svelte runtime bug pattern) still fails the test.
@@ -62,7 +65,7 @@ function trackErrors(page: Page): string[] {
 	return errors;
 }
 
-for (const route of ROUTES) {
+for (const route of [...ROUTES, ...SUPABASE_POST_ROUTES]) {
 	test(`${route} loads with 200 and no JS errors`, async ({ page }) => {
 		const errors = trackErrors(page);
 		const response = await page.goto(route, { waitUntil: 'networkidle' });

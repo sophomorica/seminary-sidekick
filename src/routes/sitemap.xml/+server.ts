@@ -1,4 +1,5 @@
-import { loadPosts } from '$lib/content/loadPosts';
+import type { Config } from '@sveltejs/adapter-vercel';
+import { listPublishedPosts } from '$lib/server/posts';
 import { SITE_URL } from '$lib/config/site';
 
 /**
@@ -9,8 +10,8 @@ import { SITE_URL } from '$lib/config/site';
  *
  * Static routes are listed here explicitly so the sitemap doesn't have to
  * crawl the filesystem at request time. Add or remove a public route?
- * Update STATIC_ROUTES below. News posts come from loadPosts() so they
- * stay in sync with src/content/news/*.svx without a second source of truth.
+ * Update STATIC_ROUTES below. News posts come from listPublishedPosts() so
+ * they stay in sync with .svx files and live Supabase rows.
  */
 
 type SitemapEntry = {
@@ -93,9 +94,10 @@ function renderEntry(entry: SitemapEntry): string {
 \t</url>`;
 }
 
-export const prerender = true;
+export const prerender = false;
+export const config: Config = { isr: { expiration: 300 } };
 
-export function GET() {
+export async function GET() {
 	const entries: SitemapEntry[] = STATIC_ROUTES.map((route) => ({
 		loc: `${SITE_URL}${route.path}`,
 		lastmod: route.lastmod,
@@ -104,7 +106,7 @@ export function GET() {
 	}));
 
 	// Append every published news post.
-	for (const post of loadPosts()) {
+	for (const post of await listPublishedPosts()) {
 		entries.push({
 			loc: `${SITE_URL}/news/${post.slug}`,
 			lastmod: post.date,

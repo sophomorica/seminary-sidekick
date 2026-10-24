@@ -62,7 +62,21 @@
 		18px Merriweather, 1.7 line-height, generous rhythm, beautiful sacred quotes per THEME.md.
 	-->
 	<div class="post-body">
-		<post.component />
+		{#if data.component}
+			<data.component />
+		{:else if data.html !== null}
+			{#if post.cover}
+				<img
+					src={post.cover}
+					alt={data.coverAlt}
+					class="mb-8 w-full rounded-4xl shadow-editorial"
+					loading="lazy"
+				/>
+			{/if}
+			<!-- body_md from Supabase, rendered server-side. Trusted: only the service role can write posts. -->
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			{@html data.html}
+		{/if}
 	</div>
 
 	<footer class="mt-16 border-t border-outline-variant/30 pt-8">

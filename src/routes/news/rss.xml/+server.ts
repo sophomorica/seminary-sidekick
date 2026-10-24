@@ -1,13 +1,14 @@
-import { loadPosts } from '$lib/content/loadPosts';
+import type { Config } from '@sveltejs/adapter-vercel';
+import { listPublishedPosts } from '$lib/server/posts';
 import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
 
 /**
  * RSS 2.0 feed for the news blog.
- * Auto-generated at build/request time from the same loadPosts() source of truth.
+ * Generated at request time from listPublishedPosts() (.svx + live Supabase posts).
  * Valid, standards-friendly XML (with Atom self-link for good feed readers).
  *
  * Access at: /news/rss.xml
- * Empty feed (no items) is perfectly valid while the content/news/ folder has no .svx posts.
+ * Empty feed (no items) is perfectly valid when there are no posts.
  */
 
 function escapeXml(str: string): string {
@@ -25,10 +26,11 @@ function formatPubDate(dateStr: string): string {
 	return d.toUTCString();
 }
 
-export const prerender = true;
+export const prerender = false;
+export const config: Config = { isr: { expiration: 300 } };
 
-export function GET() {
-	const posts = loadPosts();
+export async function GET() {
+	const posts = await listPublishedPosts();
 
 	const lastBuild = posts.length > 0 ? formatPubDate(posts[0].date) : new Date().toUTCString();
 

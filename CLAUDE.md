@@ -45,7 +45,7 @@ SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte + mdsvex, deployed 
 - Svelte 5 runes (`$props`, `$state`, `$derived`, `$effect`, snippets) — no legacy Svelte 4 syntax.
 - All styling via Tailwind utilities; design tokens live in `tailwind.config.js` — never hardcode hex colors, never use `shadow-lg`/`shadow-xl` (use `shadow-editorial`/`shadow-floating`). Cards `rounded-[2rem]`, buttons `rounded-full`.
 - No `<style>` blocks except for animations utilities can't do (justify in a comment).
-- No Tier-2/3 additions now (Supabase, Resend, Pagefind) — Tier 1 has no general backend, accounts, or database. **Explicit product exception:** Class Play web join uses Supabase anonymous auth, `join_room`, and Realtime under `/join`; this exception is limited to the Group Play participant flow.
+- No Tier-2/3 additions now (Supabase, Resend, Pagefind) — Tier 1 has no general backend, accounts, or database. **Explicit product exception:** Class Play web join uses Supabase anonymous auth, `join_room`, and Realtime under `/join`; this exception is limited to the Group Play participant flow. **Second exception:** news posts are read server-side (anon key, read-only RLS) from the Supabase `public.posts` table and merged with `src/content/news/*.svx` — see `supabase/README.md`. New posts are rows, not PRs.
 
 ## Repo-specific notes
 - Family layout is **`../app/` + `../webpage/` only**. Sibling folders named `app-pr*` / `webpage-pr*` are leftover git worktrees, not extra products. Do not treat them as products.

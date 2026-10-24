@@ -18,18 +18,18 @@
   Empty state: when there are no posts yet, render a single placeholder
   card so the homepage rhythm and section meta remain intact.
 
-  Data source is `loadPosts()` from $lib/content/loadPosts — Vite-inlined,
-  synchronous, sorted by date desc.
+  Data comes in as `posts` from the homepage server load
+  (listPublishedPosts() — .svx + live Supabase posts, sorted by date desc).
 
   Composition into the homepage happens in TASK-C-100 (not here).
 -->
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowRight } from 'lucide-svelte';
-	import { loadPosts } from '$lib/content/loadPosts';
 	import { reveal } from '$lib/actions';
+	import type { NewsPostFrontmatter } from '$lib/content/schema';
 
-	const posts = $derived(loadPosts().slice(0, 3));
+	let { posts }: { posts: NewsPostFrontmatter[] } = $props();
 
 	/** Format an ISO YYYY-MM-DD date as "Month D, YYYY" for the card meta. */
 	function formatDate(iso: string): string {
