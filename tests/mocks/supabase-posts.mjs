@@ -46,6 +46,17 @@ function rows() {
 		},
 		{
 			...base,
+			slug: 'doctrinal-mastery-a-parents-guide',
+			title: "Doctrinal mastery: a parent's guide",
+			summary: "A parent's guide to the 100 doctrinal mastery scriptures.",
+			body_md: '## What is doctrinal mastery?\n\nThe list of 100 scripture passages.',
+			tags: ['parents'],
+			status: 'published',
+			publish_at: iso(now - 3 * HOUR),
+			published_at: iso(now - 3 * HOUR)
+		},
+		{
+			...base,
 			slug: 'supabase-draft-post',
 			title: 'Supabase draft post',
 			summary: 'Not ready.',

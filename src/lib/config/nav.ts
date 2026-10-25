@@ -63,6 +63,7 @@ export const FOOTER_NAV: FooterGroup[] = [
 	{
 		heading: 'Read',
 		links: [
+			{ label: 'Doctrinal mastery guide', href: '/doctrinal-mastery' },
 			{ label: 'News & devotionals', href: '/news' },
 			{ label: 'About', href: '/about' }
 		]

@@ -69,6 +69,7 @@ const STATIC_ROUTES: ReadonlyArray<Omit<SitemapEntry, 'loc'> & { path: string }>
 		priority: '0.6',
 		lastmod: BUILD_DATE
 	},
+	{ path: '/doctrinal-mastery', changefreq: 'monthly', priority: '0.8', lastmod: BUILD_DATE },
 	{ path: '/news', changefreq: 'weekly', priority: '0.7', lastmod: BUILD_DATE },
 	{ path: '/about', changefreq: 'yearly', priority: '0.5', lastmod: BUILD_DATE },
 	{ path: '/privacy', changefreq: 'yearly', priority: '0.3', lastmod: BUILD_DATE },
