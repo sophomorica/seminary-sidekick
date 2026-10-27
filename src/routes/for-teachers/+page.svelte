@@ -383,8 +383,8 @@
 				class="mt-8 rounded-2xl bg-surface-container px-4 py-3 text-body-md text-on-surface-variant"
 			>
 				<span class="font-semibold text-on-surface">What it costs:</span>
-				anyone can host one casual game a week with up to 6 players, free. Hosting a full class
-				— rooms of up to 30 students, unlimited games — is part of
+				anyone can host one game a week with up to 35 players, free. Unlimited games with rooms
+				of up to 50 students are part of
 				<a
 					href="/premium"
 					class="font-semibold text-tertiary underline-offset-2 hover:underline"
