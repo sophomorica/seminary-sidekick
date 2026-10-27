@@ -118,7 +118,7 @@
 			icon: Users,
 			eyebrow: 'For teachers',
 			title: 'Class Play',
-			body: 'Live, class-wide rounds — Kahoot-style Quick Quiz or a Scripture Builder race. Save the class once; students join with a four-letter code, pick their name, and the leaderboard updates in real time. Free hosts get one 6-player game a week and one saved class of 6; Premium hosts run unlimited games with up to 30 players.',
+			body: 'Live, class-wide rounds — Kahoot-style Quick Quiz or a Scripture Builder race. Save the class once; students join with a four-letter code, pick their name, and the leaderboard updates in real time. Free hosts get one game a week with up to 35 players and one saved class of 6; Premium hosts run unlimited games with up to 50 players.',
 			iconBg: 'bg-accent-light/30',
 			iconColor: 'text-accent',
 			href: '/for-teachers#class-play',
@@ -148,7 +148,7 @@
 		},
 		{
 			q: 'Is it actually free?',
-			a: 'The full mastery loop — Scripture Builder, study tools, practice quizzes, and progress tracking — is free, and every free account can host one casual Class Play game a week with up to 6 players. Premium ($4.99/month or $34.99/year) adds the Seminary Sidekick AI companion — journal prompts, suggested goals, reflection questions, chat — plus unlimited Class Play hosting with class rooms for up to 30 players. Joining a game is always free; only the host needs Premium.'
+			a: 'The full mastery loop — Scripture Builder, study tools, practice quizzes, and progress tracking — is free, and every free account can host one Class Play game a week with up to 35 players. Premium ($4.99/month or $34.99/year) adds the Seminary Sidekick AI companion — journal prompts, suggested goals, reflection questions, chat — plus unlimited Class Play hosting with rooms for up to 50 players. Joining a game is always free; only the host needs Premium.'
 		}
 	];
 </script>
