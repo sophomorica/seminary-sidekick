@@ -1,15 +1,6 @@
-import type { Config } from '@sveltejs/adapter-vercel';
-import { listPublishedPosts } from '$lib/server/posts';
 import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '$lib/config/site';
-
-/**
- * RSS 2.0 feed for the news blog.
- * Generated at request time from listPublishedPosts() (.svx + live Supabase posts).
- * Valid, standards-friendly XML (with Atom self-link for good feed readers).
- *
- * Access at: /news/rss.xml
- * Empty feed (no items) is perfectly valid when there are no posts.
- */
+import { contentCache } from '$lib/server/contentCache';
+import { listNews } from '$lib/server/posts';
 
 function escapeXml(str: string): string {
 	return str
@@ -21,27 +12,25 @@ function escapeXml(str: string): string {
 }
 
 function formatPubDate(dateStr: string): string {
-	// Use local noon UTC to keep dates stable regardless of server TZ
 	const d = new Date(`${dateStr}T12:00:00Z`);
 	return d.toUTCString();
 }
 
 export const prerender = false;
-export const config: Config = { isr: { expiration: 300 } };
 
-export async function GET() {
-	const posts = await listPublishedPosts();
-
+export async function GET({
+	setHeaders
+}: {
+	setHeaders: (headers: Record<string, string>) => void;
+}) {
+	setHeaders(contentCache);
+	const posts = await listNews();
 	const lastBuild = posts.length > 0 ? formatPubDate(posts[0].date) : new Date().toUTCString();
 
 	let itemsXml = '';
 	for (const post of posts) {
 		const pub = formatPubDate(post.date);
 		const link = `${SITE_URL}/news/${post.slug}`;
-		const categories = post.tags
-			.map((tag) => `<category>${escapeXml(tag)}</category>`)
-			.join('');
-
 		itemsXml += `
 		<item>
 			<title>${escapeXml(post.title)}</title>
@@ -49,8 +38,7 @@ export async function GET() {
 			<description>${escapeXml(post.excerpt)}</description>
 			<pubDate>${pub}</pubDate>
 			<guid isPermaLink="true">${link}</guid>
-			<author>${escapeXml(post.author)} &lt;${CONTACT_EMAIL}&gt;</author>
-			${categories}
+			<author>Patrick &lt;${CONTACT_EMAIL}&gt;</author>
 		</item>`;
 	}
 
@@ -71,7 +59,7 @@ ${itemsXml}
 	return new Response(rss, {
 		headers: {
 			'Content-Type': 'application/xml; charset=utf-8',
-			'Cache-Control': 'public, max-age=3600, s-maxage=86400'
+			...contentCache
 		}
 	});
 }

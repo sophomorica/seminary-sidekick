@@ -39,7 +39,7 @@ const ROUTES = [
 	'/contact'
 ] as const;
 
-/** A post served by the mock Supabase (tests/mocks/supabase-posts.mjs). */
+/** A published fixture row in the local posts database. */
 const SUPABASE_POST_ROUTES = ['/news/posted-from-supabase'] as const;
 
 /**

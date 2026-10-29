@@ -13,7 +13,7 @@ Moved verbatim from the original CLAUDE.md.
 | Component folders (multi-file) | `kebab-case/`                                 | `components/demos/quick-quiz/`    |
 | TypeScript / JS files          | `camelCase.ts`                                | `loadPosts.ts`, `formatDate.ts`   |
 | Config files                   | `kebab-case.ts` in `src/lib/config/`          | `store.ts`, `nav.ts`              |
-| Content files                  | `kebab-case-slug.svx`                         | `seminary-sidekick-is-live.svx`   |
+| Content rows                   | `public.posts.slug`                           | `say-the-key-phrase-cold`         |
 | Tailwind classes               | semantic tokens only                          | `bg-primary`, not `bg-[#94492C]`  |
 
 ### Svelte 5 conventions
@@ -37,23 +37,9 @@ Moved verbatim from the original CLAUDE.md.
 - **Never use `shadow-lg`/`shadow-xl`/etc.** Use `shadow-editorial` or `shadow-floating`.
 - **Default radius for cards is `rounded-[2rem]` (32px).** Buttons are `rounded-full`.
 
-### Content (MDX / mdsvex)
+### Content
 
-Posts live in `src/content/news/[slug].svx` with frontmatter:
-
-```yaml
----
-title: 'Seminary Sidekick is live in the App Store'
-slug: 'seminary-sidekick-is-live'
-date: 2026-05-28
-excerpt: 'After months of building, Seminary Sidekick is now available to download.'
-tags: ['release', 'announcement']
-cover: '/images/news/launch-cover.png'
-author: 'Patrick'
----
-```
-
-A shared frontmatter schema lives in `src/lib/content/schema.ts` and is used by the resource library later — so add fields conservatively.
+News and guides are rows in `public.posts`, not files in a pull request. A row is on the site when `status` is `published` and `publish_at` has passed. News is `/news/<slug>`. The parent guide stays at `/doctrinal-mastery`. Later guides are `/guides/<slug>`. Seed and migration live in `supabase/`. The site reads them at request time. Do not add a `.svx` post to publish something.
 
 ### Scripture data — source of truth lives in the Flutter app
 

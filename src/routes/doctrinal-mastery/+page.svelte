@@ -23,7 +23,7 @@
 	</header>
 
 	<div class="post-body">
-		<!-- body_md from Supabase, rendered server-side. Trusted: only the service role can write posts. -->
+		<!-- Server render of body_md. Anon cannot write public.posts. -->
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html data.html}
 	</div>

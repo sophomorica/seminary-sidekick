@@ -19,7 +19,7 @@
   card so the homepage rhythm and section meta remain intact.
 
   Data comes in as `posts` from the homepage server load
-  (listPublishedPosts() — .svx + live Supabase posts, sorted by date desc).
+  (listNews() — published rows whose publish_at has passed).
 
   Composition into the homepage happens in TASK-C-100 (not here).
 -->
@@ -27,18 +27,9 @@
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowRight } from 'lucide-svelte';
 	import { reveal } from '$lib/actions';
-	import type { NewsPostFrontmatter } from '$lib/content/schema';
+	import type { NewsCard } from '$lib/content/post';
 
-	let { posts }: { posts: NewsPostFrontmatter[] } = $props();
-
-	/** Format an ISO YYYY-MM-DD date as "Month D, YYYY" for the card meta. */
-	function formatDate(iso: string): string {
-		return new Date(iso).toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		});
-	}
+	let { posts }: { posts: NewsCard[] } = $props();
 </script>
 
 <section
@@ -84,18 +75,8 @@
 						class="card card-hover group focus-ring flex flex-col"
 						aria-labelledby={`news-preview-title-${post.slug}`}
 					>
-						{#if post.cover}
-							<img
-								src={post.cover}
-								alt=""
-								class="mb-5 w-full rounded-2xl object-cover"
-								style="aspect-ratio: 16 / 9;"
-								loading="lazy"
-							/>
-						{/if}
-
 						<time datetime={post.date} class="text-body-sm text-on-surface-variant">
-							{formatDate(post.date)}
+							{post.dateLabel}
 						</time>
 
 						<h3

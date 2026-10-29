@@ -1,38 +1,21 @@
-# Supabase — news posts
+# Supabase — news and guides
 
-News posts publish from the `public.posts` table. Code ships in PRs; posts do not.
+Posts and guides publish from `public.posts`. A row is on the site when `status` is `published` and `publish_at` is in the past. Nothing in the site flips that status. Set `publish_at` and the next request after the cache window shows the page.
 
-## Apply (once)
+The cache ceiling is 15 minutes (`s-maxage=900`) on `/news`, a post, a guide, RSS, the sitemap, and the homepage strip.
 
-1. Run `migrations/20261024120000_posts.sql` in the Supabase SQL editor (or `supabase db push`).
-   It creates `public.posts`, read-only RLS for anon, `public.publish_due_posts()`, and a
-   pg_cron job `publish-scheduled-posts` every 5 minutes.
-2. Run `seed/20261024_posts_seed.sql` to schedule the parent guide and the 10-minute home
-   review for 2026-10-27 (former PRs #33 and #34).
-3. Make sure Vercel has `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY` (already used
-   by `/join`). The site never uses the service role key.
+## Apply
 
-If `create extension pg_cron` fails, enable **pg_cron** under Database → Extensions and
-re-run the last block of the migration. Fallback without pg_cron: a scheduled Edge Function
-that calls `select public.publish_due_posts();` every 5 minutes.
+Do this in the Supabase SQL editor for project `feqxdylouvoulhqwsffp`. Do not apply it from CI.
 
-## Write a post
+1. `migrations/20261024120000_posts.sql` if it has not been applied yet.
+2. `migrations/20261029160000_posts_content_model.sql`. This reshapes the table, turns the parent guide into `kind = 'guide'` at slug `doctrinal-mastery`, drops the cron publisher, and creates the public-read `post-images` bucket. Anon can select visible rows and cannot write.
+3. `seed/20261029_posts_content.sql`. This upserts the thirteen published news posts, the parent guide, and the 27 October review. The review's `publish_at` is 08:00 America/New_York on 2026-10-27. The guide is 07:00 the same morning.
 
-Insert a row with `status = 'scheduled'` and `publish_at`, or `status = 'draft'` while
-writing. `body_md` is Markdown. `hero_image_url` is an absolute URL or a site path such as
-`/images/news/...` (Supabase Storage public URLs work too); set `hero_image_alt` with it.
+Upload `static/images/news/news-10min-review-2026-10-27.jpg` to the `post-images` bucket when you want the production image served from storage. The seed stores the site path `/images/news/news-10min-review-2026-10-27.jpg`, which the deployed site serves from `static/`.
 
-Check a schedule:
+Vercel already has `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY` for `/join`. The site uses those to read posts. It does not use a service role key and it does not read `DATABASE_URL`.
 
-```sql
-select slug, status, publish_at, published_at from public.posts order by coalesce(publish_at, created_at) desc;
-select * from cron.job_run_details order by start_time desc limit 5;
-```
+## Local and tests
 
-## How the site reads it
-
-`src/lib/server/posts.ts` merges live rows with `src/content/news/*.svx` (a `.svx` post wins
-a slug collision). `/news`, `/news/[slug]`, RSS and the sitemap render per request with Vercel
-ISR (5 minutes); the homepage strip is SSR. Rows are cached per instance for 60 seconds. If
-Supabase is unreachable the site shows the `.svx` posts only. A scheduled post goes live at
-most ~11 minutes after `publish_at` (cron tick + cache + ISR).
+`POSTS_LOCAL=1` loads the migration and the seed into PGLite. Playwright sets that, plus `POSTS_E2E_FIXTURES=1` for a live row, a draft, and two future rows. Those fixtures are not in the seed file.

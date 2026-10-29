@@ -50,29 +50,22 @@ export default defineConfig({
 		navigationTimeout: 15_000
 	},
 
-	// The dev server reads news posts from a mock Supabase (tests/mocks/supabase-posts.mjs),
-	// never the real project. A dev server you already have running on 5173 is reused
-	// locally and won't have the mock env, so stop it before running news tests.
-	webServer: [
-		{
-			command: 'node tests/mocks/supabase-posts.mjs',
-			url: 'http://127.0.0.1:54329/health',
-			reuseExistingServer: !process.env.CI,
-			timeout: 30_000
-		},
-		{
-			command: 'pnpm dev',
-			url: 'http://localhost:5173',
-			reuseExistingServer: !process.env.CI,
-			timeout: 120_000,
-			stdout: 'pipe',
-			stderr: 'pipe',
-			env: {
-				PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54329',
-				PUBLIC_SUPABASE_ANON_KEY: 'e2e-mock-anon-key'
-			}
+	// Posts come from a local PGLite database loaded with the repo seed.
+	// POSTS_LOCAL keeps the suite off any real DATABASE_URL or Supabase project.
+	webServer: {
+		command: 'pnpm dev',
+		url: 'http://localhost:5173',
+		reuseExistingServer: !process.env.CI,
+		timeout: 120_000,
+		stdout: 'pipe',
+		stderr: 'pipe',
+		env: {
+			POSTS_LOCAL: '1',
+			POSTS_E2E_FIXTURES: '1',
+			PUBLIC_SUPABASE_URL: 'http://127.0.0.1:9',
+			PUBLIC_SUPABASE_ANON_KEY: 'e2e-unused'
 		}
-	],
+	},
 
 	projects: [
 		{
