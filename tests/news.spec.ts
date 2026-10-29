@@ -141,9 +141,8 @@ test.describe("What's new", () => {
 });
 
 /**
- * Supabase-backed posts. The dev server reads from tests/mocks/supabase-posts.mjs,
- * which returns every row regardless of status, so these prove the site's own
- * filter hides drafts and anything scheduled or published in the future.
+ * Rows in the local posts database. Drafts and rows with a future publish_at
+ * must not render, and must not show up in RSS or the sitemap.
  */
 const REMOTE_LIVE = { slug: 'posted-from-supabase', title: 'Posted from Supabase' };
 
@@ -154,14 +153,13 @@ const REMOTE_HIDDEN = [
 ] as const;
 
 test.describe('Supabase posts', () => {
-	test('a live row is listed alongside the .svx posts', async ({ page }) => {
+	test('a live row is listed alongside the seeded posts', async ({ page }) => {
 		await page.goto('/news');
 
 		const card = page.getByRole('link', { name: REMOTE_LIVE.title });
 		await expect(card).toBeVisible();
 		await expect(card).toHaveAttribute('href', `/news/${REMOTE_LIVE.slug}`);
 
-		// The .svx posts are still there.
 		await expect(page.getByRole('link', { name: POSTS[0].title })).toBeVisible();
 	});
 
@@ -217,15 +215,9 @@ test.describe('Supabase posts', () => {
 		}
 	});
 
-	test('a .svx post wins over a row with the same slug', async ({ page }) => {
-		await page.goto('/news/two-quiet-minutes-of-flips');
-		await expect(
-			page.getByRole('heading', { level: 1, name: 'Two quiet minutes of flips' })
-		).toBeVisible();
-		await expect(page.getByText('Shadow title from Supabase')).toHaveCount(0);
-
-		await page.goto('/news');
-		await expect(page.getByRole('link', { name: 'Shadow title from Supabase' })).toHaveCount(0);
+	test('the guide is not a news post', async ({ page }) => {
+		const res = await page.goto('/news/doctrinal-mastery');
+		expect(res?.status()).toBe(404);
 	});
 
 	test('RSS and sitemap include the live row', async ({ request }) => {

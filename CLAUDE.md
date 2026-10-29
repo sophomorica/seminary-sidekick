@@ -41,7 +41,7 @@ Design identity for THIS product lives in `THEME.md` (this repo). Universal floo
 CI must pass `pnpm check` (no TS errors), `pnpm lint`, and `pnpm test:e2e`. Lighthouse target: 95+ on all four scores on the homepage. The E2E suite is the regression baseline — when a test fails, either the thing broke or the test needs updating; never silence one. See `tests/README.md` for the coverage map.
 
 ## Stack rules
-SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte + mdsvex, deployed on Vercel.
+SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte, deployed on Vercel. News and guides are rows in Supabase `public.posts`.
 - Svelte 5 runes (`$props`, `$state`, `$derived`, `$effect`, snippets) — no legacy Svelte 4 syntax.
 - All styling via Tailwind utilities; design tokens live in `tailwind.config.js` — never hardcode hex colors, never use `shadow-lg`/`shadow-xl` (use `shadow-editorial`/`shadow-floating`). Cards `rounded-[2rem]`, buttons `rounded-full`.
 - No `<style>` blocks except for animations utilities can't do (justify in a comment).
@@ -57,7 +57,7 @@ SvelteKit / Svelte 5 + TypeScript + Tailwind + shadcn-svelte + mdsvex, deployed 
 ## Doc map
 - `docs/OVERVIEW.md` — what this project is / is not, Tier-1 scope, open strategic questions. Read when planning or scoping new work.
 - `docs/ARCHITECTURE.md` — tech stack rationale, full project structure tree, key files reference. Read before adding routes/components or when lost in the layout.
-- `docs/CONVENTIONS.md` — naming, Svelte 5, styling, mdsvex content, scripture-data rules, asset placeholders, config-as-code, accessibility, SEO. Read before writing any code.
+- `docs/CONVENTIONS.md` — naming, Svelte 5, styling, posts table, scripture-data rules, asset placeholders, config-as-code, accessibility, SEO. Read before writing any code.
 - `docs/AGENT-COORDINATION.md` — TODO.md claim/complete protocol, file ownership, commit format, parallel-safe patterns. Read before claiming a task.
 - `docs/vercel-setup.md` — Vercel hosting/deploy configuration. Read when touching deployment.
 - `THEME.md` — visual design system: colors, fonts, motion, components. Read before any UI work.

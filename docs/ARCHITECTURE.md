@@ -11,20 +11,20 @@ Moved verbatim from the original CLAUDE.md.
 | **TypeScript**                                  | Type safety, especially valuable for the content schema and store config.               |
 | **Tailwind CSS**                                | Utility-first styling. All design tokens live in `tailwind.config.js`.                  |
 | **shadcn-svelte**                               | Component primitives. We copy components into `src/lib/components/ui/` and own them.    |
-| **mdsvex**                                      | `.svx` files = Markdown + Svelte components. Blog posts, devotionals, lesson plans.     |
+| **public.posts**                                | News and guides. Markdown in the row, rendered at request time. No `.svx` files.        |
 | **Vercel**                                      | Hosting. `adapter-vercel` for v1; can swap to `adapter-static` if we want fully static. |
 | **Plausible** _(or PostHog — pending decision)_ | Analytics.                                                                              |
 
 **Reserved for Tier 2/3** (don't add now):
 
-- **Supabase** — auth + Postgres database
-- **Supabase Storage** — file assets for resource library
+- **Supabase auth** for a general account system
 - **Resend** — transactional + digest email
 - **Pagefind** — search
 
-Class Play is the explicit narrow Supabase exception. Its cross-client RPC,
-Realtime, room-scope, and join-code contract is owned by the Flutter app's
-[Group Play protocol](../../../seminary_sidekick/docs/GROUP_PLAY_PROTOCOL.md).
+Two Supabase exceptions, both narrow:
+
+- Class Play web join (`/join`): anonymous auth, `join_room`, and Realtime. The Flutter app owns that contract.
+- Site content: `public.posts` plus the public `post-images` bucket. Reads use the anon key. Writes stay in the SQL editor.
 
 ---
 
@@ -43,7 +43,7 @@ seminary-sidekick-site/
 │   │   │   ├── sections/          # Homepage sections: Hero, HowItWorks, PremiumPeek…
 │   │   │   ├── demos/             # QuickQuiz, ScriptureMatch — own subfolder each
 │   │   │   └── brand/             # Logo, PhoneMockup, StoreButtons
-│   │   ├── content/               # MDX content collection logic
+│   │   ├── content/               # Post types and the visibility SQL
 │   │   ├── config/
 │   │   │   ├── store.ts           # iOS/Android URLs + feature flags
 │   │   │   ├── site.ts            # Site name, tagline, social URLs, contact email
@@ -53,8 +53,6 @@ seminary-sidekick-site/
 │   │   │   └── passages.json           # Ported from old repo
 │   │   ├── utils/                 # Pure helpers
 │   │   └── server/                # (later) Server-only modules
-│   ├── content/
-│   │   └── news/                  # .svx blog posts (frontmatter + markdown + Svelte)
 │   └── routes/
 │       ├── +layout.svelte         # Root layout — nav, footer, page transitions
 │       ├── +layout.ts             # Root load function
@@ -67,10 +65,12 @@ seminary-sidekick-site/
 │       ├── scripture-match/+page.svelte      # standalone demo
 │       ├── premium/+page.svelte              # premium AI deep dive
 │       ├── for-teachers/+page.svelte         # teachers pitch
+│       ├── doctrinal-mastery/                # parent guide, fixed URL
+│       ├── guides/[slug]/                    # later guides, no new route file
 │       ├── news/
 │       │   ├── +page.svelte                  # blog index
 │       │   ├── [slug]/+page.svelte           # blog post
-│       │   └── [slug]/+page.ts               # load post from src/content/news
+│       │   └── [slug]/+page.server.ts        # one news row from public.posts
 │       ├── about/+page.svelte
 │       ├── privacy/+page.svelte
 │       ├── terms/+page.svelte

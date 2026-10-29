@@ -1,6 +1,7 @@
-import type { Config } from '@sveltejs/adapter-vercel';
-import { listPublishedPosts } from '$lib/server/posts';
+import { guidePath } from '$lib/config/guides';
 import { SITE_URL } from '$lib/config/site';
+import { contentCache } from '$lib/server/contentCache';
+import { listGuides, listNews } from '$lib/server/posts';
 
 /**
  * Sitemap 0.9 — auto-generated from the route list + news posts.
@@ -10,8 +11,7 @@ import { SITE_URL } from '$lib/config/site';
  *
  * Static routes are listed here explicitly so the sitemap doesn't have to
  * crawl the filesystem at request time. Add or remove a public route?
- * Update STATIC_ROUTES below. News posts come from listPublishedPosts() so
- * they stay in sync with .svx files and live Supabase rows.
+ * Update STATIC_ROUTES below. News posts and guides come from public.posts.
  */
 
 type SitemapEntry = {
@@ -69,7 +69,6 @@ const STATIC_ROUTES: ReadonlyArray<Omit<SitemapEntry, 'loc'> & { path: string }>
 		priority: '0.6',
 		lastmod: BUILD_DATE
 	},
-	{ path: '/doctrinal-mastery', changefreq: 'monthly', priority: '0.8', lastmod: BUILD_DATE },
 	{ path: '/news', changefreq: 'weekly', priority: '0.7', lastmod: BUILD_DATE },
 	{ path: '/about', changefreq: 'yearly', priority: '0.5', lastmod: BUILD_DATE },
 	{ path: '/privacy', changefreq: 'yearly', priority: '0.3', lastmod: BUILD_DATE },
@@ -96,9 +95,13 @@ function renderEntry(entry: SitemapEntry): string {
 }
 
 export const prerender = false;
-export const config: Config = { isr: { expiration: 300 } };
 
-export async function GET() {
+export async function GET({
+	setHeaders
+}: {
+	setHeaders: (headers: Record<string, string>) => void;
+}) {
+	setHeaders(contentCache);
 	const entries: SitemapEntry[] = STATIC_ROUTES.map((route) => ({
 		loc: `${SITE_URL}${route.path}`,
 		lastmod: route.lastmod,
@@ -106,8 +109,16 @@ export async function GET() {
 		priority: route.priority
 	}));
 
-	// Append every published news post.
-	for (const post of await listPublishedPosts()) {
+	for (const guide of await listGuides()) {
+		entries.push({
+			loc: `${SITE_URL}${guidePath(guide.slug)}`,
+			lastmod: guide.date,
+			changefreq: 'monthly',
+			priority: '0.8'
+		});
+	}
+
+	for (const post of await listNews()) {
 		entries.push({
 			loc: `${SITE_URL}/news/${post.slug}`,
 			lastmod: post.date,
@@ -125,7 +136,7 @@ ${entries.map(renderEntry).join('\n')}
 	return new Response(body, {
 		headers: {
 			'Content-Type': 'application/xml; charset=utf-8',
-			'Cache-Control': 'public, max-age=3600, s-maxage=86400'
+			...contentCache
 		}
 	});
 }
