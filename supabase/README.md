@@ -36,3 +36,23 @@ a slug collision). `/news`, `/news/[slug]`, RSS and the sitemap render per reque
 ISR (5 minutes); the homepage strip is SSR. Rows are cached per instance for 60 seconds. If
 Supabase is unreachable the site shows the `.svx` posts only. A scheduled post goes live at
 most ~11 minutes after `publish_at` (cron tick + cache + ISR).
+
+# Supabase — teaching ideas (/teach)
+
+`/teach` and `/teach/[book]` read `public.teaching_ideas` server-side with the anon key.
+Anon can select only `course, book, category, title, summary`; `id` and `source_ref` are not
+granted. The catalog CSV and the generated SQL stay out of git.
+
+## Apply (once, by Patrick)
+
+1. Run `migrations/20261030120000_teaching_ideas.sql` in the SQL editor of the Sidekick
+   project (`feqxdylouvoulhqwsffp`).
+2. On a machine that has the CSV:
+   `node scripts/seed-teaching-ideas.mjs /path/to/sidekick_ingest.csv /tmp/teaching_ideas.private.sql`
+   It writes SQL only (1,179 rows; drops the app's own two announcement rows, matched by id hash).
+3. Paste `/tmp/teaching_ideas.private.sql` into the SQL editor and run it. Re-running upserts.
+4. Check: `select course, count(*) from public.teaching_ideas group by 1;`
+   and, as anon, `select source_ref from public.teaching_ideas` must fail with permission denied.
+
+Env: the same `PUBLIC_SUPABASE_URL` / `PUBLIC_SUPABASE_ANON_KEY` as `/join` and `/news`.
+No service role key is used by the site.

@@ -89,6 +89,13 @@
 				>
 					Scripture Builder printouts
 				</a>
+				·
+				<a
+					href="/teach"
+					class="font-semibold text-accent underline-offset-2 hover:underline"
+				>
+					Teaching idea finder
+				</a>
 				{#if data.classPlayHelp}
 					·
 					<a

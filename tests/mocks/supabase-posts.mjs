@@ -91,10 +91,40 @@ function rows() {
 	];
 }
 
+/**
+ * Fake teaching ideas. Each row carries a source_ref and has_free_asset the
+ * way a loosened grant would, so tests prove the site never renders them.
+ */
+function teachingIdeas() {
+	const extra = { source_ref: 'mock-private-ref-001', has_free_asset: 'y', id: 1 };
+	const idea = (course, book, category, title) => ({
+		...extra,
+		course,
+		book,
+		category,
+		title,
+		summary: `Mock summary for ${title}.`
+	});
+	return [
+		idea('OT', 'Genesis', 'game', 'Creation days relay'),
+		idea('OT', 'Genesis', 'lesson_plan', 'Covenant path map'),
+		idea('OT', 'Genesis', 'object_lesson', 'Rainbow promise jar'),
+		idea('OT', 'Ruth', 'lesson_plan', 'Whither thou goest'),
+		idea('OT', 'general', 'teaching_method', 'Old Testament timeline wall'),
+		idea('D&C', 'D&C', 'doctrinal_mastery', 'Key phrase tag'),
+		idea('general', 'general', 'icebreaker', 'Two truths and a scripture')
+	];
+}
+
 createServer((req, res) => {
 	if (req.method === 'GET' && req.url?.startsWith('/rest/v1/posts')) {
 		res.writeHead(200, { 'Content-Type': 'application/json' });
 		res.end(JSON.stringify(rows()));
+		return;
+	}
+	if (req.method === 'GET' && req.url?.startsWith('/rest/v1/teaching_ideas')) {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.end(JSON.stringify(teachingIdeas()));
 		return;
 	}
 	if (req.url === '/health') {

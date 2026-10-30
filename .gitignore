@@ -38,3 +38,7 @@ AGENT_DECISIONS.md
 # Never re-track. See CLAUDE.md "Scripture data — source of truth".
 src/lib/data/passages.json
 
+
+# Private teaching-ideas catalog (never commit; see supabase/README.md)
+sidekick_ingest.csv
+*.private.sql
