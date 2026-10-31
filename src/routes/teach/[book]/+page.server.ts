@@ -1,13 +1,13 @@
 import { error } from '@sveltejs/kit';
 import type { Config } from '@sveltejs/adapter-vercel';
-import { listIdeas } from '$lib/server/teachingIdeas';
-import { findBook, groupByCategory, ideasForBook } from '$lib/teach/ideas';
+import { getIdea, listIdeas } from '$lib/server/teachingIdeas';
+import { findBook, groupByCategory, ideaParam, ideasForBook } from '$lib/teach/ideas';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
 export const config: Config = { isr: { expiration: 3600 } };
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, url }) => {
 	const book = findBook(params.book);
 	if (!book) error(404, 'No page for that book yet.');
 	const all = await listIdeas();
@@ -16,6 +16,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		.filter((i) => i.course === book.course && i.book === 'general')
 		.slice(0, 6);
 	return {
+		selected: await getIdea(ideaParam(url)),
 		book,
 		ideas: forBook,
 		groups: groupByCategory(forBook),

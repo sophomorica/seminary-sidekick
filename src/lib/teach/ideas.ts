@@ -15,9 +15,15 @@ export type TeachingIdea = {
 	category: string;
 	title: string;
 	summary: string;
+	slug: string;
+	imageUrl: string | null;
+	imageAlt: string | null;
 };
 
-export const COLUMNS = 'course,book,category,title,summary';
+/** A teaching idea with its full how-to (markdown). */
+export type IdeaWriteup = TeachingIdea & { bodyMd: string };
+
+export const COLUMNS = 'course,book,category,title,summary,slug,body_md,image_url,image_alt';
 
 export const COURSE_LABELS: Record<Course, string> = {
 	general: 'Any year',
@@ -102,15 +108,44 @@ export function findBook(slug: string): Book | undefined {
 	return BOOKS.find((b) => b.slug === slug);
 }
 
-/** Keep only the display fields, whatever the server sends. */
-export function toIdea(row: Record<string, unknown>): TeachingIdea {
+const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const str = (v: unknown) => (typeof v === 'string' && v.trim() ? v : null);
+
+/**
+ * Keep only the display fields, whatever the server sends. Ideas without a
+ * write-up (or a valid slug) return null: the site never shows a dead-end card.
+ * Images are only kept with alt text and a root-relative or https URL.
+ */
+export function toWriteup(row: Record<string, unknown>): IdeaWriteup | null {
+	const slug = str(row.slug);
+	const bodyMd = str(row.body_md);
+	if (!slug || !SLUG.test(slug) || !bodyMd) return null;
+	const url = str(row.image_url);
+	const alt = str(row.image_alt);
+	const imageOk = !!url && !!alt && (url.startsWith('https://') || /^\/(?!\/)/.test(url));
 	return {
 		course: row.course as Course,
 		book: String(row.book ?? ''),
 		category: String(row.category ?? ''),
 		title: String(row.title ?? ''),
-		summary: String(row.summary ?? '')
+		summary: String(row.summary ?? ''),
+		slug,
+		imageUrl: imageOk ? url : null,
+		imageAlt: imageOk ? alt : null,
+		bodyMd
 	};
+}
+
+/** Card fields only (drops the body so list pages stay small). */
+export function toIdea(w: IdeaWriteup): TeachingIdea {
+	const { course, book, category, title, summary, slug, imageUrl, imageAlt } = w;
+	return { course, book, category, title, summary, slug, imageUrl, imageAlt };
+}
+
+/** `?idea=` value, or '' if it isn't a valid slug. */
+export function ideaParam(url: URL): string {
+	const v = url.searchParams.get('idea') ?? '';
+	return SLUG.test(v) && v.length <= 120 ? v : '';
 }
 
 /** `book` is a book slug from BOOKS (e.g. `genesis`, `d-and-c`). */
@@ -191,13 +226,13 @@ export type FetchIdeasOptions = {
 	timeoutMs?: number;
 };
 
-/** Never throws: unconfigured, unreachable or erroring Supabase returns []. */
+/** Never throws: unconfigured, unreachable or erroring Supabase returns []. Only ideas with a write-up. */
 export async function fetchIdeas({
 	url,
 	anonKey,
 	fetch = globalThis.fetch,
 	timeoutMs = 2500
-}: FetchIdeasOptions): Promise<TeachingIdea[]> {
+}: FetchIdeasOptions): Promise<IdeaWriteup[]> {
 	if (!url || !anonKey) return [];
 	try {
 		const client = createClient(url, anonKey, {
@@ -207,13 +242,16 @@ export async function fetchIdeas({
 		const { data, error } = await client
 			.from('teaching_ideas')
 			.select(COLUMNS)
+			.not('body_md', 'is', null)
 			.order('title')
 			.abortSignal(AbortSignal.timeout(timeoutMs));
 		if (error) {
 			console.warn('[teachingIdeas] query failed:', error.message);
 			return [];
 		}
-		return ((data ?? []) as Record<string, unknown>[]).map(toIdea);
+		return ((data ?? []) as Record<string, unknown>[])
+			.map(toWriteup)
+			.filter((i): i is IdeaWriteup => i !== null);
 	} catch (err) {
 		console.warn('[teachingIdeas] unreachable:', (err as Error).message);
 		return [];
