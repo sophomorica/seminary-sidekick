@@ -6,7 +6,14 @@
 
 import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync } from 'node:fs';
-import { bookSlug, fetchIdeas, filterIdeas, groupByCategory, toIdea } from '../src/lib/teach/ideas';
+import {
+	bookSlug,
+	fetchIdeas,
+	filterIdeas,
+	groupByCategory,
+	masteryHub,
+	toIdea
+} from '../src/lib/teach/ideas';
 import { buildSql, parseCsv, isDropped } from '../scripts/seed-teaching-ideas.mjs';
 
 test.describe('/teach', () => {
@@ -16,7 +23,7 @@ test.describe('/teach', () => {
 		await expect(
 			page.getByRole('heading', { level: 1, name: /teaching idea finder/i })
 		).toBeVisible();
-		await expect(page.getByTestId('idea-card')).toHaveCount(7);
+		await expect(page.getByTestId('idea-card')).toHaveCount(10);
 		const html = await page.content();
 		expect(html).not.toContain('mock-private-ref-001');
 		expect(html).not.toContain('source_ref');
@@ -40,7 +47,7 @@ test.describe('/teach', () => {
 		await expect(page.getByTestId('idea-card')).toHaveCount(1);
 		// Unknown slugs are ignored, not a 500.
 		await page.goto('/teach?book=not-a-book');
-		await expect(page.getByTestId('idea-card')).toHaveCount(7);
+		await expect(page.getByTestId('idea-card')).toHaveCount(10);
 	});
 
 	test('book page lists its ideas', async ({ page }) => {
@@ -68,6 +75,30 @@ test.describe('/teach', () => {
 	test('unknown book is a 404', async ({ page }) => {
 		const res = await page.goto('/teach/not-a-book');
 		expect(res?.status()).toBe(404);
+	});
+
+	test('mastery hub groups by year, games first, no rhymes', async ({ page }) => {
+		const res = await page.goto('/teach/mastery');
+		expect(res?.status()).toBe(200);
+		await expect(
+			page.getByRole('heading', { level: 1, name: /doctrinal mastery ideas/i })
+		).toBeVisible();
+		await expect(page.getByTestId('mastery-count')).toContainText('3 ideas');
+		await expect(page.getByTestId('mastery-course').locator('h2')).toHaveText([
+			'Old Testament',
+			'Doctrine and Covenants'
+		]);
+		const ot = page.getByTestId('mastery-course').first();
+		await expect(ot.getByTestId('mastery-games').getByTestId('idea-card')).toHaveCount(1);
+		await expect(ot.getByTestId('mastery-games')).toContainText('Memory relay');
+		await expect(page.getByText(/rhyme/i)).toHaveCount(0);
+		const html = await page.content();
+		expect(html).not.toContain('mock-private-ref-001');
+		await page.goto('/teach');
+		await expect(page.getByRole('link', { name: /doctrinal mastery ideas/i })).toHaveAttribute(
+			'href',
+			'/teach/mastery'
+		);
 	});
 
 	test('is linked from /teachers', async ({ page }) => {
@@ -117,6 +148,20 @@ test.describe('teach data helpers', () => {
 		expect(
 			await fetchIdeas({ url: 'https://e.supabase.co', anonKey: 'a', fetch: down })
 		).toEqual([]);
+	});
+
+	test('masteryHub drops rhymes and splits games', () => {
+		const dm = (course: string, title: string) =>
+			toIdea({ course, book: 'general', category: 'doctrinal_mastery', title, summary: '' });
+		const hub = masteryHub([
+			dm('NT', 'Scripture bingo'),
+			dm('NT', 'Ask a question'),
+			dm('NT', 'Rhyming couplets'),
+			toIdea({ course: 'NT', book: 'John', category: 'game', title: 'Not DM', summary: '' })
+		]);
+		expect(hub).toHaveLength(1);
+		expect(hub[0].games.map((i) => i.title)).toEqual(['Scripture bingo']);
+		expect(hub[0].other.map((i) => i.title)).toEqual(['Ask a question']);
 	});
 
 	test('slugs and filters', () => {

@@ -149,6 +149,41 @@ export function groupByCategory(ideas: TeachingIdea[]): CategoryGroup[] {
 		}));
 }
 
+/** Rhyme ideas stay off the mastery hub for now (Patrick, Stamp ask c4a34cd7). */
+const RHYME = /\brhym/i;
+const GAME_OR_MEMORY =
+	/\b(game|games|memor\w*|race|relay|bingo|quiz|review|flash ?cards?|puzzle|match|challenge)\b/i;
+
+export type MasteryCourse = {
+	course: Course;
+	label: string;
+	games: TeachingIdea[];
+	other: TeachingIdea[];
+};
+
+/**
+ * Doctrinal mastery ideas grouped by year, each split into games and
+ * memory helps first, then everything else. Years with no ideas are left out.
+ */
+export function masteryHub(ideas: TeachingIdea[]): MasteryCourse[] {
+	const dm = ideas.filter(
+		(i) => i.category === 'doctrinal_mastery' && !RHYME.test(`${i.title} ${i.summary}`)
+	);
+	const order: Course[] = ['OT', 'NT', 'BoM', 'D&C', 'general'];
+	return order
+		.map((course) => {
+			const list = dm.filter((i) => i.course === course);
+			const isGame = (i: TeachingIdea) => GAME_OR_MEMORY.test(`${i.title} ${i.summary}`);
+			return {
+				course,
+				label: COURSE_LABELS[course],
+				games: list.filter(isGame),
+				other: list.filter((i) => !isGame(i))
+			};
+		})
+		.filter((c) => c.games.length + c.other.length > 0);
+}
+
 export type FetchIdeasOptions = {
 	url: string;
 	anonKey: string;
