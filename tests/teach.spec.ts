@@ -32,6 +32,17 @@ test.describe('/teach', () => {
 		await expect(page.getByTestId('teach-no-match')).toBeVisible();
 	});
 
+	test('filters by book', async ({ page }) => {
+		await page.goto('/teach?book=genesis');
+		await expect(page.getByTestId('idea-card')).toHaveCount(3);
+		await expect(page.getByTestId('teach-count')).toContainText('3 ideas');
+		await page.goto('/teach?book=genesis&category=game');
+		await expect(page.getByTestId('idea-card')).toHaveCount(1);
+		// Unknown slugs are ignored, not a 500.
+		await page.goto('/teach?book=not-a-book');
+		await expect(page.getByTestId('idea-card')).toHaveCount(7);
+	});
+
 	test('book page lists its ideas', async ({ page }) => {
 		await page.goto('/teach/genesis');
 		await expect(page.getByRole('heading', { level: 1, name: 'Genesis' })).toBeVisible();
@@ -114,6 +125,8 @@ test.describe('teach data helpers', () => {
 		];
 		expect(filterIdeas(ideas, { q: 'branch' })).toHaveLength(1);
 		expect(filterIdeas(ideas, { course: 'OT' })).toHaveLength(0);
+		expect(filterIdeas(ideas, { book: 'john' })).toHaveLength(1);
+		expect(filterIdeas(ideas, { book: 'luke' })).toHaveLength(0);
 	});
 });
 
