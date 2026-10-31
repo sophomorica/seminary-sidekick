@@ -1,4 +1,4 @@
-<!-- /teach/[book] — ideas tagged to one book, with an honest note when it's thin. -->
+<!-- /teach/[book] — ideas tagged to one book, grouped by type, with an honest note when it's thin. -->
 <script lang="ts">
 	import IdeaCard from '$lib/components/teach/IdeaCard.svelte';
 	import { SITE_NAME, SITE_URL } from '$lib/config/site';
@@ -45,11 +45,42 @@
 				Only {data.ideas.length} idea{data.ideas.length === 1 ? '' : 's'} for {name} so far.
 			</p>
 		{/if}
-		<div class="grid gap-4 md:grid-cols-2">
-			{#each data.ideas as idea, i (i)}
-				<IdeaCard {idea} />
-			{/each}
-		</div>
+		{#if data.groups.length > 1}
+			<nav aria-label="Idea types" class="mb-8">
+				<ul class="flex flex-wrap gap-2">
+					{#each data.groups as group (group.category)}
+						<li>
+							<a
+								href={`#${group.category}`}
+								class="inline-flex rounded-full border border-outline-variant/40 px-4 py-1 text-body-sm hover:bg-surface-container focus-ring"
+							>
+								{group.label}
+								<span class="ml-1 text-on-surface-variant"
+									>({group.ideas.length})</span
+								>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</nav>
+		{/if}
+		{#each data.groups as group (group.category)}
+			<section
+				id={group.category}
+				class="mb-10 scroll-mt-24"
+				aria-labelledby={`h-${group.category}`}
+				data-testid="category-group"
+			>
+				<h2 id={`h-${group.category}`} class="mb-4 font-serif text-display-sm">
+					{group.label}
+				</h2>
+				<div class="grid gap-4 md:grid-cols-2">
+					{#each group.ideas as idea, i (i)}
+						<IdeaCard {idea} />
+					{/each}
+				</div>
+			</section>
+		{/each}
 	{/if}
 
 	{#if data.yearWide.length && data.ideas.length < THIN}

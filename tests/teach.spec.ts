@@ -6,7 +6,7 @@
 
 import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync } from 'node:fs';
-import { bookSlug, fetchIdeas, filterIdeas, toIdea } from '../src/lib/teach/ideas';
+import { bookSlug, fetchIdeas, filterIdeas, groupByCategory, toIdea } from '../src/lib/teach/ideas';
 import { buildSql, parseCsv, isDropped } from '../scripts/seed-teaching-ideas.mjs';
 
 test.describe('/teach', () => {
@@ -48,6 +48,14 @@ test.describe('/teach', () => {
 		await expect(page.getByRole('heading', { level: 1, name: 'Genesis' })).toBeVisible();
 		await expect(page.getByTestId('idea-card')).toHaveCount(3);
 		await expect(page.getByTestId('book-thin')).toHaveCount(0);
+		// Grouped by type, in label order.
+		const groups = page.getByTestId('category-group');
+		await expect(groups).toHaveCount(3);
+		await expect(groups.locator('h2')).toHaveText(['Lesson idea', 'Game', 'Object lesson']);
+		await expect(page.getByRole('link', { name: /Game \(1\)/ })).toHaveAttribute(
+			'href',
+			'#game'
+		);
 	});
 
 	test('thin and empty books say so honestly', async ({ page }) => {
@@ -127,6 +135,18 @@ test.describe('teach data helpers', () => {
 		expect(filterIdeas(ideas, { course: 'OT' })).toHaveLength(0);
 		expect(filterIdeas(ideas, { book: 'john' })).toHaveLength(1);
 		expect(filterIdeas(ideas, { book: 'luke' })).toHaveLength(0);
+		const mk = (category: string) =>
+			toIdea({ course: 'OT', book: 'Job', category, title: category, summary: '' });
+		expect(
+			groupByCategory([mk('zzz'), mk('game'), mk('lesson_plan'), mk('game')]).map((g) => [
+				g.category,
+				g.ideas.length
+			])
+		).toEqual([
+			['lesson_plan', 1],
+			['game', 2],
+			['zzz', 1]
+		]);
 	});
 });
 
