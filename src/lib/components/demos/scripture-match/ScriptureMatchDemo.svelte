@@ -25,6 +25,8 @@
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
 	import { cn } from '$lib/utils';
 
+	let { placement }: { placement: string } = $props();
+
 	const PAIR_COUNT = 8;
 
 	type Side = 'phrase' | 'reference';
@@ -346,7 +348,7 @@
 				Sidekick AI.
 			</p>
 			<div class="mt-8 flex justify-center">
-				<StoreButtons size="default" showComingSoon />
+				<StoreButtons size="default" showComingSoon {placement} />
 			</div>
 		</div>
 	{/if}

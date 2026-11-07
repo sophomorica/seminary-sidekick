@@ -7,14 +7,14 @@
  */
 
 /**
- * Apple App Store listing URL. Use the long `https://apps.apple.com/...`
- * format with UTM tags so we can track web→install conversion.
+ * Apple App Store listing. Bare on purpose. Clicks go through `withPromo`
+ * so each placement can be told apart. Apple drops `utm_*`. The helper sets `ct`.
  */
 export const IOS_URL = 'https://apps.apple.com/us/app/seminary-sidekick/id6780003239';
 
 /**
- * Google Play Store listing URL. Use UTM tags when available.
- * Buttons check `ANDROID_AVAILABLE` before linking.
+ * Google Play listing. Bare on purpose. `withPromo` puts the tags in `referrer`,
+ * which is what Play Install Referrer reads. Buttons check `ANDROID_AVAILABLE`.
  */
 export const ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.seminarysidekick.app';
 

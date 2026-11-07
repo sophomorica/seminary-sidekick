@@ -18,7 +18,7 @@
 				</p>
 			</div>
 			<div class="flex flex-col items-start gap-4 md:items-end md:justify-end">
-				<StoreButtons />
+				<StoreButtons placement="footer" />
 			</div>
 		</div>
 

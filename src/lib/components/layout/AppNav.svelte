@@ -55,7 +55,7 @@
 		<!-- Desktop CTAs + mobile menu trigger -->
 		<div class="flex items-center gap-2">
 			<div class="hidden md:block">
-				<StoreButtons size="sm" showComingSoon={false} />
+				<StoreButtons size="sm" showComingSoon={false} placement="nav" />
 			</div>
 
 			<button
@@ -97,7 +97,7 @@
 				</ul>
 			</nav>
 			<div class="mt-4">
-				<StoreButtons size="default" />
+				<StoreButtons size="default" placement="nav-menu" />
 			</div>
 		</div>
 	{/if}

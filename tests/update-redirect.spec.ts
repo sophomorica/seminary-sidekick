@@ -8,6 +8,17 @@
 import { test, expect } from '@playwright/test';
 import { platformForUserAgent, storeUrlForPlatform } from '../src/lib/utils/storeRedirect';
 import { ANDROID_URL, IOS_URL } from '../src/lib/config/store';
+import { STORE_CAMPAIGN, withPromo } from '../src/lib/utils/promo';
+
+function updatePageHref(store: 'ios' | 'android') {
+	return withPromo({
+		href: store === 'ios' ? IOS_URL : ANDROID_URL,
+		medium: 'update',
+		campaign: STORE_CAMPAIGN,
+		content: store,
+		store
+	});
+}
 
 const UA = {
 	iphone: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
@@ -69,7 +80,7 @@ test.describe('/update route', () => {
 		const res = await page.goto('/update');
 		expect(res?.status()).toBe(200);
 		await expect(page.getByRole('heading', { level: 1 })).toContainText(/latest/i);
-		await expect(page.locator(`main a[href="${IOS_URL}"]`)).toBeVisible();
-		await expect(page.locator(`main a[href="${ANDROID_URL}"]`)).toBeVisible();
+		await expect(page.locator(`main a[href="${updatePageHref('ios')}"]`)).toBeVisible();
+		await expect(page.locator(`main a[href="${updatePageHref('android')}"]`)).toBeVisible();
 	});
 });
