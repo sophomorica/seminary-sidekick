@@ -131,7 +131,8 @@ test.describe('AppFooter', () => {
 	});
 
 	const STUDIO_CREDIT_NAME = 'Made by Narrow Road Studios';
-	const STUDIO_CREDIT_HREF = 'https://narrowroadstudios.com';
+	const STUDIO_CREDIT_HREF =
+		'https://narrowroadstudios.com?utm_source=sidekick&utm_medium=footer&utm_campaign=ecosystem';
 
 	for (const route of ['/', '/teachers/printouts'] as const) {
 		test(`studio credit sits in the site footer on ${route}`, async ({ page }) => {

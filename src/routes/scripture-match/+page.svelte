@@ -54,5 +54,5 @@
 
 <!-- Demo -->
 <section class="pb-16 md:pb-24">
-	<ScriptureMatchDemo />
+	<ScriptureMatchDemo placement="scripture-match" />
 </section>
