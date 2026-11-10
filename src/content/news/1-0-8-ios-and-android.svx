@@ -7,7 +7,7 @@ tags: ['release']
 author: 'Patrick'
 ---
 
-1.0.8 is out on the [App Store](https://apps.apple.com/us/app/seminary-sidekick/id6780003239) and [Google Play](https://play.google.com/store/apps/details?id=com.seminarysidekick.app).
+1.0.8 is out on the [App Store](https://apps.apple.com/us/app/seminary-sidekick/id6780003239?utm_source=sidekick&utm_medium=news&utm_campaign=get-the-app&utm_content=ios&ct=news) and [Google Play](https://play.google.com/store/apps/details?id=com.seminarysidekick.app&referrer=utm_source%3Dsidekick%26utm_medium%3Dnews%26utm_campaign%3Dget-the-app%26utm_content%3Dandroid).
 
 Group Scripture Builder host setup is one scripture (no set-size / play-mode chips). The host picker facets by volume (OT / NT / BoM / D&C). Delete All / New conversation no longer lets an in-flight Sidekick chat reply rewrite wiped history.
 

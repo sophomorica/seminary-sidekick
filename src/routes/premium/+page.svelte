@@ -124,7 +124,7 @@
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-				<StoreButtons size="default" showComingSoon />
+				<StoreButtons size="default" showComingSoon placement="premium" />
 			</div>
 
 			<p class="mt-6 text-body-sm text-on-tertiary-container/75">
@@ -288,7 +288,7 @@
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-				<StoreButtons size="default" showComingSoon />
+				<StoreButtons size="default" showComingSoon placement="premium-final" />
 				<Button href="/apps/scripture-mastery" variant="outlined">
 					Read about the app
 					<ArrowRight aria-hidden="true" />

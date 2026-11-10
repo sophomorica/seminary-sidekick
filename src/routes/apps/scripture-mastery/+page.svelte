@@ -198,7 +198,7 @@
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center gap-3">
-				<StoreButtons size="default" showComingSoon />
+				<StoreButtons size="default" showComingSoon placement="scripture-mastery" />
 				<Button href="#see-scripture-builder" variant="outlined">
 					Watch Scripture Builder
 					<ArrowRight aria-hidden="true" />
@@ -503,7 +503,12 @@
 		</p>
 
 		<div class="mt-10 flex justify-center">
-			<StoreButtons variant="secondary" size="lg" showComingSoon />
+			<StoreButtons
+				variant="secondary"
+				size="lg"
+				showComingSoon
+				placement="scripture-mastery-final"
+			/>
 		</div>
 	</div>
 </section>

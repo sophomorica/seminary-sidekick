@@ -12,6 +12,6 @@
 		Get Seminary Sidekick and keep practicing anytime — not just when class is in session.
 	</p>
 	<div class="mt-6 flex justify-center">
-		<StoreButtons size="default" showComingSoon />
+		<StoreButtons size="default" showComingSoon placement="class-play" />
 	</div>
 </aside>
