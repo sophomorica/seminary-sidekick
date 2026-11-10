@@ -85,7 +85,7 @@
 						<h3 class="mt-6 mb-3 text-label-lg">Games and memory helps</h3>
 						<div class="grid gap-4 md:grid-cols-2" data-testid="mastery-games">
 							{#each c.games as idea, i (i)}
-								<IdeaCard {idea} />
+								<IdeaCard {idea} level={4} />
 							{/each}
 						</div>
 					{/if}
@@ -95,7 +95,7 @@
 						</h3>
 						<div class="grid gap-4 md:grid-cols-2">
 							{#each c.other as idea, i (i)}
-								<IdeaCard {idea} />
+								<IdeaCard {idea} level={4} />
 							{/each}
 						</div>
 					{/if}

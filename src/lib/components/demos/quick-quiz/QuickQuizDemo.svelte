@@ -33,6 +33,8 @@
 	import StoreButtons from '$lib/components/brand/StoreButtons.svelte';
 	import { cn, tv } from '$lib/utils';
 
+	let { placement }: { placement: string } = $props();
+
 	const QUESTION_COUNT = 5;
 	const CHOICE_COUNT = 4;
 
@@ -396,7 +398,7 @@
 				{/if}
 
 				<div class="mt-10 flex flex-col gap-3">
-					<StoreButtons size="default" showComingSoon />
+					<StoreButtons size="default" showComingSoon {placement} />
 					<p class="text-body-sm text-on-surface-variant">
 						The path forward is the app. No "play again" — go master it for real.
 					</p>

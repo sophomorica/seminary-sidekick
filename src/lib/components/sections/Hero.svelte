@@ -78,7 +78,7 @@
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center gap-3">
-				<StoreButtons size="default" showComingSoon />
+				<StoreButtons size="default" showComingSoon placement="hero" />
 				<Button href={quickQuizHref} variant="outlined">
 					Try a Quick Quiz
 					<ArrowRight aria-hidden="true" />
