@@ -149,6 +149,12 @@
 		{/if}
 	{/if}
 
+	<p class="mt-12">
+		<a href="/teach/mastery" class="text-primary hover:underline"
+			>Doctrinal mastery ideas, by year →</a
+		>
+	</p>
+
 	<section class="mt-16" aria-labelledby="by-book">
 		<h2 id="by-book" class="font-serif text-display-sm">Browse by book</h2>
 		{#each courses as course (course)}

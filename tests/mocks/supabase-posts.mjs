@@ -112,6 +112,9 @@ function teachingIdeas() {
 		idea('OT', 'Ruth', 'lesson_plan', 'Whither thou goest'),
 		idea('OT', 'general', 'teaching_method', 'Old Testament timeline wall'),
 		idea('D&C', 'D&C', 'doctrinal_mastery', 'Key phrase tag'),
+		idea('OT', 'general', 'doctrinal_mastery', 'Memory relay'),
+		idea('OT', 'general', 'doctrinal_mastery', 'Context and content chart'),
+		idea('BoM', 'general', 'doctrinal_mastery', 'Rhyme time passages'),
 		idea('general', 'general', 'icebreaker', 'Two truths and a scripture')
 	];
 }
