@@ -1,6 +1,6 @@
 <!--
   /teach — teaching-idea finder. Short ideas in our own words, filterable by
-  year, type and keyword. Server-filtered and paged: never a catalog dump.
+  year, book, type and keyword. Server-filtered and paged: never a catalog dump.
   No downloads, no "free file" badges (not verified), no other products.
 -->
 <script lang="ts">
@@ -19,6 +19,7 @@
 	function pageHref(p: number) {
 		const parts = [
 			['course', data.filter.course],
+			['book', data.filter.book],
 			['category', data.filter.category],
 			['q', data.filter.q],
 			['page', p > 1 ? String(p) : '']
@@ -42,8 +43,8 @@
 		<p class="eyebrow">For teachers</p>
 		<h1 class="font-serif text-display-lg">Teaching idea finder</h1>
 		<p class="mt-4 max-w-2xl text-body-lg text-on-surface-variant">
-			Short ideas written in our own words. Pick a year, a type, or search. Book tags are a
-			best guess, so check the reading before you teach.
+			Short ideas written in our own words. Pick a year, a book, a type, or search. Book tags
+			are a best guess, so check the reading before you teach.
 		</p>
 	</header>
 
@@ -58,6 +59,23 @@
 				<option value="">All years</option>
 				{#each Object.entries(COURSE_LABELS) as [value, label] (value)}
 					<option {value}>{label}</option>
+				{/each}
+			</select>
+		</label>
+		<label class="flex flex-col text-label-lg">
+			Book
+			<select
+				name="book"
+				class="rounded-full border border-outline-variant/40 px-4 py-2"
+				value={data.filter.book}
+			>
+				<option value="">All books</option>
+				{#each courses as course (course)}
+					<optgroup label={COURSE_LABELS[course]}>
+						{#each data.books.filter((b) => b.course === course) as book (book.slug)}
+							<option value={book.slug}>{book.name}</option>
+						{/each}
+					</optgroup>
 				{/each}
 			</select>
 		</label>

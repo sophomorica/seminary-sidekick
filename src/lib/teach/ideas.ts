@@ -113,13 +113,15 @@ export function toIdea(row: Record<string, unknown>): TeachingIdea {
 	};
 }
 
-export type IdeaFilter = { course?: string; category?: string; q?: string };
+/** `book` is a book slug from BOOKS (e.g. `genesis`, `d-and-c`). */
+export type IdeaFilter = { course?: string; book?: string; category?: string; q?: string };
 
 export function filterIdeas(ideas: TeachingIdea[], f: IdeaFilter): TeachingIdea[] {
 	const q = f.q?.trim().toLowerCase();
 	return ideas.filter(
 		(i) =>
 			(!f.course || i.course === f.course) &&
+			(!f.book || (i.book !== 'general' && bookSlug(i.book) === f.book)) &&
 			(!f.category || i.category === f.category) &&
 			(!q || `${i.title} ${i.summary} ${i.book}`.toLowerCase().includes(q))
 	);
