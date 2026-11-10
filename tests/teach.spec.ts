@@ -91,6 +91,9 @@ test.describe('/teach', () => {
 		const ot = page.getByTestId('mastery-course').first();
 		await expect(ot.getByTestId('mastery-games').getByTestId('idea-card')).toHaveCount(1);
 		await expect(ot.getByTestId('mastery-games')).toContainText('Memory relay');
+		// Idea titles sit one level under the h3 subsection labels.
+		await expect(ot.getByTestId('mastery-games').locator('h4')).toHaveText('Memory relay');
+		await expect(page.getByTestId('idea-card').locator('h3')).toHaveCount(0);
 		await expect(page.getByText(/rhyme/i)).toHaveCount(0);
 		const html = await page.content();
 		expect(html).not.toContain('mock-private-ref-001');
