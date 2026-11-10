@@ -40,7 +40,7 @@
 		</p>
 
 		<div class="mt-10 flex justify-center">
-			<StoreButtons variant="secondary" size="lg" showComingSoon />
+			<StoreButtons variant="secondary" size="lg" showComingSoon placement="final-cta" />
 		</div>
 	</div>
 </section>

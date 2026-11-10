@@ -59,4 +59,4 @@
 	</div>
 </section>
 
-<QuickQuizDemo />
+<QuickQuizDemo placement="quick-quiz" />

@@ -61,9 +61,9 @@
 
 <Hero />
 <HowItWorks />
-<QuickQuizDemo />
+<QuickQuizDemo placement="home-quick-quiz" />
 <PremiumPeek />
-<ScriptureMatchDemo />
+<ScriptureMatchDemo placement="home-scripture-match" />
 <ClassPlay />
 <ForTeachersStrip />
 <NewsPreview posts={data.newsPosts} />

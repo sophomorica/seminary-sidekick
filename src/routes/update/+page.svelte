@@ -23,6 +23,6 @@
 		<p class="mt-4 text-lg text-on-surface-variant">
 			Open your app store to update to the newest version.
 		</p>
-		<StoreButtons size="lg" class="mt-8 justify-center" />
+		<StoreButtons size="lg" class="mt-8 justify-center" placement="update" />
 	</div>
 </section>

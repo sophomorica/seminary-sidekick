@@ -1,3 +1,5 @@
+import { withPromo } from '$lib/utils/promo';
+
 /**
  * Site-level metadata. Edit here, not in components.
  *
@@ -44,7 +46,11 @@ export const SOCIAL_LINKS = {
 
 export const STUDIO_CREDIT = {
 	label: 'Made by Narrow Road Studios',
-	href: 'https://narrowroadstudios.com'
+	href: withPromo({
+		href: 'https://narrowroadstudios.com',
+		medium: 'footer',
+		campaign: 'ecosystem'
+	})
 } as const;
 
 /**

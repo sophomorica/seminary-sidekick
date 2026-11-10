@@ -107,7 +107,7 @@
 
 		{#if storeButtons}
 			<div class="mt-2">
-				<StoreButtons size="sm" />
+				<StoreButtons size="sm" placement="apps" />
 			</div>
 		{/if}
 
