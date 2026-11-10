@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { Config } from '@sveltejs/adapter-vercel';
 import { listIdeas } from '$lib/server/teachingIdeas';
-import { findBook, ideasForBook } from '$lib/teach/ideas';
+import { findBook, groupByCategory, ideasForBook } from '$lib/teach/ideas';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
@@ -15,5 +15,11 @@ export const load: PageServerLoad = async ({ params }) => {
 	const yearWide = all
 		.filter((i) => i.course === book.course && i.book === 'general')
 		.slice(0, 6);
-	return { book, ideas: forBook, yearWide, loaded: all.length > 0 };
+	return {
+		book,
+		ideas: forBook,
+		groups: groupByCategory(forBook),
+		yearWide,
+		loaded: all.length > 0
+	};
 };

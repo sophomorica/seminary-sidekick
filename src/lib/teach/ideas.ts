@@ -131,6 +131,24 @@ export function ideasForBook(ideas: TeachingIdea[], book: Book): TeachingIdea[] 
 	return ideas.filter((i) => i.course === book.course && i.book === book.name);
 }
 
+export type CategoryGroup = { category: string; label: string; ideas: TeachingIdea[] };
+
+/** Group ideas by category in CATEGORY_LABELS order; unknown categories go last. */
+export function groupByCategory(ideas: TeachingIdea[]): CategoryGroup[] {
+	const order = Object.keys(CATEGORY_LABELS);
+	const rank = (c: string) => (order.includes(c) ? order.indexOf(c) : order.length);
+	const groups = new Map<string, TeachingIdea[]>();
+	for (const idea of ideas)
+		groups.set(idea.category, [...(groups.get(idea.category) ?? []), idea]);
+	return [...groups.entries()]
+		.sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
+		.map(([category, list]) => ({
+			category,
+			label: CATEGORY_LABELS[category] ?? category,
+			ideas: list
+		}));
+}
+
 export type FetchIdeasOptions = {
 	url: string;
 	anonKey: string;
