@@ -196,6 +196,18 @@ test.describe('/teach', () => {
 });
 
 test.describe('teach data helpers', () => {
+	test('every route that reads ?idea= keys its ISR cache on it', () => {
+		for (const route of [
+			'+page.server.ts',
+			'[book]/+page.server.ts',
+			'mastery/+page.server.ts'
+		]) {
+			const src = readFileSync(`src/routes/teach/${route}`, 'utf8');
+			expect(src, route).toContain('ideaParam');
+			expect(src, route).toMatch(/allowQuery: \[[^\]]*'idea'/);
+		}
+	});
+
 	test('fetchIdeas asks only for display columns, needs a write-up, strips extras', async () => {
 		let url = '';
 		const spy: typeof fetch = async (input) => {

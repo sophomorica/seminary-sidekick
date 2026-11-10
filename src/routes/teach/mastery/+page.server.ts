@@ -4,7 +4,7 @@ import { ideaParam, masteryHub } from '$lib/teach/ideas';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
-export const config: Config = { isr: { expiration: 3600 } };
+export const config: Config = { isr: { expiration: 3600, allowQuery: ['idea'] } };
 
 export const load: PageServerLoad = async ({ url }) => {
 	const all = await listIdeas();

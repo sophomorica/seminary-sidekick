@@ -18,7 +18,7 @@ alter table public.teaching_ideas
 	drop constraint if exists teaching_ideas_writeup_needs_slug,
 	add constraint teaching_ideas_writeup_needs_slug check (body_md is null or slug is not null),
 	drop constraint if exists teaching_ideas_image_needs_alt,
-	add constraint teaching_ideas_image_needs_alt check (image_url is null or length(image_alt) > 0);
+	add constraint teaching_ideas_image_needs_alt check (image_url is null or coalesce(length(image_alt), 0) > 0);
 
 create unique index if not exists teaching_ideas_slug_key on public.teaching_ideas (slug);
 

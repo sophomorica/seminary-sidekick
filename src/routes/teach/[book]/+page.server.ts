@@ -5,7 +5,7 @@ import { findBook, groupByCategory, ideaParam, ideasForBook } from '$lib/teach/i
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
-export const config: Config = { isr: { expiration: 3600 } };
+export const config: Config = { isr: { expiration: 3600, allowQuery: ['idea'] } };
 
 export const load: PageServerLoad = async ({ params, url }) => {
 	const book = findBook(params.book);
