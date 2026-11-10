@@ -128,7 +128,7 @@
 			</p>
 
 			<div class="mt-10 flex flex-col items-start gap-4">
-				<StoreButtons />
+				<StoreButtons placement="saved-class" />
 				<Button href="#class-play" variant="outlined">Back to Class Play</Button>
 			</div>
 		</div>
