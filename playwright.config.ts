@@ -1,21 +1,16 @@
 import { defineConfig, devices } from '@playwright/test';
 
-/**
- * Playwright E2E test configuration for Seminary Sidekick.
- *
- * Tests live in `./tests/`. They run against a local Vite dev server
- * that Playwright spins up automatically.
- *
- * Run modes:
- *   pnpm test:e2e          # Headless, all browsers
- *   pnpm test:e2e:ui       # Playwright UI mode (best for development)
- *   pnpm test:e2e:debug    # Debug mode with inspector
- *   pnpm test:e2e:report   # Open last run's HTML report
- *
- * First-time setup on a fresh checkout:
- *   pnpm install
- *   pnpm test:e2e:install  # Installs Chromium binary
- */
+const mockSupabaseEnv = {
+	PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54329',
+	PUBLIC_SUPABASE_ANON_KEY: 'e2e-mock-anon-key'
+};
+
+const ci = !!process.env.CI;
+const appOrigin = 'http://127.0.0.1:4173';
+const appCommand = ci
+	? 'pnpm build && pnpm preview --host 127.0.0.1 --port 4173 --strictPort'
+	: 'pnpm dev --host 127.0.0.1 --port 4173 --strictPort';
+
 export default defineConfig({
 	testDir: './tests',
 
@@ -37,7 +32,7 @@ export default defineConfig({
 	reporter: process.env.CI ? [['html'], ['github']] : [['html'], ['list']],
 
 	use: {
-		baseURL: 'http://localhost:5173',
+		baseURL: appOrigin,
 
 		// Capture trace + screenshot on first retry so debugging failures is easy.
 		trace: 'on-first-retry',
@@ -50,27 +45,21 @@ export default defineConfig({
 		navigationTimeout: 15_000
 	},
 
-	// The dev server reads news posts from a mock Supabase (tests/mocks/supabase-posts.mjs),
-	// never the real project. A dev server you already have running on 5173 is reused
-	// locally and won't have the mock env, so stop it before running news tests.
 	webServer: [
 		{
 			command: 'node tests/mocks/supabase-posts.mjs',
 			url: 'http://127.0.0.1:54329/health',
-			reuseExistingServer: !process.env.CI,
+			reuseExistingServer: !ci,
 			timeout: 30_000
 		},
 		{
-			command: 'pnpm dev',
-			url: 'http://localhost:5173',
-			reuseExistingServer: !process.env.CI,
-			timeout: 120_000,
+			command: appCommand,
+			url: appOrigin,
+			reuseExistingServer: false,
+			timeout: 180_000,
 			stdout: 'pipe',
 			stderr: 'pipe',
-			env: {
-				PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54329',
-				PUBLIC_SUPABASE_ANON_KEY: 'e2e-mock-anon-key'
-			}
+			env: mockSupabaseEnv
 		}
 	],
 
