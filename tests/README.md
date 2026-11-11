@@ -27,9 +27,12 @@ pnpm test:e2e:ui
 pnpm test:e2e:report
 ```
 
-Playwright auto-starts `pnpm dev` on port 5173 before running tests
-(see `playwright.config.ts` → `webServer`). You don't need to start it
-yourself.
+Playwright starts the app at `http://127.0.0.1:4173` (see
+`playwright.config.ts`). Locally that command is `pnpm dev`. You don't
+need to start it yourself. On a pull request, the `e2e` job in
+`.github/workflows/ci.yml` runs Chromium. That run builds the app with
+the mock Supabase URL from `playwright.config.ts`, serves the build with
+`pnpm preview`, and uploads the Playwright HTML report if the run fails.
 
 ## What's covered
 
@@ -83,8 +86,6 @@ When a new feature lands:
   iPhone viewport. Currently chromium-only.
 - **Visual regression** via Playwright's `toHaveScreenshot()` once the
   homepage composition (Phase C) stabilizes.
-- **CI workflow** that uploads the HTML report as a build artifact so
-  reviewers can browse failures from a PR.
 
 ## Why this setup
 
