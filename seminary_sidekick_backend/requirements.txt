@@ -32,7 +32,7 @@ idna==3.7
 click==8.1.7
 
 # Development Tools
-sqlacodegen==2.3.0.post1
+sqlacodegen==4.0.4
 inflect==7.3.1
 more-itertools==10.4.0
 typeguard==4.3.0
