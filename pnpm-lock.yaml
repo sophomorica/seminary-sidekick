@@ -18,8 +18,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-svelte:
-        specifier: ^0.470.0
-        version: 0.470.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))
+        specifier: ^1.0.1
+        version: 1.0.1(svelte@5.57.3(@typescript-eslint/types@8.72.2))
       marked:
         specifier: ^15.0.12
         version: 15.0.12
@@ -1235,8 +1235,8 @@ packages:
     resolution: {integrity: sha512-5YgH9UJd7wVb9hIouI2adWpgqrrICkt070Dnj8EUY1+B4B2P9eRLPAkAAo6NICA7CEhOIeBHl46u9zSNpNu7zA==}
     engines: {node: 20 || >=22}
 
-  lucide-svelte@0.470.0:
-    resolution: {integrity: sha512-tCFCbVZAGqFCMB23Abx6jgXJACM+sVU9NqmKDnNs1RVhpkh4BvehZUOL+84LFfPzI3NOn7u2gZWkTxVBbDXEWg==}
+  lucide-svelte@1.0.1:
+    resolution: {integrity: sha512-WvzZgk0pqzgda+AErLvgWxHkfg/+GgUwqKMRHvzt0IqyMdmyEDzDCk3Z+Wo/3y753oIgx8u9Q4eUbWkghFa8Jg==}
     deprecated: Package deprecated. Please use @lucide/svelte instead.
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
@@ -2722,7 +2722,7 @@ snapshots:
 
   lru-cache@11.5.0: {}
 
-  lucide-svelte@0.470.0(svelte@5.57.3(@typescript-eslint/types@8.72.2)):
+  lucide-svelte@1.0.1(svelte@5.57.3(@typescript-eslint/types@8.72.2)):
     dependencies:
       svelte: 5.57.3(@typescript-eslint/types@8.72.2)
 
