@@ -26,10 +26,7 @@
  * program. Matches the Flutter `ScriptureBook` enum exactly.
  */
 export type ScriptureBook =
-	| 'oldTestament'
-	| 'newTestament'
-	| 'bookOfMormon'
-	| 'doctrineAndCovenants';
+	'oldTestament' | 'newTestament' | 'bookOfMormon' | 'doctrineAndCovenants';
 
 /**
  * A single doctrinal-mastery scripture. Identical shape to the
