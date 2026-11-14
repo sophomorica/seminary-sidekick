@@ -53,7 +53,7 @@ export function cn(...inputs: ClassValue[]): string {
  * Components must import this instead of the raw `tailwind-variants`
  * export, or variant color/size classes get merged incorrectly.
  */
-export const tv = createTV({ twMergeConfig });
+export const tv = createTV({ twMerge });
 
 export type WithoutChild<T> = T extends { child?: unknown } ? Omit<T, 'child'> : T;
 export type WithoutChildren<T> = T extends { children?: unknown } ? Omit<T, 'children'> : T;
