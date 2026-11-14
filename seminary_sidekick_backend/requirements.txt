@@ -4,7 +4,7 @@ uvicorn==0.30.5
 starlette==0.37.2
 
 # GraphQL
-strawberry-graphql[fastapi]>=0.200.0
+strawberry-graphql[fastapi]>=0.341.2
 
 # Database
 SQLAlchemy==1.4.53
