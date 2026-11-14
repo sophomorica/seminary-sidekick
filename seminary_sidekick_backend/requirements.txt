@@ -1,13 +1,13 @@
 # Web Framework
 fastapi==0.112.0
 uvicorn==0.30.5
-starlette==0.37.2
+starlette==1.10.0
 
 # GraphQL
 strawberry-graphql[fastapi]>=0.200.0
 
 # Database
-SQLAlchemy==1.4.53
+SQLAlchemy==2.1.8
 psycopg2-binary==2.9.9
 
 # Data Validation
@@ -32,7 +32,7 @@ idna==3.7
 click==8.1.7
 
 # Development Tools
-sqlacodegen==2.3.0.post1
+sqlacodegen==4.0.4
 inflect==7.3.1
 more-itertools==11.2.1
 typeguard==4.3.0
