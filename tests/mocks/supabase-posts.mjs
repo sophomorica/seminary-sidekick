@@ -13,6 +13,7 @@
  */
 
 import { createServer } from 'node:http';
+import { readFileSync } from 'node:fs';
 
 export const PORT = Number(process.env.SUPABASE_MOCK_PORT ?? 54329);
 
@@ -96,16 +97,35 @@ function rows() {
  * way a loosened grant would, so tests prove the site never renders them.
  */
 function teachingIdeas() {
+	// Local screenshots only: point at a JSON array of real rows (never committed).
+	if (process.env.TEACH_MOCK_FIXTURE)
+		return JSON.parse(readFileSync(process.env.TEACH_MOCK_FIXTURE, 'utf8'));
 	const extra = { source_ref: 'mock-private-ref-001', has_free_asset: 'y', id: 1 };
+	const slugOf = (t) =>
+		t
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, '-')
+			.replace(/^-|-$/g, '');
 	const idea = (course, book, category, title) => ({
 		...extra,
 		course,
 		book,
 		category,
 		title,
-		summary: `Mock summary for ${title}.`
+		summary: `Mock summary for ${title}.`,
+		slug: slugOf(title),
+		body_md: `## What it is\nMock write-up for ${title}.\n\n## Steps\n1. Set up.\n2. Play.`,
+		image_url: title === 'Creation days relay' ? '/favicon.png' : null,
+		image_alt: title === 'Creation days relay' ? 'Mock setup diagram' : null
+	});
+	// No write-up: must never be listed or get a page. (The mock ignores the body_md filter.)
+	const noWriteup = (course, book, category, title) => ({
+		...idea(course, book, category, title),
+		body_md: null
 	});
 	return [
+		noWriteup('OT', 'Genesis', 'object_lesson', 'Hidden summary-only idea'),
+		{ ...idea('OT', 'Jeremiah', 'object_lesson', 'Bad slug idea'), slug: 'Bad Slug!' },
 		idea('OT', 'Genesis', 'game', 'Creation days relay'),
 		idea('OT', 'Genesis', 'lesson_plan', 'Covenant path map'),
 		idea('OT', 'Genesis', 'object_lesson', 'Rainbow promise jar'),

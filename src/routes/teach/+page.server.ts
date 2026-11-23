@@ -1,18 +1,19 @@
 import type { Config } from '@sveltejs/adapter-vercel';
-import { listIdeas } from '$lib/server/teachingIdeas';
+import { getIdea, listIdeas } from '$lib/server/teachingIdeas';
 import {
 	BOOKS,
 	CATEGORY_LABELS,
 	COURSE_LABELS,
 	filterIdeas,
 	findBook,
+	ideaParam,
 	ideasForBook
 } from '$lib/teach/ideas';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
 export const config: Config = {
-	isr: { expiration: 3600, allowQuery: ['course', 'book', 'category', 'q', 'page'] }
+	isr: { expiration: 3600, allowQuery: ['course', 'book', 'category', 'q', 'page', 'idea'] }
 };
 
 const PAGE_SIZE = 24;
@@ -34,6 +35,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const page = Math.min(pages, Math.max(1, Number(url.searchParams.get('page')) || 1));
 
 	return {
+		selected: await getIdea(ideaParam(url)),
 		filter,
 		total: all.length,
 		matchCount: matches.length,
