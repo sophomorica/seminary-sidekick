@@ -31,6 +31,14 @@ updates:
         update-types: ['version-update:semver-major']
       - dependency-name: 'typescript'
         update-types: ['version-update:semver-major']
+      # lucide-svelte 1.0 drops the brand icons (Twitter, Instagram, Facebook, Youtube), mdsvex 1.0 removes defineMDSveXConfig,
+      # prettier-plugin-svelte 4 reformats many files. Take these as a deliberate change.
+      - dependency-name: 'lucide-svelte'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'mdsvex'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'prettier-plugin-svelte'
+        update-types: ['version-update:semver-major']
     groups:
       minor-and-patch:
         update-types:
