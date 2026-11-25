@@ -23,6 +23,14 @@ updates:
     schedule:
       interval: 'monthly'
     open-pull-requests-limit: 2
+    # SvelteKit 3 (kit 3, adapter-vercel 7, TypeScript 7) needs a planned migration: svelte.config.js to vite config, $lib to #lib, $env to $app/env.
+    ignore:
+      - dependency-name: "@sveltejs/kit"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@sveltejs/adapter-vercel"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types:
@@ -49,6 +57,12 @@ updates:
     schedule:
       interval: 'monthly'
     open-pull-requests-limit: 2
+    # SQLAlchemy 1.4 to 2.x changes the ORM layer and cannot be verified without a database; do it as a planned migration.
+    ignore:
+      - dependency-name: "SQLAlchemy"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "sqlacodegen"
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types:
