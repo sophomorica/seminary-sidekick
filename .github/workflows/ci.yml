@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main]
 
+# Cancel superseded PR runs (Actions-minutes guardrail, Patrick 2026-11-25). Pushes to main
+# are never cancelled, so a merge always gets its full run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   check:
     name: Type check, lint, build
